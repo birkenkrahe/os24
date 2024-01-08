@@ -1,0 +1,190 @@
+#+TITLE:CSC 420 Spring 2024 Syllabus
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Operating Systems (CSC 420) Spring 2024
+#+options: toc:nil
+#+startup: overview indent hideblocks
+* General Course Information
+
+- Meeting Times: Tuesday/Thursday, 09:30-10:45 hrs
+- Meeting place: Lyon building computer lab 104
+- Professor: Marcus Birkenkrahe
+- Office: Derby Science Building 210
+- Phone: (870) 307-7254 (office) / (501 422-4725 (private)
+- Office hours: Mon/Wed/Fri 10-10:50 am & 3-3.50 pm, Tue/Thu
+- The following textbooks were used to prepare this course:
+  1. The Linux Command Line (2e) by Shotts, NoStarch, 2019.
+  2. Operating Systems Concepts (10e) by Silberschatz et al,
+     Wiley, 2018.
+  3. Operating Systems Foundations with Linux on the Raspberry
+     Pi byVanderbauwhede/Singer. ARM Education Media, 2019.
+  4. How Linux Works (3e) by Ward. NoStarch, 2021.
+  5. Wicked Cool Shell Scripts (2e) by Taylor/Perry. NoStarch 2016.
+
+* Standard and course policies
+
+*Standard Lyon College Policies* are incorporated into this syllabus
+and can be found at: [[http://www.lyon.edu/standard-course-policies][lyon.edu/standard-course-policies]].
+
+The *Assignments and Honor Code* and the *Attendance Policy* are
+incorporated into this syllabus also and can be found at:
+[[https://tinyurl.com/LyonPolicy][tinyurl.com/LyonPolicy]].
+
+* Objectives
+
+Operating systems manage a computer’s resources for its users and
+their applications. We focus on the underlying concepts, look at
+examples and try them out - my preferred sandbox being Linux, which
+you will be introduced to, including process management and simple
+shell programming. We also address concurrency and parallelization,
+cloud computing, memory, and storage management. In lab sessions,
+we use the Raspberry Pi as a platform to try stuff and get much
+closer to the machine than PC OS like Windows or MacOS allow. The
+lessons will directly lead to you feeling calm and powerful when
+working on your computer. A worthwhile investment! We will cover
+chapters from Silberschatz (2018), a standard text on OS concepts,
+and from Shotts (2019), a complete introduction to the Linux OS.
+
+#+attr_html: :width 600px
+[[../img/landscape.png]]
+
+/Image: Computer landscape - modified after Steinhart, 2019/
+
+* Student Learning Outcomes
+
+Students who complete CSC 420 "Operating Systems (OS)", will be
+able to:
+
+- Understand how operating systems manage concurrent processes
+- Know OS design principles and implementation strategies
+- Know how to configure and run a Raspberry Pi-based Linux box
+- Use the command line interface and UNIX-style shell (~bash~)
+- Learn how to write simple shell scripts
+- Know how to process data with the shell
+- Know how to effectively present assignment results
+- Know principles and practice of virtualization
+
+* Course requirements
+
+Some knowledge of, and experience with computers is useful but not
+critical: we will start from basic concepts. Curiosity and personal
+discipline are essential. You will gain data literacy skills by
+taking this course. The course will prepare you for further studies
+in computer and data science, or in other disciplines that use
+modern computing, i.e. every discipline, from accounting to
+zoology).
+
+For a deeper understanding of the concepts, familiarity with basic
+data structures, computer architecture, and a high-level language,
+such as C or Java, is useful.
+
+Formal prerequisites according to the Lyon College 2023/24 catalog:
+CSC 265 (algorithms).
+
+* Grading system
+
+| WHAT                    | WEIGHT |
+|-------------------------+--------|
+| Assignments             |    25% |
+| Final Project           |    25% |
+| Weekly tests            |    25% |
+| Final exam (optional)   |    25% |
+
+Notes:
+- To pass: 60% of all available points.
+- Assignments include
+- Tests: weekly online quizzes, which are previewed and reviewed in
+  class.
+- Final exam: selection of the most challenging weekly quiz questions.
+- You only have to write the final exam if you want to improve your
+  grade at the end of the course. If the final exam result is below
+  your final grade average up to this point, it will be ignored.
+- There will be numerous (optional) bonus assignments to improve your
+  midterm and final grades.
+
+* Schedule and session content
+
+For *important dates*, see the 2023-2024 Academic Calendar at
+[[https://catalog.lyon.edu/202324-academic-calendar][catalog.lyon.edu]].
+
+No class on: Tuesday/Thursday 19/21 March (Spring break) - Friday 29
+March (Easter break). Last day of classes: Wednesday, 8 May. Final
+exams (non-graduating students): 10-15 May.
+
+*Schedule*:
+| WEEK | TEXTBOOK CHAPTERS                                   | ASSIGNMENTS (DataCamp / Project)                                        |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    1 | OS:1 Introduction                                   | Intro to Shell: manipulating files and directories                      |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    2 | OS:2 OS Structures                                  | Intro to Shell: manipulating data                                       |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    3 | OS:3 OS Processes                                   | Intro to Shell: combining tools                                         |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    4 | LX:1 What is the Shell?                             | Intro to Shell: Batch processing                                        |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    5 | LX:2 Navigation                                     | Intro to Shell: Creating new tools                                      |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    6 | LX:3 Exploring the system                           | Sprint review - proposal                                                |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    7 | LX:4 Manipulating files and directories             | Intro to Bash Scripting: From Command-Line to Bash Script               |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    8 | LX:5 Working with commands                          | Intro to Bash Scripting: Variables                                      |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|    9 | LX:6 Redirection                                    | Intro Bash Scripting: Control Statements                                |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|   10 | LX:9 Permissions                                    | Intro to Bash Scripting: Functions and Automation                       |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|   11 | LX:10 Processes / 14 Package Mgmt                   | Sprint review - results                                                 |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|   12 | LX:15 Storage Media / 16 Networking                 | Data processing in Shell: Downloading Data on the CLI                   |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|   13 | LX:17 Searching for files / 18 Archiving and Backup | Data processing in Shell: Data Cleaning and Munging on the Command Line |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|   14 | LX:19 Regular Expressions / 20 Text Processing      | Data processing in Shell: Database Operations on the Command Line       |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|   15 | OS:19 Linux vs. Windows                             | Data processing in Shell: Data Pipeline on the Command Line             |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+|   16 |                                                     | Final presentation                                                      |
+|------+-----------------------------------------------------+-------------------------------------------------------------------------|
+
+- OS: Operating Systems Concepts (10ed) by Silberschatz et al,
+  Wiley, 2018.
+- LX: The Linux Command Line (5e), NoStarch, 2019.
+
+*DataCamp*:
+- [[https://app.datacamp.com/learn/courses/introduction-to-shell][Introduction to Shell]]: The Unix command line has survived and
+  thrived for almost 50 years because it lets people do complex things
+  with just a few keystrokes. Sometimes called "the universal glue of
+  programming," it helps users combine existing programs in new ways,
+  automate repetitive tasks, and run programs on clusters and clouds
+  that may be halfway around the world. This course will introduce its
+  key elements and show you how to use them efficiently.
+- [[https://app.datacamp.com/learn/courses/introduction-to-bash-scripting][Introduction to Bash Scripting]]: Bash is a concise, superfast, and
+  robust scripting language for data and file manipulation. It’s a
+  vital skill for building analytics pipelines in the cloud, favored
+  by Linux users to work with data stored across multiple files. In
+  this course, we’ll guide you through the basics of Bash
+  scripting. We begin with an introduction to Bash script structures,
+  including inputting arguments and outputting results. You’ll then
+  work through data structures, such as variables and arrays, and
+  control statements, including loops and conditionals. You’ll then
+  put what you’ve learned into practice, by creating your own Bash
+  functions and scheduling automated scripts to run like clockwork
+  with cron.
+- [[https://app.datacamp.com/learn/courses/data-processing-in-shell][Data processing in Shell]]: We live in a busy world with tight
+  deadlines.  As a result, we fall back on what is familiar and easy,
+  favoring GUI interfaces like Anaconda and RStudio. However, taking
+  the time to learn data analysis on the command line is a great
+  long-term investment because it makes us stronger and more
+  productive data people. In this course, we will take a practical
+  approach to learn simple, powerful, and data-specific command-line
+  skills.  Using publicly available Spotify datasets, we will learn
+  how to download, process, clean, and transform data, all via the
+  command line.  We will also learn advanced techniques such as
+  command-line based SQL database operations.  Finally, we will
+  combine the powers of command line and Python to build a data
+  pipeline for automating a predictive model.
+
+*Workload:* approx. 4-5 hours per week.
+1. Class time = 16 * 3 * 50/60 = 40 hours
+2. Tests (home) = 16 * .5 = 8 hours
+3. DataCamp assignments: 13 * 2 = 26 hrs (approx.)
