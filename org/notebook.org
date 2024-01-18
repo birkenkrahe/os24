@@ -12,6 +12,81 @@
 - [ ] Get started with Raspberry Pi: connect and update
 - [ ] Complete Emacs tutorial (upload to Canvas)
 
+** Computer Chronicles - Operating Systems (1984)
+
+- [[https://youtu.be/V5S8kFvXpo4?si=fPAMxylnvxkqHlfC][Source: YouTube]].
+
+
+
+
+
+
+** Reading assignment: A Practical View of the Linux System (2019)
+
+- [[https://www.arm.com/resources/education/books/operating-systems][Free textbook from ARM]] (British producer of the RPi's CPU).
+- High level overview and nitty-gritty (C code).
+- Read this as a preparation for lecture & discussion.
+- Write down any questions you may have.
+
+** Project challenge - details to follow
+
+- 420 level course = independence and inspiration!
+- This is a great opportunity for AI to shine!
+- We'll only have 3 sprints, after 6, 11 and 15 weeks:
+  1. Proposal in week 6.
+  2. Results in week 11.
+  3. Final presentation in week 16.
+
+#+begin_quote
+Prompt: "Give me 15 project ideas for a course on Operating Systems,
+especially Linux. A project is completed by an individual student. The
+project runs for 15 weeks. The student must produce a proposal
+including methodology and references."
+#+end_quote
+
+[[https://chat.openai.com/share/c278de95-6b4a-4588-acb3-146689054b4d][Here's the answer.]] Including a sample breakdown of one project, and
+the prerequisites:
+
+1) Student with knowledge and experience
+   - Computer Architecture 
+   - C programming (especially pointers, memory management)
+   - Command line, bash programming, GCC, GNU make
+2) Beginner
+   - Set up a Linux environment (virtual machine) for experimentation
+   - Write a simple kernel module
+   - Compile the module
+   - Learn to load and unload the kernel module
+   - View kernel log for module output.
+
+How such a kernel module could look like:
+#+begin_example C
+#include <linux/module.h>   // Needed for all modules
+#include <linux/kernel.h>   // Needed for KERN_INFO
+
+// Module Initialization function
+static int __init simple_module_init(void) {
+    printk(KERN_INFO "SimpleModule: Module loaded!\n");
+    return 0; // Return 0 means module successfully loaded
+}
+
+// Module Cleanup function
+static void __exit simple_module_exit(void) {
+    printk(KERN_INFO "SimpleModule: Module unloaded!\n");
+}
+
+// Register module entry and exit points
+module_init(simple_module_init);
+module_exit(simple_module_exit);
+
+// Module information
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Your Name");
+MODULE_DESCRIPTION("A Simple Linux Kernel Module");
+MODULE_VERSION("0.1");
+#+end_example
+
+Simpler: bash- and shell-related projects.
+
 ** Announcement: Journal club!
 
 Data science enthusiasts: there will be a "journal club" on Wednesday
@@ -39,6 +114,7 @@ Sources:
 - [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
 - [[https://www.raspberrypi.com/software/operating-systems/][Download area (RPi Imager - installer)]]
 - [[https://www.raspberrypi.com/software/raspberry-pi-desktop/#:~:text=Debian%20with%20Raspberry%20Pi%20Desktop,PC%20or%20Apple%20Mac%20computer.][Raspberry Pi Desktop (for any old computer)]]
+- [[https://youtu.be/eZ74x6dVYes?si=vLjK8nndJS2uS6bf][Raspberry Pi Explained in 100 seconds]]
 
 What to do:
 1. Get an SD card reader ([[https://www.amazon.com/UGREEN-Reader-Memory-Windows-Simultaneously/dp/B01EFPX9XA/ref=asc_df_B01EFPX9XA/?tag=hyprod-20&linkCode=df0&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&psc=1&mcid=3346d44aed8837e692060fcb6e3c7209&tag=&ref=&adgrpid=58425267301&hvpone=&hvptwo=&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&gclid=CjwKCAiAkp6tBhB5EiwANTCx1MXXejCwHTaI0GldFt8JUvq7DYoQPfNZgsoibyMvW6i26B62w9UBUhoC2twQAvD_BwE][I use this one]] - $12).
