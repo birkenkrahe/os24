@@ -3,9 +3,14 @@
 #+SUBTITLE: CSC 420, Lyon College, Spring 2024
 #+STARTUP:overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
-* Week 1 - Overview and introduction to OS 
+* Week 1 - Overview and introduction to OS
 #+attr_html: :width 400px
 [[../img/cover.png]]
+
+- [ ] Course overview - [[https://lyon.instructure.com/courses/2255/assignments/syllabus][syllabus]] and [[https://lyon.instructure.com/courses/2255/pages/course-links][course links]]
+- [ ] Textbook: The Linux Command Line (2e) - [[https://linuxcommand.org/tlcl.php][free PDF]]
+- [ ] Get started with Raspberry Pi: connect and update
+- [ ] Complete Emacs tutorial (upload to Canvas)
 
 ** Announcement: Journal club!
 
@@ -28,18 +33,34 @@ front of my office, about the paper that I wrote before this one.
 your own - I will try to simulate that by discussing my paper as if
 someone else had written it, and also using AI to deliver a critique.
 
-* Week 2 - 
-* Week 3 - 
-* Week 4 - 
-* Week 5 - 
-* Week 6 - 
-* Week 7 - 
-* Week 8 - 
-* Week 9 - 
-* Week 10 - 
-* Week 11 - 
-* Week 12 - 
-* Week 13 - 
-* Week 14 - 
-* Week 15 - 
-* Week 16 - 
+** FYI - Installing Raspberry Pi OS for Pi400
+
+Sources:
+- [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
+- [[https://www.raspberrypi.com/software/operating-systems/][Download area (RPi Imager - installer)]]
+- [[https://www.raspberrypi.com/software/raspberry-pi-desktop/#:~:text=Debian%20with%20Raspberry%20Pi%20Desktop,PC%20or%20Apple%20Mac%20computer.][Raspberry Pi Desktop (for any old computer)]]
+
+What to do:
+1. Get an SD card reader ([[https://www.amazon.com/UGREEN-Reader-Memory-Windows-Simultaneously/dp/B01EFPX9XA/ref=asc_df_B01EFPX9XA/?tag=hyprod-20&linkCode=df0&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&psc=1&mcid=3346d44aed8837e692060fcb6e3c7209&tag=&ref=&adgrpid=58425267301&hvpone=&hvptwo=&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&gclid=CjwKCAiAkp6tBhB5EiwANTCx1MXXejCwHTaI0GldFt8JUvq7DYoQPfNZgsoibyMvW6i26B62w9UBUhoC2twQAvD_BwE][I use this one]] - $12).
+2. Get an SDHC card ([[https://www.amazon.com/Samsung-Class-Adapter-MB-MC32GA-AM/dp/B0749KG1JK/ref=sr_1_2?crid=MY5LUD60LHJI&keywords=samsung+32gb+sd+card+micro&qid=1705552023&sprefix=samsung+32gb+s%2Caps%2C112&sr=8-2][I use SanDisk Ultra Class 10 32GB]] - $12).
+3. Mount SD card reader with microSD to your PC (Windows/MacOS = plugin).
+4. Run RPi installer program on your PC.
+5. Follow the instructions (pick Pi model/OS type/storage device).
+6. Insert SD card in Rasperry Pi - boot and configure.
+
+
+* Week 2 - OS Structures
+* Week 3 - OS Processes
+* Week 4 - What is the Shell?
+* Week 5 - Navigation
+* Week 6 - Exploring the system / Sprint review: proposal
+* Week 7 - Manipulating files and directories
+* Week 8 - Working with commands
+* Week 9 - Redirection
+* Week 10 - Permissions
+* Week 11 - Processes / Package management / Sprint review: results
+* Week 12 - Storage media / Networking
+* Week 13 - Searching for files / Archiving and backup
+* Week 14 - Regular expressions / Text processing
+* Week 15 - Linux vs. Windows
+* Week 16 - Summary and outlook / Final sprint review: presentation
