@@ -7,28 +7,53 @@
 #+attr_html: :width 400px
 [[../img/cover.png]]
 
-- [ ] Course overview - [[https://lyon.instructure.com/courses/2255/assignments/syllabus][syllabus]] and [[https://lyon.instructure.com/courses/2255/pages/course-links][course links]]
-- [ ] Textbook: The Linux Command Line (2e) - [[https://linuxcommand.org/tlcl.php][free PDF]]
-- [ ] Get started with Raspberry Pi: connect and update
-- [ ] Complete Emacs tutorial (upload to Canvas)
+- [X] Course overview - [[https://lyon.instructure.com/courses/2255/assignments/syllabus][syllabus]] and [[https://lyon.instructure.com/courses/2255/pages/course-links][course links]]
+- [X] Textbook: The Linux Command Line (2e) - [[https://linuxcommand.org/tlcl.php][free PDF]]
+- [X] Installation MSYS2 and CYGWIN on Windows ([[https://chat.google.com/room/AAAABlWSGes/8AnZfK60IZM/8AnZfK60IZM?cls=10][Google Chat]])
 
 ** Computer Chronicles - Operating Systems (1984)
 
 - [[https://youtu.be/V5S8kFvXpo4?si=fPAMxylnvxkqHlfC][Source: YouTube]].
+- My notes made while watching in class.
+- [[https://chat.google.com/room/AAAABlWSGes/VzKc4SfKHUc/VzKc4SfKHUc?cls=10][Post in the OS Google Chat]].
 
 
+* Week 2 - OS Structures
 
+- [ ] Discuss "A practical view of the Linux system"
+- [ ] Get started with Raspberry Pi: connect and update
+- [ ] Complete Emacs tutorial (upload to Canvas)
 
+** TODO Announcement: Journal club!
 
+Data science enthusiasts: there will be a "journal club" on Wednesday
+12-12:45 pm in Derby room 209. We'll put the papers in a GDrive.
 
-** Reading assignment: A Practical View of the Linux System (2019)
+For the first journal club on Januar 31, I'd like to submit my last
+non-technical paper, "The role of AI coding assistants: revisiting the
+need for literate programming in computer and data science education."
+([[https://drive.google.com/file/d/1OonJ1pesK2iRP3JDf4MoBRgg4NKk91yU/view?usp=sharing][Link]]) This paper will be presented at INTED'24, the 18th annual
+International Technology, Education and Development Conference in
+Valencia (Spain), March 4-6.
 
+You can get some background on this topic from the wall poster in
+front of my office, about the paper that I wrote before this one.
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/MDPI_2023_BIRKENKRAHE_poster.pptx.png]]
+
+*Caveat:* in a journal club, you discuss other people's papers and not
+your own - I will try to simulate that by discussing my paper as if
+someone else had written it, and also using AI to deliver a critique.
+
+** IN PROGRESS Reading assignment: A Practical View of the Linux System (2019)
+
+- Read "A practical view of the Linux system" (ARM, 2019)
 - [[https://www.arm.com/resources/education/books/operating-systems][Free textbook from ARM]] (British producer of the RPi's CPU).
 - High level overview and nitty-gritty (C code).
 - Read this as a preparation for lecture & discussion.
 - Write down any questions you may have.
 
-** Project challenge - details to follow
+** TODO Project challenge - (virtually) impossible
 
 - 420 level course = independence and inspiration!
 - This is a great opportunity for AI to shine!
@@ -86,29 +111,19 @@ MODULE_VERSION("0.1");
 #+end_example
 
 Simpler: bash- and shell-related projects.
+** TODO Project challenge - (totally) possible
 
-** Announcement: Journal club!
+Re-create a Raspberry Pi projects. The choice is yours!
+- [[https://www.tomshardware.com/features/best-raspberry-pi-projects][Best Raspberry Pi projects January 2024]]
+- [[https://pimylifeup.com/category/projects/][List of 160+ projects]]
+- [[https://www.hackster.io/raspberry-pi/projects][4343 Raspberry Pi Projects]]
 
-Data science enthusiasts: there will be a "journal club" on Wednesday
-12-12:45 pm in Derby room 209. We'll put the papers in a GDrive.
+To do this, and to do stuff at home, you can take your Pi home if you
+like and if you promise to look after it. If you destroy it, you'll
+have to replace it - the Pi400 only costs $84 right now [[https://www.amazon.com/Raspberry-400-Computer-Kit-RPI400-US/dp/B08MYVQW1S/ref=sr_1_2?crid=7VCXPFUD7I0R&keywords=pi400&qid=1705606222&s=books&sprefix=pi400%2Cstripbooks%2C122&sr=1-2&ufe=app_do%3Aamzn1.fos.006c50ae-5d4c-4777-9bc0-4513d670b6bc][at
+Amazon]]. (You might want to get your own anyway!)
 
-For the first journal club on Januar 31, I'd like to submit my last
-non-technical paper, "The role of AI coding assistants: revisiting the
-need for literate programming in computer and data science education."
-([[https://drive.google.com/file/d/1OonJ1pesK2iRP3JDf4MoBRgg4NKk91yU/view?usp=sharing][Link]]) This paper will be presented at INTED'24, the 18th annual
-International Technology, Education and Development Conference in
-Valencia (Spain), March 4-6.
-
-You can get some background on this topic from the wall poster in
-front of my office, about the paper that I wrote before this one.
-#+ATTR_HTML: :WIDTH 400px:
-[[../img/MDPI_2023_BIRKENKRAHE_poster.pptx.png]]
-
-*Caveat:* in a journal club, you discuss other people's papers and not
-your own - I will try to simulate that by discussing my paper as if
-someone else had written it, and also using AI to deliver a critique.
-
-** FYI - Installing Raspberry Pi OS for Pi400
+** TODO FYI - Installing Raspberry Pi OS for Pi400
 
 Sources:
 - [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
@@ -125,7 +140,7 @@ What to do:
 6. Insert SD card in Rasperry Pi - boot and configure.
 
 
-* Week 2 - OS Structures
+
 * Week 3 - OS Processes
 * Week 4 - What is the Shell?
 * Week 5 - Navigation
@@ -140,3 +155,8 @@ What to do:
 * Week 14 - Regular expressions / Text processing
 * Week 15 - Linux vs. Windows
 * Week 16 - Summary and outlook / Final sprint review: presentation
+* References
+
+ARM (2010). Operating Systems Foundations with Linux on the Raspberry
+Pi. By Professor Wim Vanderbauwhede and Dr. Jeremy Singer ISBN
+978-1-911531-20-3. [[https://www.arm.com/resources/education/books/operating-systems][URL: arm.com]].
