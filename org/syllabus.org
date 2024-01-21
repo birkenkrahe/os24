@@ -15,10 +15,14 @@
   1. The Linux Command Line (2e) by Shotts, NoStarch, 2019.
   2. Operating Systems Concepts (10e) by Silberschatz et al,
      Wiley, 2018.
-  3. Operating Systems Foundations with Linux on the Raspberry
-     Pi byVanderbauwhede/Singer. ARM Education Media, 2019.
-  4. How Linux Works (3e) by Ward. NoStarch, 2021.
-  5. Wicked Cool Shell Scripts (2e) by Taylor/Perry. NoStarch 2016.
+  3. Operating Systems Foundations with Linux on the Raspberry Pi, by
+     Vanderbauwhede/Singer. ARM Education Media, 2019.
+  4. Operating Systems: Three Easy Pieces, by Arpaci-Dusseau, Gum
+     Road 2018.
+  5. Operating Systems: Principles and Practice, by
+     Anderson/Dahlinger, Recursive Books, 2015.
+  6. How Linux Works (3e) by Ward. NoStarch, 2021.
+  7. Wicked Cool Shell Scripts (2e) by Taylor/Perry. NoStarch 2016.
 
 * Standard and course policies
 
