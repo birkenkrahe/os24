@@ -58,21 +58,6 @@ front of my office, about the paper that I wrote before this one.
 your own - I will try to simulate that by discussing my paper as if
 someone else had written it, and also using AI to deliver a critique.
 
-** TODO Practice: Shell fundamentals
-
-- Terminal emulator vs. terminal (Emacs eshell)
-- Open Emacs
-- Open Emacs shell (~M-x eshell RET~)
-  
-#+begin_example sh
-  lioidfondfons
-  date
-  cal
-  df
-  df -H
-  exit
-#+end_example
-
 ** TODO DataCamp lesson review
 
 Try the command examples in replit.com:
@@ -161,6 +146,21 @@ Try the command examples in replit.com:
      ask you which encoding you want to use and suggest UTF-8 to you.
      #+end_notes
      
+** TODO Practice: Shell fundamentals
+
+- Terminal emulator vs. terminal (Emacs eshell)
+- Open Emacs
+- Open Emacs shell (~M-x eshell RET~)
+  
+#+begin_example sh
+  lioidfondfons
+  date
+  cal
+  df
+  df -H
+  exit
+#+end_example
+
 ** TODO Lecture: OS fundamentals
 
 - [[file:1_fundamentals.org]]
