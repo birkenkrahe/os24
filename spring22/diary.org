@@ -1,0 +1,49 @@
+#+TITLE:Course Diary
+#+AUTHOR: Marcus Birkenkrahe
+#+STARTUP: overview hideblocks
+#+options: ^:nil toc:1
+* What is this?
+
+  A place for irregular articles of possible interest to students of
+  this course, mostly to avoid lengthy emails and to park content that
+  I may want to develop later on, if I find the time.
+
+  The public cross-course all-purpose diary is [[https://github.com/birkenkrahe/org/blob/master/diary.org][here in GitHub]].
+* Getting ready to roll! (Jan-5-2022)
+
+  Unpacked a couple of old Raspberry Pi's and got them going. The way
+  this works (for me) is that I remember little and need to re-learn
+  quite a bit - e.g. how to enable remote access (which is easier
+  under Linux, but now I'm on Windows, alas).
+
+  The upper pic is the first boot of my oldest Pi, a Rasperry Pi 2 B,
+  the lower one shows the Pi-top, which is built on a Raspberry Pi 3
+  B+. I had installed Ubuntu Mate but I'm going back to Raspbian for
+  the course.
+
+  Unfortunately, I caught a flu, which slows me down but doesn't stop
+  me from hacking away - did a good bit of work on the Pi2:
+  * Got WiFi (with dongle) working on the Pi2
+  * Installed GNU Emacs, my favorite editor, on the Pi2
+  * Used ~ssh~ (with PuTTY) to access the Pi2 from my Windows laptop
+  * Used ~Tramp~ to connect to the Pi2 remotely from within Emacs via
+    ~plink~.
+
+  [[https://github.com/birkenkrahe/os420/blob/main/pi/README.org][Here are my notes.]]
+
+  My next mini-project is turning the Pi2 into a [[https://www.howtoforge.com/tutorial/raspberry-pi-as-backup-server-for-linux-and-windows/][backup server]] for my
+  local network.
+
+  Picture gallery:
+
+   #+name:pi2box
+  #+attr_html: :width 500px
+  [[./img/pi2box.jpg]]
+
+  #+name:pi2
+  #+attr_html: :width 500px
+  [[./img/pi2.jpg]]
+
+  #+name:pi-top
+  #+attr_html: :width 500px
+  [[./img/pi-top.jpg]]

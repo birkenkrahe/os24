@@ -1,0 +1,16 @@
+FAQ.org
+README.org
+agenda.org
+assignments
+bookmarks.md
+bookmarks.org
+demo
+diary.org
+img
+notes.org
+pdf
+pi
+practice
+qr
+schedule.org
+syllabus.org

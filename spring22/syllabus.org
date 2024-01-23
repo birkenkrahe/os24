@@ -1,0 +1,361 @@
+#+TITLE:CSC 420 Spring 2022 Syllabus
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Operating Systems (CSC 420) Spring 2022
+#+options: toc:nil
+* General Course Information
+
+  * Meeting Times: Tuesday/Thursday, 09:30-10:45 hrs
+  * Meeting place: Lyon building computer lab 104
+  * Professor: Marcus Birkenkrahe
+  * Office: Derby Science Building 210
+  * Phone: (870) 307-7254 (office) / (501 422-4725 (private)
+  * Office hours: Mon/Wed/Fri 12:00-12:30 PM; Tue/Thu 2.30-3.00 PM
+  * Textbook[fn:8]: (1) Operating Systems Concepts (10ed) by
+    Silberschatz et al, Wiley, 2018. (2) The Linux Command Line (5e),
+    NoStarch, 2019.
+
+  #+attr_html: :width 500px
+  [[./img/covers.png]]
+
+  #+attr_html: :width 500px
+  [[./img/cover2.png]] 
+
+** Objectives
+
+   Operating systems manage a computer’s resources for its users and
+   their applications. We focus on the underlying concepts, look at
+   examples and try them out - my preferred sandbox being Linux, which
+   you will be introduced to, including process management and simple
+   shell programming. We also address concurrency and parallelization,
+   cloud computing, memory, and storage management. In lab sessions,
+   we use the Raspberry Pi as a platform to try stuff and get much
+   closer to the machine than PC OS like Windows or MacOS allow. The
+   lessons will directly lead to you feeling calm and powerful when
+   working on your computer. A worthwhile investment! We will cover
+   chapters from Silberschatz (2018), a standard text on OS concepts,
+   and from Shotts (2019), a complete introduction to the Linux OS.
+
+   #+attr_html: :width 600px
+   [[./img/landscape.png]]
+
+   /Image: Computer landscape - modified after Steinhart, 2019/
+
+** Student Learning Outcomes
+
+   Students who complete CSC 420 "Operating Systems (OS)", will be
+   able to:
+
+   * Understand how operating systems manage concurrent processes
+   * Know OS design principles and implementation strategies
+   * Know how to configure and run a Raspberry Pi-based Linux box
+   * Use the command line interface and UNIX-style shell (~bash~)
+   * Learn how to write simple shell scripts
+   * Know how to process data with the shell
+   * Know how to effectively present assignment results
+   * Know principles and practice of virtualization
+
+** Course requirements
+
+   Some knowledge of, and experience with computers is useful but not
+   critical: we will start from basic concepts. Curiosity and personal
+   discipline are essential. You will gain data literacy skills by
+   taking this course. The course will prepare you for further studies
+   in computer and data science, or in other disciplines that use
+   modern computing, i.e. every discipline, from accounting to
+   zoology).
+
+   For a deeper understanding of the concepts, familiarity with basic
+   data structures, computer architecture, and a high-level language,
+   such as C or Java, is useful.
+
+** Grading system
+
+   | WHEN[fn:1]    | DESCRIPTION          | IMPACT |
+   |---------------+----------------------+--------|
+   | Every session | Class assignments    |    10% |
+   | Monthly       | Tests                |    30% |
+   | Bi-/Weekly    | DataCamp assignments |    30% |
+   | End of term   | Final exam           |    30% |
+
+   You should be able to see your current grade at any time using the
+   Schoology gradebook for the course.
+
+*** Grading table
+
+    This table is used to convert completion rates into letter
+    grades. For the midterm results, letter grades still carry signs,
+    while for the term results, only straight letters are given (by
+    rounding up).
+
+    |--------+---------------+---------------|
+    |      *%* | *Midterm Grade* | *Final Grade*   |
+    |--------+---------------+---------------|
+    | 100-98 | A+            |               |
+    |  97-96 | A             | A (passed -   |
+    |  95-90 | A-            | very good)    |
+    |--------+---------------+---------------|
+    |  89-86 | B+            |               |
+    |  85-80 | B             | B (passed -   |
+    |  79-76 | B-            | good)         |
+    |--------+---------------+---------------|
+    |  75-70 | C+            |               |
+    |  69-66 | C             | C (passed -   |
+    |  65-60 | C-            | satisfactory) |
+    |--------+---------------+---------------|
+    |  59-56 | D+            |               |
+    |  55-50 | D             | D (passed)    |
+    |--------+---------------+---------------|
+    |   49-0 | F             | F (failed)    |
+    |--------+---------------+---------------|
+
+*** Class assignments (10%)
+    - Complete small assignments in class (participation)
+    - Complete assignments outside of class (DataCamp)
+    - Be ready to present your results at any time
+
+*** Monthly tests (30%)
+    - Complete 45 min online test in class OR
+    - Recall last month of lectures and labs
+    - Read relevant textbook chapters
+
+*** DataCamp assignments (30%)
+    - Complete weekly chapters of DataCamp assignments
+    - Spend 30-45 min per week on an assignment
+    - Bring questions and comments to class for discussion
+    - Late DataCamp submissions will be accepted but you'll lose 1
+      point for every day that your submission is late.
+
+*** Final exam (30%)
+    - 120 min multiple choice exam
+    - Online in Schoology in the classroom
+    - Sourced from the weekly quiz questions
+
+* Standard Policies[fn:2]
+** Honor Code
+
+   All graded work in this class is to be pledged in accordance with
+   the Lyon College Honor Code. The use of a phone for any reason
+   during the course of an exam is considered an honor code
+   violation.
+
+** Class Attendance Policy
+
+   Students are expected to attend all class periods for the courses
+   in which they are enrolled. They are responsible for conferring
+   with individual professors regarding any missed
+   assignments. Faculty members are to notify the Registrar when a
+   student misses the equivalent of one, two, three, and four weeks
+   of class periods in a single course. Under this policy, there is
+   no distinction between “excused” and “unexcused” absences, except
+   that a student may make up work missed during an excused
+   absence. A reminder of the college’s attendance policy will be
+   issued to the student at one week, a second reminder at two weeks,
+   a warning at three weeks, and notification of administrative
+   withdrawal and the assigning of an “F” grade at four
+   weeks. Students who are administratively withdrawn from more than
+   one course will be placed on probation or suspended.
+
+** Disabilities
+
+   Students seeking reasonable accommodations based on documented
+   learning disabilities must contact Interim Director of Academic
+   Support Courtney Beal in the Morrow Academic Center at (870)
+   307-7016 or at courtney.beal@lyon.edu.
+
+** Harassment, Discrimination, and Sexual Misconduct
+
+   Title IX and Lyon’s policy prohibit harassment, discrimination and
+   sexual misconduct. Lyon encourages anyone experiencing harassment,
+   discrimination or sexual misconduct to talk to Danell Hetrick,
+   Title IX Coordinator and Interim Vice-President for Student Life,
+   or Sh’Nita Mitchell, Title IX Investigator and Associate Dean for
+   Students, about what happened so they can get the support they need
+   and Lyon can respond appropriately.  Lyon is legally obligated to
+   respond to reports of sexual misconduct, and therefore we cannot
+   guarantee the confidentiality of a report, unless made to a
+   confidential resource (Chaplain, Counselor, or Nurse). As a faculty
+   member, I am required to report possible Title IX violations and
+   must provide our Title IX coordinator with all relevant details.  I
+   cannot, therefore, guarantee confidentiality.
+
+** College-Wide COVID-19 Policies for Spring, 2022
+
+   - Masks are mandated when indoors in all campus buildings,
+     including academic buildings, Edwards Commons, Becknell Gymnasium
+     and residence halls. Refer to the full campus policy online for
+     more details.
+   - Participation in community surveillance testing is mandatory.
+   - Vaccines are STRONGLY encouraged for all faculty, staff, and
+     students. Vaccines are NOT MANDATED for Lyon College community
+     members.
+
+   Details specific to this course may be found in the subsequent
+   pages of this syllabus. Those details will include at least the
+   following:
+   - A description of the course consistent with the Lyon College catalog.
+   - A list of student learning outcomes for the course.
+   - A summary of all course requirements.
+   - An explanation of the grading system to be used in the course.
+   - Any course-specific attendance policies that go beyond the College policy.
+   - Details about what constitutes acceptable and unacceptable
+     student collaboration on graded work.
+
+* Course specific information
+** Assignments and Honor Code[fn:3]
+
+   There will be numerous assignments during the semester - e.g.
+   programming, lessons, tests, quizzes, and sprint reviews. They are
+   due at the beginning of the class period on the due date. Once
+   class begins, the assigment will be considered one day late if it
+   has not been turned in.  Late programs will not be accepted without
+   an extension. Extensions will *not* be granted for reasons such as:
+
+   * You could not get to a computer
+   * You could not get a computer to do what you wanted it to do
+   * The network was down
+   * The printer was out of paper or toner
+   * You erased your files, lost your homework, or misplaced your
+     flash drive
+   * You had other coursework or family commitments that interfered
+     with your work in this course
+
+   Put “Pledged” and a note of any collaboration in the comments of
+   any program you turn in. Programming assignments are individual
+   efforts, but you may seek assistance from another student or the
+   course instructor.  You may not copy someone else’s solution. If
+   you are having trouble finishing an assignment, it is far better to
+   do your own work and receive a low score than to go through an
+   honor trial and suffer the penalties that may be involved.
+
+   What is cheating on an assignment? Here are a few examples:
+
+   * Having someone else write your assignment, in whole or in part
+   * Copying an assignment someone else wrote, in whole or in part
+   * Collaborating with someone else to the extent that your
+     submissions are identifiably very similar, in whole or in part
+   * Turning in a submission with the wrong name on it
+
+   What is not cheating?  Here are some examples:
+
+   * Talking to someone in general terms about concepts involved in an
+     assignment
+   * Asking someone for help with a specific error message or bug in
+     your program
+   * Getting help with the specifics of language syntax or citation
+     style
+   * Utilizing information given to you by the instructor
+
+   Any assistance must be clearly explained in the comments at the
+   beginning of your submission.  If you have any questions about
+   this, please ask or review the policies relating to the Honor Code.
+
+   Absences on Days of Exams:
+
+   Test “make-ups” will only be allowed if arrangements have been
+   made prior to the scheduled time.  If you are sick the day of the
+   test, please e-mail me or leave a message on my phone before the
+   scheduled time, and we can make arrangements when you return.
+
+** Important Dates[fn:4]:
+
+   | DATE        | DAY              | DESCRIPTION                                  |
+   |-------------+------------------+----------------------------------------------|
+   | 4 January   | Tuesday          | Last day to deposit for 2022 spring semester |
+   | 11 January  | Tuesday          | Classes begin                                |
+   | 17 January  | Monday           | MLK Day - no classes                         |
+   | 18 January  | Tuesday          | Last day to add a class                      |
+   | 25 January  | Tuesday          | Last day to drop without record of a course  |
+   |             |                  | Last day to declare a course pass-fail       |
+   |             |                  | Deadline for removal of incompletes          |
+   | 19-27 March | Saturday-Sunday  | Spring break                                 |
+   | 15-18 April | Friday-Monday    | Easter break                                 |
+   | 4 May       | Wednesday        | Last day of classes                          |
+   | 5-10 May    | Thursday-Tuesday | Final exams                                  |
+   | 10 May      | Tuesday          | Senior grades due by noon                    |
+   | 18 May      | Wednesday        | All grades due by noon                       |
+
+** Schedule and session content
+
+   Changes are possible - an [[https://github.com/birkenkrahe/os420/blob/main/schedule.org][updated schedule is available in GitHub]].
+
+
+  | DATE       | TEXTBOOK CHAPTERS[fn:1]                             | DataCamp Assignments                                                    | TEST[fn:2] |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-11-Jan | OS:1 Introduction                                   |                                                                         | Entry quiz |
+  | Thu-13-Jan |                                                     |                                                                         | Quiz 1     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-18-Jan | OS:2 OS Structures                                  |                                                                         |            |
+  | Thu-20-Jan |                                                     |                                                                         | Quiz 2     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-25-Jan | OS:3 OS Processes                                   | Introduction to Shell: manipulating files and directories               |            |
+  | Thu-27-Jan |                                                     |                                                                         | Quiz 3     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-01-Feb | LX:1 What is the Shell?                             | Introduction to Shell: manipulating data                                |            |
+  | Thu-03-Feb |                                                     |                                                                         | Quiz 4     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-08-Feb | LX:2 Navigation                                     | Introduction to Shell: combining tools                                  |            |
+  | Thu-10-Feb |                                                     |                                                                         | Test 1     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-15-Feb | LX:3 Exploring the system                           | Introduction to Shell: Batch processing                                 |            |
+  | Thu-17-Feb |                                                     |                                                                         | Quiz 5     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-22-Feb | LX:4 Manipulating files and directories             | Introduction to Shell: Creating new tools                               |            |
+  | Thu-24-Feb |                                                     |                                                                         | Quiz 6     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-01-Mar | LX:5 Working with commands                          | Introduction to Bash Scripting: From Command-Line to Bash Script        |            |
+  | Thu-03-Mar |                                                     |                                                                         | Quiz 7     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-08-Mar | LX:6 Redirection                                    | Introduction to Bash Scripting: Variables                               |            |
+  | Thu-10-Mar |                                                     |                                                                         | Test 2     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-15-Mar | LX:9 Permissions                                    | Introduction to Bash Scripting: Control Statements                      |            |
+  | Thu-17-Mar |                                                     |                                                                         | Quiz 8     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-29-Mar | LX:10 Processes / 14 Package Mgmt                   | Introduction to Bash Scripting: Functions and Automation                |            |
+  | Thu-31-Mar |                                                     |                                                                         | Quiz 9     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-05-Apr | LX:15 Storage Media / 16 Networking                 | Data processing in Shell: Downloading Data on the Command Line          |            |
+  | Thu-07-Apr |                                                     |                                                                         | Quiz 10    |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-12-Apr | LX:17 Searching for files / 18 Archiving and Backup | Data processing in Shell: Data Cleaning and Munging on the Command Line |            |
+  | Thu-14-Apr |                                                     |                                                                         | Quiz 11    |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Thu-19-Apr | LX:19 Regular Expressions / 20 Text Processing      | Data processing in Shell: Database Operations on the Command Line       |            |
+  | Fri-21-Apr |                                                     |                                                                         | Test 3     |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-26-Apr | OS:19 Linux vs. Windows                             | Data processing in Shell: Data Pipeline on the Command Line             |            |
+  | Thu-28-Apr |                                                     |                                                                         | Quiz 12    |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+  | Tue-03-May |                                                     |                                                                         |            |
+  |------------+-----------------------------------------------------+-------------------------------------------------------------------------+------------|
+   
+* References
+
+  * Steinhart (2019). The Secret Life of Programs. NoStarch.
+  * Vanderbauwhede/Singer (2019). Operating Systems Foundations with
+    Linux on the Raspberry Pi. ARM Education Media.
+
+* Footnotes
+
+[fn:8]I might also use the book by Vanderbauwhede/Singer on OS for the
+Pi. This is a very nice book by the two creators of Haskell.
+
+[fn:1]Schedule may change depending on course load and progress.
+
+[fn:2]Sent by the Interim Provost, Anthony Grafton. COVID-Update Jan 2022.
+
+[fn:3]Taken from David Sonnier with minor modifications.
+
+[fn:4]Academic calendar sent by the Provost, Melissa Taverner.
+
+[fn:5](OS) Chapter in Silberschatz et al, "Operating System Concepts",
+Wiley (2018). (LX) Shotts' "[[https://linuxcommand.org/tlcl.php][The Linux Command Line]]" (2019) - 5th
+Internet edition [[https://sourceforge.net/projects/linuxcommand/][freely available here]]. (AD) Shotts' "[[https://linuxcommand.org/lc3_adventures.php][Adventures with
+the Linux Command Line]]" (2021) - 1st Internet edition [[https://sourceforge.net/projects/linuxcommand/files/AWTLCL/21.10/AWTLCL-21.10.pdf/download][freely available
+here]].
+
+[fn:6]Lab sessions begin as soon as the Raspberry Pi equipment has
+arrived. Two students work on one Linux box together.
+
+[fn:7]Quiz: covers the material of the past week. Usually 5 min at the
+beginning of class, multiple choice. Test: in class exercises.

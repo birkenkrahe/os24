@@ -1,0 +1,1977 @@
+#+TITLE:OS Agenda
+#+AUTHOR:Marcus Birkenkrahe
+#+SUBTITLE:Agenda OS420 Operating Systems CSC 420
+#+STARTUP:overview hideblocks
+#+OPTIONS: toc:1 num:nil ^:nil
+#+PROPERTY: header-args:bash :exports both
+#+PROPERTY: header-args:bash :results output
+* README
+
+  This file contains the agenda overview (what I had planned), the
+  objectives (what we managed to do) and (much of the) content of each
+  taught session of the course. I want to avoid splitting the content
+  up over many files - so that you have to navigate as little as
+  possible (like a book)!
+
+  The companion file to this file, less structured and with the
+  captain's log, is the [[./notes.org][notes.org]] file.
+
+* Welcome to the course - w1s1 (11-Jan)
+
+  #+attr_html: :width 500px
+  [[./img/fivearmies.jpg]]
+
+  * Aspiration and ambition (Lyon Data Science program)
+  * Introduction to the course & the lecturer
+  * Homework assignments: *GitHub*, DataCamp, Emacs
+  * What's next?
+
+** Aspirations and ambitions (DS program 2021-2023)
+
+   | CLASS                                 | CODE            | TERM        | Topics                              |
+   |---------------------------------------+-----------------+-------------+-------------------------------------|
+   | Data Science Tools and Methods        | DSC 101         | Fall 2021   | R, Basic EDA, Base R                |
+   | Introduction to Advanced Data Science | DSC 205         | Spring 2022 | R, Advanced EDA, Tidyverse          |
+   | Database Theory and Applications      | CSC 330         | Spring 2022 | SQL, SQLite                         |
+   | Operating Systems                     | CSC 420         | Spring 2022 | Bash, awk, sed, regular expressions |
+   | Applied Math for Data Science         | DSC 482/MTH 360 | Fall 2022   | Probability, Statistics + R         |
+   | Data Visualization                    | DSC 302         | Fall 2022   | D3, Processing, Javascript, Bokeh   |
+   | Machine Learning                      | DSC 305         | Spring 2023 | Predictive algorithms, neural nets  |
+   | Digital Humanities                    | CSC 105         | Spring 2023 | Data science applications           |
+
+** Introduction to the course & the lecturer
+
+   #+attr_html: :width 500px
+   #+caption: DESY APE research group, Hamburg/Rome, 1994
+   [[./img/desy.jpg]]
+
+   * Why me?
+   * Syllabus for this course ([[https://lyon.schoology.com/course/5516220833/materials/gp/5549927065][Schoology]])
+
+** Homework assignments week 1 (11-Jan/13-Jan-2022)
+
+   #+attr_html: :width 600px
+   [[./img/homework.png]]
+
+   * GitHub Hello World Exercise ([[https://github.com/birkenkrahe/org/blob/master/FAQ.org][Info: FAQ]])
+   * DataCamp platform registration ([[https://lyon.schoology.com/course/5516220833/materials][Link: Schoology]])
+   * GNU Emacs installation ([[https://github.com/birkenkrahe/org/blob/master/FAQ.org#how-to-install-emacs-ess-under-windows-and-macos][Info: FAQ]])
+
+*** GitHub
+
+**** What is it?
+
+     * Software development platform
+     * Built around Git by Linus Torvalds
+     * Bought by Microsoft in 2018
+     * AI support (e.g. [[https://copilot.github.com/][GitHub Copilot]])
+
+     Watch: "[[https://youtu.be/w3jLJU7DT5E][What is GitHub?]]" (GitHub, 2016)
+
+     #+attr_html: :width 500px
+     [[./img/github.gif]]
+     /Gif: "So long binder of requirements" Source: GitHub/
+
+**** Why are we using it?
+
+     /Image: Org-mode file in GitHub/
+     #+attr_html: :width 500px
+     [[./img/org.png]]
+
+     * It's free
+     * To host course materials
+     * Upload assignments (esp. Emacs Org-files)
+     * Discussion
+     * Wiki for collaboration
+     * Complements Schoology
+
+**** What will you have to do?
+
+     * [[https://github.com][Sign up with GitHub]] - use Lyon Email
+     * Pick an available username *using your own first and last name*,
+       e.g. ~MarcusBirkenkrahe~, or ~DonaldTrump~
+     * Complete GitHub Hello World exercise (see FAQ)
+     * Give me your GitHub username so that I can add you as a
+       collaborator to my private ~os420~ repository
+     * [[https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue#creating-an-issue-from-a-repository][Create an issue]] from the [[https://github.com/birkenkrahe/cc100/issues][~os420~ repository]] like in the example
+       below (except from your account instead of mine).
+     -----
+     /Image: Issue "Assignment completed"/
+     #+attr_html: :width 500px
+     [[./img/issue.png]]
+     -----
+     #+begin_quote
+     If you do have a GitHub account already, do the exercise anyway
+     using your existing account (it takes 10 min)! Make sure you
+     let me know what your user name is so that I can add you to my
+     repo.
+     #+end_quote
+
+**** What else can you do?
+
+     * You can [[https://docs.github.com/en/get-started/quickstart/fork-a-repo][fork]] the [[https://docs.github.com/en/get-started/quickstart/fork-a-repo][~os420~]] repository
+     * You can [[https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/managing-subscriptions-for-activity-on-github/viewing-your-subscriptions][watch]] the [[https://docs.github.com/en/get-started/quickstart/fork-a-repo][~os420~]] repository - and set [[https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications][~Notifications~]] to
+       ~Participating and @mentions~ so that you see my comments (see
+       image below).
+
+     #+attr_html: :width 300px
+     [[./img/watch.png]]
+     /Image: Notifications settings when watching a repository/
+
+     * You can [[https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue#creating-an-issue-from-a-repository][submit issues]] from the repository (e.g. if you notice
+       mistakes or if you want extra information, or to share a link)
+     * You can participate in [[https://github.com/birkenkrahe/cc100/discussions][discussions]] (sometimes I will make you)
+     * You can add to the [[https://github.com/birkenkrahe/cc100/wiki][wiki]] (e.g. comments and links to interesting
+       resources)
+     * You can install the [[https://github.com/mobile][mobile app]] on your smartphone
+     * You can use it as a platform for [[https://docs.github.com/en/issues/trying-out-the-new-projects-experience/about-projects][projects]] or [[https://github.com/features/codespaces][coding]]
+     * You can download the [[https://desktop.github.com/][desktop client]] to manage repos on your PC
+       (see image below).
+
+     /Image: GitHub desktop client commit/
+     #+attr_html: :width 800px
+     [[./img/gh.png]]
+
+
+*** DataCamp
+
+    #+attr_html: :width 400px
+    [[./img/datacamp.png]]
+
+    * Why are we using it?
+    * How are we using it?
+    * What will you have to do?
+
+
+*** GNU Emacs
+
+    #+attr_html: :width 400px
+    [[./img/emacs.png]]
+
+    * Why are we using it?
+    * How are we using it?
+    * What will you have to do?
+
+** What's next?
+
+   * See schedule ([[https://github.com/birkenkrahe/os420/blob/main/schedule.org][GitHub]])
+   * Watch online lecture on "Systems" (to be published)
+   * Everything else => followup notes (GitHub)
+   * +See you (hopefully) Thursday in class! (Lyon 104)+
+
+* GitHub, GNU Emacs installation - w1s2 (13-Jan)
+** Overview
+
+   | HOW      | WHAT                                          |
+   |----------+-----------------------------------------------|
+   | Review   |GitHub Hello World exercise (FAQ)
+   | Lecture  | What operating systems do                     |
+   | Practice | [[file:~/Documents/GitHub/org/FAQ.org][Install GNU Emacs]] ([[https://github.com/birkenkrahe/org/blob/master/FAQ.org#how-to-install-emacs-ess-under-windows-and-macos][FAQ]])                       |
+   | Demo     | [[https://www.gnu.org/software/emacs/tour/][Emacs guided tour]]                             |
+   | Self     | [[https://www.stolaf.edu/people/humke/UNIX/emacs-tutorial.html][Work through the Emacs onboard tutorial (18p)]] |
+
+** Objectives
+
+   * [X] Understand the basics of Git
+
+   * [X] Describe the general organization of a computer system
+
+   * [X] Install the GNU Emacs editor on your OS
+
+   * [ ] Understand how GNU Emacs works
+
+   * [ ] Make GNU Emacs work for you
+
+* Interrupts, basic I/O - w2s3 (18-Jan)
+** Overview
+
+   | HOW          | WHAT                                                |
+   |--------------+-----------------------------------------------------|
+   | Review (S)   | [[https://lyon.schoology.com/assignment/5563838206][Quiz: course, OS foundations / GNU Emacs]]            |
+   | Resource (S) | [[https://www.youtube.com/watch?v=zJTqTs7Ujr8&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq][Fundamentals of Operating Systems YouTube playlist]]  |
+   | Lecture (S)  | Interrupts / I/O operations example / bootstrapping |
+   | Demo         | [[https://www.gnu.org/software/emacs/tour/][Emacs guided tour]]                                   |
+   | Self         | [[https://www.stolaf.edu/people/humke/UNIX/emacs-tutorial.html][Work through the Emacs onboard tutorial (18p)]]       |
+
+   /Nachtrag: watch [[file:notes.org::Lecture on OS foundations][History of Databases]] and The Computer Chronicles/
+
+** Objectives
+
+   * [X] Review / retention: complete Schoology Quiz 1 (15 min)
+
+   * [X] Understand bootstrapping, and interrupts management
+
+   * [X] Understand how basic I/O processes work
+
+   * [ ] Understand how GNU Emacs works
+
+   * [ ] Make GNU Emacs work for you
+
+** What's next?
+
+   * GNU Emacs practice exercises (class)
+   * Computer system architecture
+   * Getting started with Pi
+
+* OS tasks, virtualization, GNU Emacs - w2s4 (20-Jan)
+** Overview
+
+   | HOW      | WHAT                                    |
+   |----------+-----------------------------------------|
+   | Lecture  | Storage structure & OS management tasks |
+   | Practice | [[file:~/Documents/GitHub/org/emacs/emacs.org][Emacs guided tour]] ([[https://www.gnu.org/software/emacs/tour/][tour]])([[https://www.stolaf.edu/people/humke/UNIX/emacs-tutorial.html][tutorial]])      |
+
+** Objectives
+
+   * [X] Storage structure, User vs kernel mode, multiprogramming
+
+   * [X] Management tasks of the Operating System
+
+   * [X] Virtualization and open source vs commercial system
+
+   * [X] Understand how GNU Emacs works
+
+   * [ ] Make GNU Emacs work for you
+
+** What's next?
+
+   * Operating system services & design principles
+   * Emacs practice & assignment
+   * Getting started with Pi: bootloading Raspbian Linux
+   * Complete quiz 2 online *before class*
+   * Will do 5 min review in class together
+
+* OS foundations, Eshell - w3s5 (25-Jan)
+** Overview
+
+   | HOW        | WHAT                                         |
+   |------------+----------------------------------------------|
+   | Summary    | Foundations of Operating Systems (10 tenets) |
+   | Preview    | DataCamp course "Introduction to Shell"
+   |------------+----------------------------------------------|
+   | Practice   | Open three shells inside Emacs               |
+   | [[https://lyon.schoology.com/assignment/5603304144/info][Assignment]] | Create ~hello world~ shell program in Emacs  |
+
+** Objectives
+
+   * [X] Summarize foundations of operating systems
+
+   * [X] Understand how GNU Emacs shells work
+
+   * [X] Understand the first DataCamp assignment ([[https://app.datacamp.com/learn/courses/introduction-to-shell][Intro to Shell]])
+
+   * [ ] Create an bash(1) hello world program in the shell
+
+   * [ ] Run shell program inside Emacs
+
+** Summary: foundations of operating systems
+*** 10 tenets
+    1) An operating system is software that manages the computer
+       hardware, as well as providing an environment for application
+       programs to run.
+
+    2) Interrupts are a key way in which hardware interacts with the
+       operating system. A hardware device triggers an interrupt by
+       sending a signal to alert the CPU, whose interrupt handler
+       manages the interrupt.
+
+    3) For a computer to do its job, programs must be loaded in main
+       memory (RAM), which is the only memory area that the CPU can
+       access directly.
+
+    4) To best utilize the CPU, the OS can handle several jobs in
+       memory at the same time so that there's always one job to
+       execute. True multitasking, however, is an illusion.
+
+    5) To prevent user programs from interfering, the system hardware
+       has two modes: user mode and kernel ("sudo") mode.
+
+    6) Privileged instructions that can only be executed in kernel mode
+       include: switching to kernel mode; I/O control; time management;
+       interrupt management.
+
+    7) Process management includes creating and deleting processes, and
+       providing process communication and synchronization. Processes
+       are active, programs are passive.
+
+    8) Memory management means that the OS keeps track of what parts of
+       memory are being used and by whom, and dynamically freeing and
+       allocating memory.
+
+    9) Storage space is managed by the OS through file systems (files,
+       directories) and managing space on mass-storage devices.
+
+    10) Virtualization involves abstracting a computer's hardware into
+        several different execution environments.
+
+*** Short definition
+
+    #+begin_quote
+    The Operating System takes physical resources (CPU, memory, disk),
+    and *virtualizes* them. It handles *concurrent* processes, and it
+    stores files *persistently* to make them safe in the long term.
+    #+end_quote
+
+*** OS attributes
+
+    - *Performance* / overhead reduction
+    - *Protection* between applications, and between OS and apps
+    - *Isolation* of processes from one another
+    - *Reliability* of operations
+    - *Security* against malicious attacks
+    - *Mobility* across, and towards smaller, and embedded devices
+
+*** OS Timeline
+
+    | Early era        | OS are just libraries with (human) batch operators |
+    | Mainframe era    | Protection through the system handler              |
+    | Minicomputer era | Interrupt-based memory management                  |
+    | PC era           | DOS attacks and infinite MacOS loops               |
+    | Modern era       | Linux and the return to sanity                     |
+
+    #+caption: Unix the white knight of Operating Systems
+    #+attr_html: :width 200px
+    [[./img/knight.png]]
+
+** DataCamp course: Introduction to Shell
+
+   #+begin_quote
+   This chapter is a brief introduction to the Unix shell. You'll learn
+   why it is still in use after almost 50 years, how it compares to the
+   graphical tools you may be more familiar with, how to move around in
+   the shell, and how to create, modify, and delete files and folders.
+   #+end_quote
+
+** Three shells inside Emacs!
+
+   * Works really well only under Linux or MacOS
+
+   | SHELL COMMAND | CHARACTERISTICS         | MODELINE     |
+   |---------------+-------------------------+--------------|
+   | ~M-x shell~   | Windows shell ~CMD.exe~ | ~*shell*~    |
+   | ~M-x eshell~  | Lisp simulated shell    | ~*eshell*~   |
+   | ~M-x term~    | Terminal emulator       | ~*terminal*~ |
+
+   Cp. the variable ~shell-file-name~.
+
+   * Start Emacs from the terminal: ~emacs -nw -q~
+   * Start all three shells in Emacs
+   * Start Emacs with ~emacs -nw inside an Emacs ~*shell*~
+
+     #+begin_quote
+     You should get the error message ~emacs: standard input is not a
+     tty~. TTY stands for "TeleTYpewriter". The (Unix) ~tty~ command is
+     used to check if the output is a terminal or not (see [[https://en.wikipedia.org/wiki/Tty_(Unix)][Wikipedia]]).
+     #+end_quote
+
+     #+caption:
+     #+attr_html: :width 500px
+     [[./img/wintty.png]]
+
+   On Linux (Ubuntu App in Windows 10):
+
+   #+caption:
+   #+attr_html: :width 200px
+   [[./img/tty.png]]
+
+*** Assignment: hello world!
+
+    #+caption: Windows CMD shell in Emacs and hello world pgm
+    #+attr_html: :width 600px
+    [[./img/hello.png]]
+
+*** Next @Pi: eshell demo ~cpu.c~
+
+    * Start several processes using ~cpu.exe~
+    * Show process list with ~jobs~
+    * Kill processes in list with ~d~
+    * Start same processes in Ubuntu
+    * Kill processes with ~kill~
+
+** What's next?
+
+   * Review 'hello world' shell exercise
+   * Fix ~.emacs~ issue on desktop computers
+   * Getting started with Pi: bootloading Raspbian Linux
+
+* Shell scripts, Raspberry Pi setup - w3s6 (27-Jan)
+** Overview
+
+   | HOW      | WHAT                                            |
+   |----------+-------------------------------------------------|
+   | Review   | ~hello.sh~ [[https://lyon.schoology.com/assignment/5603304144/info][assignment]]                           |
+   | Fix      | ~.emacs~ issue ([[https://tinyurl.com/lyonemacs]])  |
+   |          | Find the file on the lab desktop                |
+   |          | Put it into the ~$HOME~ directory               |
+   |          | Restart Emacs                                   |
+   |----------+-------------------------------------------------|
+   | Practice | Getting started with Raspberry Pi: installation |
+
+** Objectives
+
+   * [X] Review ~hello.sh~ exercise
+
+   * [X] Install Raspberry Pi OS (Raspbian Linux) via NOOBS
+
+   * [X] Complete basic Pi setup with ~sudo raspi-config~
+
+** Review assignment
+
+   * Start Emacs without init file
+
+   #+begin_example
+   > emacs -nw -q
+   #+end_example
+
+   * Known ~Class not registered~ error on Windows 10 ([[https://www.drivereasy.com/knowledge/fix-class-not-registered-error-on-windows-10-solved/][fix]]). See notes
+     for a quick solution (installing CygWin).
+
+** Set up Raspberry Pi
+
+   1) Open the box in front of you
+
+   2) Take out the Pi and connect it to the KVM switch
+
+   3) Connect the Ethernet cable to the Pi
+
+   4) Plug in the power cord and then plug it into the Pi
+
+   5) Install using NOOBS
+
+   6) Get the password from me!
+
+   7) Open a terminal app on the Pi
+
+   8) In terminal, enter ~sudo raspi-config~
+
+   9) In the configurator, change boot options > Desktop/GUI to
+      ~Console autologin~, then <TAB> to <Finish>
+
+   10) Reboot the Pi (~sudo reboot~)
+
+   11) Login as user ~pi~ with password
+
+   12) Check network connection with ~ifconfig~
+
+   13) Update OS with ~sudo apt update~
+
+   14) Upgrade OS with ~sudo apt upgrade -y~
+
+   15) Install Emacs with ~sudo apt install emacs~
+
+   16) Start emacs, check it and exit again
+
+   17) Finish session with ~sudo shutdown now~
+
+   18) Unplug the power chord, then the KVM connections
+
+   19) Return Pi to box
+
+   20) Cross yourself and close the box.
+
+** What's next
+
+   * Review first DataCamp assignment
+   * Explore Linux on the command line
+
+* Linux shell, UNIX man pages - w4s7 (1-Feb)
+** Overview
+
+   | HOW         | WHAT                                               |
+   |-------------+----------------------------------------------------|
+   | Review      | Quiz 3: file and folders / Installing Raspbian     |
+   |-------------+----------------------------------------------------|
+   | Lecture     | Raspberry Pi - the hardware & the history          |
+   | FAQ         | Should you upgrade your Operating System?          |
+   |-------------+----------------------------------------------------|
+   | Pi Practice | Understanding the shell and Unix man pages         |
+
+** Objectives
+
+   * [X] Review Introduction to the shell - Files and folders (Quiz 3)
+
+   * [X] Getting OS release information
+
+   * [X] Understand the shell(s) - Unix man pages
+
+   * [ ] Understand the Linux file tree
+
+** Setting up the Linux boxes (almost every session)
+
+   This is something you can do as soon as you arrive:
+
+   * Take out the [Raspberry] Pi
+   * Connect the HDMI from the KVM switch to the Pi
+   * Connect the USB from the KVM switch to the Pi (any USB port)
+   * Plug in the power charger under the desk
+   * Connect the mini-USB of the power charger to the Pi
+   * Press the button on the KVM switch (color changes to green)
+   * The system should boot straight to console with autologin as user
+     ~pi~
+
+   The Ethernet cable is not usually needed except for installations
+   and for updates and upgrades.
+
+   For the Pi400, the setup is slightly different because the Pi4 has
+   a mini-HDMI connector.
+
+** Understanding the shell
+
+   #+begin_quote
+   "Typing commands instead of clicking and dragging may seem clumsy
+   at first, but as you will see, once you start spelling out what you
+   want the computer to do, you can *combine* old commands to create
+   new ones and *automate* repetitive operations with just a few
+   keystrokes." (Shotts, 2019)
+   #+end_quote
+
+   * The shell is just another program to pass keyboard commands to
+     the OS
+
+   * On the desktop GUI, the shell is emulated (an X Windows program
+     connects to it and interpretes key strokes, just like ~eshell~ on
+     Emacs)
+
+   * The original shell is the Bourne Shell (~/bin/shell~).
+
+   * Linux uses an enhanced Bourne Shell, the Bourne-Again SHell
+     ~bash~.
+
+   * [X] Look up the man page for ~bash~ with the command ~man bash~ [fn:1].
+
+   * [X] To get out, press ~q~
+
+   * There are many other shells, including: ~ksh~ (Korn shell), ~csh~ (C shell),
+     ~zsh~ (MacOS shell).
+
+   * Different shells differ in editing styles (command line editing),
+     scripting abilities (e.g. closer to C), and process management
+     functions (what you can do with CPU processes).
+
+   * Emacs commands are Unix commands: ~C-a~, ~C-e~ etc. all work
+
+   * Some other shell commands to try now:
+     - [X] ~history~ keeps the last 1000 commands or so. Commands are
+       numbered. How can you repeat a command?
+     - [X] ~date~ and ~cal~ time functions
+     - [X] ~df~ and ~df -H~ (for humans) show the free disk space
+     - [X] ~free~ and ~free -h~ (for humans) show the free memory
+     - [X] ~echo~ repeats back what you type - except when you use
+       variables as arguments:
+       #+begin_example
+       $ echo $PS1 # prompt path name
+       $ echo $PS2 # prompt for inner shell (like SQLite or R)
+       $ marcus = "me" # defining a variable
+       $ echo marcus # this just returns the string "marcus"
+       $ echo $marcus # returns "me"
+       #+end_example
+
+   * A terminal shell session is ended with the ~exit~ command.
+
+   * [X] End your terminal session!
+
+** Unix manual pages
+
+   * Man pages are split into eight numbered sections:
+
+   | Section | Description                                                      |
+   |---------+------------------------------------------------------------------|
+   |       1 | General commands                                                 |
+   |       2 | System calls                                                     |
+   |       3 | Library functions, covering in particular the C standard library |
+   |       4 | Special files (usually devices, those found in /dev) and drivers |
+   |       5 | File formats and conventions                                     |
+   |       6 | Games and screensavers                                           |
+   |       7 | Miscellaneous                                                    |
+   |       8 | System administration commands and daemons                       |
+
+   #+begin_quote
+   Example: look for the man page of ~sshd~, the OpenSSH daemon. What
+   does it do? ([[https://bash.cyberciti.biz/guide/Daemons#List_of_service_daemons_for_Linux_and_Unix-like_systems][Source]])
+   #+end_quote
+
+** Unplugging the Pi (almost every session)
+
+   * Shut down the Pi with ~sudo shutdown now~ on the console
+   * Unplug the power mini-USB
+   * Unplug the other cables
+   * Press the button on the KVM switch to return to Windows
+   * Sign out of Windows if necessary
+
+* Shell commands, Linux file tree - w5s8 (8-Feb)
+** Overview
+
+   |---------------+-------------------------------------------------|
+   | HOW           | WHAT                                            |
+   |---------------+-------------------------------------------------|
+   | Test info     | Test on Thursday, Feb 10 at 10.00-10.45 AM      |
+   |---------------+-------------------------------------------------|
+   | Setup         | USB/HDMI > power > switch > ~startx~            |
+   | Review        | Shell warm-up exercise (15 min)                 |
+   |---------------+-------------------------------------------------|
+   | *Poll* ([[https://fast-poll.com/poll/03463336][vote]]) | [[./notes.org::FAQ][Should you update your operating system?]]        |
+   |---------------+-------------------------------------------------|
+   | Practice      | ~sudo apt update -y~      [update OS]           |
+   |               | ~sudo apt upgrade -y~     [upgrade OS]          |
+   |               | ~sudo apt autoremove -y~  [remove old OS]       |
+   |---------------+-------------------------------------------------|
+   | Lecture       | The Linux File System ("Everything is a file")  |
+   |---------------+-------------------------------------------------|
+   | Practice      | Navigating the file system ([[https://campus.datacamp.com/courses/introduction-to-shell/manipulating-files-and-directories?ex=1][DataCamp]])           |
+   |               | Manipulate files and folders ([[https://campus.datacamp.com/courses/introduction-to-shell/manipulating-data?ex=1][DataCamp]])         |
+   |               | Start an [[file:~/Documents/GitHub/admin/spring22/os420/bash.org][interactive notebook]] ~bash.org~        |
+   |---------------+-------------------------------------------------|
+   | Shutdown      | ~sudo shutdown now~ > USB/HDMI > Power > switch |
+   |---------------+-------------------------------------------------|
+
+** Objectives
+
+   1) [X] Poll/Discussion: should you upgrade your OS?
+
+   2) [X] Understand Thursday test rules and content
+
+   3) [X] Review shell command structure
+
+   4) [X] Understand the Linux file system structure and content
+
+   5) [X] Understand navigation and the Linux file tree
+
+   6) [ ] Start an interactive Org-mode notebook
+
+   7) [ ] Understand how to manipulate data using the shell
+
+** Test info
+
+   * Online in Schoology
+   * Quiz 1-3 are not visible during the test
+   * The 10 hardest questions of quiz 1-3 (< 50%)
+   * 10 brand new questions
+   * Maximum time = 45 min
+
+** Review: shell command structure
+
+   * The structure of all shell commands: [cmd] -[options] [arguments]
+
+   * There must be > 1 space between all elements
+
+   * There must not be a space between the option and the dash
+
+   * Many commands have an ~-v~ option that provides you with
+     information at run-time
+
+   * There are short options (e.g. ~-l~) and long options (e.g. ~--reverse~)
+     #+caption: long time listing of Org-files (and reversion)
+     #+attr_html: :width 600px
+     [[./img/struct.png]]
+
+   * Another useful long option for the ~emacs~ command that starts
+     GNU Emacs is ~--chdir=[dirname]~ where ~[dirname]~ is the name of
+     the folder where you want Emacs to "wake up"
+
+** Shell warm-up exercise
+
+   Complete the exercise on the command line (15 min):
+
+   | Go to your ~$home~ directory, ~/home/pi~                      |
+   | Use ~wget~ to get ~sample.txt~ from ~os420~ in GitHub[fn:2]   |
+   | Display first line of ~sample.txt~                            |
+   | Make a sub directory titled ~practice~ in ~$home~             |
+   | Change directory to ~/home/pi/practice~                       |
+   | Verify that you are where you want to be                      |
+   | Move ~sample.txt~ to your current directory as ~sample_1.txt~ |
+   | Make a copy of ~sample_1.txt~ and name it ~sample_2.txt~      |
+   | Ascertain that the files are indeed identical by using ~diff~ |
+   | View both files together using ~less~                         |
+   | Inside ~less~, move between the two files                     |
+   | Leave ~less~                                                  |
+
+   * Solution in the [[file:~/Documents/GitHub/admin/spring22/os420/bash.org][interactive notebook]]
+   * Will make a solution screencast, too
+
+** THE LINUX FILE SYSTEM ("EVERYTHING IS A FILE")
+
+   * Open a terminal and look at the file system
+     #+name: file system
+     #+begin_src bash
+       ls -lF /
+     #+end_src
+
+   | DIRECTORY        | CONTENT                                                 |
+   |------------------+---------------------------------------------------------|
+   | ~/~              | Root directory where everything begins                  |
+   | ~/bin~           | Executable binaries for the OS to boot and run          |
+   | ~/boot~          | Linux kernel, initial RAM disk image to boot            |
+   | ~/dev~           | List for kernel with all known devices                  |
+   | ~/etc~           | System configuration files (e.g. ~/etc/passwd~)         |
+   | ~/home~          | Directory for user directories (e.g. ~/home/pi~)        |
+   | ~/lib~           | Shared library files (like Windows DLLs)                |
+   | ~/lost+found~    | Panic room for each formatted disk partition            |
+   | ~/media~         | Mount points for removable media (e.g. USB stick)       |
+   | ~/mnt~           | Mount points for manually mounted removable media       |
+   | ~/opt~           | Optional commercial software                            |
+   | ~/proc~          | Virtual FS for the kernel (e.g. ~/proc/cpuinfo~)        |
+   | ~/root~          | ~$HOME~ directory of the ~root~ super-user              |
+   | ~/sbin~          | System binaries for system tasks (~sudo shutdown~)      |
+   | ~/tmp~           | Holding bay for temp files, emptied at reboot           |
+   | ~/usr~           | Programs and support files for regular users            |
+   | ~/usr/bin~       | Executable programs of the distro[fn:3] (e.g. ~cat~)          |
+   | ~/usr/lib~       | Shared libraries for ~/usr/bin~ programs                |
+   | ~/usr/local~     | Programs not included in your distro                    |
+   | ~/usr/sbin~      | More system administration programs                     |
+   | ~/usr/share~     | Shared data for  ~/usr/bin~ programs (e.g. sound files) |
+   | ~/usr/share/doc~ | Man pages and other package documentation               |
+   | ~/var~           | Databases, spool files, user mail (volatile files)      |
+   | ~/var/log~       | Records of system activity (e.g. /var/log/syslog) |
+
+** What's next
+
+   * Test 1, Thursday 10 February 2022, 10:00-10:45
+   * Raspberry Pi history & hardware
+   * Manipulating files and data
+   * New DataCamp assignment due Feb 15 ("[[https://campus.datacamp.com/courses/introduction-to-shell/combining-tools?ex=1][Combining tools]]"))
+
+* Raspberry Pi history and hardware - w5s9 (10-Feb)
+** Overview
+
+   | HOW          | WHAT                                        |
+   |--------------+---------------------------------------------|
+   | Lecture/demo | Raspberry Pi - the hardware & the history 1 |
+   |--------------+---------------------------------------------|
+   | Test 1       | 10:00-10:45 AM                              |
+
+** Objectives
+
+   * [X] Know Raspberry Pi: history & hardware (part 1)
+   * [X] Complete test 1 (online)
+
+** Raspberry Pi - hardware & history: hardware
+
+   * [[file:pi/README.org::Raspberry Pi History][Raspberry Pi history]]
+
+   * Which other devices have an Arm processor?
+
+     #+caption: Raspberry Pi 4 Board (Source: raspberryptips.com)
+     #+attr_html: :width 500px
+     [[./img/piboard.png]]
+
+     #+caption: Raspberry Pi 4 Board (Source: raspberryptips.com)
+     #+attr_html: :width 500px
+     [[./img/pimodels.png]]
+
+     * [[https://community.element14.com/products/raspberry-pi/w/documents/879/identifying-your-model-of-raspberry-pi][Identify your model of Raspberry Pi+]] (~cat /proc/cpuinfo~)
+
+     * [[file:pi/README.org::General Purpose Input Output (GPIO)][Introduction to GPIO pins]] ([[https://github.com/birkenkrahe/os420/tree/main/pi#general-purpose-input-output-gpio][gh]]) - my fifth Pi project
+
+* Review of test 1 - w6s10 (15-Feb)
+** News
+
+   * *Eliminated* some DataCamp assignments (bash scripting) because
+     otherwise we'll get too far out of step with the course content
+
+   * *Join us* for a talk by Matthew Stewart, Stone Ward (Fri 18 Feb
+     3-3.50 PM) via Google Meet
+
+** Objectives
+
+   * [X] Understand test results
+   * [X] Know what to do different next time
+   * [X] Discuss all questions and answers
+   * [X] Share your views & suggestions
+
+** Test results - stats and plots
+
+   * The results are nothing to write home about - though > 50% means
+     that the class passed (on average).
+     #+caption: Test 1 results (Schoology)
+     #+attr_html: :width 500px
+     [[./img/test_1_stats.png]]
+
+   * I am an obsessive fact-checker. When checking the stats with R, I
+     find slightly different results:
+     #+name: test 1 results
+     #+begin_src R :exports both :session :results output
+       results <- c(11.88,13.92,12.43,13.6,9.93,8.67,14.87,
+                    14.87,13.02,10.58,17.08,9.72,12.77,15.42,16.5,
+                    17.02,13,16.13,14.03,12.93,12.43,14.73,11.9)
+       length(results)
+       sd(results)
+       summary(results)
+     #+end_src
+
+     #+RESULTS: test 1 results
+     :
+     : [1] 23
+     :
+     : [1] 2.314336
+     :
+     :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+     :    8.67   12.16   13.02   13.37   14.87   17.08
+
+   * Let's make some plots: histogram, boxplot and density plot. I'd
+     like the histogram and the density plot (a smoothened histogram)
+     to peak more to the right, and for the boxplot to be smaller and
+     higher up.
+     #+name: histogram
+     #+begin_src R :exports both :session :results output graphics file :file ./img/test1hist.png
+       hist(results, main="Histogram of test 1 results, CSC 330 Spring 2022")
+     #+end_src
+
+     #+RESULTS: histogram
+     [[file:./img/test1hist.png]]
+
+     #+name: boxplot
+     #+begin_src R :exports both :session :results output graphics file :file ./img/test1box.png
+       boxplot(results, main="Test 1 results, CSC 330 Spring 2022")
+     #+end_src
+
+     #+RESULTS: boxplot
+     [[file:./img/test1box.png]]
+
+     #+name: density
+     #+begin_src R :exports both :session :results output graphics file :file ./img/test1density.png
+       ave <- mean(results)
+       d <- density(results)
+       plot(d, col="steelblue",main="Test 1 Results CSC 330 Spring 2022")
+       abline(v=ave,col="red")
+     #+end_src
+
+     #+RESULTS: density
+     [[file:./img/test1density.png]]
+
+** Analysis - feedback and action points
+
+   * Test 1 can now be played an unlimited number of times. I will add
+     feedback to all new questions today.
+
+   * What surprised me most was that many of you did not use the
+     available time. However, I have not (yet) been able to correlate
+     test time and test success.
+
+   * See also: [[https://github.com/birkenkrahe/org/blob/master/diary.org#i-can-teach-it-to-you-but-i-cannot-learn-it-for-you]["I can teach it to you but I cannot learn it for you"]]
+
+   * Questions:
+     - How did you study for this test?
+     - If you didn't perform well, what will you change?
+     - What can I do to help you help yourself?
+
+   * Changes to be applied in future quizzes/tests:
+     - Fewer multiple choices (max. 4)
+     - Announce if a question has > 1 answer (and/or how many)
+     - Try and schedule tests for different classes on different days
+
+   #+caption: Feynman (via Twitter)
+   #+attr_html: :width 500px
+   [[./img/feynman.png]]
+
+** Test questions and answers
+
+   * We go through all questions together
+   * Everybody can contribute an answer
+   * Write down questions and ask them now!
+
+*** Feedback for some individual questions
+
+    * "What is Booting?" - The kernel program must be in memory before
+      the BIOS (Basic IO System), which is part of the kernel, can
+      run. Then, when I/O is established, information can flow between
+      memory (RAM), non-volatile memory (disk/card) and CPU. The
+      system daemon oversees these processes.
+
+    * "Sort the OS timeline" - this is a question answered in the
+      agenda file. 1) The whole thing started with OS as libraries
+      without supporting programs - the support (e.g. for switching
+      jobs) was done by humans. 2) Mainframe OS are for large
+      computers - decades before the PC - and the introduction of a
+      system handler program replaced the human operators. 3)
+      Minicomputers are dedicated to specific jobs -
+      e.g. visualization, and graph generation, or number
+      crunching. These computers (which look like large PCs -
+      workstations) already have the modern interrupt-based OS
+      architecture. 4) PCs came up in the 1980s - Microsoft and Apple
+      introduced OS (DOS/Windows and AppleOS/MacOS) that sacrificed
+      security and relability (compared to UNIX) to convenience and
+      usability. 5) Since the mid 1990s, we are slowly returning to
+      the pre-PC world - the reintroduction of UNIX via Linux, but
+      also in Windows and MacOS itself. Of course, if you can, go
+      Linux all the way, why compromise?
+
+    * "Command line prompt" analyzed:
+      1) ~pi~ is the standard user on the Raspberry Pi, belongs to the
+         ~gpio~ group and can assume ~root~ rights with ~sudo~.
+
+      2) ~@~ is the at-sign separating the user from the hostname.
+
+      3) ~raspberrypi~ is the hostname (you can get it with the
+         command ~hostname~ or ~hostname -I~ for the internet
+         address), or the name of the host = your computer.
+
+      4) ~/ is the current directory. In this case ~$HOME~.
+
+      5) ~$~ is the prompt sign for regular users, after which you
+         enter commands on the command line. For the ~root~ user, this
+         prompt changes to ~#~.
+
+      6) Operating system definition:
+
+         #+begin_quote
+         The Operating System takes PHYSICAL resources (CPU, memory, disk),
+         and VIRTUALIZES them. It handles CONCURRENT processes, and it
+         stores files PERSISTENTLY to make them SAFE in the long term.
+         #+end_quote
+
+         Focuses on the three core characteristics of a modern OS:
+         VIRTUALIZATION (i.e. the user does not see what's happening,
+         everything seems to be in one place), CONCURRENCY (the user
+         thinks processes run simultaneously, while actually the CPU
+         runs one job at a time), and PERSISTENT storage (referring to
+         mass-storage management).
+
+** This week
+
+   * Test review
+   * Raspberry Pi Hardware - GPIO pins
+
+* GPIO pins - w6s11 (17-Feb)
+** Overview
+
+   | HOW             | WHAT                                                 |
+   |-----------------+------------------------------------------------------|
+   | Setup           | USB/HDMI > Power > Switch > ~startx~                 |
+   |-----------------+------------------------------------------------------|
+   | Lecture/demo    | Raspberry Pi - the hardware & the history 2          |
+   |-----------------+------------------------------------------------------|
+   | Review/Practice | Manipulating data / Combining shell tools (DataCamp) |
+   |-----------------+------------------------------------------------------|
+   | Shutdown        | ~sudo shutdown now~ > USB/HDMI > Power > switch      |
+
+** Objectives
+
+   * [X] Know Raspberry Pi: hardware and history part 2
+
+   * [X] Understand GPIOs and how to see and control them
+
+** What's next
+
+   * Catching up with DataCamp: back to the Linux command line tools
+
+* Wildcards and Links - w7s12 (22-Feb)
+** Objectives
+
+   * [X] Review shell commands in DataCamp so far
+   * [X] Understand wildcards
+   * [X] Understand file links
+   * [X] Practice file and data manipulation
+
+** Warmup exercise: what's wrong with these commands?
+
+   Situation:
+   * ~agenda.org~ is this file
+   * the directory ~testdir~ exists in this directory (~./~)
+   * ~test3~ contains the file listing of this directory
+
+   Complication: none of these commands will run! Why?
+
+   #+begin_src bash :results silent
+     head n 3 agenda.org # print top three lines to stdout
+     rm ./testdir/   # remove test
+     grep -count "org" ./test3  # search test3 for "org"
+     cat ./testdir/  # view testdir
+     ls-la  # list long info of all files
+   #+end_src
+
+** Manipulating files and directories
+
+   * Files are organized in a hierarchical directory structure[fn:4]
+
+   * Imagine you stand somewhere inside an upside down tree:
+     - the ~pwd~ command tells you were you are
+     - above you (towards the root) are /parent directories/
+     - below you (away from the root) are /child directories/
+     - At the top is the /root directory/
+       #+caption: upside down tree
+       #+attr_html: :width 500px
+       [[./img/tree.jpeg]]
+
+   * [X] To see the tree visualized, install the package as super user:
+     #+begin_example
+     $ sudo apt install tree
+     $ tree
+     #+end_example
+
+     #+caption: Linux tree command (screenshot)
+     #+attr_html: :width 500px
+     [[./img/tree.png]]
+
+   * To list files, use ~ls~. It has many useful options. I usually
+     use ~ls -la~ to get a long, complete listing. This is also the
+     standard ~Dired~ setting in Emacs.
+
+   * [X] Compare ~ls~, ~ls -l~, ~ls -la~, ~ls -lF~, and ~ls -laF~
+
+   * [X] Which command would show the top directories of the OS?[fn:5]
+
+   * To create an empty file, use ~touch~
+
+   * [X] Create a file from the command line with ~touch~.
+
+   * Filenames are character-sensitive.
+
+   * Don't embed spaces in file names, replace them by ~_~
+
+   * Linux has no concept of file extensions - though many
+     applications do (like Emacs, to identify a major mode like
+     Org-mode)
+
+   * Hidden files (often for configuration like ~.emacs~) remain
+     hidden unless you invoke the ~-a~ option of ~ls~
+
+** Shell commands so far (DataCamp course)
+
+   | COMMAND | FUNCTION                    | OPTIONS        |
+   |---------+-----------------------------+----------------|
+   | cp      | copy file                   | -iruv          |
+   | mv      | move file                   | -iuv           |
+   | mkdir   | make directory              |                |
+   | rm      | remove files or directories | -irfv          |
+   | rmdir   | remove directory            |                |
+   | ln      | link                        | -s             |
+   |---------+-----------------------------+----------------|
+   | head    | show N first lines          | -n N           |
+   | tail    | show M last lines           | -n M           |
+   | less    | view file pagewise          |                |
+   | more    | view file pagewise          |                |
+   | cat     | view file                   |                |
+   | cut     | print COLS separated by SEP | -d SEP -f COLS |
+   | paste   | merge lines of files        | -d SEP         |
+   | grep    | search pattern              | -chilnv        |
+   | wc      | word count                  | -cwl           |
+   | sort    | sort row data               | -nrbf          |
+   | uniq    | remove adjacent duplicates  | -c             |
+   |---------+-----------------------------+----------------|
+   | history | last commands entered (!)   |                |
+   | man     | Unix man page (sect. 1-8)   |                |
+   |---------+-----------------------------+----------------|
+
+** Wildcards ("[[https://tldp.org/LDP/abs/html/globbingref.html][globbing]]")
+
+   * ~bash(1)~ does not recognize regular expressions - there are
+     utilities like ~sed~ and ~awk~ that interpret them
+
+   * The commands below can be tested with the ~echo~ command or with ~ls~
+
+   * Wildcards use character sets and classes, like ~:digit:~ for
+     numerals, or ~:upper~/~:lower:~ for uppercase/lowercase letters
+
+   | WILDCARD      | MEANING                           | Example                  |
+   |---------------+-----------------------------------+--------------------------|
+   | ~*~           | Matches any characters            | ~*.org~                  |
+   | ~?~           | Matches any single character      | ~?????.org~              |
+   | ~[char]~      | Match any character in [char]     | ~[ba]*.*~                |
+   |               |                                   | ~ls FILE[0-9][0-9][0-9]~ |
+   | ~[!char]~     | Match any character not in [char] | ~[!ba]*.*~               |
+   | ~[[:class:]]~ | Match any character in class      | ~[[:upper:]]*.org~       |
+   |               |                                   | ~[[:!digit:]]*~          |
+
+   * Wildcards can be used with any commands that accepts file name
+     arguments
+
+   * Powerful in connection with pattern search cmds like ~grep~
+
+   * Many wildcards have found their way into graphical user interfaces, too[fn:6]
+
+   * The SQL injection hack is based on wildcards - the openess of
+     Linux can be detrimental if system administrators are too lax
+
+** Links
+
+   * The ~ln~ command creates hard or symbolic (soft) links (symlinks)
+
+     #+begin_example
+     ln file link  # create hard link from file
+     ln -s item link # create soft link from item
+     #+end_example
+
+*** Hard links and ~inode~
+
+    * A hard link creates an additional directory entry for a file
+
+    * A hard link cannot leave its (physical) file system
+
+    * A hard link is indistinguishable from the file itself
+
+    * A file is made up of a *name* part and of a *content* part: when
+      creating hard links, the system assigns a chain of disk blocks
+      to an ~inode~, a unique number in the file system that you can
+      see with the listing command ~ls -i~
+
+      #+name: inode
+      #+begin_src bash
+        ls -i *.org
+      #+end_src
+
+      #+RESULTS:
+      : 388132 agenda.org
+      : 389984 bash.org
+      : 388137 bookmarks.org
+      : 388142 diary.org
+      : 388130 FAQ.org
+      : 388201 notes.org
+      : 388131 README.org
+      : 388219 schedule.org
+      : 388220 syllabus.org
+
+*** Soft (sym) links
+
+    * A symlink contains a text pointer to the reference file or directory
+
+    * Operates like a Windows OS shortcut
+
+    * If you write to the symbolic link of a file, the file is written to
+
+    * When you delete the link, the file is untouched
+
+    * If the file is deleted first, the link is said to be broken
+
+** Practice
+
+   You can get the Org-mode file for practice [[https://github.com/birkenkrahe/os420/blob/main/practice/manipulate.org][~manipulate.org~ from GitHub]].
+
+** Next topics
+
+   * Redirection
+   * Permissions
+   * Processes
+
+* Standard streams, Notebook tutorial - w8s13 (1-Mar)
+** Objectives
+
+   * [X] Review: quiz 4-5 (comment/complain/challenge)
+   * [X] Review: warming up exercise "N'est pas une pipe"
+   * [X] Lecture: standard streams
+   * [X] Practice: getting started with interactive notebooks
+   * [ ] Practice file and data manipulation 2
+   * [ ] Getting (more) help
+
+** Always first
+
+   * Update your system
+   #+begin_example
+     sudo apt update -y
+     sudo apt upgrade -y
+   #+end_example
+
+** Warming up - "N'est pas une pipe"
+
+   #+caption: Magritte's "The Treachery of Images" (1928)
+   #+attr_html: :width 400px
+   [[./img/pipe.jpg]]
+
+   After completing the last DataCamp assignment, I got my wires
+   crossed somehow. Can you define these terms and give examples?
+
+   | TERM                   | MEANING                                   |
+   |------------------------+-------------------------------------------|
+   | grep -v [expr]         | inverse pattern search                    |
+   | :digits:               | numerical wildcard class                  |
+   | pipeline operator      | connects stdout to stdin                  |
+   | redirection operator > | directs stdout to file                    |
+   | ???                    | wildcard for any 3 characters             |
+   | wc -l                  | count number of lines                     |
+
+** Standard streams
+
+   * Every Unix tool does only one thing really well
+
+   * E.g. ~grep~ filters, ~sort~ sorts, ~wc~ counts lines
+
+   * Power = OS manages tool communication streams
+
+   * There are three such streams: ~stdin~, ~stdout~, ~stderr~
+
+   #+caption: stdin, stdout, stderr streams (Source: Janssens)
+   #+attr_html: :width 600px
+   [[./img/streams.png]]
+
+   * ~stdout~ and ~stderr~ are by default redirected to terminal
+
+   * E.g. ~rev~ will wait until it gets ~stdin~ (end with ~C-c C-c~
+
+   #+caption: rev reverses stdin to stdout characters
+   #+attr_html: :width 400px
+   [[./img/rev.png]]
+
+   * One command's ~stdout~ can become another command's ~stdin~
+
+   #+caption: pipe with curl and grep (Source: Janssens)
+   #+attr_html: :width 600px
+   [[./img/pipe.png]]
+
+   * E.g. download the book "Alice's Adventures in Wonderland" by
+     Lewis Carroll and pipe it to ~grep~ for a pattern search:
+     #+begin_example
+     curl -s "https://www.gutenberg.org/files/11/11-0.txt" | grep " CHAPTER"
+     #+end_example
+
+   #+caption: piping example with curl and grep
+   #+attr_html: :width 500px
+   [[./img/alice.png]]
+
+   * And if we want to know how many chapters there are, apply ~wc -l~
+
+   * Output redirection works with the ~>~ operator[fn:7]: you can
+     e.g. pipe the chapter list into a file.
+     #+begin_example
+     chap > chapterlist
+     #+end_example
+
+   * This presumes that you defined an alias ~alias chap='[cmd]'~. Try
+     it!
+
+   * You can also append output to a file with ~>>~
+
+   * If you want to pass a file through a command without running an
+     additional process, use ~<~. These two commands do the same
+     thing:
+     #+begin_example
+     cat sample.txt | wc -w
+     < sample.txt wc -w
+     #+end_example
+
+   * We'll deal with more complicated examples in another session!
+
+   * This section is based on Janssen's "Data Science at the Command
+     Line (2nd ed)" (2021), which you can [[https://datascienceatthecommandline.com/2e/][read for free online]].
+
+** Getting started with interactive notebooks
+
+   * Get the files from the GDrive repository
+
+   * Work through the Notebook Tutorial (~start_nb.org~)
+
+** Next
+
+   * Redirection
+   * Permissions
+   * Processes
+
+* Mid-term speech, REPLit, redirection stdout- w8s14 (3-Mar)
+** Objectives
+
+   * [X] Notebooks stuff moved to GDrive
+   * [X] Mid-term grades improvement
+   * [X] REPL in the cloud - scripting and shell
+   * [X] Understand redirection better 1
+
+** Notebooks stuff moved to GDrive
+
+   #+caption: Replit.com startup screen
+   #+attr_html: :width 500px
+   [[./img/gdrive1.png]]
+
+** Mid-term grades improvement
+   #+options: toc:nil num:nil ^:nil
+   * You can ask me personally and specifically, what to do to get
+     your grades up
+
+   * There is no reason not to have at good grade in my class:
+     1. You can usually submit in-class assignments late
+     2. The deadlines of the DataCamp assignments are well known
+     3. The quizzes contain ample instructions and can be repeated
+     4. Class attendance + Whiteboard screenshots + GitHub info
+     5. You can always talk to me for personal support
+
+   * Hence, to improve your grade, do:
+     - Submit in-class assignments if you could not attend class
+     - Complete DataCamp assignments on time
+     - Play the quizzes until you have 100% and read the feedback
+     - Attend class + look at screenshots + files afterwards
+     - Practice your skills whenever you can
+     - When you are attending in person, really attend
+     - Ask me in or outside of class if anything is unclear
+
+   * These skills are related to successful studying, which in turn is
+     related to success in life through traditional values:
+     *discipline*, *duty*, and *diligence*. This doesn't have anything
+     to do with computer science.
+
+   * What I'm going for in my classes is what I think computer
+     scientists need more than anything else:
+
+     1. Critical thinking and analysis skills
+     2. Troubleshooting skills
+     3. Research skills
+
+     This is nicely mirrored in [[https://github.com/birkenkrahe/org/issues/19][this comment]] to the question "Why are
+     computer science degrees so math intensive when the field doesn't
+     seem to use much math at all?" on Quora.
+
+     #+caption: What's math got do to with computer science?
+     #+attr_html: :width 500px
+     [[./img/quora.png]]
+
+** ~bash~ Read-Eval-Printing-Loop in the cloud
+
+   * In a perfect world, we'd all be working on Linux boxes so that
+     you can do ~bash~ scripting at home
+
+   * In the real world, you can also use a cloud REPL to learn and
+     practice scripting with bash
+
+   * replit.com uses a Nix Docker container to emulate the shell (this
+     is another way to get hold of Linux tools...do you remember the
+     others?[fn:8])
+
+   * Login to your Google or GitHub account (the latter is more useful)
+
+   * Register with Replit.com
+
+     #+caption: Replit.com startup screen
+     #+attr_html: :width 500px
+     [[./img/replit.png]]
+
+   * Once registered, you can pick among many language templates
+
+   * You can create as many REPLs as you like on a free account
+
+     #+caption: Replit.com language templates
+     #+attr_html: :width 500px
+     [[./img/replit1.png]]
+
+   * Pick Bash! Your REPLs are automatically public and shareable.
+
+   * For example, to join the bash REPL shown below, [[https://replit.com/join/dmxjiphlug-marcusbirkenkra][use this link]].
+
+     #+caption: Create a titled, shareable repl
+     #+attr_html: :width 500px
+     [[./img/replit2.png]]
+
+   * You can now run any (?) bash script in the REPL
+
+     #+caption: Run bash script in the REPL
+     #+attr_html: :width 500px
+     [[./img/replit3.png]]
+
+   * It gets better: you also have access to a shell REPL
+
+   * Open the ~Shell~ tab. Looks like this:
+
+     #+caption: Use the shell in REPL mode
+     #+attr_html: :width 500px
+     [[./img/replit4.png]]
+
+   * Perform a little shell gymnastics:
+     1. Check where you are
+     2. Check if you can get to the root
+     3. Check the operating system
+     4. What timezone is the server linked to?
+     5. Check your shell program
+     6. Go to your home directory
+     7. Make another directory and go there
+     8. Create an empty file called ~file~
+     9. Create a symbolic link called ~file-sym~
+     10. Store the symlink creation command in an alias 'symlink'
+     11. Test the alias on another file
+     12. Unalias the alias
+     13. Go back to your home directory and clean up
+     14. Bookmark your REPL before closing the application
+
+** Redirection revisited
+
+   * I/O redirection is the coolest command line feature
+
+   * Important commands include:
+     - ~cat~ to concatenate files
+     - ~sort~ to sort lines of text
+     - ~uniq~ to report or omit repeated lines
+     - ~grep~ to print lines matching a pattern
+     - ~wc~ to print file newline, word, and byte counts
+     - ~head~ to output the first part of a file
+     - ~tail~ to output the last part of a file
+     - ~tee~ to read from ~stdin~ and write to ~stdout~ and files
+
+   * ~stdin~, ~stdout~ and ~stderr~ are special files
+
+   * [X] Execute the following commands in your REPL of choice.
+
+*** Redirecting standard output
+
+    * [X] It's often useful to store results in a file. What does the
+      command in [[redirect]] do?
+
+      #+name: redirect
+      #+begin_example
+      ls -l /usr/bin > ls-output.txt
+      #+end_example
+
+    * [X] Let's look at the file from the outside first.
+
+      #+name: ls
+      #+begin_example
+      ls -l ls-output.txt
+      #+end_example
+
+    * [X] Let's look at the first and the last part of the file
+
+      #+name: headtail
+      #+begin_example
+      head ls-output.txt
+      tail ls-output.txt
+      #+end_example
+
+    * [X] We redirect again, this time using a directory that does not
+      exist. This results in an error - but why is it
+      not sent to the file instead of ~stdout~?
+
+      #+name: redirect1
+      #+begin_example
+      ls -l /bin/usr > ls-output.txt
+      #+end_example
+
+    * [X] What happened to the output file?
+
+      #+name: ls1
+      #+begin_example
+      ls -l ls-output.txt
+      #+end_example
+
+    * [X] If you ever want to create a new empty file (without
+      ~touch~), you can use this trick:
+
+      #+name: redirect2
+      #+begin_example
+      > ls-output.txt
+      #+end_example
+
+    * [X] To append redirected output to a file instead of overwriting
+      it from the beginning, use ~>>~. Let's test this:
+
+      #+name: redirect3
+      #+begin_example
+      ls -l /usr/bin >> ls-output.txt
+      ls -l /usr/bin >> ls-output.txt
+      ls -l /usr/bin >> ls-output.txt
+      ls -l ls-output.txt
+      #+end_example
+
+* Redirection: stderr, stdin - w9s15 (8-Mar)
+** Agenda
+
+   * [X] Waking up in ~AppData/Roaming~? [[https://github.com/birkenkrahe/org/blob/master/FAQ.org#how-to-set-a-new-emacs-home-directory][Change your Emacs HOME now]].
+   * [X] How to [[https://www.maketecheasier.com/create-symbolic-links-windows10/][Create Symlinks in Windows 10]] (it's not impossible!)
+   * [X] Improve your grade with a project ([[https://github.com/birkenkrahe/org/blob/master/FAQ.org#how-can-i-improve-my-mid-term-grades][see FAQ]])
+   * [X] Preparations for test 2 (Tue 15-Mar)
+   * [X] Review Docker/container technology ([[file:notes.org::Docker][notes]])
+   * [X] Complete Manipulate Files notebook on your own!
+   * [X] Review DataCamp ("Batch Processing")
+
+** Preparations for test 2 (Tue 15-Mar)
+
+   * Test 2 will only cover questions from quiz 4-6 + new questions.
+   * You can find quiz 4-6 with solutions + feedback as PDF ([[https://github.com/birkenkrahe/os420/tree/main/quiz][in /quiz]])
+   * I will create an update of content Org files ([[https://github.com/birkenkrahe/os420/tree/main/pdf][in pdf/]])
+
+** Creating symlinks in Windows 10
+
+   * I changed my Emacs HOME directory and needed to symlink the
+     ~.emacs~ file from there to the old location
+
+   * You can do this with the GUI or on the CMD line. Confusingly, the
+     argument order is the reverse from UNIX: ~mklink [link] [origin]~
+     instead of ~ln -s [origin] [link]~.
+
+     #+name: winsymlink
+     #+begin_example sh
+       mklink C:\Users\birkenkrahe\.emacs C:\Users\birkenkrahe\Documents\GitHub\.emacs
+     #+end_example
+
+     #+caption: symlink example in Windows 10
+     #+attr_html: :width 600px
+     [[./img/symlink.png]]
+
+** Improve your grade with a project (FAQ)
+
+   If you want to improve your grade, you can talk to me about doing
+   a small, independent research project leading to a writeup in the
+   form of a notebook, or a short (10-15 min) presentation. The topic
+   must be related to the topic of this course. ([[https://github.com/birkenkrahe/org/blob/master/FAQ.org#how-can-i-improve-my-mid-term-grades][See FAQ.]])
+
+** Redirection revisited: stderr and stdout
+
+   * Download ~redirection.org~ from the ~practice~ directory in
+     GDrive (Link in Schoology), or from GitHub.
+
+   * Code along while working on the file in GNU Emacs.
+
+* Redirection: pipeline commands - w9s16 (10-Mar)
+** Agenda
+
+   * [X] Complete ~redirection.org~ workbook
+   * [X] Review quiz questions quiz 4-6
+
+* Test review, environment variables - w10s17 (17-Mar)
+** News
+
+   * [X] Test 2 average result: 74% - not bad at all!
+   * [ ] Improving your grade after test 2 with a project
+   * [ ] Motivation to learn bash scripting by Steve Yegge
+
+** Test 2 review
+
+   * [ ] How can you start a command on the commandline and still use
+     that terminal? Answer: add ~&~ after cmd - process goes in
+     background
+
+   * [X] When you type ~sudo~ before a command, you become ~root~? Answer:
+     No. You only get some system privileges associated with ~root~.
+
+   * [ ] Which command tees standard out off to an intermediate file?
+     Answer: the ~tee~ command. Example in [[tee]].
+     #+name: tee
+     #+begin_src bash :exports both
+       ls . | tee ls.txt | grep org | wc -l
+     #+end_src
+
+     #+RESULTS: tee
+     : 8
+
+   * [ ] How do you append standard error and standard output to the
+     same file? Answer: you need ~&>>~ or ~>>~ and ~2>1&~. Example in
+     [[append]].
+
+     #+name: append
+     #+begin_src bash :results silent
+       ls -l /etc/passdw >> out1.txt 2>&1
+       ls -l /etc/os-relaese &>> out2.txt
+     #+end_src
+
+** Improving your grade with a project - ideas
+
+   * Create an Org-mode file with tutorial examples for one or more
+     shell commands - pose a problem and present a solution
+
+   * Present a bash script of your own design e.g. to automate a
+     process (my example [[https://github.com/birkenkrahe/org/blob/master/git.sh][~git.sh~]]: updating Git version control - this
+     could be improved quite a bit with control flow).
+
+   * Expand an explanation from class, or a topic from class and write
+     it up as a short essay, or create a presentation and screencast
+     it, or (better) present in class
+
+   * Whatever you do is not for the lecturer but for the class, so you
+     need to share it with everyone (e.g. YouTube or GDrive and then
+     post an issue in GitHub)
+
+** Bash scripting
+
+   #+begin_quote
+   "You have to know command-line interfaces and shell scripting
+   (or equivalent) in order to be a great programmer and a great
+   generalist. [...] The bottom line is that sometimes you need to
+   do custom batch (and/or streaming) tasks that are not handled by
+   your IDE or your favorite tools.  So what do you do?  Scripting
+   to the rescue."  (Steve Yegge)
+   #+end_quote
+
+   Watch [[https://youtu.be/mb8ayJEsnk8][Stevey's Tech Talk E37: sed -i 's/sorry/not sorry/g']] (2022)
+
+   Yegge is the guy from the original [[https://www.digitaltrends.com/social-media/google-engineer-who-publicly-bashed-google-nothing-bad-happened/][Google-Amazon rant]] (Couts, 2011)
+
+** Environment and editors
+
+   * See interactive notebook ~environment.org~ in GDrive
+
+* Permissions - w11s19 (29-Mar)
+** Plan for the remainder of the term
+
+   * Week 11: Permissions / Intro to scripting
+   * Week 12: Process management / Variables
+   * Week 13: Customizing the prompt / Control
+   * Week 14: Networking / Functions
+   * Week 15: Scripting project?
+
+* vi editor - w11s20 (31-Mar)
+* Process management - w12s21 (5-Apr)
+
+  * [ ] How a process works
+  * [ ] Viewing processes statically and dynamically
+  * [ ] Controlling processes with signals
+  * [ ] Interactive notebook (GDrive)
+
+** Warming up with pipelines
+
+   * [ ] Add the string ~"(setq-default org-hide-emphasis-markers t)"~ to
+     your ~$HOME/.emacs~ file so that you don't see the emphasis markers
+     in Org-mode. Then show the last line of the file to make sure it
+     worked.
+
+     /Tip: you need the commands ~echo, ~>>~, ~tail~./
+
+     #+name: emphasis
+     #+begin_src bash
+
+
+     #+end_src
+
+* Cygwin assignment - w12s22 (7-Apr)
+
+  * [ ] [[https://lyon.schoology.com/assignment/5853804048][Cygwin assignment / controlling processes]]
+  * [ ] [[https://app.datacamp.com/learn/courses/introduction-to-bash-scripting][DataCamp assignment]]
+
+    [[./img/cygwin1.png]]
+
+* Introduction to bash scripting  - w13s23 (12-Apr)
+** Emacs tip
+
+   To *not* see the emphatic characters like ~ or * or / in the Org file
+   text, run the following code chunk (or put the code in your ~/.emacs~
+   file): if successful, you should see ~"t"~ in the minibuffer.
+
+   #+begin_src emacs-lisp :results silent
+     (setq-default org-hide-emphasis-markers t)
+   #+end_src
+
+   If you don't put it in your ~/.emacs~ file, the command will only work
+   for the current Emacs session.
+
+** DataCamp review
+
+   #+attr_html: :width 700px
+   #+caption: DataCamp bash IDE
+   [[./img/ide.png]]
+
+   #+attr_html: :width 700px
+   #+caption: DataCamp pipe illustration
+   [[./img/pipe1.png]]
+
+
+   * UNIX stream editor ~sed~ to change one pattern into another.
+
+     #+begin_example bash
+       cat file.txt | sed 's/Birkenkrahe/birchcrow/g' | grep 'Birkenkrahe'
+     #+end_example
+
+** Scripting in bash - refresher
+
+   * [X] How to write a shell script in 3 steps
+   * [X] Script file format with /shebang/
+   * [X] Permission to execute with ~chmod~
+   * [X] Location with ~$PATH~
+
+* Bash scripting lab practice - w13s24 (14-Apr)
+
+  * We use the online bash installation ~replit.com~ for this practice.
+
+  * You find the practice notebook in GDrive (practice directory)
+
+  * All exercises are directly or indirectly taken from the first two
+    DataCamp chapters of
+
+  * [X] Revising shell commands
+  * [X] Standard streams and arguments
+  * [X] Single and double quotes
+  * [X] Shell within a shell
+  * [X] Numeric vaiables and arithmetic on the shell
+
+  * The exercises with ~bc~ cannot be completed in replit.com or in
+    Cygwin, you need a native Linux installation for that (like
+    Raspbian on the Raspberry Pi)
+
+* Networking - w14s25 (21-Apr)
+
+  * [X] Last two *DataCamp* assignments for EXTRA CREDIT only
+  * [X] *Quiz 7-9* are live (bash scripting/permissions/processes)
+  * [X] Play the quizzes by April 22 (Friday) 4 pm
+  * [X] *Test 3* will be online - open Thu-28-Apr to Fri-28-Apr
+  * [X] *Test 3* will not have any new questions - only Q7-Q9
+  * [X] *Topic* today: Networking under Linux
+
+** Networking
+
+   * [X] ~ping~ other network hosts
+   * [X] ~traceroute~ to print network travel routes
+   * [X] ~ip~ to show/manipulate network devices
+   * [X] ~netstat~ to print network stats
+   * [X] ~ftp~ for internet file transfer
+   <<<<<<< HEAD
+   * [ ] ~wget~ for non-interactive network downloads
+   * [ ] ~ssh~ for remote shell login
+   =======
+   * [X] ~wget~ for non-interactive network downloads
+   * [X] ~ssh~ for remote shell login
+   >>>>>>> eb3b79c (update)
+
+   See workbook (for use on the Raspberry Pi) in GDrive.
+
+** Bonus features
+
+   * [X] How to connect your Pi to GDrive using ~rclone~
+   * [X] Emacs special: using ~Dired~ and ~shell~ remotely with ~Tramp~
+
+   <<<<<<< HEAD
+
+* Review quiz 7-9 - w15s26 (26-Apr)
+** Plans for the last weeks of term (Schoology update)
+
+   * On *Tuesday, April 26*, we will finish our look at networking with
+     ~ssh~ and ~wget~, and review the 3 quizzes for /test 3/ (scheduled for
+     online submission Thursday 28-April 11 am to Friday 29-April 11
+     am).
+   * On *Thursday, April 28*, we will start with finding, archiving and
+     compressing files under Linux.
+   * On our last meeting, on *Tuesday May 3*, we will talk about the
+     final exam (scheduled for Thursday 5-May 6 pm to Saturday 7-May
+     8 am), summarize what we've achieved together, and look at
+     compiling source code using the [[https://www.gnu.org/software/make/][GNU ~make(1)~ program]].
+   * You will get a detailed list with curated links and other sources
+     from me for the DIY continuation of your OS journey (@ end of
+     May), and a /bonus video/ if my muse cooperates and if your
+     evaluations are mostly positive :-)
+
+   #+caption: training for finals in penguin world
+   [[./img/finals_os420.gif]]
+
+** Course evaluations - open until May 5
+
+   * [X] Made a lot of changes after the last evaluations.
+   * [X] Support the development of this course
+   * [X] Help me and Lyon College decide if I stay or if I go
+
+     *Extra credit* for evaluating! - Don't forget to click the box.
+
+     [[./img/survey.png]]
+
+** Review quiz 7-9
+
+   * [X] Quiz 7: Permissions
+   * [X] Quiz 8: Processes
+   * [X] Quiz 9: Bash scripting
+
+   * Test 3 will have 15 questions and last 30 minutes
+   * Open between Thu 6 pm to Sat 8 am
+   * ALL questions for test 3 and final exam are KNOWN (in principle -
+     I will make small modifications)
+
+* Networking 2 - remote work - w15s27 (28-Apr)
+** "Microsoft finds Linux desktop flaw that gives ~root~ to untrusted users"
+
+   * [ ] Saved as a [[https://github.com/birkenkrahe/os420/issues][GitHub issue]]
+   * [ ] Is this the end of Linux and a new dawn for Microsoft?
+
+     #+begin_quote
+     »Vulnerabilities recently discovered by Microsoft make it easy for
+     people with a toehold on many Linux desktop systems to quickly gain
+     root system rights— the latest elevation of privileges flaw to come to
+     light in the open source OS.«
+     #+end_quote
+
+   * [ ] Exhibits the strength of Open Source and independent development:
+
+     #+begin_quote
+     »The proof-of-concept exploit works only when it can use the
+     “org.freedesktop.network1” bus name. The researcher found
+     several environments where this happens, including Linux Mint,
+     in which the systemd-networkd by default doesn’t own the
+     org.freedodesktop.network1 bus name at boot. [...]
+
+     [[https://www.linkedin.com/in/jonathan-bar-or-89876474/][The researcher]] also found several processes that run as the
+     systemd-network user, which is permitted to use the bus name required
+     to run arbitrary code from world-writable locations. The vulnerable
+     processes include several gpgv plugins, which are launched when
+     apt-get installs or upgrades, and the Erlang Port Mapper Daemon, which
+     allows running arbitrary code under some scenarios.
+
+     The vulnerability has been patched in the networkd-dispatcher,
+     although it wasn’t immediately clear when or in what version, and
+     attempts to reach the developer weren’t immediately successful. People
+     using vulnerable versions of Linux should patch their systems as soon
+     as possible.« ([[https://arstechnica.com/information-technology/2022/04/microsoft-finds-linux-desktop-flaw-that-gives-root-to-untrusted-users/][Goodin, 26 April 2022]])
+     #+end_quote
+
+     #+begin_quote
+     »Fixes for these vulnerabilities, now identified as
+     CVE-2022-29799 and CVE-2022-29800, have been successfully
+     deployed by the maintainer of the networkd-dispatcher, Clayton
+     Craft.« ([[https://www.microsoft.com/security/blog/2022/04/26/microsoft-finds-new-elevation-of-privilege-linux-vulnerability-nimbuspwn/][Or, 26 April 2022]])
+     #+end_quote
+
+   * [ ] Used in this article and covered in this course:
+
+     - boot process and root privileges
+     - systemd and networkd daemon processes
+     - OS Linux distro dependencies
+     - UID, PID, GID
+     - Linux file system /sbin /tmp /etc
+     - Shell script
+     - Symlinks
+     - Environment variables
+
+   * [X] From the [[https://youtu.be/0gRuqu_-0bI][Microsoft Defender for Endpoint]] "real-time threat
+     detection" platform commercial video (6 min):
+     - Old news: "Allows only trusted applications to run" etc.
+     - More stuff from the Microsoft software propaganda machine for
+       the clueless and scared (= not for you)
+     - Automatic threat detection and forensic evidence = do not
+       (only) trust dashboards ("uses inspection algorithms that an
+       analyst would use")
+     - Service offering
+     - "We encourage you  to read the documentation  on Microsoft docs
+       to learn more."
+
+   * [ ] *What to do?* Embrace the BS - connect with Microsoft
+     (subscribe to their channel, network with their experts) and
+     continue to grow your Linux knowledge using Open Source
+     technology (100% transparency).
+
+** Networking 2 - ~wget~, ~ssh~, ~scp~ and ~sftp~
+
+   *DOWNLOAD UPDATED FILE ~networking_2.org~ FROM GDRIVE*
+
+   * [X] Did anyone look at the "Bonus features" (~rclone~ / ~Tramp~)?
+   * [X] See also "[[https://www.raspberrypi.com/documentation/computers/remote-access.html#remote-access][Remotely accessing your Raspberry Pi]]" (networking)
+   * [X] Borrow a Pi if you must (but do tell me about it)
+   * [X] ~wget~ for non-interactive network downloads
+   * [X] ~ssh~ for remote shell login
+   * [ ] *Bonus challenge: what is "Raspbian" (technically)?*
+
+     #+begin_quote Answer
+     "Raspbian" was the former name of what is now called "Raspberry
+     Pi OS". It is a Debian-based Linux Operating System for the
+     Raspberry Pi single-board computer series. In turn, Debian is one
+     of the oldest operating systems with a Linux kernel (first
+     released in 1993). Raspberry Pi OS is Debian + the Raspberry Pi
+     Desktop, which is based on Gnome (one of two popular desktop
+     architectures - the other one is KDE[fn:9]). (Source: [[https://www.raspberrypi.com/software/][raspberrypi.com]])
+     #+end_quote
+
+** Deadlines
+
+   * [ ] Final exam from *Thu-5-May 6 pm to Sat-7-May 8 am*
+     - Random draw from all questions + minor modifications
+     - Quizzes and tests will be disabled before the exam
+
+* Compiling from source with ~make~ - w16s28 (3-May)
+** Content warning
+
+   #+attr_html: :width 400px
+   #+caption: Content warning on my phone!
+   [[./img/warning.jpg]]
+
+** Topics
+
+   * [X] See practice file ~compiling.org~ [[https://drive.google.com/drive/folders/1Dp9z3e4HOoB-LAs6IthcDIOqXUfhhE4T?usp=sharing][in GDrive]]
+
+   * [X] Works well with Cygwin (except the last step?)
+   
+   * [X] What is compiling?
+
+   * [X] Source code compilation pipeline
+
+   * [X] Final exam review
+
+   * [X] *Any outstanding work must be finished by Monday May 9*
+
+   * [X] *Please take 10 minutes to complete the course evaluation now*
+
+       [[./img/evaluation.jpg]]
+
+* Final exam - w16s29 (Thu 5-May 6-8 pm)
+
+  | COURSE NO | MEETS    | TIME                    | ROOM      |
+  |-----------+----------+-------------------------+-----------|
+  | *CSC 420*   | *TR 9.30a* | *Thu 5-May 6.00p - 8.00p* | *Lyon 104*  |
+  |-----------+----------+-------------------------+-----------|
+  |           |          | Fri 6-May 1.00p - 3.00p | Derby 209 |
+  |           |          | Fri 6-May 3.30p - 5.30p | Derby 209 |
+  |           |          | Mon 9-May 1.00p - 3.00p | Derby 209 |
+  |           |          | Mon 9-May 3.30p - 5.30p | Derby 209 |
+
+  The final exam will take place *in room 104 of the Lyon building*
+  (our usual classroom) on *Thursday, May 5 from 6.00 pm to 8.00 pm*
+  ([[https://assets.speakcdn.com/assets/2433/sp22_final_exam_schedule_final-2022042203012665.pdf][see exam schedule]]).
+
+  The exam will consist of 40 questions drawn at random from the
+  pool of quiz and test questions. Completing the various quizzes
+  and tests until you've reached 100%, and revisiting your past
+  tests should enable you to pass this exam with flying colors!
+
+  Please reach out to me if you have difficulties taking the exam at
+  this time. I'm going to offer a limited number of seats to take
+  this exam on Friday May 6 or on Monday May 9. Graduating seniors
+  must complete the exam no later than May 8.
+
+  #+caption: penguin drop off
+  [[./img/final.gif]]
+
+* References
+
+  * Couts (October 21, 2011). Google engineer who publicly bashed
+    Google+: ‘Nothing bad happened’ [blog]. [[https://www.digitaltrends.com/social-media/google-engineer-who-publicly-bashed-google-nothing-bad-happened/][URL: digitaltrends.com]].
+  * element14 (n.d.). Identifying Your MOdel of Raspberry Pi
+    [blog]. [[https://community.element14.com/products/raspberry-pi/w/documents/879/identifying-your-model-of-raspberry-pi][URL: community.element14.com]].
+  * Janssens (2021. Data Science at the Command Line
+    (2e). O'Reilly. [[https://datascienceatthecommandline.com/][URL: datascienceatthecommandline.com]].
+  * Shotts (2019). The Linux Command Line (2e). NoStarch Press.
+  * Steve Yegge (Feb 21, 2022). Stevey's Tech Talk - sed -i
+    's/sorry/not sorry/g' [video]. [[https://youtu.be/mb8ayJEsnk8][URL: youtube.com]].
+  * Steve Yegge (Mar 7, 2022). Stevey's Tech Talk - A guided tour of
+    Emacs [video]. [[https://youtu.be/lkIicfzPBys][URL: youtube.com]].
+  * Vaughan-Nichols (9 Feb 2022). Best desktop Linux for pros 2022:
+    Our top 5 choices [blog]. [[https://www.zdnet.com/article/best-linux-desktops-for-pros/][URL: www.zdnet.com.]]
+  * Wikipedia (25 Dec 2021). The Treachery of Images [website]. [[https://en.wikipedia.org/wiki/The_Treachery_of_Images][URL:
+    wikipedia.org]].
+
+* Footnotes
+
+[fn:9]The choice of visual desktop environment (Gnome or KDE)
+parallels other choice-wars, like for editors (Emacs vs. vi). KDE (the
+"Kool Desktop Environment") comes from Germany, Gnome comes from the
+Americas.
+
+[fn:8](1) Virtualbox with a Linux image; (2) Cygwin utility tool
+bundle; (3) dual boot with Linux e.g. from a USB Stick or an SD-card;
+(4) Installing the Ubuntu app from the Microsoft store. (5) eshell
+(emulated Lisp shell in Emacs), (6) replit.com (online cloud Linux),
+(7) download and install a Docker image/container. If you're serious
+about learning OS, you should give all of these a try just for fun
+(Research + analysis skills)! Also, any of these will enable you to
+practice many of the commands you learn in this course. And when a
+command does not work, you'll learn why (troubleshooting skill!).
+
+[fn:7]In the language R, both of these are combined as ~|>~ because
+they really are the same thing:
+#+begin_src R :exports both :session :results output
+  mtcars |> head(1)
+#+end_src
+Output:
+#+begin_example
+:           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+: Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4
+#+end_example
+
+[fn:6]I have not tried this but I would have thought that the Google
+search bar permits use of wildcards.
+
+[fn:5]Answer: ~ls /~ lists the root directory, because ~/~ is root's
+home. The particular ordering and naming of these directories is up to
+the Linux OS file administrator, but there are certain style rules
+that are usually obeyed by every professional.
+
+[fn:4]Windows likes to call directories 'folders' - another
+unnecessary dumbing down. A folder is just a container, but a
+directory (like the "telephone directory") has a data structure, an
+index, labels, and serves to search and find. Don't say "folder".
+
+[fn:3]A "distro" is a Linux distribution, like Ubuntu or Raspbian, or
+Kali. Distro design and distro news bind a lot of fanboy energy, see
+e.g. [[https://www.zdnet.com/article/best-linux-desktops-for-pros/]["Best desktop Linux for pros 2022"]] (Vaughan-Nichols, 2022).
+
+[fn:2]An alternative (that takes much longer, because many files have
+to be downloaded, and the Pi 3B+ isn't the strongest networker) is to
+clone the entire ~os420~ repository with the command:
+#+begin_example
+  $ git clone https://github.com/birkenkrahe/os420
+#+end_example
+
+[fn:1]Unix manual pages are formatted with ~troff~, the Unix
+"typsetter roff", a document processing system. "roff" stands for
+"I'll run off a document".

@@ -23,12 +23,19 @@
 
 /Alas: my brainOS has swapped memory of the 2022 class to a lost drive./
 
-- [ ] Lecture: OS structure overview (Tuesday)
-- [ ] Discussion: Talk about projects with the Raspberry Pi (Tuesday)
+- [ ] Lecture: OS fundamentals (Tuesday)
 - [ ] Practice: Get started with Raspberry Pi: connect and update (Tuesday)
-- [ ] Practice: Manipulating files and directories (DataCamp)
-- [ ] Assignment: Complete Emacs tutorial (upload to Canvas by Friday)
+- [ ] DataCamp review/Practice: Manipulating files and directories (Tuesday)
+
 - [ ] Assignment: Discuss "A practical view of the Linux system" (Thursday)
+- [ ] Discussion: Talk about projects with the Raspberry Pi (Tuesday)
+
+** TODO Announcement: UAMS College of Public Health student session
+
+Monday, 29 January 12-12:45 PM via Zoom: http://tinyurl.com/UAMSCPUH
+Passcode: 941969
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/UAMS_student_session.png]]
 
 ** TODO Announcement: Journal club!
 
@@ -50,6 +57,132 @@ front of my office, about the paper that I wrote before this one.
 *Caveat:* in a journal club, you discuss other people's papers and not
 your own - I will try to simulate that by discussing my paper as if
 someone else had written it, and also using AI to deliver a critique.
+
+** TODO Practice: Shell fundamentals
+
+- Terminal emulator vs. terminal (Emacs eshell)
+- Open Emacs
+- Open Emacs shell (~M-x eshell RET~)
+  
+#+begin_example sh
+  lioidfondfons
+  date
+  cal
+  df
+  df -H
+  exit
+#+end_example
+
+** TODO DataCamp lesson review
+
+Try the command examples in replit.com:
+- Login to replit.com and create a bash REPL
+- Run the following commands in ~main.sh~ (the bash file):
+  #+begin_example sh
+  mkdir /home/runner/org
+  mkdir /home/runner/org/tmp
+  touch /home/runner/org/sample.org
+  touch /home/runner/org/.hidden
+  touch a.out
+  #+end_example
+
+  1. What are the differences between the command line interface (CLI)
+     and a graphical user interface (GUI)? 
+     #+begin_notes
+     | CLI                     | GUI                | Commands         |
+     |-------------------------+--------------------+------------------|
+     | text and ASCII graphics | graphical and text | =cowsay=           |
+     | keyboard only           | mouse and keyboard | =localectl status= |
+     | flexible                | fixed              | =compgen -c -a=    |
+     | established             | version-dependent  |                  |
+     #+end_notes
+
+  2. Which command sequence
+     - checks your present working directory
+     - changes to the ~org~ directory in your home directory
+     - checks if you got there
+     - lists all Org-mode files?
+     #+begin_src sh  :results output
+       pwd
+       cd ~/org
+       pwd
+       ls *.org
+     #+end_src
+       
+  3. Which command sequence
+     - copies a file ~a.out~ from ~.~ into your ~org~ directory
+     - moves the original file to the ~tmp~ directory in the root directory
+     - check if the file is there
+     - deletes the file in ~tmp~
+     - checks if the file has actually been deleted?
+     #+begin_example sh
+       cp a.out ~/org
+       mv a.out /tmp
+       rm /tmp/a.out
+       ls /tmp/a.out
+     #+end_example 
+
+  4. Where does the absolute, and where does the relative path begin?
+     #+begin_notes
+     1) the absolute path begins at the root (beginning of file tree ~/~)
+     2) the relative path begins at the current directory (~.~)
+     #+end_notes
+
+  5. How do you go home?
+     #+begin_src sh :results output
+       pwd
+       cd ~  # alternative: `cd $HOME`
+       pwd
+     #+end_src
+
+  6. What is the home directory of ~root~, the super-user?
+     #+begin_notes
+     The =$HOME= directory of ~root~ is ~/~
+     #+end_notes
+
+  7. Which command sequence  [on replit.com, to to ~~/org/tmp~ first]
+     - removes a directory ~tmp~ two levels up from where you are
+     - creates a directory ~tmp~ two levels up from where you are
+     - lists all the files in that directory
+     #+begin_src sh :results output
+       rmdir ../../tmp  # directory must be empty
+       pwd
+       mkdir ../../tmp  # directory must not exist
+       ls -a ../../tmp  # -a flag lists all files, even the hidden ones
+     #+end_src
+
+  8. What's UTF-8?
+     #+begin_notes
+     The dominant character encoding for the World Wide Web capable of
+     representing every character needed for writing in the majority
+     of the world's languages.
+
+     When you run an Emacs code block for the first time, Emacs will
+     ask you which encoding you want to use and suggest UTF-8 to you.
+     #+end_notes
+     
+** TODO Lecture: OS fundamentals
+
+- [[file:1_fundamentals.org]]
+
+** TODO FYI - Installing Raspberry Pi OS for Pi400
+
+Sources:
+- [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
+- [[https://www.raspberrypi.com/software/operating-systems/][Download area (RPi Imager - installer)]]
+- [[https://www.raspberrypi.com/software/raspberry-pi-desktop/#:~:text=Debian%20with%20Raspberry%20Pi%20Desktop,PC%20or%20Apple%20Mac%20computer.][Raspberry Pi Desktop (for any old computer)]]
+- [[https://youtu.be/eZ74x6dVYes?si=vLjK8nndJS2uS6bf][Raspberry Pi Explained in 100 seconds]]
+
+What to do:
+1. Get an SD card reader ([[https://www.amazon.com/UGREEN-Reader-Memory-Windows-Simultaneously/dp/B01EFPX9XA/ref=asc_df_B01EFPX9XA/?tag=hyprod-20&linkCode=df0&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&psc=1&mcid=3346d44aed8837e692060fcb6e3c7209&tag=&ref=&adgrpid=58425267301&hvpone=&hvptwo=&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&gclid=CjwKCAiAkp6tBhB5EiwANTCx1MXXejCwHTaI0GldFt8JUvq7DYoQPfNZgsoibyMvW6i26B62w9UBUhoC2twQAvD_BwE][I use this one]] - $12).
+2. Get an SDHC card ([[https://www.amazon.com/Samsung-Class-Adapter-MB-MC32GA-AM/dp/B0749KG1JK/ref=sr_1_2?crid=MY5LUD60LHJI&keywords=samsung+32gb+sd+card+micro&qid=1705552023&sprefix=samsung+32gb+s%2Caps%2C112&sr=8-2][I use SanDisk Ultra Class 10 32GB]] - $12).
+3. Mount SD card reader with microSD to your PC (Windows/MacOS = plugin).
+4. Run RPi installer program on your PC.
+5. Follow the instructions (pick Pi model/OS type/storage device).
+6. Insert SD card in Rasperry Pi - boot and configure.
+
+
+-----
 
 ** TODO Project challenge - (virtually) impossible
 
@@ -130,23 +263,6 @@ Featured projects for beginners:
 - [[https://www.hackster.io/sridhar-rajagopal/international-space-station-tracker-6afdca][International Space Station tracker]] (2020) + Python
 - 
 
-** TODO FYI - Installing Raspberry Pi OS for Pi400
-
-Sources:
-- [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
-- [[https://www.raspberrypi.com/software/operating-systems/][Download area (RPi Imager - installer)]]
-- [[https://www.raspberrypi.com/software/raspberry-pi-desktop/#:~:text=Debian%20with%20Raspberry%20Pi%20Desktop,PC%20or%20Apple%20Mac%20computer.][Raspberry Pi Desktop (for any old computer)]]
-- [[https://youtu.be/eZ74x6dVYes?si=vLjK8nndJS2uS6bf][Raspberry Pi Explained in 100 seconds]]
-
-What to do:
-1. Get an SD card reader ([[https://www.amazon.com/UGREEN-Reader-Memory-Windows-Simultaneously/dp/B01EFPX9XA/ref=asc_df_B01EFPX9XA/?tag=hyprod-20&linkCode=df0&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&psc=1&mcid=3346d44aed8837e692060fcb6e3c7209&tag=&ref=&adgrpid=58425267301&hvpone=&hvptwo=&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&gclid=CjwKCAiAkp6tBhB5EiwANTCx1MXXejCwHTaI0GldFt8JUvq7DYoQPfNZgsoibyMvW6i26B62w9UBUhoC2twQAvD_BwE][I use this one]] - $12).
-2. Get an SDHC card ([[https://www.amazon.com/Samsung-Class-Adapter-MB-MC32GA-AM/dp/B0749KG1JK/ref=sr_1_2?crid=MY5LUD60LHJI&keywords=samsung+32gb+sd+card+micro&qid=1705552023&sprefix=samsung+32gb+s%2Caps%2C112&sr=8-2][I use SanDisk Ultra Class 10 32GB]] - $12).
-3. Mount SD card reader with microSD to your PC (Windows/MacOS = plugin).
-4. Run RPi installer program on your PC.
-5. Follow the instructions (pick Pi model/OS type/storage device).
-6. Insert SD card in Rasperry Pi - boot and configure.
-
-
 ** IN PROGRESS Reading assignment: A Practical View of the Linux System (2019)
 
 - Read "A practical view of the Linux system" (ARM, 2019)
@@ -154,7 +270,6 @@ What to do:
 - High level overview and nitty-gritty (C code).
 - Read this as a preparation for lecture & discussion.
 - Write down any questions you may have.
-
 
 * Week 3 - OS Processes
 * Week 4 - What is the Shell?
