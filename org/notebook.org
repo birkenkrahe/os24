@@ -3,7 +3,7 @@
 #+SUBTITLE: CSC 420, Lyon College, Spring 2024
 #+STARTUP:overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
-* Week 1 - Overview and introduction to OS
+* DONE Week 1 - Overview and introduction to OS
 #+attr_html: :width 400px
 [[../img/cover.png]]
 
@@ -17,12 +17,18 @@
 - My notes made while watching in class.
 - [[https://chat.google.com/room/AAAABlWSGes/VzKc4SfKHUc/VzKc4SfKHUc?cls=10][Post in the OS Google Chat]].
 
+* Week 2 - OS Fundamentals
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/brainOS.png]]
 
-* Week 2 - OS Structures
+/Alas: my brainOS has swapped memory of the 2022 class to a lost drive./
 
-- [ ] Discuss "A practical view of the Linux system"
-- [ ] Get started with Raspberry Pi: connect and update
-- [ ] Complete Emacs tutorial (upload to Canvas)
+- [ ] Lecture: OS structure overview (Tuesday)
+- [ ] Discussion: Talk about projects with the Raspberry Pi (Tuesday)
+- [ ] Practice: Get started with Raspberry Pi: connect and update (Tuesday)
+- [ ] Practice: Manipulating files and directories (DataCamp)
+- [ ] Assignment: Complete Emacs tutorial (upload to Canvas by Friday)
+- [ ] Assignment: Discuss "A practical view of the Linux system" (Thursday)
 
 ** TODO Announcement: Journal club!
 
@@ -44,14 +50,6 @@ front of my office, about the paper that I wrote before this one.
 *Caveat:* in a journal club, you discuss other people's papers and not
 your own - I will try to simulate that by discussing my paper as if
 someone else had written it, and also using AI to deliver a critique.
-
-** IN PROGRESS Reading assignment: A Practical View of the Linux System (2019)
-
-- Read "A practical view of the Linux system" (ARM, 2019)
-- [[https://www.arm.com/resources/education/books/operating-systems][Free textbook from ARM]] (British producer of the RPi's CPU).
-- High level overview and nitty-gritty (C code).
-- Read this as a preparation for lecture & discussion.
-- Write down any questions you may have.
 
 ** TODO Project challenge - (virtually) impossible
 
@@ -123,6 +121,15 @@ like and if you promise to look after it. If you destroy it, you'll
 have to replace it - the Pi400 only costs $84 right now [[https://www.amazon.com/Raspberry-400-Computer-Kit-RPI400-US/dp/B08MYVQW1S/ref=sr_1_2?crid=7VCXPFUD7I0R&keywords=pi400&qid=1705606222&s=books&sprefix=pi400%2Cstripbooks%2C122&sr=1-2&ufe=app_do%3Aamzn1.fos.006c50ae-5d4c-4777-9bc0-4513d670b6bc][at
 Amazon]]. (You might want to get your own anyway!)
 
+You may have to purchase some equipment (I have a limited private
+supply only). But it shouldn't break the bank especially since you
+didn't have to buy a textbook (e.g. Intel NeuralStick 60$, LCD HAT
+$20, )
+
+Featured projects for beginners:
+- [[https://www.hackster.io/sridhar-rajagopal/international-space-station-tracker-6afdca][International Space Station tracker]] (2020) + Python
+- 
+
 ** TODO FYI - Installing Raspberry Pi OS for Pi400
 
 Sources:
@@ -139,6 +146,14 @@ What to do:
 5. Follow the instructions (pick Pi model/OS type/storage device).
 6. Insert SD card in Rasperry Pi - boot and configure.
 
+
+** IN PROGRESS Reading assignment: A Practical View of the Linux System (2019)
+
+- Read "A practical view of the Linux system" (ARM, 2019)
+- [[https://www.arm.com/resources/education/books/operating-systems][Free textbook from ARM]] (British producer of the RPi's CPU).
+- High level overview and nitty-gritty (C code).
+- Read this as a preparation for lecture & discussion.
+- Write down any questions you may have.
 
 
 * Week 3 - OS Processes
