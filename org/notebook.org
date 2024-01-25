@@ -58,7 +58,7 @@ front of my office, about the paper that I wrote before this one.
 your own - I will try to simulate that by discussing my paper as if
 someone else had written it, and also using AI to deliver a critique.
 
-** IN PROGRESS DataCamp lesson review
+** DONE DataCamp lesson review
 
 Try the command examples in replit.com:
 - Login to replit.com and create a bash REPL
@@ -135,6 +135,11 @@ Try the command examples in replit.com:
        mkdir ../../tmp  # directory must not exist
        ls -a ../../tmp  # -a flag lists all files, even the hidden ones
      #+end_src
+
+     #+RESULTS:
+     : /c/Users/birkenkrahe/Documents/GitHub/os24/org
+     : .
+     : ..
 
   8. What's UTF-8?
      #+begin_notes
