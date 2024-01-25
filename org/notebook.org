@@ -17,6 +17,7 @@
 - My notes made while watching in class.
 - [[https://chat.google.com/room/AAAABlWSGes/VzKc4SfKHUc/VzKc4SfKHUc?cls=10][Post in the OS Google Chat]].
 
+
 * Week 2 - OS Fundamentals
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/brainOS.png]]
@@ -145,11 +146,109 @@ Try the command examples in replit.com:
      ask you which encoding you want to use and suggest UTF-8 to you.
      #+end_notes
 
-** IN PROGRESS Lecture: OS fundamentals
 
-- [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
+** IN PROGRESS Reading assignment: A Practical View of the Linux System (2019)
+
+- Read "A practical view of the Linux system" (ARM, 2019)
+- [[https://www.arm.com/resources/education/books/operating-systems][Free textbook from ARM]] (British producer of the RPi's CPU).
+- High level overview and nitty-gritty (C code).
+- Read this as a preparation for lecture & discussion.
+- Write down any questions you may have.
+
+*** Review questions:
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/os.png]]
+
+1. Which topics are covered in the chapter?
+   #+begin_notes
+   - Basic Linux OS concepts: processes, file system, user administration
+   - Booting Linux on the Pi: stages, initialization and login
+   - Kernel admin/programming: kernel module, device drivers, tasks
+   #+end_notes
+
+2. What's a thread?
+   #+begin_notes
+   Threads are multiple concurrent tasks executing within a single
+   process. Threads of a process share its resources (memory,
+   priorities etc.).
+   #+end_notes
+
+3. What does "Everything is a file" really mean?
+   #+begin_notes
+   - A file to the user: contiguous data set.
+   - A file to Linux: a place to read data from or write data to
+   - Alternatives: "Everything is a stream of bytes/file descriptor."
+   #+end_notes    
+
+4. What is POSIX?
+   #+begin_notes
+   POSIX = Portable Operating System Interface standard - defines the
+   API, command line shells and utilities to ensure cross-OS
+   portability.
+   #+end_notes
+
+5. Bonus questions: what is the ~.elf~ format? What is a ~Makefile~? 
+   #+begin_notes
+   ELF = Executable and linkable standard format for executable files,
+   object code, shared libraries, and core dumps in Unix-like systems.
+   #+end_notes
+
+*** Pretty useless summary (ChatGPT/AiPDF)
+The document titled "[[https://github.com/birkenkrahe/os24/blob/main/pdf/The_Linux_System.pdf][The Linux System]]" provides a comprehensive view
+of the Linux operating system, particularly focusing on its use with
+the Raspberry Pi. The key points covered in the document include:
+
+- *Linux System Overview*: It starts by introducing essential operating
+  system concepts like processes, users, files, permissions, and
+  credentials. It discusses the chain of events in booting Linux on
+  the Raspberry Pi, creating Linux kernel modules, and building a
+  custom Linux kernel. The chapter serves as a roadmap for the rest of
+  the book, offering background knowledge rather than a how-to guide.
+
+- *Operating System Hierarchy*: It details the Linux kernel's role and
+  the interfacing between the kernel and user space applications. The
+  document discusses processes, user space and kernel space, and the
+  'everything is a file' concept in Linux.
+
+- *Users and Permissions*: The system's multi-user nature, process
+  creation, and user permissions are explored. It discusses the root
+  user, the concept of credentials, and privileges in Linux.
+
+- *Booting Linux on Arm-Based Systems*: The document provides an
+  in-depth look at the boot process of Linux on the Raspberry Pi,
+  covering each stage in detail. It explains the roles of various
+  components like =bootcode.bin=, =start.elf=, =kernel.img=, and the
+  =initramfs= in the boot process.
+
+- *System Initialization* and *Login Process*: The role of the =systemd=
+  process in system initialization, the process of user login via
+  terminal or graphical interface, and the involvement of =getty= and
+  login programs are outlined.
+
+- *Kernel Administration* and *Programming*: It covers topics like
+  loadable kernel modules, device drivers, and the anatomy of a Linux
+  kernel module. The document also guides on building custom kernel
+  modules and the complete kernel.
+
+- *Administrator and Programmer View*: The document then shifts focus to
+  how these concepts are relevant to system administrators and
+  programmers, covering process management, scheduling, memory
+  management, concurrency, parallelism, I/O, and persistent storage.
+
+- *Exercises and Questions*: The chapter concludes with exercises and
+  questions on installing Raspbian, setting up =ssh=, writing kernel
+  modules, understanding the Linux boot process, and system
+  administration tasks.
+
+  This summary provides an overview of the topics covered in the
+  document, offering insights into the practical aspects of Linux
+  system administration and programming, particularly in relation to
+  the Raspberry Pi. For more detailed information, you can refer to
+  the document: [[[https://myaidrive.com/792tCDLz4VFrqZy2/The_Linux_Sy.pdf][The Linux System]]].
+
 
 ** TODO Practice: first use of the shell on Raspberry Pi
+
 
 [[file:1_fundamentals_practice.org]]
 
@@ -168,6 +267,12 @@ Try the command examples in replit.com:
   9) Work through the instructions.
   10) When finished, close down your computer with ~sudo shutdown now~
 
+
+** IN PROGRESS Lecture: OS fundamentals
+
+- [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
+
+
 ** TODO FYI - Installing Raspberry Pi OS for Pi400
 
 Sources:
@@ -184,8 +289,6 @@ What to do:
 5. Follow the instructions (pick Pi model/OS type/storage device).
 6. Insert SD card in Rasperry Pi - boot and configure.
 
-
------
 
 ** TODO Project challenge - (virtually) impossible
 
@@ -265,68 +368,6 @@ $20, )
 Featured projects for beginners:
 - [[https://www.hackster.io/sridhar-rajagopal/international-space-station-tracker-6afdca][International Space Station tracker]] (2020) + Python
 -
-
-
-** IN PROGRESS Reading assignment: A Practical View of the Linux System (2019)
-
-- Read "A practical view of the Linux system" (ARM, 2019)
-- [[https://www.arm.com/resources/education/books/operating-systems][Free textbook from ARM]] (British producer of the RPi's CPU).
-- High level overview and nitty-gritty (C code).
-- Read this as a preparation for lecture & discussion.
-- Write down any questions you may have.
-
-*** Summary (ChatGPT/AiPDF)
-The document titled "[[https://github.com/birkenkrahe/os24/blob/main/pdf/The_Linux_System.pdf][The Linux System]]" provides a comprehensive view
-of the Linux operating system, particularly focusing on its use with
-the Raspberry Pi. The key points covered in the document include:
-
-- *Linux System Overview*: It starts by introducing essential operating
-  system concepts like processes, users, files, permissions, and
-  credentials. It discusses the chain of events in booting Linux on
-  the Raspberry Pi, creating Linux kernel modules, and building a
-  custom Linux kernel. The chapter serves as a roadmap for the rest of
-  the book, offering background knowledge rather than a how-to guide.
-
-- *Operating System Hierarchy*: It details the Linux kernel's role and
-  the interfacing between the kernel and user space applications. The
-  document discusses processes, user space and kernel space, and the
-  'everything is a file' concept in Linux.
-
-- *Users and Permissions*: The system's multi-user nature, process
-  creation, and user permissions are explored. It discusses the root
-  user, the concept of credentials, and privileges in Linux.
-
-- *Booting Linux on Arm-Based Systems*: The document provides an
-  in-depth look at the boot process of Linux on the Raspberry Pi,
-  covering each stage in detail. It explains the roles of various
-  components like =bootcode.bin=, =start.elf=, =kernel.img=, and the
-  =initramfs= in the boot process.
-
-- *System Initialization* and *Login Process*: The role of the =systemd=
-  process in system initialization, the process of user login via
-  terminal or graphical interface, and the involvement of =getty= and
-  login programs are outlined.
-
-- *Kernel Administration* and *Programming*: It covers topics like
-  loadable kernel modules, device drivers, and the anatomy of a Linux
-  kernel module. The document also guides on building custom kernel
-  modules and the complete kernel.
-
-- *Administrator and Programmer View*: The document then shifts focus to
-  how these concepts are relevant to system administrators and
-  programmers, covering process management, scheduling, memory
-  management, concurrency, parallelism, I/O, and persistent storage.
-
-- *Exercises and Questions*: The chapter concludes with exercises and
-  questions on installing Raspbian, setting up =ssh=, writing kernel
-  modules, understanding the Linux boot process, and system
-  administration tasks.
-
-  This summary provides an overview of the topics covered in the
-  document, offering insights into the practical aspects of Linux
-  system administration and programming, particularly in relation to
-  the Raspberry Pi. For more detailed information, you can refer to
-  the document: [[[https://myaidrive.com/792tCDLz4VFrqZy2/The_Linux_Sy.pdf][The Linux System]]].
 
 
 * Week 3 - OS Processes
