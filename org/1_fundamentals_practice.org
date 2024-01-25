@@ -10,6 +10,7 @@ Some sources:
 - Shotts, The Linux Command Line (2e), NoStarch 2019
 - [[https://www.masteringemacs.org/article/running-shells-in-emacs-overview][Petersen, Running Shells and Terminal Emulators in Emacs]].
 
+
 * Terminal emulators
 
 - When you are on the X11 graphical desktop and you start the
@@ -17,18 +18,30 @@ Some sources:
 
 - Open the terminal outside of Emacs now, and try a few
   commands:
-  1) show the date and time:
+  1) find out who you are:
+     #+begin_src sh
+       whoami
+     #+end_src
+  2) find out where your computer is on the network:
+     #+begin_src sh
+       hostname -I
+     #+end_src
+  3) show the date and time:
      #+begin_src sh
        date
      #+end_src
-  2) show available disk space in a format suitable for
+  4) show available disk space in a format suitable for
      humans (only show the first five lines):
      #+begin_src sh
       df -H | head -n 5
      #+end_src
-  3) show the amount of free memory:
+  5) show the amount of free memory:
      #+begin_src sh
        free
+     #+end_src
+  6) see all running process (refreshed every 5 seconds):
+     #+begin_src sh
+       top
      #+end_src
 
 - There are three terminal programs available in Emacs, too:

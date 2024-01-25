@@ -151,11 +151,13 @@ Try the command examples in replit.com:
 
 ** TODO Practice: Shell fundamentals (Shott ch1)
 
-- Terminal emulator vs. terminal (Emacs eshell)
-- Explore the shell in the terminal
-- Open Emacs
-- Open Emacs shell (~M-x eshell RET~)
-- Open Linux shell (~M-x shell RET~)
+- Fire up your Pi
+- At the prompt, enter ~startx~ to start the X11 server
+- On the desktop, click on the raspberry logo and open ~Emacs (GUI)~
+- Download the ~.emacs~ configuration file:
+  1) Open the Emacs browser with ~M-x eww~
+  2) Enter the URL ~tinyurl.com/EmacsLyon~
+  3) Save the file 
 
 ** TODO FYI - Installing Raspberry Pi OS for Pi400
 
