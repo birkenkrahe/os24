@@ -149,15 +149,22 @@ Try the command examples in replit.com:
 
 - [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
 
-** TODO Practice: Shell fundamentals (Shott ch1)
+** TODO Practice: first use of the shell on Raspberry Pi
 
-- Fire up your Pi
-- At the prompt, enter ~startx~ to start the X11 server
-- On the desktop, click on the raspberry logo and open ~Emacs (GUI)~
+[[file:1_fundamentals_practice.org]]
+
+- Fire up your Pi.
+- At the prompt, enter ~startx~ to start the X11 server.
+- On the desktop, click on the raspberry logo and open ~Emacs (GUI)~.
 - Download the ~.emacs~ configuration file:
   1) Open the Emacs browser with ~M-x eww~
   2) Enter the URL ~tinyurl.com/EmacsLyon~
-  3) Save the file 
+  3) Write the file to ~~/.emacs~ with ~C-x C-w~
+  4) Download the instructions from ~tinyurl.com/TermEmulator~
+  5) Write the file to ~/1_fundamentals_practice.org~
+  6) View your home directory with ~C-x d~ and enter ~s~ to see both files.
+  7) Quit Emacs with ~C-x C-c~
+  8) Fire Emacs back up again from the shell with ~emacs &~ 
 
 ** TODO FYI - Installing Raspberry Pi OS for Pi400
 
