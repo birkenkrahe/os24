@@ -1,6 +1,6 @@
-#+TITLE:Operating Systems - Fundamentals
-#+AUTHOR:Operating Systems - Structures 
-#+SUBTITLE:Operating Systems - Structures 
+#+TITLE:OS Fundamentals
+#+AUTHOR:Marcus Birkenkrahe
+#+SUBTITLE:CSC 420 - Operating Systems - Lyon College Spring 2024
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 * README
@@ -103,7 +103,7 @@ the interface for every application yourself.
 - Persistent operating systems (all main memory is persistent)
 - Agent-based models (autnomous agents structure jobs)
 
-* A minimal pseudo kernel in Python
+* NEXT A minimal pseudo kernel in Python
 
 To run, tangle and start ~kernel.py~ script in the shell, or execute
 here and switch to ~*Python*~ buffer to enter kernel operations.
