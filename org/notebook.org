@@ -23,21 +23,20 @@
 
 /Alas: my brainOS has swapped memory of the 2022 class to a lost drive./
 
-- [ ] Lecture: OS fundamentals (Tuesday)
-- [ ] Practice: Get started with Raspberry Pi: connect and update (Tuesday)
-- [ ] DataCamp review/Practice: Manipulating files and directories (Tuesday)
-
+- [X] Lecture: OS fundamentals (Tuesday) - see also: [[https://colab.research.google.com/drive/1IPjLL83lvJ4PZvfhEQsmBUlbVUAvVdSh?usp=sharing][Ryan's Colab notes]]
+- [ ] Practice: Get started with Raspberry Pi: connect and update (Thursday)
+- [ ] DataCamp review/Practice: Manipulating files and directories (Thursday)
 - [ ] Assignment: Discuss "A practical view of the Linux system" (Thursday)
 - [ ] Discussion: Talk about projects with the Raspberry Pi (Tuesday)
 
-** TODO Announcement: UAMS College of Public Health student session
+** Announcement: UAMS College of Public Health student session
 
 Monday, 29 January 12-12:45 PM via Zoom: http://tinyurl.com/UAMSCPUH
 Passcode: 941969
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/UAMS_student_session.png]]
 
-** TODO Announcement: Journal club!
+** Announcement: Journal club!
 
 Data science enthusiasts: there will be a "journal club" on Wednesday
 12-12:45 pm in Derby room 209. We'll put the papers in a GDrive.
@@ -58,7 +57,7 @@ front of my office, about the paper that I wrote before this one.
 your own - I will try to simulate that by discussing my paper as if
 someone else had written it, and also using AI to deliver a critique.
 
-** TODO DataCamp lesson review
+** IN PROGRESS DataCamp lesson review
 
 Try the command examples in replit.com:
 - Login to replit.com and create a bash REPL
@@ -72,7 +71,7 @@ Try the command examples in replit.com:
   #+end_example
 
   1. What are the differences between the command line interface (CLI)
-     and a graphical user interface (GUI)? 
+     and a graphical user interface (GUI)?
      #+begin_notes
      | CLI                     | GUI                | Commands         |
      |-------------------------+--------------------+------------------|
@@ -93,7 +92,7 @@ Try the command examples in replit.com:
        pwd
        ls *.org
      #+end_src
-       
+
   3. Which command sequence
      - copies a file ~a.out~ from ~.~ into your ~org~ directory
      - moves the original file to the ~tmp~ directory in the root directory
@@ -105,7 +104,7 @@ Try the command examples in replit.com:
        mv a.out /tmp
        rm /tmp/a.out
        ls /tmp/a.out
-     #+end_example 
+     #+end_example
 
   4. Where does the absolute, and where does the relative path begin?
      #+begin_notes
@@ -145,25 +144,18 @@ Try the command examples in replit.com:
      When you run an Emacs code block for the first time, Emacs will
      ask you which encoding you want to use and suggest UTF-8 to you.
      #+end_notes
-     
-** TODO Practice: Shell fundamentals
+
+** IN PROGRESS Lecture: OS fundamentals
+
+- [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
+
+** TODO Practice: Shell fundamentals (Shott ch1)
 
 - Terminal emulator vs. terminal (Emacs eshell)
+- Explore the shell in the terminal
 - Open Emacs
 - Open Emacs shell (~M-x eshell RET~)
-  
-#+begin_example sh
-  lioidfondfons
-  date
-  cal
-  df
-  df -H
-  exit
-#+end_example
-
-** TODO Lecture: OS fundamentals
-
-- [[file:1_fundamentals.org]]
+- Open Linux shell (~M-x shell RET~)
 
 ** TODO FYI - Installing Raspberry Pi OS for Pi400
 
@@ -204,7 +196,7 @@ including methodology and references."
 the prerequisites:
 
 1) Student with knowledge and experience
-   - Computer Architecture 
+   - Computer Architecture
    - C programming (especially pointers, memory management)
    - Command line, bash programming, GCC, GNU make
 2) Beginner
@@ -261,7 +253,8 @@ $20, )
 
 Featured projects for beginners:
 - [[https://www.hackster.io/sridhar-rajagopal/international-space-station-tracker-6afdca][International Space Station tracker]] (2020) + Python
-- 
+-
+
 
 ** IN PROGRESS Reading assignment: A Practical View of the Linux System (2019)
 
@@ -271,7 +264,64 @@ Featured projects for beginners:
 - Read this as a preparation for lecture & discussion.
 - Write down any questions you may have.
 
+*** Summary (ChatGPT/AiPDF)
+The document titled "[[https://github.com/birkenkrahe/os24/blob/main/pdf/The_Linux_System.pdf][The Linux System]]" provides a comprehensive view
+of the Linux operating system, particularly focusing on its use with
+the Raspberry Pi. The key points covered in the document include:
+
+- *Linux System Overview*: It starts by introducing essential operating
+  system concepts like processes, users, files, permissions, and
+  credentials. It discusses the chain of events in booting Linux on
+  the Raspberry Pi, creating Linux kernel modules, and building a
+  custom Linux kernel. The chapter serves as a roadmap for the rest of
+  the book, offering background knowledge rather than a how-to guide.
+
+- *Operating System Hierarchy*: It details the Linux kernel's role and
+  the interfacing between the kernel and user space applications. The
+  document discusses processes, user space and kernel space, and the
+  'everything is a file' concept in Linux.
+
+- *Users and Permissions*: The system's multi-user nature, process
+  creation, and user permissions are explored. It discusses the root
+  user, the concept of credentials, and privileges in Linux.
+
+- *Booting Linux on Arm-Based Systems*: The document provides an
+  in-depth look at the boot process of Linux on the Raspberry Pi,
+  covering each stage in detail. It explains the roles of various
+  components like =bootcode.bin=, =start.elf=, =kernel.img=, and the
+  =initramfs= in the boot process.
+
+- *System Initialization* and *Login Process*: The role of the =systemd=
+  process in system initialization, the process of user login via
+  terminal or graphical interface, and the involvement of =getty= and
+  login programs are outlined.
+
+- *Kernel Administration* and *Programming*: It covers topics like
+  loadable kernel modules, device drivers, and the anatomy of a Linux
+  kernel module. The document also guides on building custom kernel
+  modules and the complete kernel.
+
+- *Administrator and Programmer View*: The document then shifts focus to
+  how these concepts are relevant to system administrators and
+  programmers, covering process management, scheduling, memory
+  management, concurrency, parallelism, I/O, and persistent storage.
+
+- *Exercises and Questions*: The chapter concludes with exercises and
+  questions on installing Raspbian, setting up =ssh=, writing kernel
+  modules, understanding the Linux boot process, and system
+  administration tasks.
+
+  This summary provides an overview of the topics covered in the
+  document, offering insights into the practical aspects of Linux
+  system administration and programming, particularly in relation to
+  the Raspberry Pi. For more detailed information, you can refer to
+  the document: [[[https://myaidrive.com/792tCDLz4VFrqZy2/The_Linux_Sy.pdf][The Linux System]]].
+
+
 * Week 3 - OS Processes
+
+- [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
+
 * Week 4 - What is the Shell?
 * Week 5 - Navigation
 * Week 6 - Exploring the system / Sprint review: proposal
