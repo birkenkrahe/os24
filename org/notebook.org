@@ -164,7 +164,9 @@ Try the command examples in replit.com:
   5) Write the file to ~/1_fundamentals_practice.org~
   6) View your home directory with ~C-x d~ and enter ~s~ to see both files.
   7) Quit Emacs with ~C-x C-c~
-  8) Fire Emacs back up again from the shell with ~emacs &~ 
+  8) Fire Emacs back up again from the shell with ~emacs &~
+  9) Work through the instructions.
+  10) When finished, close down your computer with ~sudo shutdown now~
 
 ** TODO FYI - Installing Raspberry Pi OS for Pi400
 
