@@ -17,8 +17,7 @@
 - My notes made while watching in class.
 - [[https://chat.google.com/room/AAAABlWSGes/VzKc4SfKHUc/VzKc4SfKHUc?cls=10][Post in the OS Google Chat]].
 
-
-* Week 2 - OS Fundamentals
+* DONE Week 2 - OS Fundamentals
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/brainOS.png]]
 
@@ -58,7 +57,7 @@ front of my office, about the paper that I wrote before this one.
 your own - I will try to simulate that by discussing my paper as if
 someone else had written it, and also using AI to deliver a critique.
 
-** DONE DataCamp lesson review
+** DataCamp lesson review
 
 Try the command examples in replit.com:
 - Login to replit.com and create a bash REPL
@@ -152,7 +151,7 @@ Try the command examples in replit.com:
      #+end_notes
 
 
-** IN PROGRESS Reading assignment: A Practical View of the Linux System (2019)
+** Reading assignment: A Practical View of the Linux System (2019)
 
 - Read "A practical view of the Linux system" (ARM, 2019)
 - [[https://www.arm.com/resources/education/books/operating-systems][Free textbook from ARM]] (British producer of the RPi's CPU).
@@ -252,8 +251,7 @@ the Raspberry Pi. The key points covered in the document include:
   the document: [[[https://myaidrive.com/792tCDLz4VFrqZy2/The_Linux_Sy.pdf][The Linux System]]].
 
 
-** TODO Practice: first use of the shell on Raspberry Pi
-
+** Practice: first use of the shell on Raspberry Pi
 
 [[file:1_fundamentals_practice.org]]
 
@@ -273,10 +271,12 @@ the Raspberry Pi. The key points covered in the document include:
   10) When finished, close down your computer with ~sudo shutdown now~
 
 
+* Week 3 - OS Processes
+
 ** IN PROGRESS Lecture: OS fundamentals
 
 - [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
-
+- [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
 
 ** TODO FYI - Installing Raspberry Pi OS for Pi400
 
@@ -374,10 +374,6 @@ Featured projects for beginners:
 - [[https://www.hackster.io/sridhar-rajagopal/international-space-station-tracker-6afdca][International Space Station tracker]] (2020) + Python
 -
 
-
-* Week 3 - OS Processes
-
-- [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
 
 * Week 4 - What is the Shell?
 * Week 5 - Navigation
