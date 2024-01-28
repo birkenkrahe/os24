@@ -24,9 +24,9 @@
 /Alas: my brainOS has swapped memory of the 2022 class to a lost drive./
 
 - [X] Lecture: OS fundamentals (Tuesday) - see also: [[https://colab.research.google.com/drive/1IPjLL83lvJ4PZvfhEQsmBUlbVUAvVdSh?usp=sharing][Ryan's Colab notes]]
-- [ ] Practice: Get started with Raspberry Pi: connect and update (Thursday)
-- [ ] DataCamp review/Practice: Manipulating files and directories (Thursday)
-- [ ] Assignment: Discuss "A practical view of the Linux system" (Thursday)
+- [X] Practice: Get started with Raspberry Pi: connect +and update+ (Thursday)
+- [X] DataCamp review/Practice: Manipulating files and directories (Thursday)
+- [X] Assignment: Discuss "A practical view of the Linux system" (Thursday)
 - [ ] Discussion: Talk about projects with the Raspberry Pi (Tuesday)
 
 ** Announcement: UAMS College of Public Health student session
@@ -150,7 +150,6 @@ Try the command examples in replit.com:
      ask you which encoding you want to use and suggest UTF-8 to you.
      #+end_notes
 
-
 ** Reading assignment: A Practical View of the Linux System (2019)
 
 - Read "A practical view of the Linux system" (ARM, 2019)
@@ -250,7 +249,6 @@ the Raspberry Pi. The key points covered in the document include:
   the Raspberry Pi. For more detailed information, you can refer to
   the document: [[[https://myaidrive.com/792tCDLz4VFrqZy2/The_Linux_Sy.pdf][The Linux System]]].
 
-
 ** Practice: first use of the shell on Raspberry Pi
 
 [[file:1_fundamentals_practice.org]]
@@ -272,13 +270,26 @@ the Raspberry Pi. The key points covered in the document include:
 
 
 * Week 3 - OS Processes
+#+attr_html: :width 400px
+[[../img/week3.png]]
+
+/Image: OS fundamentals (penguins can't spell)./
+
+** Lab setup
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/labsetup.png]]
+
+- Let's understand the KVM switch setup (Ryan/Jacob?).
+- Make sure you return the workspace to a functional state.
+- You can take your Pi home if you like between sessions.
+- If you break it, you buy it ($100).
 
 ** IN PROGRESS Lecture: OS fundamentals
 
 - [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
 - [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
 
-** TODO FYI - Installing Raspberry Pi OS for Pi400
+** TODO FYI - Installing Raspberry Pi OS for Pi400 (chat)
 
 Sources:
 - [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
