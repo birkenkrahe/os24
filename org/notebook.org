@@ -251,23 +251,36 @@ the Raspberry Pi. The key points covered in the document include:
 
 ** Practice: first use of the shell on Raspberry Pi
 
-[[file:1_fundamentals_practice.org]]
+- When you are on the X11 graphical desktop and you start the
+  terminal, you're actually using a terminal emulator.
 
-- Fire up your Pi.
-- At the prompt, enter ~startx~ to start the X11 server.
-- On the desktop, click on the raspberry logo and open ~Emacs (GUI)~.
-- Download the ~.emacs~ configuration file:
-  1) Open the Emacs browser with ~M-x eww~
-  2) Enter the URL ~tinyurl.com/EmacsLyon~
-  3) Write the file to ~~/.emacs~ with ~C-x C-w~
-  4) Download the instructions from ~tinyurl.com/TermEmulator~
-  5) Write the file to ~/1_fundamentals_practice.org~
-  6) View your home directory with ~C-x d~ and enter ~s~ to see both files.
-  7) Quit Emacs with ~C-x C-c~
-  8) Fire Emacs back up again from the shell with ~emacs &~
-  9) Work through the instructions.
-  10) When finished, close down your computer with ~sudo shutdown now~
-
+- Open the terminal outside of Emacs now, and try a few
+  commands:
+  1) find out who you are:
+     #+begin_src sh
+       whoami
+     #+end_src
+  2) find out where your computer is on the network:
+     #+begin_src sh
+       hostname -I
+     #+end_src
+  3) show the date and time:
+     #+begin_src sh
+       date
+     #+end_src
+  4) show available disk space in a format suitable for
+     humans (only show the first five lines):
+     #+begin_src sh
+      df -H | head -n 5
+     #+end_src
+  5) show the amount of free memory:
+     #+begin_src sh
+       free
+     #+end_src
+  6) see all running process (refreshed every 5 seconds):
+     #+begin_src sh
+       top
+     #+end_src
 
 * Week 3 - OS Processes
 #+attr_html: :width 400px
@@ -275,10 +288,13 @@ the Raspberry Pi. The key points covered in the document include:
 
 /Image: OS fundamentals (penguins can't spell)./
 
+Tuesday:
 - [ ] *Lecture*: OS fundamentals (continued)
 - [ ] *Practice*: Update/upgrade PiOS / Emacs shells / LitProg
+
+Thursday:
+- [ ] *Review*: Manipulating data (~cat~ ~less~ ~head~ ~ls~ ~man~ ~cut~ ~grep~ ~paste~)
 - [ ] *Discussion*: Projects? Projects!
-- [ ] 
 
 * TODO Lab setup
 #+ATTR_HTML: :WIDTH 400px:
@@ -313,52 +329,29 @@ What to do:
 - [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
 
 
-* Practice: Update/upgrade PiOS / Emacs shells / LitProg
+* TODO Practice: Update/upgrade PiOS / Emacs shells / LitProg
 
 My pi@10.12.1.106
 
-Open Emacs and download (~M-x eww~) the short practice file:
-[[http://tinyurl.com/pi-lit-prog][tinyurl.com/pi-lit-prog]].
+- Fire up your Pi.
+- At the prompt, enter ~startx~ to start the X11 server.
+- On the desktop, click on the raspberry logo and open ~Emacs (GUI)~.
+- Download the ~.emacs~ configuration file:
+  1) Open the Emacs browser with ~M-x eww~
+  2) Enter the URL ~tinyurl.com/EmacsLyonPi~
+  3) Write the file to ~~/.emacs~ with ~C-x C-w~
+  4) Execute (~M-x eval-buffer~) to run configuration
+  5) Now change your theme if you like (~M-x custom-themes~)
+  6) Download the instructions from ~tinyurl.com/TermEmulator~
+  7) Write the file to ~/1_fundamentals_practice.org~
+  8) View your home directory with ~C-x d~ and enter ~s~ to see both files.
+  9) Quit Emacs with ~C-x C-c~
+  10) Fire Emacs back up again from the shell with ~emacs &~
+  11) Work through the instructions.
+  12) When finished, close down your computer with ~sudo shutdown now~
 
 
-
-* Terminal emulators
-
-- When you are on the X11 graphical desktop and you start the
-  terminal, you're actually using a terminal emulator.
-
-- Open the terminal outside of Emacs now, and try a few
-  commands:
-  1) find out who you are:
-     #+begin_src sh
-       whoami
-     #+end_src
-  2) find out where your computer is on the network:
-     #+begin_src sh
-       hostname -I
-     #+end_src
-  3) show the date and time:
-     #+begin_src sh
-       date
-     #+end_src
-  4) show available disk space in a format suitable for
-     humans (only show the first five lines):
-     #+begin_src sh
-      df -H | head -n 5
-     #+end_src
-  5) show the amount of free memory:
-     #+begin_src sh
-       free
-     #+end_src
-  6) see all running process (refreshed every 5 seconds):
-     #+begin_src sh
-       top
-     #+end_src
-
-
-
-
-
+* TODO DataCamp lesson review: manipulating files (practice)
 
 
 
@@ -442,7 +435,7 @@ Featured projects for beginners:
 -
 
 
-* Week 4 - What is the Shell?
+* Week 4 - File system
 * Week 5 - Navigation
 * Week 6 - Exploring the system / Sprint review: proposal
 * Week 7 - Manipulating files and directories
