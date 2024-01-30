@@ -1,62 +1,46 @@
-#+TITLE: First steps with the shell - terminal emulators
-#+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: Operating Systems - CSC 420 - Lyon College SP24
-#+STARTUP: overview hideblocks indent
-#+OPTIONS: num:nil toc:nil ^:nil
+#+TITLE:First steps with the shell - literate programming
+#+AUTHOR:
+#+SUBTITLE:CSC 420 Operating Systems Lyon College Spring 2024
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:sh :results output
 
-* README 
+1) Put your name at the top on the =#+author= line and write "pledged"
+   next to it.
 
-Some sources:
-- Shotts, The Linux Command Line (2e), NoStarch 2019
-- [[https://www.masteringemacs.org/article/running-shells-in-emacs-overview][Petersen, Running Shells and Terminal Emulators in Emacs]].
+2) There are three terminal programs available in Emacs, too - open them:
+   1. the regular shell (open with ~M-x shell~). Exit it with =exit=.
+   2. the =eshell=, which is a shell emulator written in Emacs Lisp (open
+      with ~M-x eshell~). Exit it with =exit=.
+   3. the terminal, which is a proper terminal inside Emacs (open with
+      ~M-x term RET~). Exit it by killing the current buffer (~C-x k~).
 
+3) Try some of the earlier commands in each of these shells:
+   - find out who you are 
+   - find out where your computer is on the network
+   - show date and time 
+   - show available disk space in human-readable format 
+   - show amount of free memory
+   - see all running processes
 
-* Terminal emulators
+4) Remember (and try it): the shell, ~M-n/p~ moves around the command
+   history buffer.
+   
+5) Below, create a new code block with ~<s TAB~ for each task and add
+   the header argument ~sh~
 
-- When you are on the X11 graphical desktop and you start the
-  terminal, you're actually using a terminal emulator.
+6) Find out who you are:
 
-- Open the terminal outside of Emacs now, and try a few
-  commands:
-  1) find out who you are:
-     #+begin_src sh
-       whoami
-     #+end_src
-  2) find out where your computer is on the network:
-     #+begin_src sh
-       hostname -I
-     #+end_src
-  3) show the date and time:
-     #+begin_src sh
-       date
-     #+end_src
-  4) show available disk space in a format suitable for
-     humans (only show the first five lines):
-     #+begin_src sh
-      df -H | head -n 5
-     #+end_src
-  5) show the amount of free memory:
-     #+begin_src sh
-       free
-     #+end_src
-  6) see all running process (refreshed every 5 seconds):
-     #+begin_src sh
-       top
-     #+end_src
+7) find out where your computer is on the network:
 
-- There are three terminal programs available in Emacs, too:
-  1) the regular shell (open with ~M-x shell~). Exit it with =exit=.
+8) show the date and time:
 
-  2) the =eshell=, which is a shell emulator written in Emacs Lisp (open
-     with ~M-x eshell~). Exit it with =exit=.
+9) show available disk space in a format suitable for humans (only
+   show the first five lines):
 
-  3) the terminal, which is a proper terminal inside Emacs (open with
-     ~M-x term RET~). Exit it by killing the current buffer (~C-x k~).
+10) show the amount of free memory:
 
-- Try some of the earlier commands in each of these shells.
-
-- On the shell, ~M-n/p~ moves around the command history buffer.
+11) see all running process (refreshed every 5 seconds):
 
 
-
-
+    
