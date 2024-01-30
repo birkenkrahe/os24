@@ -275,7 +275,12 @@ the Raspberry Pi. The key points covered in the document include:
 
 /Image: OS fundamentals (penguins can't spell)./
 
-** Lab setup
+- [ ] *Lecture*: OS fundamentals (continued)
+- [ ] *Practice*: Update/upgrade PiOS / Emacs shells / LitProg
+- [ ] *Discussion*: Projects? Projects!
+- [ ] 
+
+* TODO Lab setup
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/labsetup.png]]
 
@@ -284,12 +289,8 @@ the Raspberry Pi. The key points covered in the document include:
 - You can take your Pi home if you like between sessions.
 - If you break it, you buy it ($100).
 
-** IN PROGRESS Lecture: OS fundamentals
 
-- [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
-- [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
-
-** TODO FYI - Installing Raspberry Pi OS for Pi400 (chat)
+* FYI - Installing Raspberry Pi OS for Pi400 ([[https://chat.google.com/room/AAAABlWSGes/DBIhqcpWdEU/DBIhqcpWdEU?cls=10][chat]])
 
 Sources:
 - [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
@@ -306,7 +307,62 @@ What to do:
 6. Insert SD card in Rasperry Pi - boot and configure.
 
 
-** TODO Project challenge - (virtually) impossible
+* IN PROGRESS Lecture: OS fundamentals
+
+- [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
+- [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
+
+
+* Practice: Update/upgrade PiOS / Emacs shells / LitProg
+
+My pi@10.12.1.106
+
+Open Emacs and download (~M-x eww~) the short practice file:
+[[http://tinyurl.com/pi-lit-prog][tinyurl.com/pi-lit-prog]].
+
+
+
+* Terminal emulators
+
+- When you are on the X11 graphical desktop and you start the
+  terminal, you're actually using a terminal emulator.
+
+- Open the terminal outside of Emacs now, and try a few
+  commands:
+  1) find out who you are:
+     #+begin_src sh
+       whoami
+     #+end_src
+  2) find out where your computer is on the network:
+     #+begin_src sh
+       hostname -I
+     #+end_src
+  3) show the date and time:
+     #+begin_src sh
+       date
+     #+end_src
+  4) show available disk space in a format suitable for
+     humans (only show the first five lines):
+     #+begin_src sh
+      df -H | head -n 5
+     #+end_src
+  5) show the amount of free memory:
+     #+begin_src sh
+       free
+     #+end_src
+  6) see all running process (refreshed every 5 seconds):
+     #+begin_src sh
+       top
+     #+end_src
+
+
+
+
+
+
+
+
+* TODO Project challenge - (virtually) impossible
 
 - 420 level course = independence and inspiration!
 - This is a great opportunity for AI to shine!
@@ -364,7 +420,7 @@ MODULE_VERSION("0.1");
 #+end_example
 
 Simpler: bash- and shell-related projects.
-** TODO Project challenge - (totally) possible
+* TODO Project challenge - (totally) possible
 
 Re-create a Raspberry Pi projects. The choice is yours!
 - [[https://www.tomshardware.com/features/best-raspberry-pi-projects][Best Raspberry Pi projects January 2024]]
