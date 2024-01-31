@@ -296,7 +296,7 @@ Thursday:
 - [ ] *Review*: Manipulating data (~cat~ ~less~ ~head~ ~ls~ ~man~ ~cut~ ~grep~ ~paste~)
 - [ ] *Discussion*: Projects? Projects!
 
-* TODO Lab setup
+** TODO [Desperate] Lab setup
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/labsetup.png]]
 
@@ -304,9 +304,11 @@ Thursday:
 - Make sure you return the workspace to a functional state.
 - You can take your Pi home if you like between sessions.
 - If you break it, you buy it ($100).
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/kvm.png]]
 
 
-* FYI - Installing Raspberry Pi OS for Pi400 ([[https://chat.google.com/room/AAAABlWSGes/DBIhqcpWdEU/DBIhqcpWdEU?cls=10][chat]])
+** FYI - Installing Raspberry Pi OS for Pi400 ([[https://chat.google.com/room/AAAABlWSGes/DBIhqcpWdEU/DBIhqcpWdEU?cls=10][chat]])
 
 Sources:
 - [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
@@ -323,13 +325,12 @@ What to do:
 6. Insert SD card in Rasperry Pi - boot and configure.
 
 
-* IN PROGRESS Lecture: OS fundamentals
+** IN PROGRESS Lecture: OS fundamentals
 
 - [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
 - [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
 
-
-* TODO Practice: Update/upgrade PiOS / Emacs shells / LitProg
+** TODO Practice: Update/upgrade PiOS / Emacs shells / LitProg
 
 My pi@10.12.1.106
 
@@ -350,12 +351,11 @@ My pi@10.12.1.106
   11) Work through the instructions.
   12) When finished, close down your computer with ~sudo shutdown now~
 
+** TODO DataCamp lesson review: manipulating files (practice)
 
-* TODO DataCamp lesson review: manipulating files (practice)
+Theme: Manipulating data on the command line (shell, terminal, CLI)
 
-
-
-* TODO Project challenge - (virtually) impossible
+** TODO Project challenge - (virtually) impossible
 
 - 420 level course = independence and inspiration!
 - This is a great opportunity for AI to shine!
@@ -413,7 +413,7 @@ MODULE_VERSION("0.1");
 #+end_example
 
 Simpler: bash- and shell-related projects.
-* TODO Project challenge - (totally) possible
+** TODO Project challenge - (totally) possible
 
 Re-create a Raspberry Pi projects. The choice is yours!
 - [[https://www.tomshardware.com/features/best-raspberry-pi-projects][Best Raspberry Pi projects January 2024]]
@@ -433,6 +433,9 @@ $20, )
 Featured projects for beginners:
 - [[https://www.hackster.io/sridhar-rajagopal/international-space-station-tracker-6afdca][International Space Station tracker]] (2020) + Python
 -
+
+** TODO Project challange - conceptual projects
+
 
 
 * Week 4 - File system
