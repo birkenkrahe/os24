@@ -81,7 +81,11 @@
       top
     #+end_src
 
-    #+RESULTS:
+    This will not work because Emacs cannot emulate dynamically
+    changing output (like an animation). Jupyter notebooks are capable
+    of displaying animation (in Python via =matplotlib=, in R via
+    =gganimate= and others.)
+
 
 
     

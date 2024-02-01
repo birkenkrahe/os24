@@ -282,6 +282,7 @@ the Raspberry Pi. The key points covered in the document include:
        top
      #+end_src
 
+
 * Week 3 - OS Processes
 #+attr_html: :width 400px
 [[../img/week3.png]]
@@ -290,12 +291,25 @@ the Raspberry Pi. The key points covered in the document include:
 
 Tuesday:
 - [ ] *Lecture*: OS fundamentals (continued)
-- [ ] *Practice*: Update/upgrade PiOS / Emacs shells / LitProg
+- [X] *Practice*: Update/upgrade PiOS / Emacs shells / LitProg
 
 Thursday:
-- [ ] *Review*: Manipulating data (~cat~ ~less~ ~head~ ~ls~ ~man~ ~cut~ ~grep~ ~paste~)
 - [ ] *Discussion*: Projects? Projects!
+- [ ] *Practice*: Manipulating files (~mkdir~, ~mv~, ~rm~, ~ln~) -
+  [[http://tinyurl.com/2-manipulate-org][tinyurl.com/2-manipulate-files-org]]
+- [ ] *Review*: Manipulating data (~cat~ ~less~ ~head~ ~ls~ ~man~ ~cut~ ~grep~ ~paste~)
 
+Next:  
+- DataCamp: I relaxed the deadline for the next lesson (Feb 8).
+- We're going to try and MASTER switching back and forth between Windows & Pi
+- Remember to update your Pi:
+  #+begin_example sh
+  $ sudo apt update -y
+  $ sudo apt full-upgrade
+  #+end_example
+- We might try and upgrade the OS on the Pi itself next week.
+- I'll also give you a lecture on the Raspberry Pi.
+  
 ** TODO [Desperate] Lab setup
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/labsetup.png]]
@@ -307,23 +321,13 @@ Thursday:
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/kvm.png]]
 
+** Unplugging the Pi (almost every session)
 
-** FYI - Installing Raspberry Pi OS for Pi400 ([[https://chat.google.com/room/AAAABlWSGes/DBIhqcpWdEU/DBIhqcpWdEU?cls=10][chat]])
-
-Sources:
-- [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
-- [[https://www.raspberrypi.com/software/operating-systems/][Download area (RPi Imager - installer)]]
-- [[https://www.raspberrypi.com/software/raspberry-pi-desktop/#:~:text=Debian%20with%20Raspberry%20Pi%20Desktop,PC%20or%20Apple%20Mac%20computer.][Raspberry Pi Desktop (for any old computer)]]
-- [[https://youtu.be/eZ74x6dVYes?si=vLjK8nndJS2uS6bf][Raspberry Pi Explained in 100 seconds]]
-
-What to do:
-1. Get an SD card reader ([[https://www.amazon.com/UGREEN-Reader-Memory-Windows-Simultaneously/dp/B01EFPX9XA/ref=asc_df_B01EFPX9XA/?tag=hyprod-20&linkCode=df0&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&psc=1&mcid=3346d44aed8837e692060fcb6e3c7209&tag=&ref=&adgrpid=58425267301&hvpone=&hvptwo=&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&gclid=CjwKCAiAkp6tBhB5EiwANTCx1MXXejCwHTaI0GldFt8JUvq7DYoQPfNZgsoibyMvW6i26B62w9UBUhoC2twQAvD_BwE][I use this one]] - $12).
-2. Get an SDHC card ([[https://www.amazon.com/Samsung-Class-Adapter-MB-MC32GA-AM/dp/B0749KG1JK/ref=sr_1_2?crid=MY5LUD60LHJI&keywords=samsung+32gb+sd+card+micro&qid=1705552023&sprefix=samsung+32gb+s%2Caps%2C112&sr=8-2][I use SanDisk Ultra Class 10 32GB]] - $12).
-3. Mount SD card reader with microSD to your PC (Windows/MacOS = plugin).
-4. Run RPi installer program on your PC.
-5. Follow the instructions (pick Pi model/OS type/storage device).
-6. Insert SD card in Rasperry Pi - boot and configure.
-
+   1. Shut down the Pi with ~sudo shutdown now~ on the console
+   2. Unplug the power mini-USB
+   3. Unplug the other cables
+   4. Press the button on the KVM switch to return to Windows
+   5. Sign out of Windows if necessary
 
 ** IN PROGRESS Lecture: OS fundamentals
 
@@ -436,6 +440,23 @@ Featured projects for beginners:
 
 ** TODO Project challange - conceptual projects
 
+
+
+** FYI - Installing Raspberry Pi OS for Pi400 ([[https://chat.google.com/room/AAAABlWSGes/DBIhqcpWdEU/DBIhqcpWdEU?cls=10][chat]])
+
+Sources:
+- [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
+- [[https://www.raspberrypi.com/software/operating-systems/][Download area (RPi Imager - installer)]]
+- [[https://www.raspberrypi.com/software/raspberry-pi-desktop/#:~:text=Debian%20with%20Raspberry%20Pi%20Desktop,PC%20or%20Apple%20Mac%20computer.][Raspberry Pi Desktop (for any old computer)]]
+- [[https://youtu.be/eZ74x6dVYes?si=vLjK8nndJS2uS6bf][Raspberry Pi Explained in 100 seconds]]
+
+What to do:
+1. Get an SD card reader ([[https://www.amazon.com/UGREEN-Reader-Memory-Windows-Simultaneously/dp/B01EFPX9XA/ref=asc_df_B01EFPX9XA/?tag=hyprod-20&linkCode=df0&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&psc=1&mcid=3346d44aed8837e692060fcb6e3c7209&tag=&ref=&adgrpid=58425267301&hvpone=&hvptwo=&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&gclid=CjwKCAiAkp6tBhB5EiwANTCx1MXXejCwHTaI0GldFt8JUvq7DYoQPfNZgsoibyMvW6i26B62w9UBUhoC2twQAvD_BwE][I use this one]] - $12).
+2. Get an SDHC card ([[https://www.amazon.com/Samsung-Class-Adapter-MB-MC32GA-AM/dp/B0749KG1JK/ref=sr_1_2?crid=MY5LUD60LHJI&keywords=samsung+32gb+sd+card+micro&qid=1705552023&sprefix=samsung+32gb+s%2Caps%2C112&sr=8-2][I use SanDisk Ultra Class 10 32GB]] - $12).
+3. Mount SD card reader with microSD to your PC (Windows/MacOS = plugin).
+4. Run RPi installer program on your PC.
+5. Follow the instructions (pick Pi model/OS type/storage device).
+6. Insert SD card in Rasperry Pi - boot and configure.
 
 
 * Week 4 - File system
