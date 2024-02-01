@@ -17,7 +17,7 @@
 - My notes made while watching in class.
 - [[https://chat.google.com/room/AAAABlWSGes/VzKc4SfKHUc/VzKc4SfKHUc?cls=10][Post in the OS Google Chat]].
 
-* DONE Week 2 - OS Fundamentals
+* DONE Week 2 - Setting up Raspberry Pi & First contact 
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/brainOS.png]]
 
@@ -282,8 +282,7 @@ the Raspberry Pi. The key points covered in the document include:
        top
      #+end_src
 
-
-* Week 3 - OS Processes
+* DONE Week 3 - Shells & Using Emacs & Manipulating files
 #+attr_html: :width 400px
 [[../img/week3.png]]
 
@@ -294,9 +293,9 @@ Tuesday:
 - [X] *Practice*: Update/upgrade PiOS / Emacs shells / LitProg
 
 Thursday:
-- [ ] *Discussion*: Projects? Projects!
-- [ ] *Practice*: Manipulating files (~mkdir~, ~mv~, ~rm~, ~ln~) -
+- [X] *Practice*: Manipulating files (~mkdir~, ~mv~, ~rm~, ~ln~) -
   [[http://tinyurl.com/2-manipulate-org][tinyurl.com/2-manipulate-files-org]]
+- [ ] *Discussion*: Projects? Projects!
 - [ ] *Review*: Manipulating data (~cat~ ~less~ ~head~ ~ls~ ~man~ ~cut~ ~grep~ ~paste~)
 
 Next:  
@@ -310,7 +309,7 @@ Next:
 - We might try and upgrade the OS on the Pi itself next week.
 - I'll also give you a lecture on the Raspberry Pi.
   
-** TODO [Desperate] Lab setup
+** [Desperate] Lab setup
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/labsetup.png]]
 
@@ -329,12 +328,11 @@ Next:
    4. Press the button on the KVM switch to return to Windows
    5. Sign out of Windows if necessary
 
-** IN PROGRESS Lecture: OS fundamentals
+** Lecture: OS fundamentals
 
 - [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
-- [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
 
-** TODO Practice: Update/upgrade PiOS / Emacs shells / LitProg
+** Practice: Update/upgrade PiOS / Emacs shells / LitProg
 
 My pi@10.12.1.106
 
@@ -355,9 +353,41 @@ My pi@10.12.1.106
   11) Work through the instructions.
   12) When finished, close down your computer with ~sudo shutdown now~
 
-** TODO DataCamp lesson review: manipulating files (practice)
+** DataCamp lesson review: manipulating files (practice)
 
-Theme: Manipulating data on the command line (shell, terminal, CLI)
+Theme: Manipulating data on the command line (shell, terminal, CLI):
+- [[http://tinyurl.com/2-manipulate-practice-org][Practice file]] and [[https://github.com/birkenkrahe/os24/blob/main/org/2_manipulate_practice_solution.org][solution file]]
+
+** FYI - Installing Raspberry Pi OS for Pi400 ([[https://chat.google.com/room/AAAABlWSGes/DBIhqcpWdEU/DBIhqcpWdEU?cls=10][chat]])
+
+Sources:
+- [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
+- [[https://www.raspberrypi.com/software/operating-systems/][Download area (RPi Imager - installer)]]
+- [[https://www.raspberrypi.com/software/raspberry-pi-desktop/#:~:text=Debian%20with%20Raspberry%20Pi%20Desktop,PC%20or%20Apple%20Mac%20computer.][Raspberry Pi Desktop (for any old computer)]]
+- [[https://youtu.be/eZ74x6dVYes?si=vLjK8nndJS2uS6bf][Raspberry Pi Explained in 100 seconds]]
+
+What to do:
+1. Get an SD card reader ([[https://www.amazon.com/UGREEN-Reader-Memory-Windows-Simultaneously/dp/B01EFPX9XA/ref=asc_df_B01EFPX9XA/?tag=hyprod-20&linkCode=df0&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&psc=1&mcid=3346d44aed8837e692060fcb6e3c7209&tag=&ref=&adgrpid=58425267301&hvpone=&hvptwo=&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&gclid=CjwKCAiAkp6tBhB5EiwANTCx1MXXejCwHTaI0GldFt8JUvq7DYoQPfNZgsoibyMvW6i26B62w9UBUhoC2twQAvD_BwE][I use this one]] - $12).
+2. Get an SDHC card ([[https://www.amazon.com/Samsung-Class-Adapter-MB-MC32GA-AM/dp/B0749KG1JK/ref=sr_1_2?crid=MY5LUD60LHJI&keywords=samsung+32gb+sd+card+micro&qid=1705552023&sprefix=samsung+32gb+s%2Caps%2C112&sr=8-2][I use SanDisk Ultra Class 10 32GB]] - $12).
+3. Mount SD card reader with microSD to your PC (Windows/MacOS = plugin).
+4. Run RPi installer program on your PC.
+5. Follow the instructions (pick Pi model/OS type/storage device).
+6. Insert SD card in Rasperry Pi - boot and configure.
+
+
+* Week 4 - File system & Raspberry Pi
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/pifigure.png]]
+
+- [ ] Review: Test 1
+- [ ] Finish "Manipulating files" [[http://tinyurl.com/2-manipulate-practice-org][Practice file]] (with [[https://github.com/birkenkrahe/os24/blob/main/org/2_manipulate_practice_solution.org][solution]]).
+- [ ] OS fundamentals lecture
+- [ ] Projects discussion (sprint review: week 6)
+
+** TODO Lecture: OS fundamentals
+
+- [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
+- [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
 
 ** TODO Project challenge - (virtually) impossible
 
@@ -441,25 +471,11 @@ Featured projects for beginners:
 ** TODO Project challange - conceptual projects
 
 
-
-** FYI - Installing Raspberry Pi OS for Pi400 ([[https://chat.google.com/room/AAAABlWSGes/DBIhqcpWdEU/DBIhqcpWdEU?cls=10][chat]])
-
-Sources:
-- [[https://www.raspberrypi.com/documentation/computers/getting-started.html][Getting started: detailed instructions]]
-- [[https://www.raspberrypi.com/software/operating-systems/][Download area (RPi Imager - installer)]]
-- [[https://www.raspberrypi.com/software/raspberry-pi-desktop/#:~:text=Debian%20with%20Raspberry%20Pi%20Desktop,PC%20or%20Apple%20Mac%20computer.][Raspberry Pi Desktop (for any old computer)]]
-- [[https://youtu.be/eZ74x6dVYes?si=vLjK8nndJS2uS6bf][Raspberry Pi Explained in 100 seconds]]
-
-What to do:
-1. Get an SD card reader ([[https://www.amazon.com/UGREEN-Reader-Memory-Windows-Simultaneously/dp/B01EFPX9XA/ref=asc_df_B01EFPX9XA/?tag=hyprod-20&linkCode=df0&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&psc=1&mcid=3346d44aed8837e692060fcb6e3c7209&tag=&ref=&adgrpid=58425267301&hvpone=&hvptwo=&hvadid=309777534894&hvpos=&hvnetw=g&hvrand=14922228828382288851&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9025961&hvtargid=pla-438771094500&gclid=CjwKCAiAkp6tBhB5EiwANTCx1MXXejCwHTaI0GldFt8JUvq7DYoQPfNZgsoibyMvW6i26B62w9UBUhoC2twQAvD_BwE][I use this one]] - $12).
-2. Get an SDHC card ([[https://www.amazon.com/Samsung-Class-Adapter-MB-MC32GA-AM/dp/B0749KG1JK/ref=sr_1_2?crid=MY5LUD60LHJI&keywords=samsung+32gb+sd+card+micro&qid=1705552023&sprefix=samsung+32gb+s%2Caps%2C112&sr=8-2][I use SanDisk Ultra Class 10 32GB]] - $12).
-3. Mount SD card reader with microSD to your PC (Windows/MacOS = plugin).
-4. Run RPi installer program on your PC.
-5. Follow the instructions (pick Pi model/OS type/storage device).
-6. Insert SD card in Rasperry Pi - boot and configure.
+** TODO Raspberry Pi
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/retro_pi.png]]
 
 
-* Week 4 - File system
 * Week 5 - Navigation
 * Week 6 - Exploring the system / Sprint review: proposal
 * Week 7 - Manipulating files and directories
