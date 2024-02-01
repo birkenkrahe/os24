@@ -1,0 +1,250 @@
+#+TITLE:Manipulate files and data
+#+AUTHOR: [yourname] 
+#+SUBTITLE:OS Practice CSC 420 Spring 2022
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:bash :exports both
+#+PROPERTY: header-args:bash :results output
+* README
+  
+  - You can hide/open headers and codeblocks with the <TAB> key
+
+  - You can get this file from tinyurl.com/2-manipulate-files-org
+
+  - You can get the Emacs configuration file for Pi OS from
+    tinyurl.com/EmacsLyonPi
+
+  - The solutions and results herein were all obtained on a Pi 3
+    running Raspbian GNU/Linux 11 (bullseye).
+
+* Emacs setup
+
+You need two open Emacs buffers, ideally:
+1. One buffer shows this file while you work on it.
+2. The second buffer shows the file system as you change it.
+3. Open a second buffer with ~C-x 5 2~.
+4. You can close it again with ~C-x 5 0~ or just delete the window.
+5. Try this a couple of times now without losing your mind.
+6. Remember: to update the Dired buffer enter ~g~.
+
+* Building a playground
+
+  1) Change to your ~$HOME~ directory
+  2) Print your working directory
+  3) Make a directory ~playground~
+  4) Switch on the verbose option ~-v~
+  5) Check that it worked using =ls=, a filter and =grep=
+
+  #+name: mkdir_playground
+  #+begin_src bash
+    cd $HOME
+  #+end_src
+
+  - [ ] Check task group
+
+* Creating directories
+
+  1) Change directory to ~playground~[fn:1] - do this in every code
+     block!
+  2) Print your working directory
+  3) Make two directories ~dir1~ and ~dir2~
+  4) Switch on the verbose option ~-v~
+  5) Check that it worked using =echo= and the regex ~*[0-9]~
+
+  #+name: make_dirs
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  - [ ] Check task group
+
+* Copying files
+
+  1) Copy ~/etc/passwd~ into the current working directory (~playground~)
+  2) Switch on the verbose option ~-v~
+  3) Check that it worked using =echo= and the regex ~pass??~
+
+  #+name: copy_file
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  - [ ] Check task group
+
+* Moving and renaming files
+
+  1) Change the name of ~passwd~ to ~fun~
+  2) Switch on the verbose option
+  3) Check that it worked with the wildcard ~*fun*~
+
+  #+name: move_file
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  1) Move the renamed file ~fun~ to directory ~dir1~
+  2) Check that it worked with ~ls -l~
+  3) Move ~fun~ from ~dir1 to ~dir2~ in one command
+  4) Check that it worked with ~ls -l~
+  5) Move ~fun~ back to the current working directory
+  6) Check that it worked with ~ls -l~
+
+  #+name: move_file_to_dir
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  1) Move file ~fun~ into ~dir1~ again
+  2) Move directory ~dir1~ into ~dir2~
+  3) Confirm that the file is there with ~ls -l~
+
+  #+name: move_dir_to_dir
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  - Note that ~dir1~ was moved into ~dir2~ because it existed
+  - If it had not existed, ~dir1~ would have been renamed ~dir2~
+  - Put everthing back and confirm at the end with ~ls -l~:
+    1. move ~dir1~ back to ~playground~
+    2. move ~fun~ from ~dir1~ back to ~playground~
+    3. always use the verbose flag ~-v~
+
+  #+name: move_back
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  - [ ] Check task group
+
+* Creating hard links
+
+  1) Create a hard link ~fun-hard~ to ~fun~ in ~./~
+  2) Create a hard link ~fun-hard~ to ~fun~ in ~dir1~
+  3) Create a hard link ~fun-hard~ to ~fun~ in ~dir2~
+  4) Switch on the verbose option for ~ln~
+  5) Confirm with ~ls -l ./~ and with ~ls -l dir*~
+
+  #+name: hard
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  - The number ~4~ in the listing is the number of hard links that
+    exist for the file (including the default link)
+  - Show that ~fun~ and ~fun-hard~ are identical with ~ls -li~
+  - The first column shows the file's ~inode~ (meta data)
+
+  #+name: inode
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  - [ ] Check task group
+
+* Creating symbolic links
+
+  1) Create a symlink ~fun-sym~ to ~fun~ in ~./~
+  2) Create a symlink ~fun-sym~ to ~fun~ in ~dir1~
+  3) Create a symlink ~fun-sym~ to ~fun~ in ~dir2~
+  4) Switch on the verbose option for ~ln~
+  5) Confirm with ~ls -l ./~ and with ~ls -l dir*~
+
+  #+name: soft
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  6) Create a symlink ~dir1-sym~ to ~dir1~ in ~./~
+
+  #+name: soft_dir
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  7) Check the ~inode~ values in ~playground~.
+
+  #+begin_src bash
+
+  #+end_src
+
+  1) Test the links by changing to the Dired buffer (~C-x 5 o~)
+
+  2) [ ] Check task group
+
+* Removing files and directories
+
+  1) Remove the hard link ~fun-hard~ in ~./~ (with verbose option)
+  2) Confirm with ~ls -l~~
+  3) Check in the Dired buffer
+
+  #+name: rm_hard
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  4) Create a file ~y~ and put ~y~ into it: ~echo "y" > y~
+  5) Remove ~fun~ and switch on verbose option[fn:2]
+  6) Confirm with ~ls -l~
+
+  #+name: rm_fun
+  #+begin_src bash :cmdline < y
+    cd ~/playground
+  #+end_src
+
+  - In a shell, check that ~fun-sym~ is broken now with ~cat~. You should
+    get:
+   #+begin_example
+   fun-sym: No such file or directory
+   #+end_example
+
+  - Make sure that you understand what "broken symbolic link" in
+    this context means, and why ~fun-sym~ is now broken
+
+  - Remove the symbolic links (switch on verbose option)
+  - Confirm with ~ls -l~
+
+  #+name: rm_sym
+  #+begin_src bash
+    cd ~/playground
+  #+end_src
+
+  - Go ~$HOME~ and remove the playground (with verbose option)
+  - Check with ~ls -vl~
+
+  #+name: rm_playground
+  #+begin_src bash
+    cd ~/
+  #+end_src
+
+  - [ ] Check this last task group
+
+  - Save this file with ~C-x C-s~
+  - Kill the buffer with ~C-x k~ (confirm)
+  
+  You may close Emacs!
+
+* Command summary
+
+  * [ ] Complete the table!
+
+  | COMMAND | MEANING | EXAMPLE |
+  |---------+---------+---------|
+  | cd      |         |         |
+  | pwd     |         |         |
+  | mkdir   |         |         |
+  | echo    |         |         |
+  | mv -v   |         |         |
+  | rm -vr  |         |         |
+  | ln -vs  |         |         |
+  | ls -l   |         |         |
+
+* Footnotes
+
+[fn:2]In Org-mode, you need to use the ~:cmdline~ header argument and
+redirect the input, in this case from a file ~y~ that only
+contains the character ~y~, which I created for this purpose.
+
+[fn:1]If you work with code blocks inside Emacs, you may have to
+resort to absolute filenames to make sure that you are where you want
+to be.
