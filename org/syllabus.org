@@ -10,7 +10,7 @@
 - Professor: Marcus Birkenkrahe
 - Office: Derby Science Building 210
 - Phone: (870) 307-7254 (office) / (501 422-4725 (private)
-- Office hours: Mon/Wed/Fri 10-10:50 am & 3-3.50 pm, Tue/Thu
+- Office hours: Mon/Wed/Fri 10-10:50am & 3-3.50 pm, Tue 6-7pm, Thu 8.30-9.30pm
 - The following textbooks were used to prepare this course:
   1. The Linux Command Line (2e) by Shotts, NoStarch, 2019.
   2. Operating Systems Concepts (10e) by Silberschatz et al,
