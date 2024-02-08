@@ -282,6 +282,16 @@ shell) program used by me to connect to the Pi from my Windows box.
 We will not dive into these theoretically (much), but practically with
 the help of the shell and the shell scripting language =bash=.
      
+* Dual-mode operation
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/dualmode.png]]
+
+- Dual-mode operation allows the OS to protect itself and the system.
+- The two dual modes are "user mode" and "kernel mode".
+- System calls initiate "kernel mode" and return to "user mode".
+
+
+
 * Sources
 
 - Silberschatz et al, Operating System Concepts (10e), 2018, Wiley.
