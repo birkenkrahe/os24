@@ -1,0 +1,158 @@
+#+title: Installing PiOS on Raspberry Pi 3-4
+#+author: Marcus Birkenkrahe
+Time-stamp: <2024-02-03 21:21:16 marcus>
+#+startup: overview hideblocks indent
+* README
+
+1. Installation requirements.
+2. Flashing the OS image to the boot device.
+3. Booting the Pi for the first time.
+4. Installing applications.
+5. Customizing applications.
+6. Checking the application customization.
+
+* Requirements
+
+I checked this with Pi 3+ and Pi 400 models. 
+
+Requirements:
+- A Raspberry Pi computer with Internet connection.
+- A PC to flash the image to the SD card.
+- A monitor with HDMI connector, keyboard and mouse.
+- The Raspberry Pi Imager program.
+- A Micro SD card of no less than 16GB storage space.
+- An SD card reader (onboard on many laptops, or to plug in).
+- An Internet connection to update software.
+
+* Flashing the OS image to the boot device
+
+1) Check if [[https://www.raspberrypi.com/software/][Raspberry Pi Imager]] is installed on your system.
+
+2) Push Micro SD card in the SD card holder.
+
+3) Push SD card holder in the SD card reader.
+
+4) Connect SD card reader to your PC.[fn:1]
+
+5) Open Raspberry Pi Imager.
+
+6) Choose Raspberry Pi device (3 or 4)
+
+7) Choose the Legacy PiOS (32-bit) (Bullseye)
+
+8) Choose storage: there should be only one choice (the SD card)
+
+9) Click 'Next' and say 'No' to customization settings.
+
+10) Say 'Yes' to erasing all existing data on the SD card.
+
+11) Wait until data are written and verified (ca. 5-15 min).
+
+12) Remove the micro SD card from the SD card holder.
+
+* Installing the OS on the Raspberry Pi
+
+1) Make sure the Pi is not connected, then put the card into the
+   micro SD card slot on the Raspberry Pi.
+
+2) Power up the Pi and follow the installation instructions.
+
+3) In the following ## is the number of the Raspberry Pi:
+   - User: 'lyon##', and password: 'ly0Np1_##'[fn:2]
+   - Country: United States. Keyboard: US. Time-zone: Chicago
+   - WiFi: skip
+   - On Pi400, choose the ~Chromium~ browser and uninstall ~Firefox~
+   - Wait until the system update is finished (ca. 10 min)
+   - Reboot system
+
+4) At the prompt, enter ~startx~ to start the GUI.x
+
+* Customize OS configuration
+
+1) In the terminal, enter ~sudo raspi-config~
+
+2) In the menu, enter ~1 System Options~
+
+3) In ~System Options~, select ~Boot / Auto Login~
+
+4) In ~Boot / Auto Login~, select ~B2 Console AutoLogin~ and Enter
+
+5) Go back to the start screen and select ~3 Interface Options~
+
+6) Select ~I2 SSH~ (Secure SHell) and ~enable~ it
+
+7) Choose ~Finish~ and ~Reboot now~
+
+8) If reboot successful, open GUI with ~startx~ at the prompt
+
+9) If GUI opens, open terminal and shutdown: ~sudo shutdown now~
+
+* Installing, customizing and testing applications
+
+3) Install applications: Emacs, R, SQLite, 
+
+   1. ~sudo apt install emacs -y~
+
+   2. ~sudo apt install r-base -y~
+
+   3. ~sudo apt install sqlite3 -y~
+
+4) Customize and check applications:
+
+   1. Configure Emacs:
+
+      - Open Emacs on terminal with ~emacs &~
+
+      - ~M-x eww RET tinyurl.com/EmacsLyonPi~
+
+      - Save buffer as ~~/.emacs~ with ~C-x C-w~
+
+      - Kill eww buffer with ~C-x k~
+
+      - Shut Emacs with ~C-x C-c~
+
+   2. Check Emacs configuration:
+
+      - Open Emacs from terminal with ~emacs &~
+
+      - Download ~tinyurl.com/babelorg~
+
+      - Save buffer as ~~/babel.org~
+
+      - Kill eww buffer and open file
+
+      - Run all code blocks with ~M-x org-babel-execute-buffer~
+
+
+* Installation list
+
+| Pi | Model | Date       | OS                | Emacs | R | ESS | SQlite |
+|----+-------+------------+-------------------+-------+---+-----+--------|
+| 01 |       |            |                   |       |   |     |        |
+| 02 |       |            |                   |       |   |     |        |
+| 03 |       |            |                   |       |   |     |        |
+| 04 |       |            |                   |       |   |     |        |
+| 05 |       |            |                   |       |   |     |        |
+| 06 |       |            |                   |       |   |     |        |
+| 07 |     3 | 3-Feb-2024 | Bullseye (32-bit) | x     | x |     | x      |
+| 08 |       |            |                   |       |   |     |        |
+| 09 |     3 | 3-Feb-2024 | Bullsexe (32-bit) | x     | x |     | x      |
+| 10 |       |            |                   |       |   |     |        |
+| 11 |       |            |                   |       |   |     |        |
+| 12 |       |            |                   |       |   |     |        |
+| 13 |       |            |                   |       |   |     |        |
+| 14 |   400 | 3-Feb-2024 | Bookworm (64-bit) | x     | x |     | x      |
+| 15 |       |            |                   |       |   |     |        |
+| 16 |   400 | 3-Feb-2024 | Bookworm (64-bit) | x     | x | x   | x      |
+| 17 |       |            |                   |       |   |     |        |
+| 18 |       |            |                   |       |   |     |        |
+| 19 |   400 | 3-Feb-2024 | Bullseye (32-bit) | x     | x |     | x      |
+| 20 |   400 | 7-Feb-2024 | Bookworm (64-bit) |       |   |     |        |
+
+* Footnotes
+
+[fn:2]Don't mess this up: if the password entry was wrong, the only
+recourse is to re-install the system.
+
+[fn:1]On Windows, you may have to confirm that the reader is allowed
+to plug in. On Linux, you can see all contents of the image file.
