@@ -384,11 +384,14 @@ What to do:
 - [ ] OS fundamentals lecture
 - [ ] Projects discussion (sprint review: week 6)
 
-** TODO Lecture: OS fundamentals
+** Lecture: OS fundamentals
 
 - [[file:1_fundamentals.org]] - Part 1: From kernel to timesharing.
-- [[file:1_fundamentals.org]] - Part 2: From virtualization to FOSS
-
+- OS videos (Mitch Davis based on Silberschatz et al. 10e):
+  1. [[https://www.youtube.com/watch?v=zJTqTs7Ujr8&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=1&t=20s&pp=iAQB][Introducing the OS (10 min)]]
+  2. [[https://www.youtube.com/watch?v=Ku1gdK7ybAk&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=2&t=536s&pp=iAQB][OS terminology (17 min)]]
+  3. [[https://www.youtube.com/watch?v=09pJYDQ92FQ&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=3&t=222s&pp=iAQB][Multitasking Kernel App modes (13 min)]]
+  
 ** TODO Project challenge - (virtually) impossible
 
 - 420 level course = independence and inspiration!
@@ -470,10 +473,10 @@ Featured projects for beginners:
 
 ** TODO Project challange - conceptual projects
 
-
-** TODO Raspberry Pi
+** TODO Upgrading Raspberry Pi OS
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/retro_pi.png]]
+
 
 
 * Week 5 - Navigation
