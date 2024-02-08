@@ -376,6 +376,9 @@ What to do:
 
 
 * Week 4 - File system & Raspberry Pi
+#+ATTR_HTML: :WIDTH 400px:
+[[../img/pifigure.png]]
+
 - [ ] Review: Test 1 (average result 84.17% = B+)
   #+begin_src R :results output :session *R* :exports both :noweb yes
     mean(c(75.83,92.5,82.5,85,85,92.5,92.5,68.33,88.33,88.33,90,90,87.5,68.33,75.83))
@@ -383,12 +386,9 @@ What to do:
 
   #+RESULTS:
   : [1] 84.16533
-- [ ] Projects discussion (sprint review: week 6)
+- [ ] Projects discussion (sprint review: week 6 - 19 Feb)
 - [ ] OS fundamentals lecture & YouTube lectures
 - [ ] Upgrade Raspberry Pi OS
-
-#+ATTR_HTML: :WIDTH 400px:
-[[../img/pifigure.png]]
 
 Next week:
 - [ ] Finish "Manipulating files" [[http://tinyurl.com/2-manipulate-practice-org][Practice file]] (with [[https://github.com/birkenkrahe/os24/blob/main/org/2_manipulate_practice_solution.org][solution]]).
@@ -475,7 +475,28 @@ Next week:
   2. [[https://www.youtube.com/watch?v=Ku1gdK7ybAk&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=2&t=536s&pp=iAQB][OS terminology (17 min)]]
   3. [[https://www.youtube.com/watch?v=09pJYDQ92FQ&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=3&t=222s&pp=iAQB][Multitasking Kernel App modes (13 min)]]
   
+
+** NEXT Opportunity: working with a [social] entrepreneurship project
+#+ATTR_HTML: :WIDTH 400px: 
+[[../img/social.webp]]
+
+If you're interested in making the world a better place not just in a
+general, but in a specific way, starting right here in Batesville, and
+earn extra credit, you can use your project in connection with the
+"social entrepreneurship club" (SEC) - to reduce poverty, ignorance,
+and even hunger. For Operating Systems, this will take a little more
+thought than e.g. for databases.
+
+One example might be the creation of a maker space for kids, or of a
+series of realistic Raspberry Pi projects. To brainstorm ideas and see
+what is already cooking, get together with Dr. Peter Staples and me,
+and/or join the Google Space for SEC.
+
+Dr. Staples will also offer a project management course this summer.
+
+
 ** TODO Project challenge - (virtually) impossible
+
 
 - 420 level course = independence and inspiration!
 - This is a great opportunity for AI to shine!
