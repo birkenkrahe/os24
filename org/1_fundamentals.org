@@ -20,7 +20,7 @@ What you will learn:
 - The OS kernel and interrupts
 - System startup and daemons
 - Multiprogramming and timesharing
------  
+- Dual-mode operation
 - Virtualization
 - Distributed systems
 - Kernel data structures
