@@ -571,9 +571,8 @@ supply only). But it shouldn't break the bank especially since you
 didn't have to buy a textbook (e.g. Intel NeuralStick 60$, LCD HAT
 $20, )
 
-Featured projects for beginners:
+Featured sample project for beginners:
 - [[https://www.hackster.io/sridhar-rajagopal/international-space-station-tracker-6afdca][International Space Station tracker]] (2020) + Python
--
 
 ** TODO Project challange - conceptual projects
 
