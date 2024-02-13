@@ -527,7 +527,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
   2. [[https://www.youtube.com/watch?v=Ku1gdK7ybAk&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=2&t=536s&pp=iAQB][OS terminology (17 min)]]
   3. [[https://www.youtube.com/watch?v=09pJYDQ92FQ&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=3&t=222s&pp=iAQB][Multitasking Kernel App modes (13 min)]]
 
-** TODO 10 review questions OS videos
+** DONE 10 review questions OS videos
 
 1) Where's the "firmware" and what does it do?
    #+begin_notes
@@ -548,8 +548,10 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
    #+end_notes
 4) Does the OS respond to every user request?
    #+begin_notes
-   No. While the OS aims to manage resources efficiently and provide
-   application program services, requests may be deined due to:
+   No though every request will get a hearing as long as it reaches
+   the shell. While the OS aims to manage resources efficiently and
+   provide application program services, requests may be denied due
+   to:
    - insufficient permissions
    - resource limitations
    - system policies
@@ -600,7 +602,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
       5. File management (e.g. find and use files)
     #+end_notes
 
-** TODO OS fundamentals demo - four easy pieces
+** OS fundamentals demo - four easy pieces
 
 - Pseudo-kernel in Python ~kernel.py~
 - Interrupt log on Linux ~/proc/interrupts~
@@ -652,6 +654,23 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
     tail -n +2 ../data/everyone.csv | awk -F, '{print $3}'
   #+end_src
 
+  #+RESULTS:
+  #+begin_example
+  Name,Age
+  "Johel,Ranjit",28
+  "Sharma,Rupinder",26
+  -----
+  Age
+  Ranjit"
+  Rupinder"
+  -----
+  Ranjit
+  Rupinder
+  -----
+  28
+  26
+  #+end_example
+
 *** You know how to combine commands with pipes and simple redirection
 
 | COMMAND | MEANING                   | EXAMPLE   | COMMENT               |
@@ -666,6 +685,19 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
   ls | sort -r | wc -l
   #+end_src
 
+  #+RESULTS:
+  : 12
+
+  #+begin_quote
+  Answer:
+  1. lists all files by name only
+  2. sorts them in reverse alphabetical order
+  3. counts the number of lines = number of files in pwd
+
+  Notice that the effects of the ~sort~ program do not show at all -
+  it's superfluous (though it's not in the way).
+  #+end_quote
+  
 ** TODO Finish manipulating files and directories practice
 
 - open or reopen [[http://tinyurl.com/2-manipulate-practice-org][tinyurl.com/2-manipulate-practice-org]]
