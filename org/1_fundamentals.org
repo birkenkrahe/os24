@@ -103,11 +103,10 @@ the interface for every application yourself.
 - Persistent operating systems (all main memory is persistent)
 - Agent-based models (autnomous agents structure jobs)
 
-* NEXT A minimal pseudo kernel in Python
+* A minimal pseudo kernel in Python
 
 To run, tangle and start ~kernel.py~ script in the shell, or execute
 here and switch to ~*Python*~ buffer to enter kernel operations.
-
 #+begin_src python :results output :session *Python* :tangle ../src/kernel.py
   def handle_command(command):
       # This function handles the commands input by the user

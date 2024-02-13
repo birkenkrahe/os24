@@ -3,8 +3,7 @@
 #+SUBTITLE:OS Practice CSC 420 Spring 2022
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
-#+PROPERTY: header-args:bash :exports both
-#+PROPERTY: header-args:bash :results output
+#+PROPERTY: header-args:bash :exports both :results output
 * README
   
   - You can hide/open headers and codeblocks with the <TAB> key
@@ -42,11 +41,6 @@ You need two open Emacs buffers, ideally:
     mkdir --verbose playground
     ls ~ | grep playground
   #+end_src
-
-  #+RESULTS: mkdir_playground
-  : /home/pi
-  : mkdir: created directory 'playground'
-  : playground
 
   - [ ] Check task group
 
@@ -444,18 +438,17 @@ You need two open Emacs buffers, ideally:
 
 * Command summary
 
-  * [ ] Complete the table!
+  * [X] Complete the table!
 
-  | COMMAND | MEANING | EXAMPLE |
-  |---------+---------+---------|
-  | cd      |         |         |
-  | pwd     |         |         |
-  | mkdir   |         |         |
-  | echo    |         |         |
-  | mv -v   |         |         |
-  | rm -vr  |         |         |
-  | ln -vs  |         |         |
-  | ls -l   |         |         |
+  | COMMAND | MEANING                   | EXAMPLE            | EXAMPLE          |
+  |---------+---------------------------+--------------------+------------------|
+  | cd      | change directory          | cd ..              | cd /home/marcus  |
+  | pwd     | present working directory | pwd                |                  |
+  | mkdir   | make directory            | mkdir              | mkdir -v         |
+  | echo    | show text or variables    | echo "hello"       | echo $HOME       |
+  | mv      | move file or directory    | mv a b             | mv a ../b        |
+  | rm      | remove file               | rm file            | rm -rf dir       |
+  | ln      | create soft or hard link  | ln -s file symfile | ln -l file file1 |
 
 * Footnotes
 
@@ -466,3 +459,4 @@ contains the character ~y~, which I created for this purpose.
 [fn:1]If you work with code blocks inside Emacs, you may have to
 resort to absolute filenames to make sure that you are where you want
 to be.
+
