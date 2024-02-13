@@ -608,7 +608,6 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 - Timesharing: ~top~
 
 ** TODO DataCamp `shell` review - Where are we? What do you know?
-
 *** You know how to create, change, copy, remove, link files and directories:
 
 | COMMAND | MEANING                   | EXAMPLE            | EXAMPLE          |
