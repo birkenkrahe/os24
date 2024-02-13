@@ -107,7 +107,7 @@ the interface for every application yourself.
 
 To run, tangle and start ~kernel.py~ script in the shell, or execute
 here and switch to ~*Python*~ buffer to enter kernel operations.
-#+begin_src python :results output :session *Python* :tangle ../src/kernel.py
+#+begin_src python :results output :session *Python* :tangle kernel.py
   def handle_command(command):
       # This function handles the commands input by the user
       if command == "exit":
@@ -249,10 +249,11 @@ one job is finished before beginning another.
 In R, the ~R CMD BATCH~ is an example for a scripting language in batch
 mode:
 #+begin_example sh
+  $ R --version
   $ echo "str(mtcars)" > batchTest.R
   $ R CMD BATCH batchTest.R
-  $ ls batch*
-  $ cat batchTest.Rout
+  $ ls -l batch*
+  $ less batchTest.Rout
 #+end_example
 
 * ~top~ processes occupying the CPU
