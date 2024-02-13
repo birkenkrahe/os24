@@ -2,6 +2,7 @@
 #+AUTHOR: Marcus Birkenkrahe
 #+SUBTITLE: CSC 420, Lyon College, Spring 2024
 #+STARTUP:overview hideblocks indent inlineimages
+#+PROPERTY: header-args:bash :results output :exports both
 #+OPTIONS: toc:nil num:nil ^:nil
 * DONE Week 1 - Overview and introduction to OS
 #+attr_html: :width 400px
@@ -17,7 +18,7 @@
 - My notes made while watching in class.
 - [[https://chat.google.com/room/AAAABlWSGes/VzKc4SfKHUc/VzKc4SfKHUc?cls=10][Post in the OS Google Chat]].
 
-* DONE Week 2 - Setting up Raspberry Pi & First contact 
+* DONE Week 2 - Setting up Raspberry Pi & First contact
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/brainOS.png]]
 
@@ -181,7 +182,7 @@ Try the command examples in replit.com:
    - A file to the user: contiguous data set.
    - A file to Linux: a place to read data from or write data to
    - Alternatives: "Everything is a stream of bytes/file descriptor."
-   #+end_notes    
+   #+end_notes
 
 4. What is POSIX?
    #+begin_notes
@@ -190,7 +191,7 @@ Try the command examples in replit.com:
    portability.
    #+end_notes
 
-5. Bonus questions: what is the ~.elf~ format? What is a ~Makefile~? 
+5. Bonus questions: what is the ~.elf~ format? What is a ~Makefile~?
    #+begin_notes
    ELF = Executable and linkable standard format for executable files,
    object code, shared libraries, and core dumps in Unix-like systems.
@@ -271,7 +272,7 @@ the Raspberry Pi. The key points covered in the document include:
   4) show available disk space in a format suitable for
      humans (only show the first five lines):
      #+begin_src sh
-      df -H | head -n 5
+       df -H | head -n 5
      #+end_src
   5) show the amount of free memory:
      #+begin_src sh
@@ -298,7 +299,7 @@ Thursday:
 - [ ] *Discussion*: Projects? Projects!
 - [ ] *Review*: Manipulating data (~cat~ ~less~ ~head~ ~ls~ ~man~ ~cut~ ~grep~ ~paste~)
 
-Next:  
+Next:
 - DataCamp: I relaxed the deadline for the next lesson (Feb 8).
 - We're going to try and MASTER switching back and forth between Windows & Pi
 - Remember to update your Pi:
@@ -308,7 +309,7 @@ Next:
   #+end_example
 - We might try and upgrade the OS on the Pi itself next week.
 - I'll also give you a lecture on the Raspberry Pi.
-  
+
 ** [Desperate] Lab setup
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/labsetup.png]]
@@ -322,11 +323,11 @@ Next:
 
 ** Unplugging the Pi (almost every session)
 
-   1. Shut down the Pi with ~sudo shutdown now~ on the console
-   2. Unplug the power mini-USB
-   3. Unplug the other cables
-   4. Press the button on the KVM switch to return to Windows
-   5. Sign out of Windows if necessary
+1. Shut down the Pi with ~sudo shutdown now~ on the console
+2. Unplug the power mini-USB
+3. Unplug the other cables
+4. Press the button on the KVM switch to return to Windows
+5. Sign out of Windows if necessary
 
 ** Lecture: OS fundamentals
 
@@ -392,7 +393,7 @@ Next week:
 - [ ] Review and revisit "manipulating data" and "combining tools".
 
 ** Opportunity: working with a [social] entrepreneurship project
-#+ATTR_HTML: :WIDTH 400px: 
+#+ATTR_HTML: :WIDTH 400px:
 [[../img/social.webp]]
 
 If you're interested in making the world a better place not just in a
@@ -408,7 +409,6 @@ what is already cooking, get together with Dr. Peter Staples and me,
 and/or join the Google Space for SEC.
 
 Dr. Staples will also offer a project management course this summer.
-
 
 ** Project challenge - (virtually) impossible
 
@@ -515,26 +515,19 @@ and spend more time on one topic. Talk to me if you wish to do this.
 Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
 
-* Week 5 - Navigation
+* Week 5 - DataCamp review / OS basics review / shell commands
+#+attr_html: :width 400px
+[[../img/shell-tools.png]]
 
-#+begin_src sh
-  cat everyone.csv
-  cut -f 2 -d , everyone.csv
-  awk -F, '{print $2}' everyone.csv | tr -d '"'
- #+end_src
+** DONE Lecture: OS fundamentals (Feb 6)
 
-#+RESULTS:
-: Name,Age
-: "Johel,Ranjit",28
-: "Sharma,Rupinder",26
-: Age
-: Ranjit"
-: Rupinder"
-: Age
-: Ranjit
-: Rupinder
+- [[file:1_fundamentals.org]] - From the OS kernel to timesharing.
+- OS videos (Mitch Davis based on Silberschatz et al. 10e):
+  1. [[https://www.youtube.com/watch?v=zJTqTs7Ujr8&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=1&t=20s&pp=iAQB][Introducing the OS (10 min)]]
+  2. [[https://www.youtube.com/watch?v=Ku1gdK7ybAk&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=2&t=536s&pp=iAQB][OS terminology (17 min)]]
+  3. [[https://www.youtube.com/watch?v=09pJYDQ92FQ&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=3&t=222s&pp=iAQB][Multitasking Kernel App modes (13 min)]]
 
-** 10 review questions OS videos
+** TODO 10 review questions OS videos
 
 1) Where's the "firmware" and what does it do?
    #+begin_notes
@@ -578,7 +571,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
    current operations are halted, the current state is saved, and
    execution is transferred to the interrupt handler to address the
    event. An example: printer job is finished.
-   #+end_notes 
+   #+end_notes
 7) Which program runs at all times (while the computer is on)?
    #+begin_notes
    The OS kernel, or the managing brain of the CPU operation.
@@ -607,16 +600,85 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
       5. File management (e.g. find and use files)
     #+end_notes
 
+** TODO OS fundamentals demo - four easy pieces
 
-** Lecture: OS fundamentals
+- Pseudo-kernel in Python ~kernel.py~
+- Interrupt log on Linux ~/proc/interrupts~
+- Multiprogramming: ~R CMD BATCH~
+- Timesharing: ~top~
 
-- [[file:1_fundamentals.org]] - From the OS kernel to timesharing.
-- OS videos (Mitch Davis based on Silberschatz et al. 10e):
-  1. [[https://www.youtube.com/watch?v=zJTqTs7Ujr8&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=1&t=20s&pp=iAQB][Introducing the OS (10 min)]]
-  2. [[https://www.youtube.com/watch?v=Ku1gdK7ybAk&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=2&t=536s&pp=iAQB][OS terminology (17 min)]]
-  3. [[https://www.youtube.com/watch?v=09pJYDQ92FQ&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=3&t=222s&pp=iAQB][Multitasking Kernel App modes (13 min)]]
-  
+** TODO DataCamp `shell` review - Where are we? What do you know?
 
+*** You know how to create, change, copy, remove, link files and directories:
+
+| COMMAND | MEANING                   | EXAMPLE            | EXAMPLE          |
+|---------+---------------------------+--------------------+------------------|
+| cd      | change directory          | cd ..              | cd /home/marcus  |
+| pwd     | present working directory | pwd                |                  |
+| mkdir   | make directory            | mkdir              | mkdir -v         |
+| echo    | show text or variables    | echo "hello"       | echo $HOME       |
+| mv      | move file or directory    | mv a b             | mv a ../b        |
+| cp      | copy file or directory    | cp a b             | cp a ../b        |
+| rm      | remove file               | rm file            | rm -rf dir       |
+| ln      | create soft or hard link  | ln -s file symfile | ln -l file file1 |
+
+*** You know how to view data sets whole, and in parts by rows and columns:
+
+| COMMAND | MEANING                | EXAMPLE       | COMMENT                |
+|---------+------------------------+---------------+------------------------|
+| cat     | view                   | cat file      |                        |
+| less    | view page-wise         | less file     | q to quit              |
+| head    | view top rows/bytes    | head -n 5     | top five rows          |
+| tail    | view bottom rows/bytes | tail -c 3     | bottom 3 bytes         |
+| ls      | list dir files         | ls -RaF .     | list pwd recursively   |
+|         |                        |               | w/hidden files & flag  |
+| cut     | view column values     | cut -f 2 file | extract 2nd column     |
+| history | command history        | !100 or !head | repeat command no. 100 |
+|         |                        |               | or last run of `head`  |
+| grep    | match lines by pattern | grep -chilvn  |                        |
+
+- Cutting columns in the presence of quotation marks: what if we want
+  to extract only the last names, or only the age?
+  #+begin_src bash
+    # view the file
+    cat ../data/everyone.csv; echo -----
+
+    # cut doesn't cut it in this case
+    cut -f 2 -d , ../data/everyone.csv; echo -----
+
+    # ignore the header, extract 2nd column, lose trailing quotation marks
+    tail -n +2 ../data/everyone.csv | awk -F, '{print $2}'| tr -d '"'; echo -----
+
+    # same thing for the 3rd column (no need to remove quotation marks)
+    tail -n +2 ../data/everyone.csv | awk -F, '{print $3}'
+  #+end_src
+
+*** You know how to combine commands with pipes and simple redirection
+
+| COMMAND | MEANING                   | EXAMPLE   | COMMENT               |
+|---------+---------------------------+-----------+-----------------------|
+| sort    | sort input                | sort -nr  | numerical / reverse   |
+| uniq    | remove duplicate lines    | uniq -ci  | count/ignore case     |
+| wc      | word/character/line count | wc        | counts all w/c/l      |
+| >       | redirect stdin            | ls > file | store listing in file |
+
+- What does this command do?
+  #+begin_src bash :results output
+  ls | sort -r | wc -l
+  #+end_src
+
+** TODO Finish manipulating files and directories practice
+
+- open or reopen [[http://tinyurl.com/2-manipulate-practice-org][tinyurl.com/2-manipulate-practice-org]]
+- run through the code blocks
+- let's finish it with linking and removal commands
+
+** TODO Working with shell commands (practice)
+
+- Combining viewing commands with =|= pipes and simple =>= redirection
+- Identifying commands with =type=
+- Getting and reading documentation with =info= and =man=
+- Creating commands with =alias=
 
 
 * Week 6 - Exploring the system / Sprint review: proposal
