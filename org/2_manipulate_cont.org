@@ -62,15 +62,13 @@ You need two open Emacs buffers, ideally:
   #+begin_src bash
     cd ~/playground
     pwd
-    mkdir --verbose dir1 dir2
-    echo "found: " *[0-9]
+    #mkdir --verbose dir1 dir2
+    echo "found: " *[0-1]
   #+end_src
 
   #+RESULTS: make_dirs
   : /home/marcus/playground
-  : mkdir: created directory 'dir1'
-  : mkdir: created directory 'dir2'
-  : found:  dir1 dir2
+  : found:  dir1
 
   - [X] Check task group
 
@@ -95,7 +93,7 @@ You need two open Emacs buffers, ideally:
 
   - [X] Check task group
 
-* TODO Moving and renaming files
+* Moving and renaming files
 
   1) Change the name of ~passwd~ to ~fun~
   2) Switch on the verbose option
@@ -104,9 +102,12 @@ You need two open Emacs buffers, ideally:
   #+name: move_file
   #+begin_src bash
     cd ~/playground
+    mv -v passwd fun
+    echo "found: " *fun*
   #+end_src
 
   #+RESULTS: move_file
+  : found:  fun
 
   1) Move the renamed file ~fun~ to directory ~dir1~
   2) Check that it worked with ~ls -l~
@@ -118,9 +119,22 @@ You need two open Emacs buffers, ideally:
   #+name: move_file_to_dir
   #+begin_src bash
     cd ~/playground
+    pwd
+    mv -v fun dir1
+    mv -v dir1/fun dir2
+    mv -v dir2/fun .
+    ls -l .
   #+end_src
 
   #+RESULTS: move_file_to_dir
+  : /home/marcus/playground
+  : renamed 'fun' -> 'dir1/fun'
+  : renamed 'dir1/fun' -> 'dir2/fun'
+  : renamed 'dir2/fun' -> './fun'
+  : total 12
+  : drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:18 dir1
+  : drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:18 dir2
+  : -rw-r--r-- 1 marcus marcus 3030 Feb 15 10:05 fun
 
   1) Move file ~fun~ into ~dir1~ again
   2) Move directory ~dir1~ into ~dir2~
@@ -129,9 +143,17 @@ You need two open Emacs buffers, ideally:
   #+name: move_dir_to_dir
   #+begin_src bash
     cd ~/playground
+    pwd
+    mv -v fun dir1
+    mv -v dir1 dir2
+    ls dir2/dir1
   #+end_src
 
   #+RESULTS: move_dir_to_dir
+  : /home/marcus/playground
+  : renamed 'fun' -> 'dir1/fun'
+  : renamed 'dir1' -> 'dir2/dir1'
+  : fun
 
   - Note that ~dir1~ was moved into ~dir2~ because it existed
   - If it had not existed, ~dir1~ would have been renamed ~dir2~
@@ -143,12 +165,20 @@ You need two open Emacs buffers, ideally:
   #+name: move_back
   #+begin_src bash
     cd ~/playground
-
+    mv -v dir2/dir1 .
+    mv -v dir1/fun .
+    ls -l
   #+end_src
 
   #+RESULTS: move_back
+  : renamed 'dir2/dir1' -> './dir1'
+  : renamed 'dir1/fun' -> './fun'
+  : total 12
+  : drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:27 dir1
+  : drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:27 dir2
+  : -rw-r--r-- 1 marcus marcus 3030 Feb 15 10:05 fun
 
-  - [ ] Check task group
+  - [X] Check task group
 
 * Creating hard links
 
@@ -161,11 +191,56 @@ You need two open Emacs buffers, ideally:
   #+name: hard
   #+begin_src bash
     cd ~/playground
-    
+    pwd
+    ln -v fun fun-hard
+    ln -v fun dir1/fun-hard
+    ln -v fun dir2/fun-hard
+    ls -l .
+    ls -l dir*
   #+end_src
 
   #+RESULTS: hard
+  #+begin_example
+  /home/marcus/playground
+  'fun-hard' => 'fun'
+  'dir1/fun-hard' => 'fun'
+  'dir2/fun-hard' => 'fun'
+  total 16
+  drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:34 dir1
+  drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:34 dir2
+  -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun
+  -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
+  dir1:
+  total 4
+  -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
 
+  dir2:
+  total 4
+  -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
+  #+end_example
+
+  #+begin_src bash
+    cd ~/playground
+    ls -il .
+    ls -il dir*
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  total 16
+  4067690 drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:34 dir1
+  4067691 drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:34 dir2
+  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun
+  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
+  dir1:
+  total 4
+  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
+
+  dir2:
+  total 4
+  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
+  #+end_example
+  
   - The number ~4~ in the listing is the number of hard links that
     exist for the file (including the default link)
   - Show that ~fun~ and ~fun-hard~ are identical with ~ls -li~
@@ -174,11 +249,24 @@ You need two open Emacs buffers, ideally:
   #+name: inode
   #+begin_src bash
     cd ~/playground
+    ls -il *
   #+end_src
 
   #+RESULTS: inode
+  #+begin_example
+  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun
+  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
 
-  - [ ] Check task group
+  dir1:
+  total 4
+  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
+
+  dir2:
+  total 4
+  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
+  #+end_example
+
+  - [X] Check task group
 
 * Creating symbolic links
 
