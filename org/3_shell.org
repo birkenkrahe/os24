@@ -6,7 +6,7 @@
 #+PROPERTY: header-args:bash :exports both :results output
 * README
 
-- You can code along with the file ~tinyurl.com/3-shell-codealong.org~
+- You can code along with the file [[http://tinyurl.com/3-codealong-org][tinyurl.com/3-codealong.org]]
 
   You can save it to an Org-mode file ~3-shell.org~
 
