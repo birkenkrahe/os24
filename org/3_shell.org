@@ -1,0 +1,27 @@
+#+TITLE:Working with commands
+#+AUTHOR: [yourname] 
+#+SUBTITLE:OS Practice CSC 420 Spring 2024
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:bash :exports both :results output
+* README
+  
+  - You can hide/open headers and codeblocks with the <TAB> key
+
+  - You can get this file with ~M-x eww~ from ~tinyurl.com/3-shell-org~
+
+  - You can save it to an Org-mode file ~3-shell.org~
+
+  - You can get the Emacs configuration file for Pi OS from
+    ~tinyurl.com/EmacsLyonPi~
+
+  - The solutions and results herein were all obtained on a Lenovo
+    laptop running Linux Mint 21.3 with 4 Intel Core i3-6006U CPUs.
+
+* Command summary
+
+  * [ ] Complete the table!
+
+  | COMMAND | MEANING | EXAMPLE |
+  |---------+---------+---------|
+  |         |         |         |

@@ -700,10 +700,12 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
   
 ** TODO Finish manipulating files and directories practice
 
-- open or reopen [[http://tinyurl.com/2-manipulate-practice-org][tinyurl.com/2-manipulate-practice-org]]
-- run through the code blocks
-- let's finish it with linking and removal commands
-
+- open [[http://tinyurl.com/2-os-practice-org][tinyurl.com/2-os-practice-org]] (partially filled)
+- save file as ~2-practice.org~
+- run all code blocks with ~M-x org-babel-execute-buffer~
+- start at *"moving and renaming files"*
+- when finished, [[https://lyon.instructure.com/courses/2255/assignments/24640][upload file to Canvas]]
+  
 ** TODO Working with shell commands (practice)
 
 Download the practice file: [[http://tinyurl.com/3-shell-org][tinyurl.com/3-shell-org]]
