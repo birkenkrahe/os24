@@ -1,27 +1,295 @@
-#+TITLE:Working with commands
-#+AUTHOR: [yourname] 
+#+TITLE:Working with commands & the filesystem
+#+AUTHOR: [yourname]
 #+SUBTITLE:OS Practice CSC 420 Spring 2024
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:bash :exports both :results output
 * README
-  
-  - You can hide/open headers and codeblocks with the <TAB> key
 
-  - You can get this file with ~M-x eww~ from ~tinyurl.com/3-shell-org~
+- You can code along with the file ~tinyurl.com/3-shell-codealong.org~
 
-  - You can save it to an Org-mode file ~3-shell.org~
+  You can save it to an Org-mode file ~3-shell.org~
 
-  - You can get the Emacs configuration file for Pi OS from
-    ~tinyurl.com/EmacsLyonPi~
+- Upload the finished codealong file [[https://lyon.instructure.com/courses/2255/assignments/25142][to Canvas]]
 
-  - The solutions and results herein were all obtained on a Lenovo
-    laptop running Linux Mint 21.3 with 4 Intel Core i3-6006U CPUs.
+- You can get the Emacs configuration file for Pi OS from
+  ~tinyurl.com/EmacsLyonPi~
+
+- The solutions and results herein were all obtained on a Lenovo
+  laptop running Linux Mint 21.3 with 4 Intel Core i3-6006U CPUs.
+
+- This lab is based on chapter 5 (pp. 39-48) of Shotts (2019).
+
+- You can get the completed file from ~tinyurl.com/3-shell-org~
 
 * Command summary
 
-  * [ ] Complete the table!
+| COMMAND | MEANING                       | EXAMPLE             |
+|---------+-------------------------------+---------------------|
+| type    | how a cmd name is interpreted | type ls             |
+| which   | which cmd is executed         | which ls            |
+| help    | help for shell built-ins      | help cd             |
+| man     | full manual page              | man ls              |
+| apropos | searches matching manuals     | apropos --exact apt |
+| info    | info entry (hyperlinked)      | info ls             |
+| whatis  | one-line manual extract       | whatis ls           |
+| alias   | create command alias          | alias ll='ls -alF'  |
 
-  | COMMAND | MEANING | EXAMPLE |
-  |---------+---------+---------|
-  |         |         |         |
+* THE LINUX FILE SYSTEM ("EVERYTHING IS A FILE")
+
+Open a terminal (or a shell in Emacs) and look at the file system
+#+name: file_system
+#+begin_src bash
+  ls -lF /
+#+end_src
+
+You'll see something like this:
+#+attr_html: :width 600px:
+[[../img/filesystem.png]]
+
+| DIRECTORY      | CONTENT                                               |
+|----------------+-------------------------------------------------------|
+| ~/~              | Root directory where everything begins                |
+| ~/bin~           | Executable binaries for the OS to boot and run        |
+| ~/boot~          | Linux kernel, initial RAM disk image to boot          |
+| ~/dev~           | List for kernel with all known devices                |
+| ~/etc~           | System configuration files (e.g. ~/etc/passwd~)         |
+| ~/home~          | Directory for user directories (e.g. ~/home/pi~)        |
+| ~/lib~           | Shared library files (like Windows DLLs)              |
+| ~/lost+found~    | Panic room for each formatted disk partition          |
+| ~/media~         | Mount points for removable media (e.g. USB stick)     |
+| ~/mnt~           | Mount points for manually mounted removable media     |
+| ~/opt~           | Optional commercial software (e.g. browser)           |
+| ~/proc~          | Virtual FS for the kernel (e.g. ~/proc/cpuinfo~)        |
+| ~/root~          | ~$HOME~ directory of the ~root~ super-user                |
+| ~/sbin~          | System binaries for system tasks (~sudo shutdown~)      |
+| ~/tmp~           | Holding bay for temp files, emptied at reboot         |
+| ~/usr~           | Programs and support files for regular users          |
+| ~/usr/bin~       | Executable programs of the distro (e.g. ~cat~)          |
+| ~/usr/lib~       | Shared libraries for ~/usr/bin~ programs                |
+| ~/usr/local~     | Programs not included in your distro                  |
+| ~/usr/sbin~      | More system administration programs                   |
+| ~/usr/share~     | Shared data for  ~/usr/bin~ programs (e.g. sound files) |
+| ~/usr/share/doc~ | Man pages and other package documentation             |
+| ~/var~           | Databases, spool files, user mail (volatile files)    |
+| ~/var/log~       | Records of system activity (e.g. ~/var/log/syslog~)   |
+
+* What is a command?
+
+There are four types of commands: binaries/executables, built-ins,
+shell functions, and aliases.
+
+1. An *executable* program e.g. in ~/usr/bin~ - could be compiled from
+   source (e.g. from C), or scripted (e.g. from bash)
+
+2. A *builtin*, a command built into the shell itself, like ~cd~:
+   #+begin_src bash
+     type cd
+   #+end_src
+
+3. A *shell function*, scripts incorporated into the environment like
+   ~~/.bashrc~, which is a configuration file.
+
+4. An =alias=, commands that we can define from other commands.
+
+* Identify commands with =type= and =which=
+
+- =type= is a built-in (check that?), which displays the kind of command
+  executed by the shell. Try it on ~ls~ and ~type~, and then try ~type -a grep~:
+  #+begin_src bash
+    type ls
+    type type
+    type -a grep # all locations of the command
+  #+end_src
+
+  #+RESULTS:
+  : ls is /usr/bin/ls
+  : type is a shell builtin
+  : grep is /usr/bin/grep
+  : grep is /bin/grep
+  : ls is /usr/bin/ls
+  : ls is /bin/ls
+
+- If you try ~type -a grep~ in a real terminal (not in Emacs), you get
+  an additional answer, ~grep is aliased to `grep --color=auto`~.
+
+- To find out =which= of perhaps many different commands with the same
+  name is executed, use ~which~. 
+  #+begin_src bash
+    which ls
+  #+end_src
+
+  #+RESULTS:
+  : /usr/bin/ls
+
+- ~which~ only works for executable programs (not aliases, not
+  builtins). Try it on a builtin command:
+  #+begin_src bash :results silent
+    which cd
+  #+end_src
+
+* Getting help with =help=
+
+- ~bash~ has a built-in help facility for each of the shell
+  builtins. Try it for ~cd~:
+  #+begin_src bash
+    help cd
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  cd: cd [-L|[-P [-e]] [-@]] [dir]
+      Change the shell working directory.
+
+      Change the current directory to DIR.  The default DIR is the value of the
+      HOME shell variable.
+
+      The variable CDPATH defines the search path for the directory containing
+      DIR.  Alternative directory names in CDPATH are separated by a colon (:).
+      A null directory name is the same as the current directory.  If DIR begins
+      with a slash (/), then CDPATH is not used.
+
+      If the directory is not found, and the shell option `cdable_vars' is set,
+      the word is assumed to be  a variable name.  If that variable has a value,
+      its value is used for DIR.
+
+      Options:
+        -L	force symbolic links to be followed: resolve symbolic
+                  links in DIR after processing instances of `..'
+        -P	use the physical directory structure without following
+                  symbolic links: resolve symbolic links in DIR before
+                  processing instances of `..'
+        -e	if the -P option is supplied, and the current working
+                  directory cannot be determined successfully, exit with
+                  a non-zero status
+        -@	on systems that support it, present a file with extended
+                  attributes as a directory containing the file attributes
+
+      The default is to follow symbolic links, as if `-L' were specified.
+      `..' is processed by removing the immediately previous pathname component
+      back to a slash or the beginning of DIR.
+
+      Exit Status:
+      Returns 0 if the directory is changed, and if $PWD is set successfully when
+      -P is used; non-zero otherwise.
+  #+end_example
+
+- In all documentation, ~[ ]~ indicates optional items, like here:
+  #+begin_example bash
+  cd [-L|[-P [-e]] [-@]] [dir]
+  #+end_example
+
+- Meaning: ~cd~ can be followed by either ~-L~ or ~-P~, and if ~-P~ is
+  specified, then the ~-e~ option can be included followed by ~dir~ with
+  the default ~$HOME~.
+
+- Show that ~cd~ can be run without option or argument, and that this
+  use of ~cd~ defaults to going ~$HOME~.
+  #+begin_src bash
+    pwd
+    cd 
+    pwd
+  #+end_src
+
+  #+RESULTS:
+  : /home/marcus/GitHub/os24/org
+  : /home/marcus
+
+- Many executable programs support the ~--help~ optoin that gives an
+  overview of syntax and options: try this option for ~type~.
+  #+begin_src bash
+    type --help
+  #+end_src
+
+- Try the option ~--help~ for ~help~.
+  #+begin_src bash
+    help --help
+  #+end_src
+
+* Getting help from the ~man~ page
+
+- Executable programs that can be run on the command line have a
+  manual or man page. The ~man~ program is used to view them. Try it on
+  ~ls~ first using a code block, and then display it in a separate
+  buffer with ~M-x man RET ls~.
+  #+begin_src bash
+    man pwd
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  PWD(1)                           User Commands                          PWD(1)
+
+  NAME
+         pwd - print name of current/working directory
+
+  SYNOPSIS
+         pwd [OPTION]...
+
+  DESCRIPTION
+         Print the full filename of the current working directory.
+
+         -L, --logical
+                use PWD from environment, even if it contains symlinks
+
+         -P, --physical
+                avoid all symlinks
+
+         --help display this help and exit
+
+         --version
+                output version information and exit
+
+         If no option is specified, -P is assumed.
+
+         NOTE:  your shell may have its own version of pwd, which usually super‐
+         sedes the version described here.  Please refer to your  shell's  docu‐
+         mentation for details about the options it supports.
+
+  AUTHOR
+         Written by Jim Meyering.
+
+  REPORTING BUGS
+         GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+         Report any translation bugs to <https://translationproject.org/team/>
+
+  COPYRIGHT
+         Copyright  ©  2020  Free Software Foundation, Inc.  License GPLv3+: GNU
+         GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+         This is free software: you are free  to  change  and  redistribute  it.
+         There is NO WARRANTY, to the extent permitted by law.
+
+  SEE ALSO
+         getcwd(3)
+
+         Full documentation <https://www.gnu.org/software/coreutils/pwd>
+         or available locally via: info '(coreutils) pwd invocation'
+
+  GNU coreutils 8.32               January 2024                           PWD(1)
+  #+end_example
+
+- Try ~man~ on a shell builtin, e.g. ~help~:
+  #+begin_src bash :results silent
+    man help
+  #+end_src
+
+- The format of a manual page is
+  1) title (page name including the command section)
+  2) synopsis of the syntax
+  3) description of the purpos
+  4) listing and description of each of the options
+
+- Man pages are not vignettes like you might know them from R or from
+  the Python standard library, with examples. They are not tutorials
+  but only reference pages.
+
+- ~man~ uses ~less~ to display its information.
+
+- 
+
+* References
+
+Shotts W (2019). The Linux Command Line (2e), NoStarch Press.
+
+
+
