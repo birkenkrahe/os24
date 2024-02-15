@@ -729,6 +729,7 @@ Objectives:
 - Getting and reading documentation with =info= and =man=
 - Creating commands with =alias=
   
+
 ** TODO Due next week: your project proposal ([[https://lyon.instructure.com/courses/2255/assignments/24827][Canvas]]/[[https://drive.google.com/drive/folders/1glJ_hZ_NybaQIvkPHysiG-FeZ1wSyz6n?usp=drive_link][GDrive]])
 
 

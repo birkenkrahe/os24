@@ -109,6 +109,8 @@ You need two open Emacs buffers, ideally:
   : renamed 'passwd' -> 'fun'
   : found:  fun
 
+  #+RESULTS:
+  
   1) Move the renamed file ~fun~ to directory ~dir1~
   2) Check that it worked with ~ls -l~
   3) Move ~fun~ from ~dir1 to ~dir2~ in one command
