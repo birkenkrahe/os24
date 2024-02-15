@@ -602,14 +602,14 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
       5. File management (e.g. find and use files)
     #+end_notes
 
-** OS fundamentals demo - four easy pieces
+** DONE OS fundamentals demo - four easy pieces
 
 - Pseudo-kernel in Python ~kernel.py~
 - Interrupt log on Linux ~/proc/interrupts~
 - Multiprogramming: ~R CMD BATCH~
 - Timesharing: ~top~
 
-** TODO DataCamp `shell` review - Where are we? What do you know?
+** DONE DataCamp `shell` review - Where are we? What do you know?
 *** You know how to create, change, copy, remove, link files and directories:
 
 | COMMAND | MEANING                   | EXAMPLE            | EXAMPLE          |
@@ -706,11 +706,13 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
 ** TODO Working with shell commands (practice)
 
+Download the practice file: [[http://tinyurl.com/3-shell-org][tinyurl.com/3-shell-org]]
+
+Objectives:
 - Combining viewing commands with =|= pipes and simple =>= redirection
 - Identifying commands with =type=
 - Getting and reading documentation with =info= and =man=
 - Creating commands with =alias=
-
 
 * Week 6 - Exploring the system / Sprint review: proposal
 * Week 7 - Manipulating files and directories

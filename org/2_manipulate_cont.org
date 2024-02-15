@@ -1,10 +1,9 @@
 #+TITLE:Manipulate files and data
 #+AUTHOR: [yourname] 
-#+SUBTITLE:OS Practice CSC 420 Spring 2024
+#+SUBTITLE:OS Practice CSC 420 Spring 2022
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
-#+PROPERTY: header-args:bash :exports both
-#+PROPERTY: header-args:bash :results output
+#+PROPERTY: header-args:bash :exports both :results output
 * README
   
   - You can hide/open headers and codeblocks with the <TAB> key
@@ -38,9 +37,17 @@ You need two open Emacs buffers, ideally:
   #+name: mkdir_playground
   #+begin_src bash
     cd $HOME
+    pwd
+    mkdir --verbose playground
+    ls ~ | grep playground
   #+end_src
 
-  - [ ] Check task group
+  #+RESULTS: mkdir_playground
+  : /home/marcus
+  : mkdir: created directory 'playground'
+  : playground
+
+  - [X] Check task group
 
 * Creating directories
 
@@ -54,9 +61,18 @@ You need two open Emacs buffers, ideally:
   #+name: make_dirs
   #+begin_src bash
     cd ~/playground
+    pwd
+    mkdir --verbose dir1 dir2
+    echo "found: " *[0-9]
   #+end_src
 
-  - [ ] Check task group
+  #+RESULTS: make_dirs
+  : /home/marcus/playground
+  : mkdir: created directory 'dir1'
+  : mkdir: created directory 'dir2'
+  : found:  dir1 dir2
+
+  - [X] Check task group
 
 * Copying files
 
@@ -67,11 +83,19 @@ You need two open Emacs buffers, ideally:
   #+name: copy_file
   #+begin_src bash
     cd ~/playground
+    pwd
+    cp -v /etc/passwd .
+    echo "found: " pass??
   #+end_src
 
-  - [ ] Check task group
+  #+RESULTS: copy_file
+  : /home/marcus/playground
+  : '/etc/passwd' -> './passwd'
+  : found:  passwd
 
-* Moving and renaming files
+  - [X] Check task group
+
+* TODO Moving and renaming files
 
   1) Change the name of ~passwd~ to ~fun~
   2) Switch on the verbose option
@@ -81,6 +105,8 @@ You need two open Emacs buffers, ideally:
   #+begin_src bash
     cd ~/playground
   #+end_src
+
+  #+RESULTS: move_file
 
   1) Move the renamed file ~fun~ to directory ~dir1~
   2) Check that it worked with ~ls -l~
@@ -94,6 +120,8 @@ You need two open Emacs buffers, ideally:
     cd ~/playground
   #+end_src
 
+  #+RESULTS: move_file_to_dir
+
   1) Move file ~fun~ into ~dir1~ again
   2) Move directory ~dir1~ into ~dir2~
   3) Confirm that the file is there with ~ls -l~
@@ -102,6 +130,8 @@ You need two open Emacs buffers, ideally:
   #+begin_src bash
     cd ~/playground
   #+end_src
+
+  #+RESULTS: move_dir_to_dir
 
   - Note that ~dir1~ was moved into ~dir2~ because it existed
   - If it had not existed, ~dir1~ would have been renamed ~dir2~
@@ -113,7 +143,10 @@ You need two open Emacs buffers, ideally:
   #+name: move_back
   #+begin_src bash
     cd ~/playground
+
   #+end_src
+
+  #+RESULTS: move_back
 
   - [ ] Check task group
 
@@ -128,7 +161,10 @@ You need two open Emacs buffers, ideally:
   #+name: hard
   #+begin_src bash
     cd ~/playground
+    
   #+end_src
+
+  #+RESULTS: hard
 
   - The number ~4~ in the listing is the number of hard links that
     exist for the file (including the default link)
@@ -139,6 +175,8 @@ You need two open Emacs buffers, ideally:
   #+begin_src bash
     cd ~/playground
   #+end_src
+
+  #+RESULTS: inode
 
   - [ ] Check task group
 
@@ -155,6 +193,8 @@ You need two open Emacs buffers, ideally:
     cd ~/playground
   #+end_src
 
+  #+RESULTS: soft
+
   6) Create a symlink ~dir1-sym~ to ~dir1~ in ~./~
 
   #+name: soft_dir
@@ -162,11 +202,15 @@ You need two open Emacs buffers, ideally:
     cd ~/playground
   #+end_src
 
+  #+RESULTS: soft_dir
+
   7) Check the ~inode~ values in ~playground~.
 
   #+begin_src bash
 
   #+end_src
+
+  #+RESULTS:
 
   1) Test the links by changing to the Dired buffer (~C-x 5 o~)
 
@@ -183,6 +227,8 @@ You need two open Emacs buffers, ideally:
     cd ~/playground
   #+end_src
 
+  #+RESULTS: rm_hard
+
   4) Create a file ~y~ and put ~y~ into it: ~echo "y" > y~
   5) Remove ~fun~ and switch on verbose option[fn:2]
   6) Confirm with ~ls -l~
@@ -192,13 +238,16 @@ You need two open Emacs buffers, ideally:
     cd ~/playground
   #+end_src
 
-  - In a shell, check that ~fun-sym~ is broken now with ~cat~. You should
-    get:
+  #+RESULTS: rm_fun
+  : /usr/bin/bash: line 1: y: No such file or directory
+
+  - [ ] In a shell, check that ~fun-sym~ is broken now with ~cat~. You
+    should get this result:
    #+begin_example
    fun-sym: No such file or directory
    #+end_example
 
-  - Make sure that you understand what "broken symbolic link" in
+  - [ ] Make sure that you understand what "broken symbolic link" in
     this context means, and why ~fun-sym~ is now broken
 
   - Remove the symbolic links (switch on verbose option)
@@ -209,13 +258,17 @@ You need two open Emacs buffers, ideally:
     cd ~/playground
   #+end_src
 
+  #+RESULTS: rm_sym
+
   - Go ~$HOME~ and remove the playground (with verbose option)
   - Check with ~ls -vl~
 
   #+name: rm_playground
   #+begin_src bash
-    cd ~/
-  #+end_src
+ 
+    #+end_src
+
+    #+RESULTS: rm_playground
 
   - [ ] Check this last task group
 
@@ -226,18 +279,17 @@ You need two open Emacs buffers, ideally:
 
 * Command summary
 
-  * [ ] Complete the table!
+  * [X] Complete the table!
 
-  | COMMAND | MEANING | EXAMPLE |
-  |---------+---------+---------|
-  | cd      |         |         |
-  | pwd     |         |         |
-  | mkdir   |         |         |
-  | echo    |         |         |
-  | mv -v   |         |         |
-  | rm -vr  |         |         |
-  | ln -vs  |         |         |
-  | ls -l   |         |         |
+  | COMMAND | MEANING                   | EXAMPLE            | EXAMPLE          |
+  |---------+---------------------------+--------------------+------------------|
+  | cd      | change directory          | cd ..              | cd /home/marcus  |
+  | pwd     | present working directory | pwd                |                  |
+  | mkdir   | make directory            | mkdir              | mkdir -v         |
+  | echo    | show text or variables    | echo "hello"       | echo $HOME       |
+  | mv      | move file or directory    | mv a b             | mv a ../b        |
+  | rm      | remove file               | rm file            | rm -rf dir       |
+  | ln      | create soft or hard link  | ln -s file symfile | ln -l file file1 |
 
 * Footnotes
 
@@ -248,3 +300,4 @@ contains the character ~y~, which I created for this purpose.
 [fn:1]If you work with code blocks inside Emacs, you may have to
 resort to absolute filenames to make sure that you are where you want
 to be.
+
