@@ -519,7 +519,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 #+attr_html: :width 400px
 [[../img/shell-tools.png]]
 
-** DONE Lecture: OS fundamentals (Feb 6)
+** Lecture: OS fundamentals (Feb 6)
 
 - [[file:1_fundamentals.org]] - From the OS kernel to timesharing.
 - OS videos (Mitch Davis based on Silberschatz et al. 10e):
@@ -527,7 +527,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
   2. [[https://www.youtube.com/watch?v=Ku1gdK7ybAk&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=2&t=536s&pp=iAQB][OS terminology (17 min)]]
   3. [[https://www.youtube.com/watch?v=09pJYDQ92FQ&list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq&index=3&t=222s&pp=iAQB][Multitasking Kernel App modes (13 min)]]
 
-** DONE 10 review questions OS videos
+** 10 review questions OS videos
 
 1) Where's the "firmware" and what does it do?
    #+begin_notes
@@ -602,14 +602,14 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
       5. File management (e.g. find and use files)
     #+end_notes
 
-** DONE OS fundamentals demo - four easy pieces
+** OS fundamentals demo - four easy pieces
 
 - Pseudo-kernel in Python ~kernel.py~
 - Interrupt log on Linux ~/proc/interrupts~
 - Multiprogramming: ~R CMD BATCH~
 - Timesharing: ~top~
 
-** DONE DataCamp `shell` review - Where are we? What do you know?
+** DataCamp `shell` review - Where are we? What do you know?
 *** You know how to create, change, copy, remove, link files and directories:
 
 | COMMAND | MEANING                   | EXAMPLE            | EXAMPLE          |
@@ -707,7 +707,16 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 - start at *"moving and renaming files"*
 - when finished, [[https://lyon.instructure.com/courses/2255/assignments/24640][upload file to Canvas]]
   
+** Due next week: your project proposal ([[https://lyon.instructure.com/courses/2255/assignments/24827][Canvas]]/[[https://drive.google.com/drive/folders/1glJ_hZ_NybaQIvkPHysiG-FeZ1wSyz6n?usp=drive_link][GDrive]])
 
+* Week 6 - Exploring the system / Sprint review: proposal
+#+attr_html: :width 300px:
+ [[../img/couple1.png]]  [[../img/couple2.png]]
+
+/Images: a couple, separated by Linux, somewhere in Batesville./
+
+** TODO Feedback: project proposal
+** TODO Finish "manipulating files" (symbolic links/removing directories)
 ** TODO Working with shell commands & the file system (code along)
 
 Add ~<b~ as ~src bash~ to ~org-structure-template-alist~
@@ -730,10 +739,19 @@ Objectives:
 - Creating commands with =alias=
   
 
-** TODO Due next week: your project proposal ([[https://lyon.instructure.com/courses/2255/assignments/24827][Canvas]]/[[https://drive.google.com/drive/folders/1glJ_hZ_NybaQIvkPHysiG-FeZ1wSyz6n?usp=drive_link][GDrive]])
+** TODO Home assignment for Thursday, 22 February
 
+- Complete the Canvas home assignment in tinyurl/files-practice-org.
 
-* Week 6 - Exploring the system / Sprint review: proposal
+- Save the file using M-x eww to files_practice.org and complete it.
+
+- Upload your completed Org-mode file to Canvas by 11am on Thu 22 Feb
+
+- I will share my sample solution.
+
+- If you're still NOT comfortable of using Emacs Org-mode with SQLite,
+  let me know! Perhaps [[http://www.jesshamrick.com/2012/09/10/absolute-beginners-guide-to-emacs/][this article]] will help?
+
 
 * Week 7 - Manipulating files and directories
 * Week 8 - Working with commands
