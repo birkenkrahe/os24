@@ -514,8 +514,7 @@ and spend more time on one topic. Talk to me if you wish to do this.
 
 Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
-
-* Week 5 - DataCamp review / OS basics review / shell commands
+* DONE Week 5 - DataCamp review / OS basics review / shell commands
 #+attr_html: :width 400px
 [[../img/shell-tools.png]]
 
@@ -708,6 +707,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 - when finished, [[https://lyon.instructure.com/courses/2255/assignments/24640][upload file to Canvas]]
   
 ** Due next week: your project proposal ([[https://lyon.instructure.com/courses/2255/assignments/24827][Canvas]]/[[https://drive.google.com/drive/folders/1glJ_hZ_NybaQIvkPHysiG-FeZ1wSyz6n?usp=drive_link][GDrive]])
+
 
 * Week 6 - Exploring the system / Sprint review: proposal
 #+attr_html: :width 300px:

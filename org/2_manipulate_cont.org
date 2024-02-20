@@ -68,7 +68,7 @@ You need two open Emacs buffers, ideally:
 
   #+RESULTS: make_dirs
   : /home/marcus/playground
-  : found:  dir1
+  : found:  *[0-1]
 
   - [X] Check task group
 
@@ -107,6 +107,7 @@ You need two open Emacs buffers, ideally:
   #+end_src
 
   #+RESULTS: move_file
+  : renamed 'passwd' -> 'fun'
   : found:  fun
 
   1) Move the renamed file ~fun~ to directory ~dir1~
@@ -128,13 +129,9 @@ You need two open Emacs buffers, ideally:
 
   #+RESULTS: move_file_to_dir
   : /home/marcus/playground
-  : renamed 'fun' -> 'dir1/fun'
-  : renamed 'dir1/fun' -> 'dir2/fun'
-  : renamed 'dir2/fun' -> './fun'
-  : total 12
-  : drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:18 dir1
-  : drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:18 dir2
-  : -rw-r--r-- 1 marcus marcus 3030 Feb 15 10:05 fun
+  : renamed 'fun' -> 'dir1'
+  : total 4
+  : -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir1
 
   1) Move file ~fun~ into ~dir1~ again
   2) Move directory ~dir1~ into ~dir2~
@@ -151,9 +148,7 @@ You need two open Emacs buffers, ideally:
 
   #+RESULTS: move_dir_to_dir
   : /home/marcus/playground
-  : renamed 'fun' -> 'dir1/fun'
-  : renamed 'dir1' -> 'dir2/dir1'
-  : fun
+  : renamed 'dir1' -> 'dir2'
 
   - Note that ~dir1~ was moved into ~dir2~ because it existed
   - If it had not existed, ~dir1~ would have been renamed ~dir2~
@@ -171,12 +166,8 @@ You need two open Emacs buffers, ideally:
   #+end_src
 
   #+RESULTS: move_back
-  : renamed 'dir2/dir1' -> './dir1'
-  : renamed 'dir1/fun' -> './fun'
-  : total 12
-  : drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:27 dir1
-  : drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:27 dir2
-  : -rw-r--r-- 1 marcus marcus 3030 Feb 15 10:05 fun
+  : total 4
+  : -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
 
   - [X] Check task group
 
@@ -200,24 +191,10 @@ You need two open Emacs buffers, ideally:
   #+end_src
 
   #+RESULTS: hard
-  #+begin_example
-  /home/marcus/playground
-  'fun-hard' => 'fun'
-  'dir1/fun-hard' => 'fun'
-  'dir2/fun-hard' => 'fun'
-  total 16
-  drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:34 dir1
-  drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:34 dir2
-  -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun
-  -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-  dir1:
-  total 4
-  -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-
-  dir2:
-  total 4
-  -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-  #+end_example
+  : /home/marcus/playground
+  : total 4
+  : -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
+  : -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
 
   #+begin_src bash
     cd ~/playground
@@ -226,20 +203,9 @@ You need two open Emacs buffers, ideally:
   #+end_src
 
   #+RESULTS:
-  #+begin_example
-  total 16
-  4067690 drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:34 dir1
-  4067691 drwxrwxr-x 2 marcus marcus 4096 Feb 15 10:34 dir2
-  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun
-  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-  dir1:
-  total 4
-  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-
-  dir2:
-  total 4
-  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-  #+end_example
+  : total 4
+  : 4066946 -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
+  : 4066946 -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
   
   - The number ~4~ in the listing is the number of hard links that
     exist for the file (including the default link)
@@ -253,18 +219,7 @@ You need two open Emacs buffers, ideally:
   #+end_src
 
   #+RESULTS: inode
-  #+begin_example
-  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun
-  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-
-  dir1:
-  total 4
-  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-
-  dir2:
-  total 4
-  3559150 -rw-r--r-- 4 marcus marcus 3030 Feb 15 10:05 fun-hard
-  #+end_example
+  : 4066946 -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
 
   - [X] Check task group
 
@@ -278,31 +233,60 @@ You need two open Emacs buffers, ideally:
 
   #+name: soft
   #+begin_src bash
-    cd ~/playground
+    cd  ~/playground
+    pwd
+    # cp -v /etc/passwd ./fun
+    ln -sv fun fun-sym
+    #mkdir dir1 .
+    ln -sv fun dir1/fun-sym
+    ln -sv fun dir2/fun-sym
+    ls -li dir*
   #+end_src
 
   #+RESULTS: soft
+  : /home/marcus/playground
+  : 4066946 -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
+  : 
+  : dir1:
+  : total 0
+  : 4066954 lrwxrwxrwx 1 marcus marcus 3 Feb 20 10:10 fun-sym -> fun
 
   6) Create a symlink ~dir1-sym~ to ~dir1~ in ~./~
 
   #+name: soft_dir
   #+begin_src bash
     cd ~/playground
+    pwd
+    ln -vs dir1 dir1-sym
+    ls -l dir1*
   #+end_src
 
   #+RESULTS: soft_dir
+  : /home/marcus/playground
+  : 'dir1-sym' -> 'dir1'
+  : lrwxrwxrwx 1 marcus marcus    4 Feb 20 10:14 dir1-sym -> dir1
+  : 
+  : dir1:
+  : total 0
+  : lrwxrwxrwx 1 marcus marcus 3 Feb 20 10:10 fun-sym -> fun
 
   7) Check the ~inode~ values in ~playground~.
 
   #+begin_src bash
-
+    ls -il ~/playground
   #+end_src
 
   #+RESULTS:
+  : total 12
+  : 4066953 drwxrwxr-x 2 marcus marcus 4096 Feb 20 10:10 dir1
+  : 4067665 lrwxrwxrwx 1 marcus marcus    4 Feb 20 10:14 dir1-sym -> dir1
+  : 4066946 -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
+  : 4066949 -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:05 fun
+  : 4066951 lrwxrwxrwx 1 marcus marcus    3 Feb 20 10:10 fun-sym -> fun
 
-  1) Test the links by changing to the Dired buffer (~C-x 5 o~)
+  Test the links by changing to the Dired buffer (~C-x 5 o~)
 
-  2) [ ] Check task group
+  - [X] Check task group
 
 * Removing files and directories
 
@@ -313,21 +297,56 @@ You need two open Emacs buffers, ideally:
   #+name: rm_hard
   #+begin_src bash
     cd ~/playground
+    pwd
+    ln -v fun fun-hard
+    ls -il .
   #+end_src
 
   #+RESULTS: rm_hard
+  : /home/marcus/playground
+  : 'fun-hard' => 'fun'
+  : total 16
+  : 4066953 drwxrwxr-x 2 marcus marcus 4096 Feb 20 10:10 dir1
+  : 4067665 lrwxrwxrwx 1 marcus marcus    4 Feb 20 10:14 dir1-sym -> dir1
+  : 4066946 -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
+  : 4066949 -rw-r--r-- 2 marcus marcus 3030 Feb 20 10:05 fun
+  : 4066949 -rw-r--r-- 2 marcus marcus 3030 Feb 20 10:05 fun-hard
+  : 4066951 lrwxrwxrwx 1 marcus marcus    3 Feb 20 10:10 fun-sym -> fun
 
+  Created a new code block (= new shell session)
+  #+begin_src bash
+    cd ~/playground
+    pwd
+    rm -v fun-hard
+    ls -il fun*
+  #+end_src
+
+  #+RESULTS:
+  : /home/marcus/playground
+  : removed 'fun-hard'
+  : 4066949 -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:05 fun
+  : 4066951 lrwxrwxrwx 1 marcus marcus    3 Feb 20 10:10 fun-sym -> fun
+  
   4) Create a file ~y~ and put ~y~ into it: ~echo "y" > y~
   5) Remove ~fun~ and switch on verbose option[fn:2]
   6) Confirm with ~ls -l~
 
   #+name: rm_fun
-  #+begin_src bash :cmdline < y
+  #+begin_src bash k:cmdline < y
     cd ~/playground
+    pwd
+    rm -ifv fun
+    ls -l
   #+end_src
 
   #+RESULTS: rm_fun
-  : /usr/bin/bash: line 1: y: No such file or directory
+  : /home/marcus/playground
+  : removed 'fun'
+  : total 8
+  : drwxrwxr-x 2 marcus marcus 4096 Feb 20 10:10 dir1
+  : lrwxrwxrwx 1 marcus marcus    4 Feb 20 10:14 dir1-sym -> dir1
+  : -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
+  : lrwxrwxrwx 1 marcus marcus    3 Feb 20 10:10 fun-sym -> fun
 
   - [ ] In a shell, check that ~fun-sym~ is broken now with ~cat~. You
     should get this result:
@@ -344,21 +363,46 @@ You need two open Emacs buffers, ideally:
   #+name: rm_sym
   #+begin_src bash
     cd ~/playground
+    pwd
+    ls -l
+    rm -v dir1-sym fun-sym
+    ls -l
   #+end_src
 
   #+RESULTS: rm_sym
+  #+begin_example
+  /home/marcus/playground
+  total 8
+  drwxrwxr-x 2 marcus marcus 4096 Feb 20 10:10 dir1
+  lrwxrwxrwx 1 marcus marcus    4 Feb 20 10:14 dir1-sym -> dir1
+  -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
+  lrwxrwxrwx 1 marcus marcus    3 Feb 20 10:10 fun-sym -> fun
+  removed 'dir1-sym'
+  removed 'fun-sym'
+  total 8
+  drwxrwxr-x 2 marcus marcus 4096 Feb 20 10:10 dir1
+  -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
+  #+end_example
 
   - Go ~$HOME~ and remove the playground (with verbose option)
   - Check with ~ls -vl~
 
-  #+name: rm_playground
-  #+begin_src bash
- 
+    #+name: rm_playground
+    #+begin_src bash
+      cd ~
+      pwd
+      ls -lv play*
+      rm -rf playground
+      ls -vl play*
     #+end_src
 
     #+RESULTS: rm_playground
+    : /home/marcus
+    : total 8
+    : drwxrwxr-x 2 marcus marcus 4096 Feb 20 10:10 dir1
+    : -rw-r--r-- 1 marcus marcus 3030 Feb 20 10:01 dir2
 
-  - [ ] Check this last task group
+  - [X] Check this last task group
 
   - Save this file with ~C-x C-s~
   - Kill the buffer with ~C-x k~ (confirm)
@@ -388,4 +432,4 @@ contains the character ~y~, which I created for this purpose.
 [fn:1]If you work with code blocks inside Emacs, you may have to
 resort to absolute filenames to make sure that you are where you want
 to be.
-
+p
