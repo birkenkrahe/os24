@@ -1,0 +1,61 @@
+#+STARTUP: hideblocks overview indent :
+#+OPTIONS: toc:nil num:nil ^:nil : 
+* Exercise: Manipulate Files and Data in Linux using Emacs Org-mode
+  - **Objective**: Utilize Emacs Org-mode to practice file manipulation
+    commands in a Linux environment, reinforcing your understanding
+    through hands-on experience.
+  - **Duration**: 30 minutes
+  - **Tools Required**: Access to a Linux terminal, Emacs installed,
+    preferably on a Raspberry Pi running Raspbian GNU/Linux 11
+    (bullseye) as per the initial setup in the lecture.
+
+* Instructions:
+  - You are required to document all your commands and observations in
+    an Emacs Org-mode file. This Org-mode file will be submitted upon
+    completion of the exercise.
+  - Open Emacs and create a new Org-mode file named
+    `Feb_22_Practice.org`.
+
+* Part 1: Setup (5 minutes)
+  - In your Org-mode file, document the process of checking your
+    current directory with `pwd` and navigating to your home directory
+    using `cd $HOME`.
+  - Create a directory named `exercise_playground` and note the
+    command used in your Org-mode file.
+  - Navigate into `exercise_playground` and record this in your
+    Org-mode document.
+
+* Part 2: Directory and File Manipulation (15 minutes)
+  - **Task 1**: Create two directories within `exercise_playground`,
+    named `exercise_dir1` and `exercise_dir2`. Document the commands
+    in your Org-mode file.
+  - **Task 2**: Copy the `/etc/passwd` file to your current directory,
+    rename it to `passwd_copy`, and note each step in your Org-mode
+    file.
+  - **Task 3**: Move `passwd_copy` into `exercise_dir1`, create a hard
+    link in `exercise_dir2` named `passwd_hardlink`, and a symbolic
+    link in `exercise_playground` pointing to `passwd_copy` inside
+    `exercise_dir1`, named `passwd_symlink`. Document these steps.
+  - **Task 4**: Use `ls -l` to verify the location and existence of the
+    files and links, and document the output.
+
+* Part 3: Clean-up and Verification (10 minutes)
+  - **Task 1**: Delete `passwd_hardlink` and move `passwd_copy` back to
+    `exercise_playground`. Remove both `exercise_dir1` and
+    `exercise_dir2`. Document each command and its output.
+  - **Task 2**: Confirm your directory structure with `ls -l` and ensure
+    all actions were completed as intended.
+  - **Final Step**: Document the process of removing
+    `exercise_playground` to clean up your workspace.
+
+* Submission Instructions:
+  - Ensure all your commands, their outputs, and any observations are
+    clearly documented in your Org-mode file.
+  - Save your Org-mode file and submit it to Canvas for
+    grading. Include any reflections on the process, challenges
+    encountered, and how you addressed them.
+
+* Reflection:
+  - Reflect on the usage of Emacs Org-mode for documenting
+    command-line operations. How does this approach benefit learning
+    and documentation practices? How does it challenge you?
