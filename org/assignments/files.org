@@ -14,41 +14,46 @@
     an Emacs Org-mode file. This Org-mode file will be submitted upon
     completion of the exercise.
   - Open Emacs and create a new Org-mode file named
-    `Feb_22_Practice.org`.
-
+    ~Feb_22_Practice.org~ from this file:
+    tinyurl.com/feb-22-practice-org
+    
 * Part 1: Setup (5 minutes)
-  - In your Org-mode file, document the process of checking your
-    current directory with `pwd` and navigating to your home directory
-    using `cd $HOME`.
-  - Create a directory named `exercise_playground` and note the
-    command used in your Org-mode file.
-  - Navigate into `exercise_playground` and record this in your
-    Org-mode document.
-
+  - In a code block,
+    1) check your current directory
+    2) navigate to your home directory =$HOME=
+    3) Create a directory named ~exercise_playground~
+    4) Navigate into ~exercise_playground~.
+  
 * Part 2: Directory and File Manipulation (15 minutes)
-  - **Task 1**: Create two directories within `exercise_playground`,
-    named `exercise_dir1` and `exercise_dir2`. Document the commands
-    in your Org-mode file.
-  - **Task 2**: Copy the `/etc/passwd` file to your current directory,
-    rename it to `passwd_copy`, and note each step in your Org-mode
-    file.
-  - **Task 3**: Move `passwd_copy` into `exercise_dir1`, create a hard
-    link in `exercise_dir2` named `passwd_hardlink`, and a symbolic
-    link in `exercise_playground` pointing to `passwd_copy` inside
-    `exercise_dir1`, named `passwd_symlink`. Document these steps.
-  - **Task 4**: Use `ls -l` to verify the location and existence of the
-    files and links, and document the output.
+
+  - **Task 1**: Create two directories within ~exercise_playground~,
+    named ~exercise_dir1~ and ~exercise_dir2~.
+    
+  - **Task 2**: Copy the ~/etc/passwd~ file to your current directory, and
+    rename it to ~passwd_copy~.
+    
+  - **Task 3**: Move ~passwd_copy~ into ~exercise_dir1~, create a hard
+    link in ~exercise_dir2~ named ~passwd_hardlink~, and a symbolic
+    link in ~exercise_playground~ pointing to ~passwd_copy~ inside
+    ~exercise_dir1~, named ~passwd_symlink~.
+    
+  - **Task 4**: Verify the location and existence of the files and
+    links with a long file listing that includes /inode/ numbers.
 
 * Part 3: Clean-up and Verification (10 minutes)
-  - **Task 1**: Delete `passwd_hardlink` and move `passwd_copy` back to
-    `exercise_playground`. Remove both `exercise_dir1` and
-    `exercise_dir2`. Document each command and its output.
-  - **Task 2**: Confirm your directory structure with `ls -l` and ensure
+  - **Task 1**: Delete ~passwd_hardlink~ and move ~passwd_copy~ back to
+    ~exercise_playground~. Remove both ~exercise_dir1~ and
+    ~exercise_dir2~.
+
+  - **Task 2**: Confirm your directory structure with ~ls -l~ and ensure
     all actions were completed as intended.
-  - **Final Step**: Document the process of removing
-    `exercise_playground` to clean up your workspace.
+
+  - **Final Step**: Remove ~exercise_playground~ to clean up your
+    workspace.
 
 * Submission Instructions:
+  - All commands entered in code blocks should be "verbose".
+  - Create code blocks following each list of tasks and run them.
   - Ensure all your commands, their outputs, and any observations are
     clearly documented in your Org-mode file.
   - Save your Org-mode file and submit it to Canvas for
@@ -56,6 +61,7 @@
     encountered, and how you addressed them.
 
 * Reflection:
-  - Reflect on the usage of Emacs Org-mode for documenting
-    command-line operations. How does this approach benefit learning
-    and documentation practices? How does it challenge you?
+  - Finally, reflect on the usage of Emacs Org-mode for documenting
+    command-line operations in a =quote= block below this paragraph. How
+    does this approach benefit learning and documentation practices?
+    How does it challenge you?
