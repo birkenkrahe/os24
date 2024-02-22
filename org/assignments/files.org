@@ -15,7 +15,7 @@
     completion of the exercise.
   - Open Emacs and create a new Org-mode file named
     ~Feb_22_Practice.org~ from this file:
-    tinyurl.com/feb-22-practice-org
+    [[http://tinyurl.com/feb-22-practice-org][tinyurl.com/feb-22-practice-org]]
     
 * Part 1: Setup (5 minutes)
   - In a code block,
