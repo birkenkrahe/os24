@@ -714,9 +714,64 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
 /Images: a couple, separated by Linux, somewhere in Batesville./
 
-** Feedback: project proposal
-** Finish "manipulating files" (symbolic links/removing directories)
-** Working with shell commands & the file system (code along)
+** DONE Feedback: project proposal (via email)
+** DONE Finish "manipulating files" (symbolic links/removing directories)
+
+
+* Week 7 - Manipulating files and directories / working with commands
+#+attr_html: :width 400px: 
+[[../img/week_7.webp]]
+
+** DONE Pop quiz 1 - manipulating files and data - 60 min
+
+Time ca. 1 hour
+- [[https://github.com/birkenkrahe/os24/blob/main/pdf/popquiz1.pdf][The quiz (PDF)]]
+- [[https://github.com/birkenkrahe/os24/blob/main/pdf/popquiz1_solutions.pdf][The solutions (PDF)]]
+
+
+* Mark the date: Lyon College Career Expo (free headshots!?)
+#+attr_html: :width 400px: 
+[[../img/headshots.webp]]
+
+1) Register at the entrance (QR code) to get bonus points
+
+2) Remember to dress the part and bring your 1-page resume
+
+3) Pick up contacts, follow up on them and let me know about them
+
+* Project update (pair exercise) - 45 min
+#+attr_html: :width 400px:
+[[../img/project.webp]]
+
+- If you were asked to improve on your (perhaps non-existing)
+  proposal, do so within a week from today (Thursday, March 7), and
+  *send me a chat message* to let me know what you did. 
+
+- Now, *get together in pairs* and *explain your project* and your
+  *progress* (or lack thereof) to your partner (10 min)
+
+- Your partner will then introduce your project to everyone else (35 min):
+  1) Your current project status
+  2) Your final deliverable
+  3) Your motivation for this project
+  4) Your main challenges ahead
+  5) Your next steps (first results due week 11/end of March)
+
+* Test 3 coming up: manipulating files and data!
+#+attr_html: :width 400px: 
+[[../img/test_1.png]]
+
+#+attr_html: :width 400px: 
+[[../img/test_2.png]]
+
+- Good: improved average
+- Good: used more time on average
+
+
+
+* Week 8 - Working with commands
+
+** Working with shell commands - 60-75 min (code along)
 
 Emacs special: add ~<b~ as ~src bash~ to ~org-structure-template-alist~:
 1. ~C-h v org-structure-template-alist~
@@ -737,31 +792,6 @@ Objectives:
 - Getting and reading documentation with =info= and =man=
 - Creating commands with =alias=
 
-
-* Week 7 - Manipulating files and directories / working with commands
-#+attr_html: :width 400px: 
-[[../img/week_7.webp]]
-
-** Pop quiz 1 - manipulating files and data - 60 min
-
-Time ca. 1 hour
-- [[https://github.com/birkenkrahe/os24/blob/main/pdf/popquiz1.pdf][The quiz (PDF)]]
-- [[https://github.com/birkenkrahe/os24/blob/main/pdf/popquiz1_solutions.pdf][The solutions (PDF)]]
-
-** Project update (pair exercise) - 45 min
-
-- Get together in pairs and explain your project and your progress to
-  your partner (10 min)
-
-- Your partner will then introduce your project to everyone else (35 min):
-  1) Your motivation
-  2) Your final deliverable
-  3) Your main challenges
-  4) Your next steps
-
-** Working with shell commands - 60-75 min
-
-* Week 8 - Working with commands
 * Week 9 - Redirection
 * Week 10 - Permissions
 * Week 11 - Processes / Package management / Sprint review: results
