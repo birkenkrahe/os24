@@ -729,7 +729,7 @@ Time ca. 1 hour
 - [[https://github.com/birkenkrahe/os24/blob/main/pdf/popquiz1_solutions.pdf][The solutions (PDF)]]
 
 
-* Mark the date: Lyon College Career Expo (free headshots!?)
+** Mark the date: Lyon College Career Expo (free headshots!?)
 #+attr_html: :width 400px: 
 [[../img/headshots.webp]]
 
@@ -739,7 +739,19 @@ Time ca. 1 hour
 
 3) Pick up contacts, follow up on them and let me know about them
 
-* Project update (pair exercise) - 45 min
+** Test 3 coming up: manipulating files and data!
+#+attr_html: :width 400px: 
+[[../img/test_1.png]]
+
+#+attr_html: :width 400px: 
+[[../img/test_2.png]]
+
+- Good: improved average
+- Good: used more time on average
+
+
+
+** Project update (pair exercise) - 45 min
 #+attr_html: :width 400px:
 [[../img/project.webp]]
 
@@ -756,17 +768,6 @@ Time ca. 1 hour
   3) Your motivation for this project
   4) Your main challenges ahead
   5) Your next steps (first results due week 11/end of March)
-
-* Test 3 coming up: manipulating files and data!
-#+attr_html: :width 400px: 
-[[../img/test_1.png]]
-
-#+attr_html: :width 400px: 
-[[../img/test_2.png]]
-
-- Good: improved average
-- Good: used more time on average
-
 
 
 * Week 8 - Working with commands
