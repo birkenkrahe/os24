@@ -718,7 +718,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 ** DONE Finish "manipulating files" (symbolic links/removing directories)
 
 
-* Week 7 - Manipulating files and directories / working with commands
+* DONE Week 7 - Manipulating files and directories / working with commands
 #+attr_html: :width 400px: 
 [[../img/week_7.webp]]
 
@@ -748,7 +748,6 @@ Time ca. 1 hour
 
 - Good: improved average
 - Good: used more time on average
-
 
 
 ** Project update (pair exercise) - 45 min
