@@ -1,4 +1,4 @@
-g#+TITLE: Notebook - Operating Systems
+#+TITLE: Notebook - Operating Systems
 #+AUTHOR: Marcus Birkenkrahe
 #+SUBTITLE: CSC 420, Lyon College, Spring 2024
 #+STARTUP:overview hideblocks indent inlineimages
@@ -716,8 +716,6 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
 ** DONE Feedback: project proposal (via email)
 ** DONE Finish "manipulating files" (symbolic links/removing directories)
-
-
 * DONE Week 7 - Manipulating files and directories / working with commands
 #+attr_html: :width 400px: 
 [[../img/week_7.webp]]
