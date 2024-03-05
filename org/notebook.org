@@ -768,6 +768,14 @@ Time ca. 1 hour
 
 
 * Week 8 - Working with commands
+#+attr_html: :width 400px:
+[[../img/week_8.png]]
+
+** Test 3 available until March 10 / grading
+
+- 30 questions, 1 hour time to complete: Take your time!
+- Covers class practice and DataCamp chapters
+- Grading: complete by tomorrow (incl. proposal, DataCamp, Bonus)
 
 ** Working with shell commands - 60-75 min (code along)
 
@@ -790,9 +798,10 @@ Objectives:
 - Getting and reading documentation with =info= and =man=
 - Creating commands with =alias=
 
+
 * Week 9 - Redirection
 * Week 10 - Permissions
-* Week 11 - Processes / Package management / Sprint review: results
+* Week 11 - Processes / Package management / Sprint review: first results
 * Week 12 - Storage media / Networking
 * Week 13 - Searching for files / Archiving and backup
 * Week 14 - Regular expressions / Text processing
