@@ -770,6 +770,7 @@ Time ca. 1 hour
 * Week 8 - Working with commands
 #+attr_html: :width 400px:
 [[../img/week_8.png]]
+/Image: daemon OS programs waiting for something to do./
 
 ** Test 3 available until March 10 / grading
 
