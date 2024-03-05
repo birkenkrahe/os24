@@ -800,6 +800,8 @@ Objectives:
 - Creating commands with =alias=
 
 
+** TODO Lecture and GPIO demo - Know your Pi
+
 * Week 9 - Redirection
 * Week 10 - Permissions
 * Week 11 - Processes / Package management / Sprint review: first results

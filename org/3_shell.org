@@ -351,7 +351,7 @@ done
     help --help
   #+end_src
 
-* NEXT Getting help from the =man= page & your =fortune=
+* =NEXT= Getting help from the =man= page & your =fortune=
 
 - Executable programs that can be run on the command line have a
   manual or man page. The ~man~ program is used to view them. Try it on
