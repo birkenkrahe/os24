@@ -412,7 +412,7 @@ done
     help --help
   #+end_src
 
-* =NEXT= Getting help from the =man= page & your =fortune=
+* Getting help from the =man= page & your =fortune=
 
 - Executable programs that can be run on the command line have a
   manual or man page. The ~man~ program is used to view them. Try it on
@@ -422,6 +422,58 @@ done
     man pwd
   #+end_src
 
+  #+RESULTS:
+  #+begin_example
+  PWD(1)                           User Commands                          PWD(1)
+
+  NAME
+         pwd - print name of current/working directory
+
+  SYNOPSIS
+         pwd [OPTION]...
+
+  DESCRIPTION
+         Print the full filename of the current working directory.
+
+         -L, --logical
+                use PWD from environment, even if it contains symlinks
+
+         -P, --physical
+                avoid all symlinks
+
+         --help display this help and exit
+
+         --version
+                output version information and exit
+
+         If no option is specified, -P is assumed.
+
+         NOTE:  your shell may have its own version of pwd, which usually super‐
+         sedes the version described here.  Please refer to your  shell's  docu‐
+         mentation for details about the options it supports.
+
+  AUTHOR
+         Written by Jim Meyering.
+
+  REPORTING BUGS
+         GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+         Report any translation bugs to <https://translationproject.org/team/>
+
+  COPYRIGHT
+         Copyright  ©  2020  Free Software Foundation, Inc.  License GPLv3+: GNU
+         GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+         This is free software: you are free  to  change  and  redistribute  it.
+         There is NO WARRANTY, to the extent permitted by law.
+
+  SEE ALSO
+         getcwd(3)
+
+         Full documentation <https://www.gnu.org/software/coreutils/pwd>
+         or available locally via: info '(coreutils) pwd invocation'
+
+  GNU coreutils 8.32               January 2024                           PWD(1)
+  #+end_example
+
 - Try ~man~ on a shell builtin, e.g. ~help~:
   #+begin_src bash :results silent
     man help
@@ -430,7 +482,7 @@ done
 - The format of a manual page is
   1) title (page name including the command section)
   2) synopsis of the syntax
-  3) description of the purpos
+  3) description of the purpose
   4) listing and description of each of the options
 
 - Man pages are not vignettes like you might know them from R or from
@@ -462,7 +514,7 @@ done
     type -a printf # see example below
     ls -l /dev/null # notice the file type `c`
     ls -l /etc/passwd # check out `man 5 passwd`
-    ls -l fortune
+    which fortune
     ls -l /usr/share/man/man7/inode*
     which cron # essential for scheduling backups, updates etc.
   #+end_src
@@ -474,16 +526,25 @@ done
     printf "Hello, I'm printf(1)\n"
   #+end_src
 
+  #+RESULTS:
+  : Hello, I'm printf(1)
+
   And there's ~printf(3)~ which refers to the standard library
   function in ~stdio.h~ that you use in C programs:
   #+begin_src C :main yes :includes <stdio.h> :results output :exports both :noweb yes
     printf("Hello, I'm printf(3)\n");
   #+end_src
 
+  #+RESULTS:
+  : Hello, I'm printf(3)
+
 - Let's play the ~fortune~ game:
   #+begin_src bash
     fortune
   #+end_src
+
+  #+RESULTS:
+  : You'd like to do it instantaneously, but that's too slow.
 
 - Hey, the command and its man page are not found. Open a fully
   functional terminal and run these commands:
@@ -499,6 +560,9 @@ done
     fortune -o > offensive_fortune
     ls -l offensive_fortune
   #+end_src
+
+  #+RESULTS:
+  : -rw-rw-r-- 1 marcus marcus 0 Mar  7 10:18 offensive_fortune
 
 - The shell, ~bash(1)~ has one of the longest man pages (80). It's
   essentially a booklet. ~GCC(1)~ the C compiler beats this, it's a
@@ -526,12 +590,24 @@ done
     man -k fortune
   #+end_src
 
+  #+RESULTS:
+  : fortune (6)          - print a random, hopefully interesting, adage
+
 * =whatis= in a command?
 
 - ~whatis~ displays the name and a one-line description of a man page:
   #+begin_src bash
     whatis ls whatis printf whatis regex whatis fortune
   #+end_src
+
+  #+RESULTS:
+  : ls (1)               - list directory contents
+  : whatis (1)           - display one-line manual page descriptions
+  : printf (3)           - formatted output conversion
+  : printf (1)           - format and print data
+  : regex (3)            - POSIX regex functions
+  : regex (7)            - POSIX.2 regular expressions
+  : fortune (6)          - print a random, hopefully interesting, adage
 
 * Display a commands =info= entry
 
@@ -555,6 +631,23 @@ done
   #+begin_src bash
     info head | head -n 13
   #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  File: coreutils.info,  Node: head invocation,  Next: tail invocation,  Up: Output of parts of files
+
+  5.1 ‘head’: Output the first part of files
+  ==========================================
+
+  ‘head’ prints the first part (10 lines by default) of each FILE; it
+  reads from standard input if no files are given or when given a FILE of
+  ‘-’.  Synopsis:
+
+       head [OPTION]... [FILE]...
+
+     If more than one FILE is specified, ‘head’ prints a one-line header
+  consisting of:
+  #+end_example
 
 - Find the info for =head= inside the Emacs Info reader.
 
