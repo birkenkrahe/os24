@@ -1,34 +1,89 @@
-#+TITLE:Raspberry Pi Notes
+#+TITLE:The Raspberry Pi 
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:Raspberry Pi Notes
+#+SUBTITLE:Operating Systems (CSC 420) Lyon College Spring 2024
 #+STARTUP:overview hideblocks
 #+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:bash :results output :exports both :noweb yes
 * My first Pi
 
   The hippie case is alluding to my checquered past.
 
-  #+attr_html: :width 200px
-  [[./img/pi2box.jpg]]
+  #+attr_html: :width 400px
+  [[../img/pi2box.jpg]]
 
 * Raspberry Pi History
 
   #+caption: Raspberry Pi 4 Board (Source: raspberryptips.com)
   #+attr_html: :width 500px
-  [[./img/piboard.png]]
+  [[../img/piboard.png]]
 
   #+caption: Raspberry Pi Types until 2019 (Source: raspberryptips.com)
   #+attr_html: :width 500px
-  [[./img/pimodels.png]]
+  [[../img/pimodels.png]]
 
-  * [[https://community.element14.com/products/raspberry-pi/w/documents/879/identifying-your-model-of-raspberry-pi][Identify your model of Raspberry Pi]] (~cat /proc/cpuinfo~)
+  - [[https://community.element14.com/products/raspberry-pi/w/documents/879/identifying-your-model-of-raspberry-pi][Identify your model of Raspberry Pi]]:
+    #+begin_src bash
+      cat /proc/cpuinfo
+    #+end_src
 
-  * [[https://raspberrytips.com/which-raspberry-pi-os-is-running/][Identify your OS]] (~cat /etc/os-release)
+  - [[https://raspberrytips.com/which-raspberry-pi-os-is-running/][Identify your OS]]:
+    #+begin_src bash
+      cat /etc/os-release
+    #+end_src
 
+    #+RESULTS:
+    #+begin_example
+    NAME="Linux Mint"
+    VERSION="21.3 (Virginia)"
+    ID=linuxmint
+    ID_LIKE="ubuntu debian"
+    PRETTY_NAME="Linux Mint 21.3"
+    VERSION_ID="21.3"
+    HOME_URL="https://www.linuxmint.com/"
+    SUPPORT_URL="https://forums.linuxmint.com/"
+    BUG_REPORT_URL="http://linuxmint-troubleshooting-guide.readthedocs.io/en/latest/"
+    PRIVACY_POLICY_URL="https://www.linuxmint.com/"
+    VERSION_CODENAME=virginia
+    UBUNTU_CODENAME=jammy
+    #+end_example
+
+  - [[https://opensource.com/article/19/9/linux-commands-hardware-information][Other commands]] that give you a hardware overview:
+    1) =inxi(1)= (check the man page) has many output options:
+      #+begin_src bash
+	inxi -c 0 -Fxz
+      #+end_src
+    2) list hardware info with =lshw(1)=:
+       #+begin_src bash
+	 lshw -short
+       #+end_src
+    3) CPU details with =lscpu(1)=:
+       #+begin_src bash
+	 lscpu
+       #+end_src
+       You can search through catalog information with =grep -i=,
+       e.g. ~grep -i mhz~ for information about the CPU speed.
+    4) Memory information (requires =sudo=):
+       #+begin_example bash
+	 sudo dmidecode -t memory
+       #+end_example
+    5) Free memory (human readable format):
+       #+begin_src bash
+	 free -h
+       #+end_src
+    6) List all disks with their defined partitions and size of each:
+       #+begin_src bash
+	 lsblk
+       #+end_src
+    7) List mounted file systems in human-readable format:
+       #+begin_src bash
+	 df -H
+       #+end_src
+  
 ** Historical bits
 
    #+caption: Union Jack
    #+attr_html: :width 500px
-   [[./img/jack.jpg]]
+   [[../img/jack.jpg]]
    
    * Eben Upton (U Cambridge) started the project in 2006
 
@@ -40,19 +95,19 @@
 
    #+caption: Raspberry Pi Types 2015-2021 (Source: raspberryptips.com)
    #+attr_html: :width 500px
-   [[./img/pitypes.png]]
+   [[../img/pitypes.png]]
 
    * Pi 400 comes with pre-loaded retro games
 
    #+caption: Raspberry Pi 400 as Amiga (Source: RPi projects)
    #+attr_html: :width 500px
-   [[./img/retro.jpg]]
+   [[../img/retro.jpg]]
 
    * Last addition Raspberry Pi Pico = Microcontroller
 
    #+caption: Raspberry Pi Pico Microcontroller
    #+attr_html: :width 500px
-   [[./img/pico.jpg]]
+   [[../img/pico.jpg]]
 
    * Post-pandemic chip-drought: new focus on software ([[hughes][Hughes, 2021]]).
      (e.g. virtualisation, parallelization etc.)
@@ -80,7 +135,7 @@
 
    #+caption: sysfs pseudo filesystem /sys/class/gpio
    #+attr_html: :width 600px
-   [[./img/gpiodir.png]]
+   [[../img/gpiodir.png]]
 
    The two entries in green are so-called *symbolic links*[fn:3] that point
    at device locations - ~soc~ is the "System On a Chip" that contains
@@ -95,7 +150,7 @@
 
    #+caption: sysfs pseudo filesystem /sys/class/gpio
    #+attr_html: :width 600px
-   [[./img/pinout.png]]
+   [[../img/pinout.png]]
 
 ** "Blinky" Python program
 
@@ -105,7 +160,7 @@
    You can start/stop the program below with ~C-c C-c~ / ~C-g~.
 
    #+name blinky
-   #+begin_src python :results none
+   #+begin_src python :results none :python python3
      from gpiozero import LED
      from time import sleep
 
@@ -120,7 +175,7 @@
 
    #+caption: "blinky" in action
    #+attr_html: :width 600px
-   [[./img/blinky.jpg]]
+   [[../img/blinky.jpg]]
 
 ** Viewing GPIO pins with C
 
@@ -141,7 +196,7 @@
 
    #+caption: "blinky" in action
    #+attr_html: :width 600px
-   [[./img/readall.png]]
+   [[../img/readall.png]]
 
    Here you can see that the [physical] GPIO pin no. 12 is addressed by
    the CPU [BCM] as no. 18.
@@ -169,7 +224,7 @@
 
    See e.g. [[leechang][Lee and Chang (2021)]], or [[fairhead][Fairhead (2016)]].
 
-* Rasperry Pi 2 WiFi networking  <2022-01-05 Wed>
+* Rasperry Pi 2 WiFi networking
 **  Problem
    WiFi dongle present (and powered - check with ~iwconfig
    -a~) but ~iwconfig~ shows no network activity, and ~ping~ is not
@@ -212,7 +267,7 @@
 
      #+name:wicd
      #+attr_html: :width 500px
-     [[./img/wicd.png]]
+     [[../img/wicd.png]]
 
 **  Sources
    * Solution: [[https://raspberrypi.stackexchange.com/questions/22349/wi-fi-dongle-not-working][stackexchange]]
@@ -244,17 +299,17 @@
 
     #+name:key
     #+attr_html: :width 500px
-    [[./img/putty.png]]
+    [[../img/putty.png]]
 
     #+name:ssh
     #+attr_html: :width 500px
-    [[./img/ssh.png]]
+    [[../img/ssh.png]]
 
     And now I'm running GNU Emacs over ~ssh~:
 
     #+name:emacs
     #+attr_html: :width 500px
-    [[./img/emacs1.png]]
+    [[../img/emacs1.png]]
 
     To increase the font size in this window, right-click on the
     frame:
@@ -269,7 +324,7 @@
 
     #+name:font
     #+attr_html: :width 500px
-    [[./img/font.png]]
+    [[../img/font.png]]
 
     You can also save the PuTTY session (but be aware that the
     hostname is likely to change when the WiFi connection drops
@@ -277,7 +332,7 @@
 
     #+name:save
     #+attr_html: :width 500px
-    [[./img/session.png]]
+    [[../img/session.png]]
 
 **  Sources
 
@@ -297,7 +352,7 @@
 
     #+name:plink
     #+attr_html: :width 600px
-    [[./img/plink.png]]
+    [[../img/plink.png]]
 
     * Advantage: now you can run a proper Linux shell inside Emacs. If
       the connection breaks, the ~*shell*~ buffer will be retained and
