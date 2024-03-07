@@ -1,0 +1,56 @@
+12System:
+  12Kernel 5.15.0-97-generic x86_64 12bits 64 12compiler gcc 12v 11.4.0 12Desktop Cinnamon 6.0.4
+    12Distro Linux Mint 21.3 Virginia 12base Ubuntu 22.04 jammy
+12Machine:
+  12Type Laptop 12System LENOVO 12product 80XH 12v Lenovo ideapad 320-15ISK 12serial <superuser required>
+  12Mobo LENOVO 12model LNVNB161216 12v SDK0J40709 WIN 12serial <superuser required> 12UEFI LENOVO
+    12v 4WCN47WW 12date 06/30/2020
+12Battery:
+  12ID-1 BAT0 12charge 22.6 Wh (100.0%) 12condition 22.6/30.0 Wh (75.3%) 12volts 8.5 12min 7.5
+    12model SMP L16M2PB1 12status Full
+12CPU:
+  12Info dual core 12model Intel Core i3-6006U 12bits 64 12type MT MCP 12arch Skylake 12rev 3 12cache 12L1 128 KiB
+    12L2 512 KiB 12L3 3 MiB
+  12Speed (MHz) 12avg 500 12min/max 400/2000 12cores 121 500 122 500 123 500 124 500 12bogomips 15999
+  12Flags avx avx2 ht lm nx pae sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx
+12Graphics:
+  12Device-1 Intel HD Graphics 520 12vendor Lenovo 12driver i915 12v kernel 12bus-ID 00:02.0
+  12Device-2 NVIDIA GM108M [GeForce 920MX] 12vendor Lenovo 12driver nvidia 12v 535.161.07 12bus-ID 01:00.0
+  12Device-3 Syntek EasyCamera 12type USB 12driver uvcvideo 12bus-ID 1-8:5
+  12Display x11 12server X.Org 12v 1.21.1.4 12driver 12X 12loaded modesetting,nvidia
+    12unloaded fbdev,nouveau,vesa 12gpu i915 12resolution 1920x1080~60Hz
+  12OpenGL 12renderer Mesa Intel HD Graphics 520 (SKL GT2) 12v 4.6 Mesa 23.2.1-1ubuntu3.1~22.04.2
+    12direct render Yes
+12Audio:
+  12Device-1 Intel Sunrise Point-LP HD Audio 12vendor Lenovo 12driver snd_hda_intel 12v kernel
+    12bus-ID 00:1f.3
+  12Sound Server-1 ALSA 12v k5.15.0-97-generic 12running yes
+  12Sound Server-2 PulseAudio 12v 15.99.1 12running yes
+  12Sound Server-3 PipeWire 12v 0.3.48 12running yes
+12Network:
+  12Device-1 Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet 12vendor Lenovo 12driver r8169
+    12v kernel 12port 3000 12bus-ID 02:00.0
+  12IF enp2s0 12state up 12speed 1000 Mbps 12duplex full 12mac <filter>
+  12Device-2 Intel Dual Band Wireless-AC 3165 Plus Bluetooth 12driver iwlwifi 12v kernel
+    12bus-ID 03:00.0
+  12IF wlp3s0 12state up 12mac <filter>
+12Bluetooth:
+  12Device-1 Intel Bluetooth wireless interface 12type USB 12driver btusb 12v 0.8 12bus-ID 1-7:4
+  12Report hciconfig 12ID hci0 12rfk-id 11 12state down 12bt-service enabled,running 12rfk-block 12hardware no
+    12software yes 12address <filter>
+12RAID:
+  12Hardware-1 Intel 82801 Mobile SATA Controller [RAID mode] 12driver ahci 12v 3.0 12bus-ID 00:17.0
+12Drives:
+  12Local Storage 12total 238.47 GiB 12used 84.76 GiB (35.5%)
+  12ID-1 /dev/sda 12vendor Samsung 12model MZ7LN256HMJP-000L2 12size 238.47 GiB
+12Partition:
+  12ID-1 / 12size 233.18 GiB 12used 84.76 GiB (36.3%) 12fs ext4 12dev /dev/sda2
+  12ID-2 /boot/efi 12size 511 MiB 12used 6.1 MiB (1.2%) 12fs vfat 12dev /dev/sda1
+12Swap:
+  12ID-1 swap-1 12type file 12size 2 GiB 12used 417.7 MiB (20.4%) 12file /swapfile
+12Sensors:
+  12System Temperatures 12cpu 38.0 C 12pch 40.0 C 12mobo N/A
+  12Fan Speeds (RPM) N/A
+12Info:
+  12Processes 311 12Uptime 1d 7h 42m 12Memory 7.54 GiB 12used 3.36 GiB (44.6%) 12Init systemd 12runlevel 5
+  12Compilers 12gcc 11.4.0 12Packages 2980 12Client Unknown Client: emacs-gtk 12inxi 3.3.13

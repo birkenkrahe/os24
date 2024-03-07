@@ -766,19 +766,19 @@ Time ca. 1 hour
   4) Your main challenges ahead
   5) Your next steps (first results due week 11/end of March)
 
-
 * Week 8 - Working with commands
 #+attr_html: :width 400px:
 [[../img/week_8.png]]
 /Image: daemon OS programs waiting for something to do./
 
-** Test 3 available until March 10 / grading
+** DONE Test 3 available until March 10 / grading
 
 - 30 questions, 1 hour time to complete: Take your time!
 - Covers class practice and DataCamp chapters
 - Grading: complete by tomorrow (incl. proposal, DataCamp, Bonus)
 
-** Working with shell commands - 60-75 min (code along)
+
+** IN PROGRESS Working with shell commands - 60-75 min (code along)
 
 Emacs special: add ~<b~ as ~src bash~ to ~org-structure-template-alist~:
 1. ~C-h v org-structure-template-alist~
@@ -800,7 +800,82 @@ Objectives:
 - Creating commands with =alias=
 
 
-** TODO Lecture and GPIO demo - Know your Pi
+** NEXT Review: The Linux File System and Shell Commands
+
+1) Which information is not kept as a file in Linux?
+   #+begin_quote
+   - In-memory data (variables, runtime data structures)
+   - CPU states (registers)
+   - Transient network data (has to be cached to be in a file)
+   - Environment variables (kept in shell memory)
+   - Kernel data outside of ~/proc~ and ~/sys~
+   #+end_quote
+
+2) How are "special files" identified, and what are examples?
+   #+begin_quote
+   - Directories identified by `d` at the start of `ls -l` output
+   - Character device files identified by `c` at the start of `ls -l` output
+   - Symbolic (soft) links identified by `c` at the start of `ls -l` output
+   - Block device files identified by `c` at the start of `ls -l` output
+   - Named pipes identified by `p` at the start of `ls -l` output
+   - Sockets identified by `s` at the start of `ls -l` output
+   #+end_quote
+   #+begin_src bash
+     ls -l /tmp/ | grep 'srwx'   # a socket for Zoom
+     ls -l /bin                  # a symbolic link to /usr/bin
+     ls -l /dev/tty              # a character device file to the keyboard
+   #+end_src
+
+3) What types of shell commands are there?
+   #+begin_quote
+   Built-ins (=cd=), binaries (=gcc=), shell functions, and aliases
+   #+end_quote
+   #+begin_src bash
+     ## bash(1) function definition
+     hello() { echo "hello world"; }
+     declare -F  # or use `typeset -F`
+     declare -f  # or use `typeset -f`
+   #+end_src
+
+4) Which ways do you know to identify a command?
+   #+begin_src bash
+     type -a ls
+     type cd
+     which gcc
+   #+end_src
+
+5) Which ways do you know to get help about a command?
+   #+begin_src bash
+     help cd | head -n 2
+     help type | head -n 2
+   #+end_src
+   #+begin_src bash
+     gcc --help | head -n 4
+   #+end_src
+
+6) For those with a photographic memory or fast fingers: name one directory!
+   #+begin_quote
+   | DIRECTORY      | CONTENT                                           |
+   |----------------+---------------------------------------------------|
+   | ~/~              | Root directory where everything begins            |
+   | ~/bin~           | Executable binaries for the OS to boot and run    |
+   | ~/boot~          | Linux kernel, initial RAM disk image to boot      |
+   | ~/dev~           | List for kernel with all known devices            |
+   | ~/etc~           | System configuration files (e.g. ~/etc/passwd~)     |
+   | ~/home~          | Directory for user directories (e.g. ~/home/pi~)    |
+   | ~/lib~           | Shared library files (like Windows DLLs)          |
+   | ~/lost+found~    | Panic room for each formatted disk partition      |
+   | ~/mnt~           | Mount points for manually mounted removable media |
+   | ~/opt~           | Optional commercial software (e.g. browser)       |
+   | ~/proc~          | Virtual FS for the kernel (e.g. ~/proc/cpuinfo~)    |
+   | ~/root~          | ~$HOME~ directory of the ~root~ super-user            |
+   | ~/tmp~           | Holding bay for temp files, emptied at reboot     |
+   | ~/usr/share/doc~ | Man pages and other package documentation         |
+   | ~/var/log~       | Records of system activity (e.g. ~/var/log/syslog~) |
+   #+end_quote
+
+
+** TODO Lecture: Know your Pi (Part 1)
 
 * Week 9 - Redirection
 * Week 10 - Permissions
