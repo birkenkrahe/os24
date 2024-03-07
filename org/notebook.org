@@ -808,15 +808,15 @@ Objectives:
    - CPU states (registers)
    - Transient network data (has to be cached to be in a file)
    - Environment variables (kept in shell memory)
-   - Kernel data outside of ~/proc~ and ~/sys~
+   - Kernel data outside of ~/proc~ and ~/sys~ like interrupts
    #+end_quote
 
 2) How are "special files" identified, and what are examples?
    #+begin_quote
    - Directories identified by `d` at the start of `ls -l` output
    - Character device files identified by `c` at the start of `ls -l` output
-   - Symbolic (soft) links identified by `c` at the start of `ls -l` output
-   - Block device files identified by `c` at the start of `ls -l` output
+   - Symbolic (soft) links identified by `l` at the start of `ls -l` output
+   - Block device files identified by `b` at the start of `ls -l` output
    - Named pipes identified by `p` at the start of `ls -l` output
    - Sockets identified by `s` at the start of `ls -l` output
    #+end_quote
@@ -825,6 +825,11 @@ Objectives:
      ls -l /bin                  # a symbolic link to /usr/bin
      ls -l /dev/tty              # a character device file to the keyboard
    #+end_src
+
+   #+RESULTS:
+   : srwxrwxr-x 1 marcus marcus        0 Mar  6 13:56 qtsingleapp-zoom-3e8
+   : lrwxrwxrwx 1 root root 7 Jan 30 23:01 /bin -> usr/bin
+   : crw-rw-rw- 1 root tty 5, 0 Mar  6 22:27 /dev/tty
 
 3) What types of shell commands are there?
    #+begin_quote
@@ -837,6 +842,13 @@ Objectives:
      declare -f  # or use `typeset -f`
    #+end_src
 
+   #+RESULTS:
+   : declare -f hello
+   : hello () 
+   : { 
+   :     echo "hello world"
+   : }
+
 4) Which ways do you know to identify a command?
    #+begin_src bash
      type -a ls
@@ -844,14 +856,33 @@ Objectives:
      which gcc
    #+end_src
 
+   #+RESULTS:
+   : ls is /usr/bin/ls
+   : ls is /bin/ls
+   : cd is a shell builtin
+   : /usr/bin/gcc
+
 5) Which ways do you know to get help about a command?
    #+begin_src bash
      help cd | head -n 2
      help type | head -n 2
    #+end_src
+
+   #+RESULTS:
+   : cd: cd [-L|[-P [-e]] [-@]] [dir]
+   :     Change the shell working directory.
+   : type: type [-afptP] name [name ...]
+   :     Display information about command type.
+
    #+begin_src bash
      gcc --help | head -n 4
    #+end_src
+
+   #+RESULTS:
+   : Usage: gcc [options] file...
+   : Options:
+   :   -pass-exit-codes         Exit with highest error code from a phase.
+   :   --help                   Display this information.
 
 6) For those with a photographic memory or fast fingers: name one directory!
    #+begin_quote
@@ -873,7 +904,6 @@ Objectives:
    | ~/usr/share/doc~ | Man pages and other package documentation         |
    | ~/var/log~       | Records of system activity (e.g. ~/var/log/syslog~) |
    #+end_quote
-
 
 ** TODO Lecture: Know your Pi (Part 1)
 
