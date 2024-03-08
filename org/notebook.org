@@ -766,7 +766,7 @@ Time ca. 1 hour
   4) Your main challenges ahead
   5) Your next steps (first results due week 11/end of March)
 
-* Week 8 - Working with commands
+* DONE Week 8 - Working with commands
 #+attr_html: :width 400px:
 [[../img/week_8.png]]
 /Image: daemon OS programs waiting for something to do./
@@ -906,6 +906,7 @@ Objectives:
    #+end_quote
 
 ** TODO Lecture: Know your Pi (Part 1)
+
 
 * Week 9 - Redirection
 * Week 10 - Permissions
