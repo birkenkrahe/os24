@@ -1,0 +1,28 @@
+#+TITLE:Redirection
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE:OS Practice CSC 420 Spring 2024
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:bash :exports both :results output
+* README
+
+- You can code along with the file [[http://tinyurl.com/4-redirection-org][tinyurl.com/4-redirection-org]]
+
+  You can save it to an Org-mode file ~4_redirection.org~
+
+- The solutions and results herein were all obtained on a Lenovo
+  laptop running Linux Mint 21.3 with 4 Intel Core i3-6006U CPUs.
+
+- This lab is based on chapter 6 (pp. 49-59) of Shotts (2019).
+
+- You can get the completed file from ~tinyurl.com/5_redirection.org~
+
+* Command summary
+
+| COMMAND | MEANING                       | EXAMPLE             |
+|---------+-------------------------------+---------------------|
+
+
+
+
+

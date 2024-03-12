@@ -681,7 +681,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
 - What does this command do?
   #+begin_src bash :results output
-  ls | sort -r | wc -l
+    ls | sort -r | wc -l
   #+end_src
 
   #+RESULTS:
@@ -696,7 +696,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
   Notice that the effects of the ~sort~ program do not show at all -
   it's superfluous (though it's not in the way).
   #+end_quote
-  
+
 
 ** TODO Finish manipulating files and directories practice
 
@@ -705,19 +705,19 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 - run all code blocks with ~M-x org-babel-execute-buffer~
 - start at *"moving and renaming files"*
 - when finished, [[https://lyon.instructure.com/courses/2255/assignments/24640][upload file to Canvas]]
-  
+
 ** Due next week: your project proposal ([[https://lyon.instructure.com/courses/2255/assignments/24827][Canvas]]/[[https://drive.google.com/drive/folders/1glJ_hZ_NybaQIvkPHysiG-FeZ1wSyz6n?usp=drive_link][GDrive]])
 
 * DONE Week 6 - Exploring the system / Sprint review: proposal
 #+attr_html: :width 300px:
- [[../img/couple1.png]]  [[../img/couple2.png]]
+[[../img/couple1.png]]  [[../img/couple2.png]]
 
 /Images: a couple, separated by Linux, somewhere in Batesville./
 
 ** DONE Feedback: project proposal (via email)
 ** DONE Finish "manipulating files" (symbolic links/removing directories)
 * DONE Week 7 - Manipulating files and directories / working with commands
-#+attr_html: :width 400px: 
+#+attr_html: :width 400px:
 [[../img/week_7.webp]]
 
 ** DONE Pop quiz 1 - manipulating files and data - 60 min
@@ -728,7 +728,7 @@ Time ca. 1 hour
 
 
 ** Mark the date: Lyon College Career Expo (free headshots!?)
-#+attr_html: :width 400px: 
+#+attr_html: :width 400px:
 [[../img/headshots.webp]]
 
 1) Register at the entrance (QR code) to get bonus points
@@ -738,10 +738,10 @@ Time ca. 1 hour
 3) Pick up contacts, follow up on them and let me know about them
 
 ** Test 3 coming up: manipulating files and data!
-#+attr_html: :width 400px: 
+#+attr_html: :width 400px:
 [[../img/test_1.png]]
 
-#+attr_html: :width 400px: 
+#+attr_html: :width 400px:
 [[../img/test_2.png]]
 
 - Good: improved average
@@ -754,7 +754,7 @@ Time ca. 1 hour
 
 - If you were asked to improve on your (perhaps non-existing)
   proposal, do so within a week from today (Thursday, March 7), and
-  *send me a chat message* to let me know what you did. 
+  *send me a chat message* to let me know what you did.
 
 - Now, *get together in pairs* and *explain your project* and your
   *progress* (or lack thereof) to your partner (10 min)
@@ -844,8 +844,8 @@ Objectives:
 
    #+RESULTS:
    : declare -f hello
-   : hello () 
-   : { 
+   : hello ()
+   : {
    :     echo "hello world"
    : }
 
@@ -905,11 +905,81 @@ Objectives:
    | ~/var/log~       | Records of system activity (e.g. ~/var/log/syslog~) |
    #+end_quote
 
+
 ** TODO Lecture: Know your Pi (Part 1)
 
 
 * Week 9 - Redirection
-* Week 10 - Permissions
+#+attr_html: :width 400px:
+[[../img/week_9.png]]
+
+This is what ChatGPT/DALL-E3 came up with for 'redirection'
+
+** DataCamp
+
+New DataCamp lessons (deadlines March 29, April 5): =bash(1)= scripting,
+starting with simple scripts from your command line skills.
+
+** Test 3 results
+
+Results from test 3 (manipulating files / DataCamp lessons):
+#+attr_html: :width 400px:
+[[../img/test_3.png]]
+
+** Project
+
+- 2nd sprint review (March 29): literature (source) review ([[https://lyon.instructure.com/courses/2255/assignments/26168][Canvas]])
+
+- Check in: project confidence (0 to 100)? If < 50% talk to me.
+
+** Review: working with shell commands
+
+1) What's the difference between =type=, =which=, and =help=?
+   #+begin_quote
+   | COMMAND | MEANING                       | EXAMPLE  |
+   |---------+-------------------------------+----------|
+   | type    | how a cmd name is interpreted | type ls  |
+   | which   | which cmd is executed         | which ls |
+   | help    | help for shell built-ins      | help cd  |
+   #+end_quote
+2) What's the difference between =man=, =apropos, =info= and =whatis=?
+   #+begin_quote
+   | COMMAND | MEANING                       | EXAMPLE             |
+   |---------+-------------------------------+---------------------|
+   | man     | full manual page              | man ls              |
+   | apropos | searches matching manuals     | apropos --exact apt |
+   | info    | info entry (hyperlinked)      | info ls             |
+   | whatis  | one-line manual extract       | whatis ls           |
+   #+end_quote
+3) How can you see all aliases?
+   #+begin_example bash
+     alias 
+   #+end_example
+4) Is an =alias= permanent?
+   #+begin_quote
+   - An =alias= is only permanent for the current shell session
+   - To recreate it at the start of a session, add it to ~~/.bashrc~
+   - To remove it during a shell session, use =unalias= on its name
+   #+end_quote
+5) Where is the documentation (like manual pages) stored?
+   #+begin_quote
+   In ~/usr/share~.
+   #+end_quote
+   #+begin_src bash
+     manpath  # path for man pages
+     man -w ls # location of man page for `ls`
+   #+end_src
+
+   #+RESULTS:
+   : /home/marcus/.local/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man
+   : /usr/share/man/man1/ls.1.gz
+
+** Redirection
+
+- Lecture: 4_redirection.org in GitHub
+- Codealong: [[http://tinyurl.com/4-redirection-org][tinyurl.com/4-redirection-org]]
+
+* Week 10 - Permissions / Your Pi / GPIO
 * Week 11 - Processes / Package management / Sprint review: first results
 * Week 12 - Storage media / Networking
 * Week 13 - Searching for files / Archiving and backup
