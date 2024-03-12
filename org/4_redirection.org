@@ -193,27 +193,35 @@ Important commands include:
    redirecting standard output. If the order is changed, =stderr= is
    directed to the screen instead. Try it yourself:
 
-   1) create an empty file ~output.txt~ using >, and redirect both
-      stdout and stderr to it.
+   1) create an empty file ~output.txt~ using >, redirect both
+      stdout and stderr to it, then view and list the file:
       #+name: stderr3
       #+begin_src bash :results output
-        ls -l /bin/usr >output.txt 2>&1 cat output.txt
+        rm output.txt
+        > output.txt
+        ls -l /bin/usr > output.txt 2>&1
+        cat output.txt
+        ls -l output.txt
        #+end_src
+
+       #+RESULTS: stderr3
+       : ls: cannot access '/bin/usr': No such file or directory
+       : -rw-rw-r-- 1 marcus marcus 56 Mar 12 07:56 output.txt
 
     2) Change the order of the redirection: first redirect stdout and
        stderr, then redirect to a file ~output1.txt~ with >.
 
        #+name: stderr4
        #+begin_src bash :results output
-         ls -l /bin/usr 2>&1 >output1.txt
+         ls -l /bin/usr 2>&1 > output1.txt
          ls -lh output1.txt
        #+end_src
 
        #+RESULTS: stderr4
        : ls: cannot access '/bin/usr': No such file or directory
-       : -rw-r--r-- 1 pi pi 0 Mar  7 22:17 output1.txt
+       : -rw-rw-r-- 1 marcus marcus 0 Mar 12 07:56 output1.txt
 
-  - [ ] There is a more streamlined (but also more obscure) method for
+  - There is a more streamlined (but also more obscure) method for
     combined redirection with the single notation ~&>~.
 
     #+name: stderr5
@@ -224,8 +232,8 @@ Important commands include:
 
     #+RESULTS: stderr5
     : ls: cannot access '/bin/usr': No such file or directory
-
-  - [ ] Can you append stdout and stderr to a single file, too? Write
+   
+  - Can you append stdout and stderr to a single file, too? Write
     and execute the command for appending with the single notation and
     the appending redirection operator!
 
@@ -235,17 +243,13 @@ Important commands include:
       cat ls-output.txt
     #+end_src
 
-    #+RESULTS: stderr6
-    : ls: cannot access '/bin/usr': No such file or directory
-    : ls: cannot access '/bin/usr': No such file or directory
-
-  - [X] Silence is golden: sometimes you just want to throw output
-    away - like error or status messages. To do this, we redirect to a
+  - /Silence is golden/: sometimes you just want to throw output away -
+    like error or status messages. To do this, we redirect to a
     special file called ~/dev/null~, also called the "bit bucket", or
     the "black hole".
 
-    Write a command to redirect stderr from the error message, then
-    list the bit bucket file.
+    Write a command to redirect =stderr= from the error message to
+    ~/dev/null~, and then list the bit bucket file.
 
     #+name: bitbucket
     #+begin_src bash
@@ -254,43 +258,44 @@ Important commands include:
     #+end_src
 
     #+RESULTS: bitbucket
-    : crw-rw-rw- 1 root root 1, 3 Mar  7 09:17 /dev/null
-    : crw-rw-rw- 1 root root 1, 3 Mar  7 09:17 /dev/null
+    : crw-rw-rw- 1 root root 1, 3 Mar 10 16:35 /dev/null
 
-    ~/dev/null~ is a special character file (hence the letter ~c~ in
-    the listing). The term is a Unix culture fix point ([[https://en.wikipedia.org/wiki/Null_device][see
-    Wikipedia]]).
+    ~/dev/null~ is a special character file (hence the letter ~c~ in the
+    listing). The term is a Unix culture ([[https://en.wikipedia.org/wiki/Null_device][see Wikipedia]]). More detail
+    on the man page =null(7)= (~M-x man null~).
 
 * Redirecting standard input
 
-- [X] The ~cat~ command reads one or more files and copies them to
-  standard output. To join more than one file, list the files to be
-  joined after ~cat~. If you don't specify a target, then the output
-  will just be displayed as standard output.
+- The =cat= command reads one or more files and copies them to standard
+  output. To join more than one file, list the files to be joined
+  after =cat=. If you don't specify a target, then the output will just
+  be displayed as standard output.
 
   #+name: cat
   #+begin_src bash
     cat ls-output.txt ls-output.txt
   #+end_src
 
-  #+RESULTS:
-  : ls: cannot access '/bin/usr': No such file or directory
-  : ls: cannot access '/bin/usr': No such file or directory
-  : ls: cannot access '/bin/usr': No such file or directory
-  : ls: cannot access '/bin/usr': No such file or directory
-  : ls: cannot access '/bin/usr': No such file or directory
-  : ls: cannot access '/bin/usr': No such file or directory
-
-- [X] To have something to play with, let's split the
-  ~ls-output.txt~ file. If your current file is empty or only
-  contains one line, quickly fill it up by running several times:
+- To have something to play with, let's split the ~ls-output.txt~
+  file. If your current file is empty or only contains one line,
+  quickly fill it up by running the following code several times:
   #+begin_example
     ls -l /bin/usr &>> ls-output.txt
   #+end_example
-  that appends the error message to the same file. My file now has
-  three lines. Use ~split~ to split it into three files of 1
-  line. Switch on ~--verbose~ to see what's happening. There should
-  be as many files as you have lines in the file.
+  that appends the error message to the same file.
+
+- Find out how many lines your ~ls-output.txt~ file has!
+  #+begin_src bash
+    wc -l ls-output.txt
+  #+end_src  
+
+  #+RESULTS:
+  : 4 ls-output.txt
+
+- My file now has three lines. Use =split= to split it into three files
+  of =1= line. Switch on =--verbose= to see what's happening. There should
+  be as many files as you have lines in the file. Check out the man
+  page for =split= to see how to use it.
 
   #+name: split
   #+begin_src bash
@@ -302,50 +307,56 @@ Important commands include:
   : creating file 'xaa'
   : creating file 'xab'
   : creating file 'xac'
+  : creating file 'xad'
   :   1 xaa
   :   1 xab
   :   1 xac
-  :   3 total
+  :   1 xad
+  :   4 total
 
-- [X] Now use ~cat~ to join the files back together and redirect the
-  output into a file called ~joined.txt~. Use a wildcard to identify
-  the split files.
+- Now use =cat= to join the files back together and redirect the output
+  into a file called ~joined.txt~. Use a wildcard to identify the split
+  files instead of writing their full names, and confirm the number of
+  lines using =wc=.
 
   #+name: join
   #+begin_src bash
     cat x* > joined.txt
     cat joined.txt
+    wc -l joined.txt
   #+end_src
 
-  #+RESULTS:
+  #+RESULTS: join
   : ls: cannot access '/bin/usr': No such file or directory
   : ls: cannot access '/bin/usr': No such file or directory
   : ls: cannot access '/bin/usr': No such file or directory
+  : ls: cannot access '/bin/usr': No such file or directory
+  : 4 joined.txt
 
-- [X] What happens if you enter ~cat~ with no arguments? Try this on
-  a system shell, in Emacs: ~M-x shell~. You should find that ~cat~
-  just sits there waiting for input. When you enter anything, it's
-  being mirrored back from stdin to stdout (your screen).
+- What happens if you enter =cat= with no arguments? Try this on a
+  system shell, in Emacs: ~M-x shell~. You should find that =cat= just
+  sits there waiting for input. When you enter anything, it's being
+  mirrored back from =stdin= to =stdout= (your screen).
 
-  In the terminal, enter ~cat~, then enter the following text, then
-  press CTRL-D:
+  In the terminal, enter =cat=, then enter the following text, then
+  press ~C-d~:
 
   #+begin_example
     The quick brown fox jumped over the lazy dog.
   #+end_example
 
-- [X] To create a file called lazy-dog.txt, enter
+- [X] To create a file called ~lazy-dog.txt~, enter:
   #+begin_example
     cat > lazy-dog.txt
   #+end_example
 
-  Then enter the text followed by CTRL-D:
+  Then enter the text followed by ~C-d~ (you have to press ENTER before):
   #+begin_example
     The quick brown fox jumped over the lazy dog.
   #+end_example
 
   You have just implemented the world's dumbest word processor!
-  Check your results by viewing the file with ~cat~.
+  Check your results by viewing the file with =cat=.
 
   #+name: foxOut
   #+begin_src bash
@@ -355,8 +366,9 @@ Important commands include:
   #+RESULTS: fox
   : The quick brown fox jumped over the lazy dog.
 
-- [ ] You can also redirect standard input from the keyboard to the
-  file ~lazy-dog.txt~. Do this now.
+- You can also redirect standard input from the file ~lazy-dog.txt~ to
+  =cat=. Do this in the following code block. If you get an error, think
+  about what the shell sees.
 
   #+name: foxIn
   #+begin_src bash
@@ -364,21 +376,23 @@ Important commands include:
   #+end_src
 
   #+RESULTS: foxIn
-  : The quick brown fox jumped over the lazy dog.
+  : The quick brown fox jumped
 
-  If you get an error, think about what the shell sees. E.g. the
-  command ~lazy-dog.txt > cat~ does not do the job: it tries to
-  redirect a non-existing command into a file called ~cat~.
+  #+begin_quote
+  The command ~lazy-dog.txt > cat~ does not do the job: it tries to
+  redirect a non-existing command into a file called ~cat~. You have to
+  redirect the ~txt~ file into =cat= from the right!
+    #+end_quote
 
 * Pipelines
 
-- [X] Pipelines are used to perform complex operations on
-  data. Remember this works because
-  1) every command is efficient at doing one specific job
-  2) commands can be put together with the ~|~ operator
+- Pipelines are used to perform complex operations on data. Remember
+  this works because:
+  1) every command is efficient at doing one specific job only
+  2) commands can be put together with the pipe operator =|=
 
-- [ ] Make a combined list of all the executable programs in ~/bin~
-  and ~/usr/bin~, put them in sorted order, view the resulting
+- Make a combined *list* of all the executable programs in ~/bin~ and
+  ~/usr/bin~, put them in *sorted* order, and *view* the resulting
   list. Remember that you can just fold the long output list by
   entering TAB on the ~#+Results:~ line.
 
@@ -386,8 +400,6 @@ Important commands include:
   #+begin_src bash
     ls /bin /usr/bin | sort | less
   #+end_src
-
-  #+Results: ...
 
   The output of ~ls~ without the ~sort~ would have been two sorted
   lists, one for each directory. Check that by showing only the
@@ -397,46 +409,46 @@ Important commands include:
 
   #+name: NoPipe
   #+begin_src bash
-    ls /bin /usr/bin | sort | tail -n 5
+    ls /bin /usr/bin | sort | head -n 5
     echo
-    ls /bin /usr/bin | tail -n 5
+    ls /bin /usr/bin | head -n 5
   #+end_src
 
   #+RESULTS: NoPipe
   #+begin_example
-  zless
-  zmore
-  zmore
-  znew
-  znew
 
-  zipnote
-  zipsplit
-  zless
-  zmore
-  znew
+  [
+  [
+  411toppm
+  411toppm
+
+  /bin:
+  [
+  411toppm
+  7z
+  7za
   #+end_example
 
-- [X] The redirection operator ~>~ is dangerous: it operates
-  silently and will overwrite any system file if you use ~sudo~
-  privileges. This is a way to destroy your OS. For example (don't
-  try this!) - what does this do?
+- The redirection operator =>= is dangerous: it operates silently and
+  will overwrite any system file if you use =sudo= privileges. This is a
+  good way to destroy your OS. For example (don't try this!) - what
+  would this command do?
 
   #+begin_example
     cd /usr/bin
-    ls > less
+    ls > less     # DONT DO THIS
   #+end_example
 
-- [ ] ~uniq~ is often used with ~sort~. It accepts a sorted list of
-  data from stdout or from a file and removes any duplicates.
+- =uniq= is often used with =sort=. It accepts a sorted list of data from
+  stdout or from a file and removes any duplicates.
 
-  Add ~uniq~ after the ~sort~ to the pipe above. Replace the ~less~
+  Add =uniq= after the =sort= to the pipe above. Replace the =less=
   command at the end by another command that allows you to compare
-  the size of the files, but without using ~ls~.
+  the size of the files, but without using =ls=.
 
   Enter the pipeline above twice: once with and once without
-  ~unique~. Replace the ~less~ command at the end by a command that
-  lets you compare the size of the output.
+  =unique=. Replace the =less= command at the end by a command that lets
+  you compare the size of the output.
 
   #+name: uniq
   #+begin_src bash
@@ -445,13 +457,12 @@ Important commands include:
   #+end_src
 
   #+RESULTS: uniq
-  : 2831
-  : 1417
-  : 1414
+  : 5631
+  : 2817
 
-- [X] In the next command, copy [[uniq]], and add the flag ~-d~ to
-  unique to only see the duplicates. Count the lines after each
-  command.
+- In the next command, copy the code block [[uniq]], and add the flag ~-d~
+  after =uniq= to only see the duplicates. Count the lines after each
+  command with =wc=.
 
   #+name: uniq1
   #+begin_src bash
@@ -461,17 +472,17 @@ Important commands include:
   #+end_src
 
   #+RESULTS: uniq1
-  : 2831
-  : 1417
-  : 1414
+  : 5631
+  : 2817
+  : 2814
 
-- [X] Another useful command is the pattern searching utility
-  ~grep~. It's most important flags are ~-i~ to make the search case
-  insensitive, and ~-v~ to reverse the search and only print lines
-  that do not conform to the pattern.
+- Another useful command is the pattern searching utility =grep=. It's
+  most important flags are ~-i~ to make the search case insensitive, and
+  ~-v~ to reverse the search and only print lines that do not conform to
+  the pattern.
 
-- [X] Use ~grep~ to find all ~zip~ related commands in the output of
-  our pipe from [[uniq]] (without the word count at the end). The
+- Use =grep= to find all ~zip~ related commands in the output of our pipe
+  from the block [[uniq]] (without the word count at the end). The
   beginning of the pipe is already in the block [[grep]] below.
 
   #+name: grep
@@ -484,12 +495,19 @@ Important commands include:
   bunzip2
   bzip2
   bzip2recover
-  fio-genzipf
   funzip
   gpg-zip
   gunzip
   gzip
+  lzip
+  lzip-compressor
+  lzip-decompressor
+  lzip.lzip
+  mzip
   p7zip
+  preunzip
+  prezip
+  prezip-bin
   streamzip
   unzip
   unzipsfx
@@ -502,36 +520,33 @@ Important commands include:
   zipsplit
   #+end_example
 
-- [X] How many programs in these directories are not zip-related?
+- How many programs in these directories are not zip-related?
 
   #+name: grep1
   #+begin_src bash
     ls /bin /usr/bin | sort | uniq | grep -v zip | wc -l
   #+end_src
 
-  #+RESULTS: grep1
-  : 1398
+- The utilities ~head~ and ~tail~ with the ~-n N~ option (~N~ number of lines
+  printed, also ~--lines=N~ as a long option) show beginning and end of
+  files.
 
-- [X] The utilities ~head~ and ~tail~ with the ~-n N~ option (~N~
-  number of lines printed, also ~--lines=N~ as a long option) show
-  beginning and end of files.
-
-  ~tail~ has a real time option ~-f~ that allows you to monitor
-  system logs. Run this command in the shell.
+  ~tail~ has a real time option ~-f~ that allows you to monitor system
+  logs. Run this command in the shell on ~/var/log/syslog~.
 
   #+name: monitor
   #+begin_example
-    tail -f /var/log/messages
+    tail -f /var/log/syslog
   #+end_example
 
-  Using the ~-f~ option, ~tail~ continues to monitor the file, and
-  when new lines appear, they appear on screen right away until you
-  type CTRL-C.
+  Using the ~-f~ option, ~tail~ continues to monitor the file, and when
+  new lines appear, they appear on screen right away until you type
+  CTRL-C. Check that by opening a new shell and typing something.
 
-- [ ] Linux plumbing is rounded off by the command ~tee~ that creates
-  a "tee" fitting on the pipe. It reads standard input and copies it
-  to both standard output and to one or more files. In this way, the
-  pipe can run on, and intermediate content can be captured, too.
+- Linux plumbing is rounded off by the command ~tee~ that creates a
+  "tee" fitting on the pipe. It reads standard input and copies it to
+  both standard output and to one or more files. In this way, the pipe
+  can run on, and intermediate content can be captured, too.
 
   In the following command, we include ~tee~ in a pipe to capture the
   ~ls~ listing before filtering with ~grep~.
