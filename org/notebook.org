@@ -933,7 +933,6 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - Check in: project confidence (0 to 100)? If < 50% talk to me.
 
 ** Review: working with shell commands
-
 1) What's the difference between =type=, =which=, and =help=?
    #+begin_quote
    | COMMAND | MEANING                       | EXAMPLE  |
@@ -973,7 +972,12 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+RESULTS:
    : /home/marcus/.local/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man
    : /usr/share/man/man1/ls.1.gz
-
+6) What kinds of command line tools are there?
+   #+begin_quote
+   #+attr_html: :width 400px:
+   [[../img/command_line_tools.png]]
+   #+end_quote
+   
 ** Redirection
 
 - Lecture: [[https://github.com/birkenkrahe/os24/blob/main/org/4_redirection.org][4_redirection.org]] in GitHub
