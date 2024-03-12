@@ -32,6 +32,7 @@ Important commands include:
 
 * Special device files
 #+attr_html: :width 600px:
+#+caption: Source: Janssens (2021)
 [[../img/streams1.png]]
 
 - ~stdin~, ~stdout~ and ~stderr~ are special files.
@@ -45,7 +46,7 @@ Important commands include:
   : lrwxrwxrwx  1 root root            15 Mar 10 16:35 /dev/stderr -> /proc/self/fd/2
   : lrwxrwxrwx  1 root root            15 Mar 10 16:35 /dev/stdin -> /proc/self/fd/0
   : lrwxrwxrwx  1 root root            15 Mar 10 16:35 /dev/stdout -> /proc/self/fd/1
-
+  
 - Execute the following commands in your REPL of choice. I'll do it in
   GNU Emacs Org Mode, of course.
 
@@ -58,12 +59,21 @@ Important commands include:
   #+begin_src bash
     whatis rev
   #+end_src
+
+  #+RESULTS:
+  : rev (1)              - reverse lines characterwise
+
   #+begin_src bash
     rev
     all lines reversed
     palindromes
     Madam, I'm Adam
   #+end_src
+
+  #+RESULTS:
+  : desrever senil lla
+  : semordnilap
+  : madA m'I ,madaM
 
 * Redirecting standard output
 
@@ -74,19 +84,28 @@ Important commands include:
     ls -l /usr/bin > ls-output.txt
   #+end_src
 
+- But what kind of file is created by default?
+  #+begin_src bash
+    ls -l /usr/bin > kim
+    file kim
+  #+end_src
+
+  #+RESULTS:
+  : kim: ASCII text
+
 - Let's look at the file from the outside first.
   #+name: ls
   #+begin_src bash
-    ls -lh ls-output.txt
+    ls -lh ls-output.txt | head -n 10
   #+end_src
 
   #+RESULTS: ls
-  : -rw-rw-r-- 1 marcus marcus 182K Mar 11 23:37 ls-output.txt
+  : -rw-rw-r-- 1 marcus marcus 182K Mar 12 10:04 ls-output.txt
 
 - Let's look at the first and the last part of the file
   #+name: headtail
   #+begin_src bash :results output
-    head --lines=3 ls-output.txt
+    head --lines=3 ls-output.txt  # or use -n 3
     echo
     tail --lines=2 ls-output.txt
   #+end_src
@@ -110,22 +129,25 @@ Important commands include:
 - What happened to the output file? It's empty!
   #+name: ls1
   #+begin_src bash
-    ls -l ls-output.txt
+    ls -l ls-output.txt  
   #+end_src
 
   #+RESULTS: ls1
-  : -rw-rw-r-- 1 marcus marcus 0 Mar 11 23:38 ls-output.txt
+  : -rw-rw-r-- 1 marcus marcus 0 Mar 12 10:09 ls-output.txt
 
 - If you ever want to create a new empty file (instead of using the
   ~touch~ command), you can use ~>~ without origin (empty stdout).
   #+name: redirect2
   #+begin_src bash
+    rm ls-output.txt
     > ls-output.txt
     ls -l ls-output.txt
+    file ls-output.txt   # it's empty, it's not ASCII text
   #+end_src
 
   #+RESULTS: redirect2
-  : -rw-rw-r-- 1 marcus marcus 0 Mar 11 23:39 ls-output.txt
+  : -rw-rw-r-- 1 marcus marcus 0 Mar 12 10:13 ls-output.txt
+  : ls-output.txt: empty
 
 - To append redirected output to a file instead of overwriting it from
   the beginning, use ~>>~. Let's test this - compare with the initial
@@ -134,12 +156,11 @@ Important commands include:
   #+begin_src bash
     ls -l /usr/bin >> ls-output.txt
     ls -l /usr/bin >> ls-output.txt
-    ls -l /usr/bin >> ls-output.txt
     ls -lh ls-output.txt
   #+end_src
 
   #+RESULTS: redirect3
-  : -rw-rw-r-- 1 marcus marcus 546K Mar 11 23:39 ls-output.txt
+  : -rw-rw-r-- 1 marcus marcus 4.8M Mar 12 10:15 ls-output.txt
 
 * Redirecting standard error
 
@@ -158,18 +179,22 @@ Important commands include:
 
   #+name: stderr1
   #+begin_src bash
+    ls -l /bin/usr > ls-output.txt
     ls -l /bin/usr 2> ls-error.txt
-    ls -lh ls-error.txt
+    ls -lh ls-error.txt ls-output.txt 
   #+end_src
 
   #+RESULTS: stderr1
-  : -rw-rw-r-- 1 marcus marcus 56 Mar 11 23:42 ls-error.txt
-  : ls: cannot access '/bin/usr': No such file or directory
+  : -rw-rw-r-- 1 marcus marcus 56 Mar 12 10:20 ls-error.txt
+  : -rw-rw-r-- 1 marcus marcus  0 Mar 12 10:20 ls-output.txt
 
 - What does it say?  
   #+begin_src bash
     cat ls-error.txt
   #+end_src
+
+  #+RESULTS:
+  : ls: cannot access '/bin/usr': No such file or directory
 
 - What if we want to redirect both =stdout= and =stderr= to the *same file*
   to capture all output in one place?
@@ -181,12 +206,12 @@ Important commands include:
   #+name: stderr2
   #+begin_src bash
     ls -l /bin/usr > ls-output.txt 2>&1  # double redirect
-    ls -lh ls-output.txt
-    cat ls-output.txt
+    ls -lh ls-output.txt  # list stdout
+    cat ls-output.txt  # show output
   #+end_src
 
   #+RESULTS: stderr2
-  : -rw-rw-r-- 1 marcus marcus 56 Mar 11 23:44 ls-output.txt
+  : -rw-rw-r-- 1 marcus marcus 56 Mar 12 10:23 ls-output.txt
   : ls: cannot access '/bin/usr': No such file or directory
 
  - The redirection of standard error must always occur *after*
@@ -194,22 +219,21 @@ Important commands include:
    directed to the screen instead. Try it yourself:
 
    1) create an empty file ~output.txt~ using >, redirect both
-      stdout and stderr to it, then view and list the file:
+      =stdout= and =stderr= to it, then view and list the file:
       #+name: stderr3
       #+begin_src bash :results output
-        rm output.txt
-        > output.txt
-        ls -l /bin/usr > output.txt 2>&1
-        cat output.txt
-        ls -l output.txt
+        > output.txt   # create empty file
+        ls -l /bin/usr > output.txt 2>&1  # stdout and stderr
+        cat output.txt  # view it
+        ls -l output.txt  # list it
        #+end_src
 
        #+RESULTS: stderr3
        : ls: cannot access '/bin/usr': No such file or directory
-       : -rw-rw-r-- 1 marcus marcus 56 Mar 12 07:56 output.txt
+       : -rw-rw-r-- 1 marcus marcus 56 Mar 12 10:25 output.txt
 
     2) Change the order of the redirection: first redirect stdout and
-       stderr, then redirect to a file ~output1.txt~ with >.
+       =stderr=, then redirect to a file ~output1.txt~ with >.
 
        #+name: stderr4
        #+begin_src bash :results output
@@ -219,7 +243,7 @@ Important commands include:
 
        #+RESULTS: stderr4
        : ls: cannot access '/bin/usr': No such file or directory
-       : -rw-rw-r-- 1 marcus marcus 0 Mar 12 07:56 output1.txt
+       : -rw-rw-r-- 1 marcus marcus 0 Mar 12 10:26 output1.txt
 
   - There is a more streamlined (but also more obscure) method for
     combined redirection with the single notation ~&>~.
@@ -227,11 +251,14 @@ Important commands include:
     #+name: stderr5
     #+begin_src bash
       ls -l /bin/usr &> ls-output.txt
+      ls -l ls-output.txt
       cat ls-output.txt
     #+end_src
 
     #+RESULTS: stderr5
+    : -rw-rw-r-- 1 marcus marcus 56 Mar 12 10:28 ls-output.txt
     : ls: cannot access '/bin/usr': No such file or directory
+
    
   - Can you append stdout and stderr to a single file, too? Write
     and execute the command for appending with the single notation and
@@ -242,6 +269,12 @@ Important commands include:
       ls -l /bin/usr &>> ls-output.txt
       cat ls-output.txt
     #+end_src
+
+    #+RESULTS: stderr6
+    : ls: cannot access '/bin/usr': No such file or directory
+    : ls: cannot access '/bin/usr': No such file or directory
+    : ls: cannot access '/bin/usr': No such file or directory
+    : ls: cannot access '/bin/usr': No such file or directory
 
   - /Silence is golden/: sometimes you just want to throw output away -
     like error or status messages. To do this, we redirect to a
@@ -264,7 +297,7 @@ Important commands include:
     listing). The term is a Unix culture ([[https://en.wikipedia.org/wiki/Null_device][see Wikipedia]]). More detail
     on the man page =null(7)= (~M-x man null~).
 
-* Redirecting standard input
+* IN PROGRESS Redirecting standard input
 
 - The =cat= command reads one or more files and copies them to standard
   output. To join more than one file, list the files to be joined
@@ -275,6 +308,16 @@ Important commands include:
   #+begin_src bash
     cat ls-output.txt ls-output.txt
   #+end_src
+
+  #+RESULTS: cat
+  : ls: cannot access '/bin/usr': No such file or directory
+  : ls: cannot access '/bin/usr': No such file or directory
+  : ls: cannot access '/bin/usr': No such file or directory
+  : ls: cannot access '/bin/usr': No such file or directory
+  : ls: cannot access '/bin/usr': No such file or directory
+  : ls: cannot access '/bin/usr': No such file or directory
+  : ls: cannot access '/bin/usr': No such file or directory
+  : ls: cannot access '/bin/usr': No such file or directory
 
 - To have something to play with, let's split the ~ls-output.txt~
   file. If your current file is empty or only contains one line,
@@ -292,10 +335,10 @@ Important commands include:
   #+RESULTS:
   : 4 ls-output.txt
 
-- My file now has three lines. Use =split= to split it into three files
-  of =1= line. Switch on =--verbose= to see what's happening. There should
-  be as many files as you have lines in the file. Check out the man
-  page for =split= to see how to use it.
+- My file now has N lines. Use =split= to split it into N files of =1=
+  line. Switch on =--verbose= to see what's happening. There should be
+  as many files as you have lines in the file. Check out the man page
+  for =split= to see how to use it.
 
   #+name: split
   #+begin_src bash
@@ -326,13 +369,6 @@ Important commands include:
     wc -l joined.txt
   #+end_src
 
-  #+RESULTS: join
-  : ls: cannot access '/bin/usr': No such file or directory
-  : ls: cannot access '/bin/usr': No such file or directory
-  : ls: cannot access '/bin/usr': No such file or directory
-  : ls: cannot access '/bin/usr': No such file or directory
-  : 4 joined.txt
-
 - What happens if you enter =cat= with no arguments? Try this on a
   system shell, in Emacs: ~M-x shell~. You should find that =cat= just
   sits there waiting for input. When you enter anything, it's being
@@ -345,7 +381,7 @@ Important commands include:
     The quick brown fox jumped over the lazy dog.
   #+end_example
 
-- [X] To create a file called ~lazy-dog.txt~, enter:
+- To create a file called ~lazy-dog.txt~, enter:
   #+begin_example
     cat > lazy-dog.txt
   #+end_example
@@ -363,9 +399,6 @@ Important commands include:
     cat lazy-dog.txt
   #+end_src
 
-  #+RESULTS: fox
-  : The quick brown fox jumped over the lazy dog.
-
 - You can also redirect standard input from the file ~lazy-dog.txt~ to
   =cat=. Do this in the following code block. If you get an error, think
   about what the shell sees.
@@ -374,9 +407,6 @@ Important commands include:
   #+begin_src bash
     cat < lazy-dog.txt
   #+end_src
-
-  #+RESULTS: foxIn
-  : The quick brown fox jumped
 
   #+begin_quote
   The command ~lazy-dog.txt > cat~ does not do the job: it tries to
@@ -400,6 +430,5641 @@ Important commands include:
   #+begin_src bash
     ls /bin /usr/bin | sort | less
   #+end_src
+
+  #+RESULTS: pipe
+  #+begin_example
+
+  [
+  [
+  411toppm
+  411toppm
+  7z
+  7z
+  7za
+  7za
+  7zr
+  7zr
+  a2ping
+  a2ping
+  a5booklet
+  a5booklet
+  a5toa4
+  a5toa4
+  aa-enabled
+  aa-enabled
+  aa-exec
+  aa-exec
+  aa-features-abi
+  aa-features-abi
+  aconnect
+  aconnect
+  acpi_listen
+  acpi_listen
+  add-apt-repository
+  add-apt-repository
+  addpart
+  addpart
+  addr2line
+  addr2line
+  add-remove-locales
+  add-remove-locales
+  adhocfilelist
+  adhocfilelist
+  afm2afm
+  afm2afm
+  afm2pl
+  afm2pl
+  afm2tfm
+  afm2tfm
+  airscan-discover
+  airscan-discover
+  aleph
+  aleph
+  allcm
+  allcm
+  allec
+  allec
+  allneeded
+  allneeded
+  alsabat
+  alsabat
+  alsaloop
+  alsaloop
+  alsamixer
+  alsamixer
+  alsatplg
+  alsatplg
+  alsaucm
+  alsaucm
+  amidi
+  amidi
+  amixer
+  amixer
+  amstex
+  amstex
+  amuFormat.sh
+  amuFormat.sh
+  animate
+  animate
+  animate-im6
+  animate-im6
+  animate-im6.q16
+  animate-im6.q16
+  anytopnm
+  anytopnm
+  apg
+  apg
+  apgbfm
+  apgbfm
+  aplay
+  aplay
+  aplaymidi
+  aplaymidi
+  appres
+  appres
+  appstreamcli
+  appstreamcli
+  apropos
+  apropos
+  apt
+  apt
+  apt-add-repository
+  apt-add-repository
+  apt-cache
+  apt-cache
+  apt-cdrom
+  apt-cdrom
+  apt-changelog
+  apt-changelog
+  apt-clone
+  apt-clone
+  apt-config
+  apt-config
+  aptdcon
+  aptdcon
+  apt-extracttemplates
+  apt-extracttemplates
+  apt-ftparchive
+  apt-ftparchive
+  apt-get
+  apt-get
+  aptitude
+  aptitude
+  aptitude-changelog-parser
+  aptitude-changelog-parser
+  aptitude-create-state-bundle
+  aptitude-create-state-bundle
+  aptitude-curses
+  aptitude-curses
+  aptitude-run-state-bundle
+  aptitude-run-state-bundle
+  apt-key
+  apt-key
+  apt-mark
+  apt-mark
+  apt-sortpkgs
+  apt-sortpkgs
+  apturl
+  apturl
+  apturl-gtk
+  apturl-gtk
+  ar
+  ar
+  arara
+  arara
+  arborist
+  arborist
+  arch
+  arch
+  arecord
+  arecord
+  arecordmidi
+  arecordmidi
+  arlatex
+  arlatex
+  arm2hpdl
+  arm2hpdl
+  arping
+  arping
+  as
+  as
+  asciitopgm
+  asciitopgm
+  aseqdump
+  aseqdump
+  aseqnet
+  aseqnet
+  aspell
+  aspell
+  aspell-import
+  aspell-import
+  asy
+  asy
+  atktopbm
+  atktopbm
+  atobm
+  atobm
+  attr
+  attr
+  authorindex
+  authorindex
+  autoinst
+  autoinst
+  autosp
+  autosp
+  avahi-browse
+  avahi-browse
+  avahi-browse-domains
+  avahi-browse-domains
+  avahi-publish
+  avahi-publish
+  avahi-publish-address
+  avahi-publish-address
+  avahi-publish-service
+  avahi-publish-service
+  avahi-resolve
+  avahi-resolve
+  avahi-resolve-address
+  avahi-resolve-address
+  avahi-resolve-host-name
+  avahi-resolve-host-name
+  avahi-set-host-name
+  avahi-set-host-name
+  avinfo
+  avinfo
+  awk
+  awk
+  axfer
+  axfer
+  axohelp
+  axohelp
+  b2sum
+  b2sum
+  baobab
+  baobab
+  base32
+  base32
+  base64
+  base64
+  basename
+  basename
+  basenc
+  basenc
+  bash
+  bash
+  bashbug
+  bashbug
+  bbl2bib
+  bbl2bib
+  bbox
+  bbox
+  bc
+  bc
+  bdftopcf
+  bdftopcf
+  bdftruncate
+  bdftruncate
+  bg5conv
+  bg5conv
+  bg5+latex
+  bg5+latex
+  bg5latex
+  bg5latex
+  bg5+pdflatex
+  bg5+pdflatex
+  bg5pdflatex
+  bg5pdflatex
+  bib2gls
+  bib2gls
+  bibdoiadd
+  bibdoiadd
+  biber
+  biber
+  bibexport
+  bibexport
+  bibmradd
+  bibmradd
+  bibtex
+  bibtex
+  bibtex8
+  bibtex8
+  bibtex.original
+  bibtex.original
+  bibtexu
+  bibtexu
+  biburl2doi
+  biburl2doi
+  bibzbladd
+  bibzbladd
+  /bin:
+  bioradtopgm
+  bioradtopgm
+  bison
+  bison
+  bison.yacc
+  bison.yacc
+  bitmap
+  bitmap
+  blueman-adapters
+  blueman-adapters
+  blueman-applet
+  blueman-applet
+  blueman-manager
+  blueman-manager
+  blueman-sendto
+  blueman-sendto
+  blueman-services
+  blueman-services
+  blueman-tray
+  blueman-tray
+  bluemoon
+  bluemoon
+  bluetoothctl
+  bluetoothctl
+  bmptopnm
+  bmptopnm
+  bmptoppm
+  bmptoppm
+  bmtoa
+  bmtoa
+  boltctl
+  boltctl
+  bootctl
+  bootctl
+  brltty
+  brltty
+  brltty-ctb
+  brltty-ctb
+  brltty-trtxt
+  brltty-trtxt
+  brltty-ttb
+  brltty-ttb
+  broadwayd
+  broadwayd
+  browse
+  browse
+  brushtopbm
+  brushtopbm
+  btattach
+  btattach
+  btmgmt
+  btmgmt
+  btmon
+  btmon
+  btrfs
+  btrfs
+  btrfsck
+  btrfsck
+  btrfs-convert
+  btrfs-convert
+  btrfs-find-root
+  btrfs-find-root
+  btrfs-image
+  btrfs-image
+  btrfs-map-logical
+  btrfs-map-logical
+  btrfs-select-super
+  btrfs-select-super
+  btrfstune
+  btrfstune
+  bulky
+  bulky
+  bundle3.0
+  bundle3.0
+  bundledoc
+  bundledoc
+  bundler3.0
+  bundler3.0
+  bunzip2
+  bunzip2
+  busctl
+  busctl
+  busybox
+  busybox
+  bwrap
+  bwrap
+  bzcat
+  bzcat
+  bzcmp
+  bzcmp
+  bzdiff
+  bzdiff
+  bzegrep
+  bzegrep
+  bzexe
+  bzexe
+  bzfgrep
+  bzfgrep
+  bzgrep
+  bzgrep
+  bzip2
+  bzip2
+  bzip2recover
+  bzip2recover
+  bzless
+  bzless
+  bzmore
+  bzmore
+  c++
+  c++
+  c89
+  c89
+  c89-gcc
+  c89-gcc
+  c99
+  c99
+  c99-gcc
+  c99-gcc
+  cabextract
+  cabextract
+  cachepic
+  cachepic
+  cal
+  cal
+  calibrate_ppa
+  calibrate_ppa
+  canberra-gtk-play
+  canberra-gtk-play
+  cancel
+  cancel
+  captoinfo
+  captoinfo
+  caribou-preferences
+  caribou-preferences
+  cat
+  cat
+  catdoc
+  catdoc
+  catman
+  catman
+  catppt
+  catppt
+  cautious-launcher
+  cautious-launcher
+  cc
+  cc
+  cd-create-profile
+  cd-create-profile
+  cd-fix-profile
+  cd-fix-profile
+  cd-iccdump
+  cd-iccdump
+  cd-it8
+  cd-it8
+  cef5conv
+  cef5conv
+  cef5latex
+  cef5latex
+  cef5pdflatex
+  cef5pdflatex
+  cefconv
+  cefconv
+  ceflatex
+  ceflatex
+  cefpdflatex
+  cefpdflatex
+  cefsconv
+  cefsconv
+  cefslatex
+  cefslatex
+  cefspdflatex
+  cefspdflatex
+  celluloid
+  celluloid
+  cfftot1
+  cfftot1
+  c++filt
+  c++filt
+  chacl
+  chacl
+  chage
+  chage
+  chardet
+  chardet
+  chardetect
+  chardetect
+  charmap
+  charmap
+  chattr
+  chattr
+  chcon
+  chcon
+  checkcites
+  checkcites
+  checklistings
+  checklistings
+  check_signals
+  check_signals
+  chfn
+  chfn
+  chgrp
+  chgrp
+  chkdvifont
+  chkdvifont
+  chklref
+  chklref
+  chktex
+  chktex
+  chkweb
+  chkweb
+  chmod
+  chmod
+  choom
+  choom
+  chown
+  chown
+  chrt
+  chrt
+  chsh
+  chsh
+  chvt
+  chvt
+  cifscreds
+  cifscreds
+  cifsdd
+  cifsdd
+  cinnamon
+  cinnamon
+  cinnamon2d
+  cinnamon2d
+  cinnamon-calendar-server
+  cinnamon-calendar-server
+  cinnamon-close-dialog
+  cinnamon-close-dialog
+  cinnamon-control-center
+  cinnamon-control-center
+  cinnamon-dbus-command
+  cinnamon-dbus-command
+  cinnamon-desktop-editor
+  cinnamon-desktop-editor
+  cinnamon-display-changes-dialog
+  cinnamon-display-changes-dialog
+  cinnamon-driver-manager
+  cinnamon-driver-manager
+  cinnamon-file-dialog
+  cinnamon-file-dialog
+  cinnamon-hover-click
+  cinnamon-hover-click
+  cinnamon-install-spice
+  cinnamon-install-spice
+  cinnamon-json-makepot
+  cinnamon-json-makepot
+  cinnamon-killer-daemon
+  cinnamon-killer-daemon
+  cinnamon-launcher
+  cinnamon-launcher
+  cinnamon-looking-glass
+  cinnamon-looking-glass
+  cinnamon-menu-editor
+  cinnamon-menu-editor
+  cinnamon-preview-gtk-theme
+  cinnamon-preview-gtk-theme
+  cinnamon-remove-application
+  cinnamon-remove-application
+  cinnamon-screensaver
+  cinnamon-screensaver
+  cinnamon-screensaver-command
+  cinnamon-screensaver-command
+  cinnamon-screensaver-lock-dialog
+  cinnamon-screensaver-lock-dialog
+  cinnamon-session
+  cinnamon-session
+  cinnamon-session-cinnamon
+  cinnamon-session-cinnamon
+  cinnamon-session-cinnamon2d
+  cinnamon-session-cinnamon2d
+  cinnamon-session-quit
+  cinnamon-session-quit
+  cinnamon-settings
+  cinnamon-settings
+  cinnamon-settings-users
+  cinnamon-settings-users
+  cinnamon-slideshow
+  cinnamon-slideshow
+  cinnamon-spice-updater
+  cinnamon-spice-updater
+  cinnamon-subprocess-wrapper
+  cinnamon-subprocess-wrapper
+  cinnamon-unlock-desktop
+  cinnamon-unlock-desktop
+  cinnamon-xlet-makepot
+  cinnamon-xlet-makepot
+  ciptool
+  ciptool
+  cjk-gs-integrate
+  cjk-gs-integrate
+  cjs
+  cjs
+  cjs-console
+  cjs-console
+  ckbcomp
+  ckbcomp
+  cksum
+  cksum
+  clear
+  clear
+  clear_console
+  clear_console
+  cluttex
+  cluttex
+  cmp
+  cmp
+  cmuwmtopbm
+  cmuwmtopbm
+  codepage
+  codepage
+  col
+  col
+  colcrt
+  colcrt
+  colormgr
+  colormgr
+  colrm
+  colrm
+  column
+  column
+  combinediff
+  combinediff
+  comm
+  comm
+  compare
+  compare
+  compare-im6
+  compare-im6
+  compare-im6.q16
+  compare-im6.q16
+  compose
+  compose
+  composite
+  composite
+  composite-im6
+  composite-im6
+  composite-im6.q16
+  composite-im6.q16
+  conjure
+  conjure
+  conjure-im6
+  conjure-im6
+  conjure-im6.q16
+  conjure-im6.q16
+  context
+  context
+  contextjit
+  contextjit
+  convbkmk
+  convbkmk
+  convert
+  convert
+  convertgls2bib
+  convertgls2bib
+  convert-im6
+  convert-im6
+  convert-im6.q16
+  convert-im6.q16
+  coredumpctl
+  coredumpctl
+  corelist
+  corelist
+  cp
+  cp
+  cpan
+  cpan
+  cpan5.34-x86_64-linux-gnu
+  cpan5.34-x86_64-linux-gnu
+  cpanel_json_xs
+  cpanel_json_xs
+  cpio
+  cpio
+  cpp
+  cpp
+  cpp-11
+  cpp-11
+  cpp-12
+  cpp-12
+  crc32
+  crc32
+  c_rehash
+  c_rehash
+  crontab
+  crontab
+  csd-a11y-settings
+  csd-a11y-settings
+  csd-automount
+  csd-automount
+  csd-background
+  csd-background
+  csd-backlight-helper
+  csd-backlight-helper
+  csd-clipboard
+  csd-clipboard
+  csd-color
+  csd-color
+  csd-datetime-mechanism
+  csd-datetime-mechanism
+  csd-housekeeping
+  csd-housekeeping
+  csd-input-helper
+  csd-input-helper
+  csd-keyboard
+  csd-keyboard
+  csd-media-keys
+  csd-media-keys
+  csd-power
+  csd-power
+  csd-printer
+  csd-printer
+  csd-print-notifications
+  csd-print-notifications
+  csd-screensaver-proxy
+  csd-screensaver-proxy
+  csd-settings-remap
+  csd-settings-remap
+  csd-smartcard
+  csd-smartcard
+  csd-wacom
+  csd-wacom
+  csd-xsettings
+  csd-xsettings
+  cslatex
+  cslatex
+  csplain
+  csplain
+  csplit
+  csplit
+  ctags
+  ctags
+  ctags.emacs
+  ctags.emacs
+  ctanbib
+  ctanbib
+  ctangle
+  ctangle
+  ctanify
+  ctanify
+  ctan-o-mat
+  ctan-o-mat
+  ctanupload
+  ctanupload
+  ctie
+  ctie
+  ctstat
+  ctstat
+  ctwill
+  ctwill
+  ctwill-refsort
+  ctwill-refsort
+  ctwill-twinx
+  ctwill-twinx
+  cups-calibrate
+  cups-calibrate
+  cupstestppd
+  cupstestppd
+  curl
+  curl
+  cut
+  cut
+  cvtsudoers
+  cvtsudoers
+  cweave
+  cweave
+  dash
+  dash
+  date
+  date
+  dbeaver
+  dbeaver
+  dbeaver-ce
+  dbeaver-ce
+  dbus-cleanup-sockets
+  dbus-cleanup-sockets
+  dbus-daemon
+  dbus-daemon
+  dbus-launch
+  dbus-launch
+  dbus-monitor
+  dbus-monitor
+  dbus-run-session
+  dbus-run-session
+  dbus-send
+  dbus-send
+  dbus-update-activation-environment
+  dbus-update-activation-environment
+  dbus-uuidgen
+  dbus-uuidgen
+  dbwrap_tool
+  dbwrap_tool
+  dbxtool
+  dbxtool
+  dc
+  dc
+  dccleancrw
+  dccleancrw
+  dcfujigreen
+  dcfujigreen
+  dcfujiturn
+  dcfujiturn
+  dcfujiturn16
+  dcfujiturn16
+  dconf
+  dconf
+  dcparse
+  dcparse
+  dcraw
+  dcraw
+  dd
+  dd
+  ddstdecode
+  ddstdecode
+  deallocvt
+  deallocvt
+  debconf
+  debconf
+  debconf-apt-progress
+  debconf-apt-progress
+  debconf-communicate
+  debconf-communicate
+  debconf-copydb
+  debconf-copydb
+  debconf-escape
+  debconf-escape
+  debconf-set-selections
+  debconf-set-selections
+  debconf-show
+  debconf-show
+  debian-distro-info
+  debian-distro-info
+  deb-systemd-helper
+  deb-systemd-helper
+  deb-systemd-invoke
+  deb-systemd-invoke
+  decodemail
+  decodemail
+  dehtmldiff
+  dehtmldiff
+  delpart
+  delpart
+  delv
+  delv
+  depythontex
+  depythontex
+  derb
+  derb
+  desktop-file-edit
+  desktop-file-edit
+  desktop-file-install
+  desktop-file-install
+  desktop-file-validate
+  desktop-file-validate
+  detex
+  detex
+  devdump
+  devdump
+  devnag
+  devnag
+  deweb
+  deweb
+  df
+  df
+  dfu-tool
+  dfu-tool
+  dh_bash-completion
+  dh_bash-completion
+  dh_dkms
+  dh_dkms
+  dh_installtex
+  dh_installtex
+  dh_installxmlcatalogs
+  dh_installxmlcatalogs
+  dh_perl_openssl
+  dh_perl_openssl
+  diadia
+  diadia
+  dialog
+  dialog
+  diff
+  diff
+  diff3
+  diff3
+  diffstat
+  diffstat
+  dig
+  dig
+  dir
+  dir
+  dircolors
+  dircolors
+  dirmngr
+  dirmngr
+  dirmngr-client
+  dirmngr-client
+  dirname
+  dirname
+  dirsplit
+  dirsplit
+  discord
+  discord
+  disdvi
+  disdvi
+  display
+  display
+  display-im6
+  display-im6
+  display-im6.q16
+  display-im6.q16
+  distro-info
+  distro-info
+  dmesg
+  dmesg
+  dm-tool
+  dm-tool
+  dnsdomainname
+  dnsdomainname
+  dns-fix
+  dns-fix
+  domainname
+  domainname
+  dosepsbin
+  dosepsbin
+  dotlock
+  dotlock
+  dotlock.mailutils
+  dotlock.mailutils
+  dpkg
+  dpkg
+  dpkg-architecture
+  dpkg-architecture
+  dpkg-buildflags
+  dpkg-buildflags
+  dpkg-buildpackage
+  dpkg-buildpackage
+  dpkg-checkbuilddeps
+  dpkg-checkbuilddeps
+  dpkg-deb
+  dpkg-deb
+  dpkg-distaddfile
+  dpkg-distaddfile
+  dpkg-divert
+  dpkg-divert
+  dpkg-genbuildinfo
+  dpkg-genbuildinfo
+  dpkg-genchanges
+  dpkg-genchanges
+  dpkg-gencontrol
+  dpkg-gencontrol
+  dpkg-gensymbols
+  dpkg-gensymbols
+  dpkg-maintscript-helper
+  dpkg-maintscript-helper
+  dpkg-mergechangelogs
+  dpkg-mergechangelogs
+  dpkg-name
+  dpkg-name
+  dpkg-parsechangelog
+  dpkg-parsechangelog
+  dpkg-query
+  dpkg-query
+  dpkg-realpath
+  dpkg-realpath
+  dpkg-repack
+  dpkg-repack
+  dpkg-scanpackages
+  dpkg-scanpackages
+  dpkg-scansources
+  dpkg-scansources
+  dpkg-shlibdeps
+  dpkg-shlibdeps
+  dpkg-source
+  dpkg-source
+  dpkg-split
+  dpkg-split
+  dpkg-statoverride
+  dpkg-statoverride
+  dpkg-trigger
+  dpkg-trigger
+  dpkg-vendor
+  dpkg-vendor
+  drawing
+  drawing
+  driverless
+  driverless
+  driverless-fax
+  driverless-fax
+  driver-manager
+  driver-manager
+  dt2dv
+  dt2dv
+  dtxgen
+  dtxgen
+  du
+  du
+  dumpkeys
+  dumpkeys
+  dv2dt
+  dv2dt
+  dvd+rw-format
+  dvd+rw-format
+  dvi2fax
+  dvi2fax
+  dvi2tty
+  dvi2tty
+  dviasm
+  dviasm
+  dvibook
+  dvibook
+  dviconcat
+  dviconcat
+  dvicopy
+  dvicopy
+  dvidvi
+  dvidvi
+  dvigif
+  dvigif
+  dvihp
+  dvihp
+  dviinfox
+  dviinfox
+  dvilj
+  dvilj
+  dvilj2p
+  dvilj2p
+  dvilj4
+  dvilj4
+  dvilj4l
+  dvilj4l
+  dvilj6
+  dvilj6
+  dvilualatex
+  dvilualatex
+  dvilualatex-dev
+  dvilualatex-dev
+  dviluatex
+  dviluatex
+  dvipdf
+  dvipdf
+  dvipdfm
+  dvipdfm
+  dvipdfmx
+  dvipdfmx
+  dvipdft
+  dvipdft
+  dvipng
+  dvipng
+  dvipos
+  dvipos
+  dvips
+  dvips
+  dvired
+  dvired
+  dviselect
+  dviselect
+  dvispc
+  dvispc
+  dvisvgm
+  dvisvgm
+  dvitodvi
+  dvitodvi
+  dvitomp
+  dvitomp
+  dvitype
+  dvitype
+  dwp
+  dwp
+  e2pall
+  e2pall
+  ebb
+  ebb
+  ebrowse
+  ebrowse
+  ebrowse.emacs
+  ebrowse.emacs
+  echo
+  echo
+  ecryptfs-add-passphrase
+  ecryptfs-add-passphrase
+  ecryptfsd
+  ecryptfsd
+  ecryptfs-find
+  ecryptfs-find
+  ecryptfs-generate-tpm-key
+  ecryptfs-generate-tpm-key
+  ecryptfs-insert-wrapped-passphrase-into-keyring
+  ecryptfs-insert-wrapped-passphrase-into-keyring
+  ecryptfs-manager
+  ecryptfs-manager
+  ecryptfs-migrate-home
+  ecryptfs-migrate-home
+  ecryptfs-mount-private
+  ecryptfs-mount-private
+  ecryptfs-recover-private
+  ecryptfs-recover-private
+  ecryptfs-rewrap-passphrase
+  ecryptfs-rewrap-passphrase
+  ecryptfs-rewrite-file
+  ecryptfs-rewrite-file
+  ecryptfs-setup-private
+  ecryptfs-setup-private
+  ecryptfs-setup-swap
+  ecryptfs-setup-swap
+  ecryptfs-stat
+  ecryptfs-stat
+  ecryptfs-umount-private
+  ecryptfs-umount-private
+  ecryptfs-unwrap-passphrase
+  ecryptfs-unwrap-passphrase
+  ecryptfs-verify
+  ecryptfs-verify
+  ecryptfs-wrap-passphrase
+  ecryptfs-wrap-passphrase
+  ed
+  ed
+  edit
+  edit
+  editdiff
+  editdiff
+  editor
+  editor
+  editres
+  editres
+  efibootdump
+  efibootdump
+  efibootmgr
+  efibootmgr
+  eglinfo
+  eglinfo
+  eglinfo.x86_64-linux-gnu
+  eglinfo.x86_64-linux-gnu
+  egrep
+  egrep
+  eject
+  eject
+  elfedit
+  elfedit
+  emacs
+  emacs
+  emacsclient
+  emacsclient
+  emacsclient.emacs
+  emacsclient.emacs
+  emacs-gtk
+  emacs-gtk
+  enc2xs
+  enc2xs
+  encguess
+  encguess
+  enchant-2
+  enchant-2
+  enchant-lsmod-2
+  enchant-lsmod-2
+  env
+  env
+  envsubst
+  envsubst
+  eplain
+  eplain
+  eps2eps
+  eps2eps
+  epsffit
+  epsffit
+  epspdf
+  epspdf
+  epspdftk
+  epspdftk
+  epstopdf
+  epstopdf
+  eptex
+  eptex
+  eqn
+  eqn
+  erb
+  erb
+  erb3.0
+  erb3.0
+  es2gears_wayland
+  es2gears_wayland
+  es2gears_wayland.x86_64-linux-gnu
+  es2gears_wayland.x86_64-linux-gnu
+  es2gears_x11
+  es2gears_x11
+  es2gears_x11.x86_64-linux-gnu
+  es2gears_x11.x86_64-linux-gnu
+  es2_info
+  es2_info
+  es2_info.x86_64-linux-gnu
+  es2_info.x86_64-linux-gnu
+  es2tri
+  es2tri
+  es2tri.x86_64-linux-gnu
+  es2tri.x86_64-linux-gnu
+  esc-m
+  esc-m
+  esparse
+  esparse
+  espdiff
+  espdiff
+  esvalidate
+  esvalidate
+  etags
+  etags
+  etags.emacs
+  etags.emacs
+  etex
+  etex
+  euptex
+  euptex
+  eutp
+  eutp
+  evince
+  evince
+  ex
+  ex
+  exceltex
+  exceltex
+  exif
+  exif
+  exonpairs
+  exonpairs
+  expand
+  expand
+  expiry
+  expiry
+  expr
+  expr
+  extconv
+  extconv
+  extractbb
+  extractbb
+  extractres
+  extractres
+  eyuvtoppm
+  eyuvtoppm
+  f77
+  f77
+  f95
+  f95
+  factor
+  factor
+  faillog
+  faillog
+  faked-sysv
+  faked-sysv
+  faked-tcp
+  faked-tcp
+  fakeroot
+  fakeroot
+  fakeroot-sysv
+  fakeroot-sysv
+  fakeroot-tcp
+  fakeroot-tcp
+  fallocate
+  fallocate
+  false
+  false
+  fathom
+  fathom
+  fc-cache
+  fc-cache
+  fc-cat
+  fc-cat
+  fc-conflist
+  fc-conflist
+  fc-list
+  fc-list
+  fc-match
+  fc-match
+  fc-pattern
+  fc-pattern
+  fc-query
+  fc-query
+  fc-scan
+  fc-scan
+  fc-validate
+  fc-validate
+  feynmf
+  feynmf
+  ffmpegthumbnailer
+  ffmpegthumbnailer
+  fgconsole
+  fgconsole
+  fgrep
+  fgrep
+  fiascotopnm
+  fiascotopnm
+  fig4latex
+  fig4latex
+  file
+  file
+  file2brl
+  file2brl
+  file-rename
+  file-rename
+  file-roller
+  file-roller
+  filterdiff
+  filterdiff
+  finalrd
+  finalrd
+  fincore
+  fincore
+  find
+  find
+  findhyph
+  findhyph
+  findmnt
+  findmnt
+  findrule
+  findrule
+  firefox
+  firefox
+  fitstopnm
+  fitstopnm
+  fixcvsdiff
+  fixcvsdiff
+  fixdlsrps
+  fixdlsrps
+  fixfmps
+  fixfmps
+  fixpsditps
+  fixpsditps
+  fixpspps
+  fixpspps
+  fixscribeps
+  fixscribeps
+  fixtpps
+  fixtpps
+  fixwfwps
+  fixwfwps
+  fixwpps
+  fixwpps
+  fixwwps
+  fixwwps
+  flatpak
+  flatpak
+  flex
+  flex
+  flex++
+  flex++
+  flipdiff
+  flipdiff
+  flock
+  flock
+  fmt
+  fmt
+  fmtutil
+  fmtutil
+  fmtutil-sys
+  fmtutil-sys
+  fmtutil-user
+  fmtutil-user
+  fold
+  fold
+  fontinst
+  fontinst
+  fonttosfnt
+  fonttosfnt
+  foo2ddst
+  foo2ddst
+  foo2ddst-wrapper
+  foo2ddst-wrapper
+  foo2hbpl2
+  foo2hbpl2
+  foo2hbpl2-wrapper
+  foo2hbpl2-wrapper
+  foo2hiperc
+  foo2hiperc
+  foo2hiperc-wrapper
+  foo2hiperc-wrapper
+  foo2hp
+  foo2hp
+  foo2hp2600-wrapper
+  foo2hp2600-wrapper
+  foo2lava
+  foo2lava
+  foo2lava-wrapper
+  foo2lava-wrapper
+  foo2oak
+  foo2oak
+  foo2oak-wrapper
+  foo2oak-wrapper
+  foo2qpdl
+  foo2qpdl
+  foo2qpdl-wrapper
+  foo2qpdl-wrapper
+  foo2slx
+  foo2slx
+  foo2slx-wrapper
+  foo2slx-wrapper
+  foo2xqx
+  foo2xqx
+  foo2xqx-wrapper
+  foo2xqx-wrapper
+  foo2zjs
+  foo2zjs
+  foo2zjs-icc2ps
+  foo2zjs-icc2ps
+  foo2zjs-pstops
+  foo2zjs-pstops
+  foo2zjs-wrapper
+  foo2zjs-wrapper
+  foomatic-rip
+  foomatic-rip
+  forge
+  forge
+  fprintd-delete
+  fprintd-delete
+  fprintd-enroll
+  fprintd-enroll
+  fprintd-list
+  fprintd-list
+  fprintd-verify
+  fprintd-verify
+  fragmaster
+  fragmaster
+  free
+  free
+  frm
+  frm
+  frm.mailutils
+  frm.mailutils
+  from
+  from
+  from.mailutils
+  from.mailutils
+  fstopgm
+  fstopgm
+  ftp
+  ftp
+  funzip
+  funzip
+  fuser
+  fuser
+  fusermount
+  fusermount
+  fusermount3
+  fusermount3
+  fwupdagent
+  fwupdagent
+  fwupdate
+  fwupdate
+  fwupdmgr
+  fwupdmgr
+  fwupdtool
+  fwupdtool
+  g++
+  g++
+  g++-11
+  g++-11
+  g3topbm
+  g3topbm
+  gamemoded
+  gamemoded
+  gamma4scanimage
+  gamma4scanimage
+  gapplication
+  gapplication
+  gatttool
+  gatttool
+  gawk
+  gawk
+  gbklatex
+  gbklatex
+  gbkpdflatex
+  gbkpdflatex
+  gcalccmd
+  gcalccmd
+  gcc
+  gcc
+  gcc-11
+  gcc-11
+  gcc-12
+  gcc-12
+  gcc-ar
+  gcc-ar
+  gcc-ar-11
+  gcc-ar-11
+  gcc-ar-12
+  gcc-ar-12
+  gcc-nm
+  gcc-nm
+  gcc-nm-11
+  gcc-nm-11
+  gcc-nm-12
+  gcc-nm-12
+  gcc-ranlib
+  gcc-ranlib
+  gcc-ranlib-11
+  gcc-ranlib-11
+  gcc-ranlib-12
+  gcc-ranlib-12
+  gcore
+  gcore
+  gcov
+  gcov
+  gcov-11
+  gcov-11
+  gcov-12
+  gcov-12
+  gcov-dump
+  gcov-dump
+  gcov-dump-11
+  gcov-dump-11
+  gcov-dump-12
+  gcov-dump-12
+  gcov-tool
+  gcov-tool
+  gcov-tool-11
+  gcov-tool-11
+  gcov-tool-12
+  gcov-tool-12
+  gcr-viewer
+  gcr-viewer
+  gdb
+  gdb
+  gdb-add-index
+  gdb-add-index
+  gdbserver
+  gdbserver
+  gdbtui
+  gdbtui
+  gdbus
+  gdbus
+  gdbus-codegen
+  gdbus-codegen
+  gdebi
+  gdebi
+  gdebi-gtk
+  gdebi-gtk
+  gdialog
+  gdialog
+  gdk-pixbuf-csource
+  gdk-pixbuf-csource
+  gdk-pixbuf-pixdata
+  gdk-pixbuf-pixdata
+  gdk-pixbuf-thumbnailer
+  gdk-pixbuf-thumbnailer
+  gem
+  gem
+  gem3.0
+  gem3.0
+  gemtopbm
+  gemtopbm
+  gemtopnm
+  gemtopnm
+  genbrk
+  genbrk
+  gencat
+  gencat
+  gencfu
+  gencfu
+  gencnval
+  gencnval
+  gendict
+  gendict
+  genisoimage
+  genisoimage
+  genrb
+  genrb
+  geqn
+  geqn
+  GET
+  GET
+  getafm
+  getafm
+  getcifsacl
+  getcifsacl
+  getconf
+  getconf
+  geteltorito
+  geteltorito
+  getent
+  getent
+  getfacl
+  getfacl
+  getfattr
+  getfattr
+  gethostip
+  gethostip
+  getkeycodes
+  getkeycodes
+  getmapdl
+  getmapdl
+  getopt
+  getopt
+  gettext
+  gettext
+  gettextize
+  gettextize
+  gettext.sh
+  gettext.sh
+  gfortran
+  gfortran
+  gfortran-11
+  gfortran-11
+  gftodvi
+  gftodvi
+  gftopk
+  gftopk
+  gftype
+  gftype
+  ghc
+  ghc
+  ghc-8.8.4
+  ghc-8.8.4
+  ghci
+  ghci
+  ghci-8.8.4
+  ghci-8.8.4
+  ghc-pkg
+  ghc-pkg
+  ghc-pkg-8.8.4
+  ghc-pkg-8.8.4
+  ghostscript
+  ghostscript
+  giftopnm
+  giftopnm
+  ginstall-info
+  ginstall-info
+  gio
+  gio
+  gio-querymodules
+  gio-querymodules
+  gipddecode
+  gipddecode
+  git
+  git
+  gitdiff
+  gitdiff
+  gitdiffview
+  gitdiffview
+  git-latexdiff
+  git-latexdiff
+  git-receive-pack
+  git-receive-pack
+  git-shell
+  git-shell
+  git-upload-archive
+  git-upload-archive
+  git-upload-pack
+  git-upload-pack
+  gkbd-keyboard-display
+  gkbd-keyboard-display
+  glib-compile-resources
+  glib-compile-resources
+  glib-compile-schemas
+  glib-compile-schemas
+  glib-genmarshal
+  glib-genmarshal
+  glib-gettextize
+  glib-gettextize
+  glib-mkenums
+  glib-mkenums
+  glxdemo
+  glxdemo
+  glxdemo.x86_64-linux-gnu
+  glxdemo.x86_64-linux-gnu
+  glxgears
+  glxgears
+  glxgears.x86_64-linux-gnu
+  glxgears.x86_64-linux-gnu
+  glxheads
+  glxheads
+  glxheads.x86_64-linux-gnu
+  glxheads.x86_64-linux-gnu
+  glxinfo
+  glxinfo
+  glxinfo.x86_64-linux-gnu
+  glxinfo.x86_64-linux-gnu
+  gmake
+  gmake
+  gmplayerdvd
+  gmplayerdvd
+  gnome-calculator
+  gnome-calculator
+  gnome-calendar
+  gnome-calendar
+  gnome-disk-image-mounter
+  gnome-disk-image-mounter
+  gnome-disks
+  gnome-disks
+  gnome-help
+  gnome-help
+  gnome-keyring
+  gnome-keyring
+  gnome-keyring-3
+  gnome-keyring-3
+  gnome-keyring-daemon
+  gnome-keyring-daemon
+  gnome-logs
+  gnome-logs
+  gnome-power-statistics
+  gnome-power-statistics
+  gnome-screenshot
+  gnome-screenshot
+  gnome-system-monitor
+  gnome-system-monitor
+  gnome-terminal
+  gnome-terminal
+  gnome-terminal.real
+  gnome-terminal.real
+  gnome-terminal.wrapper
+  gnome-terminal.wrapper
+  gnome-www-browser
+  gnome-www-browser
+  gobject-query
+  gobject-query
+  gold
+  gold
+  google-chrome
+  google-chrome
+  google-chrome-stable
+  google-chrome-stable
+  gouldtoppm
+  gouldtoppm
+  gpasswd
+  gpasswd
+  gpg
+  gpg
+  gpg-agent
+  gpg-agent
+  gpgcompose
+  gpgcompose
+  gpgconf
+  gpgconf
+  gpg-connect-agent
+  gpg-connect-agent
+  gpgparsemail
+  gpgparsemail
+  gpgsm
+  gpgsm
+  gpgsplit
+  gpgsplit
+  gpgtar
+  gpgtar
+  gpgv
+  gpgv
+  gpg-wks-server
+  gpg-wks-server
+  gpg-zip
+  gpg-zip
+  gpic
+  gpic
+  gprof
+  gprof
+  gpu-manager
+  gpu-manager
+  gregorio
+  gregorio
+  grep
+  grep
+  grep-aptavail
+  grep-aptavail
+  grep-available
+  grep-available
+  grep-dctrl
+  grep-dctrl
+  grep-debtags
+  grep-debtags
+  grepdiff
+  grepdiff
+  grep-status
+  grep-status
+  gresource
+  gresource
+  groff
+  groff
+  grog
+  grog
+  grops
+  grops
+  grotty
+  grotty
+  groups
+  groups
+  growisofs
+  growisofs
+  grub-editenv
+  grub-editenv
+  grub-file
+  grub-file
+  grub-fstest
+  grub-fstest
+  grub-glue-efi
+  grub-glue-efi
+  grub-kbdcomp
+  grub-kbdcomp
+  grub-menulst2cfg
+  grub-menulst2cfg
+  grub-mkfont
+  grub-mkfont
+  grub-mkimage
+  grub-mkimage
+  grub-mklayout
+  grub-mklayout
+  grub-mknetdir
+  grub-mknetdir
+  grub-mkpasswd-pbkdf2
+  grub-mkpasswd-pbkdf2
+  grub-mkrelpath
+  grub-mkrelpath
+  grub-mkrescue
+  grub-mkrescue
+  grub-mkstandalone
+  grub-mkstandalone
+  grub-mount
+  grub-mount
+  grub-ntldr-img
+  grub-ntldr-img
+  grub-render-label
+  grub-render-label
+  grub-script-check
+  grub-script-check
+  grub-syslinux2cfg
+  grub-syslinux2cfg
+  gs
+  gs
+  gsbj
+  gsbj
+  gsdj
+  gsdj
+  gsdj500
+  gsdj500
+  gsettings
+  gsettings
+  gsf
+  gsf
+  gsf-office-thumbnailer
+  gsf-office-thumbnailer
+  gsftopk
+  gsftopk
+  gsf-vba-dump
+  gsf-vba-dump
+  gslj
+  gslj
+  gslp
+  gslp
+  gsnd
+  gsnd
+  gst-device-monitor-1.0
+  gst-device-monitor-1.0
+  gst-discoverer-1.0
+  gst-discoverer-1.0
+  gst-inspect-1.0
+  gst-inspect-1.0
+  gst-launch-1.0
+  gst-launch-1.0
+  gst-play-1.0
+  gst-play-1.0
+  gstreamer-codec-install
+  gstreamer-codec-install
+  gst-stats-1.0
+  gst-stats-1.0
+  gst-tester-1.0
+  gst-tester-1.0
+  gst-typefind-1.0
+  gst-typefind-1.0
+  gtbl
+  gtbl
+  gtester
+  gtester
+  gtester-report
+  gtester-report
+  gtf
+  gtf
+  gtk4-builder-tool
+  gtk4-builder-tool
+  gtk4-encode-symbolic-svg
+  gtk4-encode-symbolic-svg
+  gtk4-launch
+  gtk4-launch
+  gtk4-query-settings
+  gtk4-query-settings
+  gtk4-update-icon-cache
+  gtk4-update-icon-cache
+  gtk-builder-tool
+  gtk-builder-tool
+  gtk-encode-symbolic-svg
+  gtk-encode-symbolic-svg
+  gtk-launch
+  gtk-launch
+  gtk-query-settings
+  gtk-query-settings
+  gtk-redshift
+  gtk-redshift
+  gtk-update-icon-cache
+  gtk-update-icon-cache
+  gucharmap
+  gucharmap
+  gufw
+  gufw
+  gufw-pkexec
+  gufw-pkexec
+  gunzip
+  gunzip
+  gyp
+  gyp
+  gzexe
+  gzexe
+  gzip
+  gzip
+  h2ph
+  h2ph
+  h2xs
+  h2xs
+  haddock
+  haddock
+  haddock-ghc-8.8.4
+  haddock-ghc-8.8.4
+  hardlink
+  hardlink
+  haskell-compiler
+  haskell-compiler
+  hbf2gf
+  hbf2gf
+  hbpldecode
+  hbpldecode
+  hciattach
+  hciattach
+  hciconfig
+  hciconfig
+  hcitool
+  hcitool
+  hd
+  hd
+  head
+  head
+  HEAD
+  HEAD
+  helpztags
+  helpztags
+  hex2hcd
+  hex2hcd
+  hexchat
+  hexchat
+  hexdump
+  hexdump
+  hipercdecode
+  hipercdecode
+  hipstopgm
+  hipstopgm
+  hmm-assembler.pl
+  hmm-assembler.pl
+  hmm-info
+  hmm-info
+  host
+  host
+  hostid
+  hostid
+  hostname
+  hostname
+  hostnamectl
+  hostnamectl
+  hp2ps
+  hp2ps
+  hp-align
+  hp-align
+  hpc
+  hpc
+  hp-check
+  hp-check
+  hp-clean
+  hp-clean
+  hp-colorcal
+  hp-colorcal
+  hp-config_usb_printer
+  hp-config_usb_printer
+  hp-doctor
+  hp-doctor
+  hp-firmware
+  hp-firmware
+  hp-info
+  hp-info
+  hp-levels
+  hp-levels
+  hp-logcapture
+  hp-logcapture
+  hp-makeuri
+  hp-makeuri
+  hp-pkservice
+  hp-pkservice
+  hp-plugin
+  hp-plugin
+  hp-plugin-ubuntu
+  hp-plugin-ubuntu
+  hp-probe
+  hp-probe
+  hp-query
+  hp-query
+  hp-scan
+  hp-scan
+  hp-setup
+  hp-setup
+  hp-testpage
+  hp-testpage
+  hp-timedate
+  hp-timedate
+  hsc2hs
+  hsc2hs
+  ht
+  ht
+  htcontext
+  htcontext
+  htlatex
+  htlatex
+  htmex
+  htmex
+  html2text
+  html2text
+  httex
+  httex
+  httexi
+  httexi
+  htxelatex
+  htxelatex
+  htxetex
+  htxetex
+  hypnotix
+  hypnotix
+  i386
+  i386
+  i686-linux-gnu-pkg-config
+  i686-linux-gnu-pkg-config
+  ibus
+  ibus
+  ibus-daemon
+  ibus-daemon
+  ibus-setup
+  ibus-setup
+  iceauth
+  iceauth
+  ico
+  ico
+  icontopbm
+  icontopbm
+  iconv
+  iconv
+  icuexportdata
+  icuexportdata
+  icuinfo
+  icuinfo
+  id
+  id
+  id3
+  id3
+  identify
+  identify
+  identify-im6
+  identify-im6
+  identify-im6.q16
+  identify-im6.q16
+  idevicebackup
+  idevicebackup
+  idevicebackup2
+  idevicebackup2
+  idevicecrashreport
+  idevicecrashreport
+  idevicedate
+  idevicedate
+  idevicedebug
+  idevicedebug
+  idevicedebugserverproxy
+  idevicedebugserverproxy
+  idevicediagnostics
+  idevicediagnostics
+  ideviceenterrecovery
+  ideviceenterrecovery
+  idevice_id
+  idevice_id
+  ideviceimagemounter
+  ideviceimagemounter
+  ideviceinfo
+  ideviceinfo
+  ideviceinstaller
+  ideviceinstaller
+  idevicename
+  idevicename
+  idevicenotificationproxy
+  idevicenotificationproxy
+  idevicepair
+  idevicepair
+  ideviceprovision
+  ideviceprovision
+  idevicescreenshot
+  idevicescreenshot
+  idevicesetlocation
+  idevicesetlocation
+  idevicesyslog
+  idevicesyslog
+  iecset
+  iecset
+  ifuse
+  ifuse
+  ijs_pxljr
+  ijs_pxljr
+  ilbmtoppm
+  ilbmtoppm
+  imagetops
+  imagetops
+  im-config
+  im-config
+  imdbpy
+  imdbpy
+  imdbpy2sql.py
+  imdbpy2sql.py
+  imgtoppm
+  imgtoppm
+  im-launch
+  im-launch
+  import
+  import
+  import-im6
+  import-im6
+  import-im6.q16
+  import-im6.q16
+  includeres
+  includeres
+  info
+  info
+  infobrowser
+  infobrowser
+  infocmp
+  infocmp
+  infotocap
+  infotocap
+  inimf
+  inimf
+  initex
+  initex
+  inputattach
+  inputattach
+  install
+  install
+  installfont-tl
+  installfont-tl
+  install-info
+  install-info
+  install-printerdriver
+  install-printerdriver
+  instmodsh
+  instmodsh
+  intel-virtual-output
+  intel-virtual-output
+  interdiff
+  interdiff
+  inxi
+  inxi
+  ionice
+  ionice
+  ip
+  ip
+  ipcmk
+  ipcmk
+  ipcrm
+  ipcrm
+  ipcs
+  ipcs
+  ipod-read-sysinfo-extended
+  ipod-read-sysinfo-extended
+  ipod-time-sync
+  ipod-time-sync
+  ippfind
+  ippfind
+  ipptool
+  ipptool
+  iptables-xml
+  iptables-xml
+  irb
+  irb
+  irb3.0
+  irb3.0
+  ischroot
+  ischroot
+  isdv4-serial-debugger
+  isdv4-serial-debugger
+  isdv4-serial-inputattach
+  isdv4-serial-inputattach
+  isodump
+  isodump
+  isohybrid
+  isohybrid
+  isohybrid.pl
+  isohybrid.pl
+  isoinfo
+  isoinfo
+  isovfy
+  isovfy
+  ispell-wrapper
+  ispell-wrapper
+  jadetex
+  jadetex
+  jamo-normalize
+  jamo-normalize
+  java
+  java
+  jexec
+  jexec
+  jfmutil
+  jfmutil
+  jjs
+  jjs
+  join
+  join
+  join-dctrl
+  join-dctrl
+  journalctl
+  journalctl
+  jpegtopnm
+  jpegtopnm
+  jpgicc
+  jpgicc
+  js
+  js
+  json_pp
+  json_pp
+  json_xs
+  json_xs
+  js-yaml
+  js-yaml
+  JxrDecApp
+  JxrDecApp
+  JxrEncApp
+  JxrEncApp
+  kanji-config-updmap
+  kanji-config-updmap
+  kanji-config-updmap-sys
+  kanji-config-updmap-sys
+  kanji-config-updmap-user
+  kanji-config-updmap-user
+  kanji-fontmap-creator
+  kanji-fontmap-creator
+  kbdinfo
+  kbdinfo
+  kbd_mode
+  kbd_mode
+  kbxutil
+  kbxutil
+  kernel-install
+  kernel-install
+  kerneloops-submit
+  kerneloops-submit
+  ketcindy
+  ketcindy
+  keyctl
+  keyctl
+  keyring
+  keyring
+  keytool
+  keytool
+  kill
+  kill
+  killall
+  killall
+  kmod
+  kmod
+  kmodsign
+  kmodsign
+  koi8rxterm
+  koi8rxterm
+  komkindex
+  komkindex
+  kpseaccess
+  kpseaccess
+  kpsepath
+  kpsepath
+  kpsereadlink
+  kpsereadlink
+  kpsestat
+  kpsestat
+  kpsetool
+  kpsetool
+  kpsewhere
+  kpsewhere
+  kpsewhich
+  kpsewhich
+  kpsexpand
+  kpsexpand
+  l2ping
+  l2ping
+  l2test
+  l2test
+  l3build
+  l3build
+  l4p-tmpl
+  l4p-tmpl
+  lacheck
+  lacheck
+  laptop-detect
+  laptop-detect
+  last
+  last
+  lastb
+  lastb
+  lastlog
+  lastlog
+  latex
+  latex
+  latex2man
+  latex2man
+  latex2nemeth
+  latex2nemeth
+  latexdef
+  latexdef
+  latex-dev
+  latex-dev
+  latexdiff
+  latexdiff
+  latexdiff-cvs
+  latexdiff-cvs
+  latexdiff-fast
+  latexdiff-fast
+  latexdiff-git
+  latexdiff-git
+  latexdiff-hg
+latexdiff-hg
+latexdiff-rcs
+latexdiff-rcs
+latexdiff-svn
+latexdiff-svn
+latexdiff-vc
+latexdiff-vc
+latexfileversion
+latexfileversion
+latex-git-log
+latex-git-log
+latexindent
+latexindent
+latexmk
+latexmk
+latexpand
+latexpand
+latex-papersize
+latex-papersize
+latexrevise
+latexrevise
+latex-wordcount
+latex-wordcount
+lavadecode
+lavadecode
+lcf
+lcf
+ld
+ld
+ld.bfd
+ld.bfd
+ldd
+ldd
+ld.gold
+ld.gold
+leaftoppm
+leaftoppm
+less
+less
+lessecho
+lessecho
+lessfile
+lessfile
+lesskey
+lesskey
+lesspipe
+lesspipe
+lex
+lex
+lexgrog
+lexgrog
+libnetcfg
+libnetcfg
+libpng16-config
+libpng16-config
+libpng-config
+libpng-config
+libreoffice
+libreoffice
+libwacom-list-devices
+libwacom-list-devices
+libwacom-list-local-devices
+libwacom-list-local-devices
+libwacom-show-stylus
+libwacom-show-stylus
+libwacom-update-db
+libwacom-update-db
+lightdm-settings
+lightdm-settings
+link
+link
+linkicc
+linkicc
+lintian
+lintian
+lintian-annotate-hints
+lintian-annotate-hints
+lintian-explain-tags
+lintian-explain-tags
+lintian-info
+lintian-info
+linux32
+linux32
+linux64
+linux64
+linux-boot-prober
+linux-boot-prober
+linux-check-removal
+linux-check-removal
+linux-update-symlinks
+linux-update-symlinks
+linux-version
+linux-version
+lispmtopgm
+lispmtopgm
+listbib
+listbib
+listings-ext
+listings-ext
+listres
+listres
+ln
+ln
+lnstat
+lnstat
+loadkeys
+loadkeys
+loadunimap
+loadunimap
+lobase
+lobase
+localc
+localc
+locale
+locale
+locale-check
+locale-check
+localectl
+localectl
+localedef
+localedef
+locate
+locate
+lodraw
+lodraw
+loffice
+loffice
+lofromtemplate
+lofromtemplate
+logger
+logger
+login
+login
+loginctl
+loginctl
+logname
+logname
+loimpress
+loimpress
+lollipop
+lollipop
+lomath
+lomath
+look
+look
+loweb
+loweb
+lowntfs-3g
+lowntfs-3g
+lowriter
+lowriter
+lp
+lp
+lpoptions
+lpoptions
+lpq
+lpq
+lpr
+lpr
+lprm
+lprm
+lp_solve
+lp_solve
+lpstat
+lpstat
+ls
+ls
+lsattr
+lsattr
+lsblk
+lsblk
+lsb_release
+lsb_release
+lscpu
+lscpu
+lsdiff
+lsdiff
+lshw
+lshw
+lsinitramfs
+lsinitramfs
+lsipc
+lsipc
+lslocks
+lslocks
+lslogins
+lslogins
+lsmem
+lsmem
+lsmod
+lsmod
+lsns
+lsns
+lsof
+lsof
+lspci
+lspci
+lspgpot
+lspgpot
+lss16toppm
+lss16toppm
+lsusb
+lsusb
+lto-dump-11
+lto-dump-11
+lto-dump-12
+lto-dump-12
+ltrace
+ltrace
+ltx2crossrefxml
+ltx2crossrefxml
+ltxfileinfo
+ltxfileinfo
+ltximg
+ltximg
+luahbtex
+luahbtex
+luajithbtex
+luajithbtex
+luajittex
+luajittex
+lualatex
+lualatex
+lualatex-dev
+lualatex-dev
+luaotfload-tool
+luaotfload-tool
+luatex
+luatex
+luatools
+luatools
+luit
+luit
+lwarpmk
+lwarpmk
+lwp-download
+lwp-download
+lwp-dump
+lwp-dump
+lwp-mirror
+lwp-mirror
+lwp-request
+lwp-request
+lxterm
+lxterm
+lz
+lz
+lzcat
+lzcat
+lzcmp
+lzcmp
+lzdiff
+lzdiff
+lzegrep
+lzegrep
+lzfgrep
+lzfgrep
+lzgrep
+lzgrep
+lzip
+lzip
+lzip-compressor
+lzip-compressor
+lzip-decompressor
+lzip-decompressor
+lzip.lzip
+lzip.lzip
+lzless
+lzless
+lzma
+lzma
+lzmainfo
+lzmainfo
+lzmore
+lzmore
+lzop
+lzop
+m17n-db
+m17n-db
+m2300w
+m2300w
+m2300w-wrapper
+m2300w-wrapper
+m2400w
+m2400w
+m4
+m4
+macptopbm
+macptopbm
+mag
+mag
+mail
+mail
+mail.mailutils
+mail.mailutils
+mailq
+mailq
+mailx
+mailx
+make
+make
+make4ht
+make4ht
+makeconv
+makeconv
+makedtx
+makedtx
+make-first-existing-target
+make-first-existing-target
+makeglossaries
+makeglossaries
+makeglossaries-lite
+makeglossaries-lite
+makeindex
+makeindex
+makeinfo
+makeinfo
+makejvf
+makejvf
+mako-render
+mako-render
+man
+man
+mandb
+mandb
+manpath
+manpath
+man-recode
+man-recode
+mapscrn
+mapscrn
+match_parens
+match_parens
+mate-about
+mate-about
+mate-color-select
+mate-color-select
+mate-desktop-item-edit
+mate-desktop-item-edit
+mate-help
+mate-help
+mate-panel
+mate-panel
+mate-panel-test-applets
+mate-panel-test-applets
+mathspic
+mathspic
+mattrib
+mattrib
+mawk
+mawk
+mbadblocks
+mbadblocks
+mcat
+mcat
+mcd
+mcd
+mcheck
+mcheck
+mclasserase
+mclasserase
+mcomp
+mcomp
+mcookie
+mcookie
+mcopy
+mcopy
+md5pass
+md5pass
+md5sum
+md5sum
+md5sum.textutils
+md5sum.textutils
+mdatopbm
+mdatopbm
+mdel
+mdel
+mdeltree
+mdeltree
+mdig
+mdig
+mdir
+mdir
+mdsearch
+mdsearch
+mdu
+mdu
+memdiskfind
+memdiskfind
+memusage
+memusage
+memusagestat
+memusagestat
+mendex
+mendex
+mesa-overlay-control.py
+mesa-overlay-control.py
+mesg
+mesg
+messages
+messages
+messages.mailutils
+messages.mailutils
+metacity
+metacity
+metacity-message
+metacity-message
+metacity-theme-viewer
+metacity-theme-viewer
+mex
+mex
+mf
+mf
+mf2pt1
+mf2pt1
+mflua
+mflua
+mfluajit
+mfluajit
+mfluajit-nowin
+mfluajit-nowin
+mflua-nowin
+mflua-nowin
+mf-nowin
+mf-nowin
+mformat
+mformat
+mfplain
+mfplain
+mft
+mft
+mgrtopbm
+mgrtopbm
+mid3cp
+mid3cp
+mid3iconv
+mid3iconv
+mid3v2
+mid3v2
+migrate-pubring-from-classic-gpg
+migrate-pubring-from-classic-gpg
+mimeopen
+mimeopen
+mimetype
+mimetype
+mimeview
+mimeview
+min12xxw
+min12xxw
+minfo
+minfo
+mintbackup
+mintbackup
+mintBackup
+mintBackup
+mint-drivers
+mint-drivers
+mintdrivers
+mintdrivers
+mintdrivers-add-live-media
+mintdrivers-add-live-media
+mintdrivers-remove-live-media
+mintdrivers-remove-live-media
+mintinstall
+mintinstall
+mintinstall-fp-handler
+mintinstall-fp-handler
+mintinstall-remove-app
+mintinstall-remove-app
+mintinstall-update-pkgcache
+mintinstall-update-pkgcache
+mint-iso-verify
+mint-iso-verify
+mintlocale
+mintlocale
+mintlocale-im
+mintlocale-im
+mintmenu
+mintmenu
+mint-refresh-cache
+mint-refresh-cache
+mint-release-upgrade
+mint-release-upgrade
+mint-release-upgrade-root
+mint-release-upgrade-root
+mint-remove-application
+mint-remove-application
+mintreport
+mintreport
+mintreport-tray
+mintreport-tray
+mintsources
+mintsources
+mintstick
+mintstick
+mint-stick-format
+mint-stick-format
+mint-stick-write
+mint-stick-write
+mintupdate
+mintupdate
+mintupdate-automation
+mintupdate-automation
+mintupdate-cli
+mintupdate-cli
+mintupdate-launcher
+mintupdate-launcher
+mintupdate-tool
+mintupdate-tool
+mintwelcome
+mintwelcome
+mintwelcome-launcher
+mintwelcome-launcher
+mint-xfce-delete
+mint-xfce-delete
+mk4ht
+mk4ht
+mkdir
+mkdir
+mkdiskimage
+mkdiskimage
+mkfifo
+mkfifo
+mkfontdir
+mkfontdir
+mkfontscale
+mkfontscale
+mkgrkindex
+mkgrkindex
+mkindex
+mkindex
+mkisofs
+mkisofs
+mkjobtexmf
+mkjobtexmf
+mkmanifest
+mkmanifest
+mk_modmap
+mk_modmap
+mknod
+mknod
+mkocp
+mkocp
+mkofm
+mkofm
+mkpic
+mkpic
+mksquashfs
+mksquashfs
+mkt1font
+mkt1font
+mktemp
+mktemp
+mktexfmt
+mktexfmt
+mktexlsr
+mktexlsr
+mktexmf
+mktexmf
+mktexpk
+mktexpk
+mktextfm
+mktextfm
+mkzftree
+mkzftree
+mlabel
+mlabel
+mllatex
+mllatex
+mltex
+mltex
+mmafm
+mmafm
+mmcli
+mmcli
+mmd
+mmd
+mmount
+mmount
+mmove
+mmove
+mmpfb
+mmpfb
+moggsplit
+moggsplit
+mogrify
+mogrify
+mogrify-im6
+mogrify-im6
+mogrify-im6.q16
+mogrify-im6.q16
+mokutil
+mokutil
+monitor-sensor
+monitor-sensor
+montage
+montage
+montage-im6
+montage-im6
+montage-im6.q16
+montage-im6.q16
+more
+more
+mount
+mount
+mountpoint
+mountpoint
+mousetweaks
+mousetweaks
+movemail
+movemail
+movemail.mailutils
+movemail.mailutils
+mpartition
+mpartition
+mpost
+mpost
+mptopdf
+mptopdf
+mrd
+mrd
+mren
+mren
+mscompress
+mscompress
+msexpand
+msexpand
+msgattrib
+msgattrib
+msgcat
+msgcat
+msgcmp
+msgcmp
+msgcomm
+msgcomm
+msgconv
+msgconv
+msgen
+msgen
+msgexec
+msgexec
+msgfilter
+msgfilter
+msgfmt
+msgfmt
+msggrep
+msggrep
+msginit
+msginit
+msgmerge
+msgmerge
+msgunfmt
+msgunfmt
+msguniq
+msguniq
+mshortname
+mshortname
+mshowfat
+mshowfat
+msxlint
+msxlint
+mt
+mt
+mt-gnu
+mt-gnu
+mtools
+mtools
+mtoolstest
+mtoolstest
+mtr
+mtr
+mtrace
+mtrace
+mtr-packet
+mtr-packet
+mtvtoppm
+mtvtoppm
+m-tx
+m-tx
+mtxrun
+mtxrun
+mtxrunjit
+mtxrunjit
+mtype
+mtype
+muffin
+muffin
+multibibliography
+multibibliography
+musixflx
+musixflx
+musixtex
+musixtex
+mutagen-inspect
+mutagen-inspect
+mutagen-pony
+mutagen-pony
+mv
+mv
+mxtar
+mxtar
+mzip
+mzip
+namei
+namei
+nano
+nano
+nawk
+nawk
+nc
+nc
+ncal
+ncal
+nc.openbsd
+nc.openbsd
+ncurses5-config
+ncurses5-config
+ncurses6-config
+ncurses6-config
+ncursesw5-config
+ncursesw5-config
+ncursesw6-config
+ncursesw6-config
+nemo
+nemo
+nemo-autorun-software
+nemo-autorun-software
+nemo-connect-server
+nemo-connect-server
+nemo-desktop
+nemo-desktop
+nemo-epub2text
+nemo-epub2text
+nemo-mso-to-txt
+nemo-mso-to-txt
+nemo-open-with
+nemo-open-with
+nemo-ppt-to-txt
+nemo-ppt-to-txt
+nemo-preview
+nemo-preview
+nemo-xls-to-txt
+nemo-xls-to-txt
+neofetch
+neofetch
+neotoppm
+neotoppm
+neqn
+neqn
+net
+net
+netaddr
+netaddr
+netcat
+netcat
+netstat
+netstat
+networkctl
+networkctl
+networkd-dispatcher
+networkd-dispatcher
+newaliases
+newaliases
+newgrp
+newgrp
+ngettext
+ngettext
+nice
+nice
+nisdomainname
+nisdomainname
+nl
+nl
+nm
+nm
+nm-applet
+nm-applet
+nmblookup
+nmblookup
+nmcli
+nmcli
+nm-connection-editor
+nm-connection-editor
+nm-online
+nm-online
+nmtui
+nmtui
+nmtui-connect
+nmtui-connect
+nmtui-edit
+nmtui-edit
+nmtui-hostname
+nmtui-hostname
+node
+node
+node-coveralls
+node-coveralls
+node-gyp
+node-gyp
+nodejs
+nodejs
+nohup
+nohup
+notify-send
+notify-send
+npm
+npm
+npm-arborist
+npm-arborist
+npm-packlist
+npm-packlist
+nproc
+nproc
+npx
+npx
+nroff
+nroff
+nsenter
+nsenter
+nslookup
+nslookup
+nstat
+nstat
+nsupdate
+nsupdate
+ntfs-3g
+ntfs-3g
+ntfs-3g.probe
+ntfs-3g.probe
+ntfscat
+ntfscat
+ntfscluster
+ntfscluster
+ntfscmp
+ntfscmp
+ntfsdecrypt
+ntfsdecrypt
+ntfsfallocate
+ntfsfallocate
+ntfsfix
+ntfsfix
+ntfsinfo
+ntfsinfo
+ntfsls
+ntfsls
+ntfsmove
+ntfsmove
+ntfsrecover
+ntfsrecover
+ntfssecaudit
+ntfssecaudit
+ntfstruncate
+ntfstruncate
+ntfsusermap
+ntfsusermap
+ntfswipe
+ntfswipe
+numfmt
+numfmt
+nvidia-bug-report.sh
+nvidia-bug-report.sh
+nvidia-cuda-mps-control
+nvidia-cuda-mps-control
+nvidia-cuda-mps-server
+nvidia-cuda-mps-server
+nvidia-debugdump
+nvidia-debugdump
+nvidia-detector
+nvidia-detector
+nvidia-ngx-updater
+nvidia-ngx-updater
+nvidia-optimus-offload-glx
+nvidia-optimus-offload-glx
+nvidia-optimus-offload-vulkan
+nvidia-optimus-offload-vulkan
+nvidia-persistenced
+nvidia-persistenced
+nvidia-powerd
+nvidia-powerd
+nvidia-settings
+nvidia-settings
+nvidia-sleep.sh
+nvidia-sleep.sh
+nvidia-smi
+nvidia-smi
+nvidia-xconfig
+nvidia-xconfig
+oakdecode
+oakdecode
+obexctl
+obexctl
+objcopy
+objcopy
+objdump
+objdump
+oclock
+oclock
+od
+od
+odp2txt
+odp2txt
+ods2txt
+ods2txt
+odt2txt
+odt2txt
+odt2txt.odt2txt
+odt2txt.odt2txt
+odvicopy
+odvicopy
+odvitype
+odvitype
+ofm2opl
+ofm2opl
+omfonts
+omfonts
+on_ac_power
+on_ac_power
+onboard
+onboard
+onboard-settings
+onboard-settings
+open
+open
+opener
+opener
+openjade
+openjade
+openjade-1.4devel
+openjade-1.4devel
+openssl
+openssl
+openvt
+openvt
+opl2ofm
+opl2ofm
+opldecode
+opldecode
+optex
+optex
+orca
+orca
+orca-dm-wrapper
+orca-dm-wrapper
+os-prober
+os-prober
+ot2kpx
+ot2kpx
+otangle
+otangle
+otfinfo
+otfinfo
+otftotfm
+otftotfm
+otp2ocp
+otp2ocp
+outocp
+outocp
+ovf2ovp
+ovf2ovp
+ovp2ovf
+ovp2ovf
+p11-kit
+p11-kit
+p7zip
+p7zip
+pacat
+pacat
+pack200
+pack200
+pacmd
+pacmd
+pacote
+pacote
+pactl
+pactl
+padsp
+padsp
+pager
+pager
+pa-info
+pa-info
+palmtopnm
+palmtopnm
+pamcut
+pamcut
+pamdeinterlace
+pamdeinterlace
+pamdice
+pamdice
+pamfile
+pamfile
+pamoil
+pamoil
+pamon
+pamon
+pamphletangler
+pamphletangler
+pamstack
+pamstack
+pamstretch
+pamstretch
+pamstretch-gen
+pamstretch-gen
+paperconf
+paperconf
+paplay
+paplay
+parec
+parec
+parecord
+parecord
+partx
+partx
+passwd
+passwd
+paste
+paste
+pastebin
+pastebin
+pasuspender
+pasuspender
+patch
+patch
+patch-hmm.pl
+patch-hmm.pl
+patchview
+patchview
+patgen
+patgen
+pathchk
+pathchk
+pax11publish
+pax11publish
+pbibtex
+pbibtex
+pbmclean
+pbmclean
+pbmlife
+pbmlife
+pbmmake
+pbmmake
+pbmmask
+pbmmask
+pbmpage
+pbmpage
+pbmpscale
+pbmpscale
+pbmreduce
+pbmreduce
+pbmtext
+pbmtext
+pbmtextps
+pbmtextps
+pbmto10x
+pbmto10x
+pbmtoascii
+pbmtoascii
+pbmtoatk
+pbmtoatk
+pbmtobbnbg
+pbmtobbnbg
+pbmtocmuwm
+pbmtocmuwm
+pbmtoepsi
+pbmtoepsi
+pbmtoepson
+pbmtoepson
+pbmtog3
+pbmtog3
+pbmtogem
+pbmtogem
+pbmtogo
+pbmtogo
+pbmtoicon
+pbmtoicon
+pbmtolj
+pbmtolj
+pbmtomacp
+pbmtomacp
+pbmtomda
+pbmtomda
+pbmtomgr
+pbmtomgr
+pbmtonokia
+pbmtonokia
+pbmtopgm
+pbmtopgm
+pbmtopi3
+pbmtopi3
+pbmtoplot
+pbmtoplot
+pbmtoppa
+pbmtoppa
+pbmtopsg3
+pbmtopsg3
+pbmtoptx
+pbmtoptx
+pbmtowbmp
+pbmtowbmp
+pbmtox10bm
+pbmtox10bm
+pbmtoxbm
+pbmtoxbm
+pbmtoybm
+pbmtoybm
+pbmtozinc
+pbmtozinc
+pbmupc
+pbmupc
+pcre2-config
+pcre2-config
+pcre-config
+pcre-config
+pcxtoppm
+pcxtoppm
+pdb3
+pdb3
+pdb3.10
+pdb3.10
+pdf2dsc
+pdf2dsc
+pdf2ps
+pdf2ps
+pdfannotextractor
+pdfannotextractor
+pdfatfi
+pdfatfi
+pdfattach
+pdfattach
+pdfbook2
+pdfbook2
+pdfclose
+pdfclose
+pdfcrop
+pdfcrop
+pdfcslatex
+pdfcslatex
+pdfcsplain
+pdfcsplain
+pdfdetach
+pdfdetach
+pdfetex
+pdfetex
+pdffonts
+pdffonts
+pdfimages
+pdfimages
+pdfinfo
+pdfinfo
+pdfjadetex
+pdfjadetex
+pdfjam
+pdfjam
+pdflatex
+pdflatex
+pdflatex-dev
+pdflatex-dev
+pdflatexpicscale
+pdflatexpicscale
+pdfmex
+pdfmex
+pdfopen
+pdfopen
+pdfseparate
+pdfseparate
+pdfsig
+pdfsig
+pdftex
+pdftex
+pdftexi2dvi
+pdftexi2dvi
+pdftex-quiet
+pdftex-quiet
+pdftocairo
+pdftocairo
+pdftohtml
+pdftohtml
+pdftoppm
+pdftoppm
+pdftops
+pdftops
+pdftosrc
+pdftosrc
+pdftotext
+pdftotext
+pdftrimwhite
+pdftrimwhite
+pdfunite
+pdfunite
+pdfxmltex
+pdfxmltex
+pdfxup
+pdfxup
+pdvitomp
+pdvitomp
+pdvitype
+pdvitype
+pedigree
+pedigree
+peekfd
+peekfd
+perl
+perl
+perl5.34.0
+perl5.34.0
+perl5.34-x86_64-linux-gnu
+perl5.34-x86_64-linux-gnu
+perlbug
+perlbug
+perldoc
+perldoc
+perli11ndoc
+perli11ndoc
+perlivp
+perlivp
+perltex
+perltex
+perlthanks
+perlthanks
+pf2afm
+pf2afm
+pfarrei
+pfarrei
+pfb2pfa
+pfb2pfa
+pfb2t1c
+pfb2t1c
+pfbtopfa
+pfbtopfa
+pgmbentley
+pgmbentley
+pgmcrater
+pgmcrater
+pgmedge
+pgmedge
+pgmenhance
+pgmenhance
+pgmhist
+pgmhist
+pgmkernel
+pgmkernel
+pgmnoise
+pgmnoise
+pgmnorm
+pgmnorm
+pgmoil
+pgmoil
+pgmramp
+pgmramp
+pgmslice
+pgmslice
+pgmtexture
+pgmtexture
+pgmtofs
+pgmtofs
+pgmtolispm
+pgmtolispm
+pgmtopbm
+pgmtopbm
+pgmtoppm
+pgmtoppm
+pgrep
+pgrep
+pi1toppm
+pi1toppm
+pi3topbm
+pi3topbm
+pic
+pic
+pico
+pico
+piconv
+piconv
+pidof
+pidof
+pidwait
+pidwait
+pinentry
+pinentry
+pinentry-curses
+pinentry-curses
+pinentry-gnome3
+pinentry-gnome3
+pinentry-x11
+pinentry-x11
+ping
+ping
+ping4
+ping4
+ping6
+ping6
+pinky
+pinky
+pip
+pip
+pip3
+pip3
+pip3.10
+pip3.10
+pipewire
+pipewire
+pix
+pix
+pjtoppm
+pjtoppm
+pk2bm
+pk2bm
+pkaction
+pkaction
+pkcheck
+pkcheck
+pkcon
+pkcon
+pkexec
+pkexec
+pkfix
+pkfix
+pkfix-helper
+pkfix-helper
+pkg-config
+pkg-config
+pkgdata
+pkgdata
+pkill
+pkill
+pkmon
+pkmon
+pktogf
+pktogf
+pkttyagent
+pkttyagent
+pktype
+pktype
+pl2pm
+pl2pm
+platex
+platex
+platex-dev
+platex-dev
+pldd
+pldd
+plocate
+plocate
+plog
+plog
+pltotf
+pltotf
+plymouth
+plymouth
+pmap
+pmap
+pm-is-supported
+pm-is-supported
+pmpost
+pmpost
+pmxab
+pmxab
+pmxchords
+pmxchords
+pn2pdf
+pn2pdf
+pngfix
+pngfix
+png-fix-itxt
+png-fix-itxt
+pngtopnm
+pngtopnm
+pnm2ppa
+pnm2ppa
+pnmalias
+pnmalias
+pnmarith
+pnmarith
+pnmcat
+pnmcat
+pnmcolormap
+pnmcolormap
+pnmcomp
+pnmcomp
+pnmconvol
+pnmconvol
+pnmcrop
+pnmcrop
+pnmcut
+pnmcut
+pnmdepth
+pnmdepth
+pnmenlarge
+pnmenlarge
+pnmfile
+pnmfile
+pnmflip
+pnmflip
+pnmgamma
+pnmgamma
+pnmhisteq
+pnmhisteq
+pnmhistmap
+pnmhistmap
+pnmindex
+pnmindex
+pnminterp
+pnminterp
+pnminterp-gen
+pnminterp-gen
+pnminvert
+pnminvert
+pnmmargin
+pnmmargin
+pnmmontage
+pnmmontage
+pnmnlfilt
+pnmnlfilt
+pnmnoraw
+pnmnoraw
+pnmnorm
+pnmnorm
+pnmpad
+pnmpad
+pnmpaste
+pnmpaste
+pnmpsnr
+pnmpsnr
+pnmquant
+pnmquant
+pnmremap
+pnmremap
+pnmrotate
+pnmrotate
+pnmscale
+pnmscale
+pnmscalefixed
+pnmscalefixed
+pnmshear
+pnmshear
+pnmsmooth
+pnmsmooth
+pnmsplit
+pnmsplit
+pnmtile
+pnmtile
+pnmtoddif
+pnmtoddif
+pnmtofiasco
+pnmtofiasco
+pnmtofits
+pnmtofits
+pnmtojpeg
+pnmtojpeg
+pnmtopalm
+pnmtopalm
+pnmtoplainpnm
+pnmtoplainpnm
+pnmtopng
+pnmtopng
+pnmtops
+pnmtops
+pnmtorast
+pnmtorast
+pnmtorle
+pnmtorle
+pnmtosgi
+pnmtosgi
+pnmtosir
+pnmtosir
+pnmtotiff
+pnmtotiff
+pnmtotiffcmyk
+pnmtotiffcmyk
+pnmtoxwd
+pnmtoxwd
+pod2html
+pod2html
+pod2man
+pod2man
+pod2texi
+pod2texi
+pod2text
+pod2text
+pod2usage
+pod2usage
+podchecker
+podchecker
+poff
+poff
+pon
+pon
+pooltype
+pooltype
+POST
+POST
+ppdc
+ppdc
+ppdhtml
+ppdhtml
+ppdi
+ppdi
+ppdmerge
+ppdmerge
+ppdpo
+ppdpo
+pphs
+pphs
+ppltotf
+ppltotf
+ppm3d
+ppm3d
+ppmbrighten
+ppmbrighten
+ppmchange
+ppmchange
+ppmcie
+ppmcie
+ppmcolormask
+ppmcolormask
+ppmcolors
+ppmcolors
+ppmdim
+ppmdim
+ppmdist
+ppmdist
+ppmdither
+ppmdither
+ppmfade
+ppmfade
+ppmflash
+ppmflash
+ppmforge
+ppmforge
+ppmhist
+ppmhist
+ppmlabel
+ppmlabel
+ppmmake
+ppmmake
+ppmmix
+ppmmix
+ppmnorm
+ppmnorm
+ppmntsc
+ppmntsc
+ppmpat
+ppmpat
+ppmquant
+ppmquant
+ppmquantall
+ppmquantall
+ppmqvga
+ppmqvga
+ppmrainbow
+ppmrainbow
+ppmrelief
+ppmrelief
+ppmshadow
+ppmshadow
+ppmshift
+ppmshift
+ppmspread
+ppmspread
+ppmtoacad
+ppmtoacad
+ppmtobmp
+ppmtobmp
+ppmtoeyuv
+ppmtoeyuv
+ppmtogif
+ppmtogif
+ppmtoicr
+ppmtoicr
+ppmtoilbm
+ppmtoilbm
+ppmtojpeg
+ppmtojpeg
+ppmtoleaf
+ppmtoleaf
+ppmtolj
+ppmtolj
+ppmtolss16
+ppmtolss16
+ppmtomap
+ppmtomap
+ppmtomitsu
+ppmtomitsu
+ppmtompeg
+ppmtompeg
+ppmtoneo
+ppmtoneo
+ppmtopcx
+ppmtopcx
+ppmtopgm
+ppmtopgm
+ppmtopi1
+ppmtopi1
+ppmtopict
+ppmtopict
+ppmtopj
+ppmtopj
+ppmtopuzz
+ppmtopuzz
+ppmtorgb3
+ppmtorgb3
+ppmtosixel
+ppmtosixel
+ppmtotga
+ppmtotga
+ppmtouil
+ppmtouil
+ppmtowinicon
+ppmtowinicon
+ppmtoxpm
+ppmtoxpm
+ppmtoyuv
+ppmtoyuv
+ppmtoyuvsplit
+ppmtoyuvsplit
+ppmtv
+ppmtv
+pr
+pr
+precat
+precat
+preconv
+preconv
+prename
+prename
+prepmx
+prepmx
+prerex
+prerex
+preunzip
+preunzip
+prezip
+prezip
+prezip-bin
+prezip-bin
+prime-select
+prime-select
+prime-supported
+prime-supported
+print
+print
+printafm
+printafm
+printenv
+printenv
+printer-profile
+printer-profile
+printf
+printf
+prlimit
+prlimit
+prove
+prove
+prtstat
+prtstat
+ps
+ps
+ps2ascii
+ps2ascii
+ps2eps
+ps2eps
+ps2epsi
+ps2epsi
+ps2frag
+ps2frag
+ps2pdf
+ps2pdf
+ps2pdf12
+ps2pdf12
+ps2pdf13
+ps2pdf13
+ps2pdf14
+ps2pdf14
+ps2pdfwr
+ps2pdfwr
+ps2pk
+ps2pk
+ps2ps
+ps2ps
+ps2ps2
+ps2ps2
+ps2txt
+ps2txt
+ps4pdf
+ps4pdf
+psbook
+psbook
+psfaddtable
+psfaddtable
+psfgettable
+psfgettable
+psfstriptable
+psfstriptable
+psfxtable
+psfxtable
+psicc
+psicc
+psidtopgm
+psidtopgm
+psjoin
+psjoin
+pslatex
+pslatex
+pslog
+pslog
+psmerge
+psmerge
+psnup
+psnup
+psresize
+psresize
+psselect
+psselect
+pst2pdf
+pst2pdf
+pstoedit
+pstoedit
+pstopnm
+pstopnm
+pstops
+pstops
+pstree
+pstree
+pstree.x11
+pstree.x11
+ptar
+ptar
+ptardiff
+ptardiff
+ptargrep
+ptargrep
+ptex
+ptex
+ptex2pdf
+ptex2pdf
+ptftopl
+ptftopl
+ptx
+ptx
+pulseaudio
+pulseaudio
+purifyeps
+purifyeps
+pw-cat
+pw-cat
+pw-cli
+pw-cli
+pwd
+pwd
+pw-dot
+pw-dot
+pw-dsdplay
+pw-dsdplay
+pw-dump
+pw-dump
+pwdx
+pwdx
+pw-link
+pw-link
+pw-loopback
+pw-loopback
+pw-metadata
+pw-metadata
+pw-mididump
+pw-mididump
+pw-midiplay
+pw-midiplay
+pw-midirecord
+pw-midirecord
+pw-mon
+pw-mon
+pw-play
+pw-play
+pw-profiler
+pw-profiler
+pw-record
+pw-record
+pw-reserve
+pw-reserve
+pw-top
+pw-top
+pw-v4l2
+pw-v4l2
+pxelinux-options
+pxelinux-options
+py3clean
+py3clean
+py3compile
+py3compile
+py3versions
+py3versions
+pydoc3
+pydoc3
+pydoc3.10
+pydoc3.10
+pygettext3
+pygettext3
+pygettext3.10
+pygettext3.10
+python3
+python3
+python3.10
+python3.10
+python3.10-config
+python3.10-config
+python3-config
+python3-config
+python3-qr
+python3-qr
+pythontex
+pythontex
+pzstd
+pzstd
+qpdldecode
+qpdldecode
+qr
+qr
+qrcode-terminal
+qrcode-terminal
+qrttoppm
+qrttoppm
+qt5ct
+qt5ct
+quirks-handler
+quirks-handler
+R
+R
+racc3.0
+racc3.0
+rake
+rake
+rake3.0
+rake3.0
+ranlib
+ranlib
+rasttopnm
+rasttopnm
+rawtopgm
+rawtopgm
+rawtoppm
+rawtoppm
+rbash
+rbash
+rbs3.0
+rbs3.0
+rclone
+rclone
+rcp
+rcp
+rctest
+rctest
+rdma
+rdma
+rdoc
+rdoc
+rdoc3.0
+rdoc3.0
+readelf
+readelf
+readlink
+readlink
+readmsg
+readmsg
+readmsg.mailutils
+readmsg.mailutils
+realpath
+realpath
+recode-sr-latin
+recode-sr-latin
+recountdiff
+recountdiff
+red
+red
+rediff
+rediff
+redshift
+redshift
+redshift-gtk
+redshift-gtk
+rename
+rename
+rendercheck
+rendercheck
+renice
+renice
+repstopdf
+repstopdf
+reset
+reset
+resize
+resize
+resizecons
+resizecons
+resizepart
+resizepart
+resolvectl
+resolvectl
+rev
+rev
+rfcomm
+rfcomm
+rgb3toppm
+rgb3toppm
+rgrep
+rgrep
+rhythmbox
+rhythmbox
+rhythmbox-client
+rhythmbox-client
+ri
+ri
+ri3.0
+ri3.0
+rimraf
+rimraf
+rletopnm
+rletopnm
+rlogin
+rlogin
+rm
+rm
+rmail
+rmail
+rmdir
+rmdir
+rmid
+rmid
+rmiregistry
+rmiregistry
+r-mpost
+r-mpost
+rnano
+rnano
+routef
+routef
+routel
+routel
+rpcclient
+rpcclient
+rpcgen
+rpcgen
+rpdfcrop
+rpdfcrop
+rpi-imager
+rpi-imager
+r-pmpost
+r-pmpost
+rrsync
+rrsync
+Rscript
+Rscript
+rsh
+rsh
+rstart
+rstart
+rstartd
+rstartd
+rsync
+rsync
+rsync-ssl
+rsync-ssl
+rtfm
+rtfm
+rtstat
+rtstat
+rubibtex
+rubibtex
+rubikrotation
+rubikrotation
+ruby
+ruby
+ruby3.0
+ruby3.0
+rumakeindex
+rumakeindex
+runcon
+runcon
+runghc
+runghc
+runghc-8.8.4
+runghc-8.8.4
+rungs
+rungs
+runhaskell
+runhaskell
+run-mailcap
+run-mailcap
+run-parts
+run-parts
+run-with-aspell
+run-with-aspell
+runxlrd
+runxlrd
+r-upmpost
+r-upmpost
+rview
+rview
+s32imdbpy.py
+s32imdbpy.py
+samba-regedit
+samba-regedit
+samba-tool
+samba-tool
+sane-find-scanner
+sane-find-scanner
+savelog
+savelog
+sbattach
+sbattach
+sbigtopgm
+sbigtopgm
+sbkeysync
+sbkeysync
+sbsiglist
+sbsiglist
+sbsign
+sbsign
+sbvarsign
+sbvarsign
+sbverify
+sbverify
+scanimage
+scanimage
+scor2prt
+scor2prt
+scp
+scp
+scp-dbus-service
+scp-dbus-service
+screendump
+screendump
+script
+script
+scriptlive
+scriptlive
+scriptreplay
+scriptreplay
+sdiff
+sdiff
+sdl2-config
+sdl2-config
+sdptool
+sdptool
+seahorse
+seahorse
+search4files
+search4files
+sed
+sed
+see
+see
+select-default-iwrap
+select-default-iwrap
+select-editor
+select-editor
+semver
+semver
+sensible-browser
+sensible-browser
+sensible-editor
+sensible-editor
+sensible-pager
+sensible-pager
+sensors
+sensors
+sensors-conf-convert
+sensors-conf-convert
+seq
+seq
+session-migration
+session-migration
+sessreg
+sessreg
+setarch
+setarch
+setcifsacl
+setcifsacl
+set-default-locale
+set-default-locale
+setfacl
+setfacl
+setfattr
+setfattr
+setfont
+setfont
+setkeycodes
+setkeycodes
+setleds
+setleds
+setlogcons
+setlogcons
+setmetamode
+setmetamode
+setpci
+setpci
+setpriv
+setpriv
+setsid
+setsid
+setterm
+setterm
+setupcon
+setupcon
+setxkbmap
+setxkbmap
+sfconv
+sfconv
+sftp
+sftp
+sg
+sg
+sgitopnm
+sgitopnm
+sh
+sh
+sha1pass
+sha1pass
+sha1sum
+sha1sum
+sha224sum
+sha224sum
+sha256sum
+sha256sum
+sha256sum-mint
+sha256sum-mint
+sha384sum
+sha384sum
+sha512sum
+sha512sum
+shasum
+shasum
+showchar
+showchar
+showconsolefont
+showconsolefont
+showkey
+showkey
+showrgb
+showrgb
+shred
+shred
+shuf
+shuf
+sieve
+sieve
+simpdftex
+simpdftex
+simple-scan
+simple-scan
+simplescreenrecorder
+simplescreenrecorder
+sirtopnm
+sirtopnm
+size
+size
+sjisconv
+sjisconv
+sjislatex
+sjislatex
+sjispdflatex
+sjispdflatex
+skill
+skill
+slabtop
+slabtop
+sldtoppm
+sldtoppm
+sleep
+sleep
+slick-greeter-check-hidpi
+slick-greeter-check-hidpi
+slick-greeter-enable-tap-to-click
+slick-greeter-enable-tap-to-click
+slick-greeter-set-keyboard-layout
+slick-greeter-set-keyboard-layout
+slogin
+slogin
+slxdecode
+slxdecode
+smb2-quota
+smb2-quota
+smbcacls
+smbcacls
+smbclient
+smbclient
+smbcquotas
+smbcquotas
+smbget
+smbget
+smbinfo
+smbinfo
+smbpasswd
+smbpasswd
+smbspool
+smbspool
+smbtar
+smbtar
+smbtree
+smbtree
+smproxy
+smproxy
+snap
+snap
+snapctl
+snapctl
+snapfuse
+snapfuse
+snap-hmm
+snap-hmm
+snice
+snice
+soelim
+soelim
+soffice
+soffice
+software-properties-gtk
+software-properties-gtk
+software-sources
+software-sources
+sort
+sort
+sort-dctrl
+sort-dctrl
+sotruss
+sotruss
+spa-acp-tool
+spa-acp-tool
+spa-inspect
+spa-inspect
+spa-json-dump
+spa-json-dump
+spa-monitor
+spa-monitor
+spa-resample
+spa-resample
+spctoppm
+spctoppm
+spd-conf
+spd-conf
+spd-say
+spd-say
+spdsend
+spdsend
+speaker-test
+speaker-test
+speech-dispatcher
+speech-dispatcher
+spellintian
+spellintian
+splain
+splain
+split
+split
+splitdiff
+splitdiff
+splitfont
+splitfont
+splitindex
+splitindex
+sprof
+sprof
+sputoppm
+sputoppm
+sqfscat
+sqfscat
+sqfstar
+sqfstar
+sqlite3
+sqlite3
+srcredact
+srcredact
+ss
+ss
+ssh
+ssh
+ssh-add
+ssh-add
+ssh-agent
+ssh-agent
+ssh-argv0
+ssh-argv0
+ssh-copy-id
+ssh-copy-id
+ssh-keygen
+ssh-keygen
+ssh-keyscan
+ssh-keyscan
+ssr-glinject
+ssr-glinject
+st4topgm
+st4topgm
+startcaja
+startcaja
+start-pulseaudio-x11
+start-pulseaudio-x11
+startx
+startx
+stat
+stat
+static-sh
+static-sh
+stdbuf
+stdbuf
+sticky
+sticky
+strace
+strace
+strace-log-merge
+strace-log-merge
+stream
+stream
+streamer
+streamer
+stream-im6
+stream-im6
+stream-im6.q16
+stream-im6.q16
+streamzip
+streamzip
+strfile
+strfile
+strings
+strings
+strip
+strip
+stty
+stty
+sty2dtx
+sty2dtx
+su
+su
+sudo
+sudo
+sudoedit
+sudoedit
+sudoreplay
+sudoreplay
+sum
+sum
+svndiff
+svndiff
+svndiffview
+svndiffview
+svn-multi
+svn-multi
+switcherooctl
+switcherooctl
+sxw2txt
+sxw2txt
+synaptic-pkexec
+synaptic-pkexec
+sync
+sync
+synctex
+synctex
+syslinux
+syslinux
+syslinux2ansi
+syslinux2ansi
+system-config-printer
+system-config-printer
+system-config-printer-applet
+system-config-printer-applet
+systemctl
+systemctl
+systemd
+systemd
+systemd-analyze
+systemd-analyze
+systemd-ask-password
+systemd-ask-password
+systemd-cat
+systemd-cat
+systemd-cgls
+systemd-cgls
+systemd-cgtop
+systemd-cgtop
+systemd-cryptenroll
+systemd-cryptenroll
+systemd-delta
+systemd-delta
+systemd-detect-virt
+systemd-detect-virt
+systemd-escape
+systemd-escape
+systemd-hwdb
+systemd-hwdb
+systemd-id128
+systemd-id128
+systemd-inhibit
+systemd-inhibit
+systemd-machine-id-setup
+systemd-machine-id-setup
+systemd-mount
+systemd-mount
+systemd-notify
+systemd-notify
+systemd-path
+systemd-path
+systemd-run
+systemd-run
+systemd-socket-activate
+systemd-socket-activate
+systemd-stdio-bridge
+systemd-stdio-bridge
+systemd-sysext
+systemd-sysext
+systemd-sysusers
+systemd-sysusers
+systemd-tmpfiles
+systemd-tmpfiles
+systemd-tty-ask-password-agent
+systemd-tty-ask-password-agent
+systemd-umount
+systemd-umount
+t1ascii
+t1ascii
+t1asm
+t1asm
+t1binary
+t1binary
+t1c2pfb
+t1c2pfb
+t1disasm
+t1disasm
+t1dotlessj
+t1dotlessj
+t1lint
+t1lint
+t1mac
+t1mac
+t1rawafm
+t1rawafm
+t1reencode
+t1reencode
+t1testpage
+t1testpage
+t1unmac
+t1unmac
+t4ht
+t4ht
+tabs
+tabs
+tac
+tac
+tail
+tail
+tangle
+tangle
+tap
+tap
+tap-mocha-reporter
+tap-mocha-reporter
+tap-parser
+tap-parser
+tar
+tar
+taskset
+taskset
+tbl
+tbl
+tbl-dctrl
+tbl-dctrl
+tclsh
+tclsh
+tclsh8.6
+tclsh8.6
+tcpdump
+tcpdump
+teckit_compile
+teckit_compile
+tee
+tee
+telnet
+telnet
+telnet.netkit
+telnet.netkit
+tempfile
+tempfile
+test
+test
+testparm
+testparm
+tex
+tex
+tex2aspc
+tex2aspc
+tex4ebook
+tex4ebook
+tex4ht
+tex4ht
+texconfig
+texconfig
+texconfig-dialog
+texconfig-dialog
+texconfig-sys
+texconfig-sys
+texcount
+texcount
+texdef
+texdef
+texdiff
+texdiff
+texdirflatten
+texdirflatten
+texdoc
+texdoc
+texdoctk
+texdoctk
+texexec
+texexec
+texfind
+texfind
+texfont
+texfont
+texfot
+texfot
+texhash
+texhash
+texi2any
+texi2any
+texi2dvi
+texi2dvi
+texi2pdf
+texi2pdf
+texindex
+texindex
+texlinks
+texlinks
+texliveonfly
+texliveonfly
+texloganalyser
+texloganalyser
+texlua
+texlua
+texluac
+texluac
+texluajit
+texluajit
+texluajitc
+texluajitc
+texmfstart
+texmfstart
+texosquery
+texosquery
+texosquery-jre5
+texosquery-jre5
+texosquery-jre8
+texosquery-jre8
+texplate
+texplate
+texsis
+texsis
+tftopl
+tftopl
+tgatoppm
+tgatoppm
+tgz
+tgz
+thingy
+thingy
+thinkjettopbm
+thinkjettopbm
+thumbpdf
+thumbpdf
+Thunar-daemon
+Thunar-daemon
+thunderbird
+thunderbird
+tic
+tic
+tie
+tie
+tifftopnm
+tifftopnm
+tificc
+tificc
+tikztosvg
+tikztosvg
+time
+time
+timedatectl
+timedatectl
+timeout
+timeout
+timeshift
+timeshift
+timeshift-gtk
+timeshift-gtk
+timeshift-launcher
+timeshift-launcher
+tlmgr
+tlmgr
+tload
+tload
+tl-paper
+tl-paper
+tnftp
+tnftp
+toe
+toe
+top
+top
+touch
+touch
+touchegg
+touchegg
+tpic2pdftex
+tpic2pdftex
+tput
+tput
+tr
+tr
+tracepath
+tracepath
+transicc
+transicc
+translit
+translit
+transmission-gtk
+transmission-gtk
+transset
+transset
+troff
+troff
+true
+true
+truncate
+truncate
+trust
+trust
+tset
+tset
+tsort
+tsort
+ttf2afm
+ttf2afm
+ttf2kotexfont
+ttf2kotexfont
+ttf2pk
+ttf2pk
+ttf2tfm
+ttf2tfm
+ttfdump
+ttfdump
+ttftotype42
+ttftotype42
+tty
+tty
+txixml2texi
+txixml2texi
+txtconv
+txtconv
+typeoutfileinfo
+typeoutfileinfo
+typeprof3.0
+typeprof3.0
+tzselect
+tzselect
+ubuntu-core-launcher
+ubuntu-core-launcher
+ubuntu-distro-info
+ubuntu-distro-info
+ubuntu-drivers
+ubuntu-drivers
+ucf
+ucf
+ucfq
+ucfq
+ucfr
+ucfr
+uclampset
+uclampset
+uconv
+uconv
+ucs2any
+ucs2any
+udevadm
+udevadm
+udisksctl
+udisksctl
+ul
+ul
+ulqda
+ulqda
+umax_pp
+umax_pp
+umount
+umount
+uname
+uname
+uncompress
+uncompress
+unexpand
+unexpand
+unicode_start
+unicode_start
+unicode_stop
+unicode_stop
+uniq
+uniq
+unity-scope-loader
+unity-scope-loader
+unlink
+unlink
+unlzma
+unlzma
+unmkinitramfs
+unmkinitramfs
+unopkg
+unopkg
+unpack200
+unpack200
+unshare
+unshare
+unshield
+unshield
+unsquashfs
+unsquashfs
+unstr
+unstr
+untex
+untex
+unwrapdiff
+unwrapdiff
+unxz
+unxz
+unzip
+unzip
+unzipsfx
+unzipsfx
+unzstd
+unzstd
+upbibtex
+upbibtex
+update-alternatives
+update-alternatives
+updatedb
+updatedb
+update-desktop-database
+update-desktop-database
+update-mime-database
+update-mime-database
+update-perl-sax-parsers
+update-perl-sax-parsers
+update_rubygems
+update_rubygems
+updmap
+updmap
+updmap-sys
+updmap-sys
+updmap-user
+updmap-user
+updvitomp
+updvitomp
+updvitype
+updvitype
+uplatex
+uplatex
+uplatex-dev
+uplatex-dev
+upload-system-info
+upload-system-info
+upmendex
+upmendex
+upmpost
+upmpost
+upower
+upower
+uppltotf
+uppltotf
+uptex
+uptex
+uptftopl
+uptftopl
+uptime
+uptime
+urlbst
+urlbst
+usb-devices
+usb-devices
+usbhid-dump
+usbhid-dump
+usb_printerid
+usb_printerid
+usbreset
+usbreset
+users
+users
+user-setup
+user-setup
+/usr/bin:
+utf8mex
+utf8mex
+utmpdump
+utmpdump
+uuidgen
+uuidgen
+uuidparse
+uuidparse
+uxterm
+uxterm
+uz
+uz
+vdir
+vdir
+vftovp
+vftovp
+vi
+vi
+view
+view
+viewres
+viewres
+vim.tiny
+vim.tiny
+vlcdvd
+vlcdvd
+vlna
+vlna
+vmstat
+vmstat
+vmwarectrl
+vmwarectrl
+vpe
+vpe
+vpl2ovp
+vpl2ovp
+vpl2vpl
+vpl2vpl
+vprerex
+vprerex
+vptovf
+vptovf
+vstp
+vstp
+w
+w
+wall
+wall
+warpinator
+warpinator
+warpinator-send
+warpinator-send
+watch
+watch
+watchgnupg
+watchgnupg
+wayland-scanner
+wayland-scanner
+wbmptopbm
+wbmptopbm
+wc
+wc
+wdctl
+wdctl
+weave
+weave
+webapp-manager
+webapp-manager
+webquiz
+webquiz
+wget
+wget
+whatis
+whatis
+whereis
+whereis
+which
+which
+which.debianutils
+which.debianutils
+whiptail
+whiptail
+who
+who
+whoami
+whoami
+winicontoppm
+winicontoppm
+wish
+wish
+wish8.6
+wish8.6
+wmctrl
+wmctrl
+wofm2opl
+wofm2opl
+wopl2ofm
+wopl2ofm
+word-list-compress
+word-list-compress
+wordview
+wordview
+wovf2ovp
+wovf2ovp
+wovp2ovf
+wovp2ovf
+wpa_passphrase
+wpa_passphrase
+write
+write
+write.ul
+write.ul
+wscat
+wscat
+X
+X
+X11
+X11
+x11perf
+x11perf
+x11perfcomp
+x11perfcomp
+x86_64
+x86_64
+x86_64-linux-gnu-addr2line
+x86_64-linux-gnu-addr2line
+x86_64-linux-gnu-ar
+x86_64-linux-gnu-ar
+x86_64-linux-gnu-as
+x86_64-linux-gnu-as
+x86_64-linux-gnu-c++filt
+x86_64-linux-gnu-c++filt
+x86_64-linux-gnu-cpp
+x86_64-linux-gnu-cpp
+x86_64-linux-gnu-cpp-11
+x86_64-linux-gnu-cpp-11
+x86_64-linux-gnu-cpp-12
+x86_64-linux-gnu-cpp-12
+x86_64-linux-gnu-dwp
+x86_64-linux-gnu-dwp
+x86_64-linux-gnu-elfedit
+x86_64-linux-gnu-elfedit
+x86_64-linux-gnu-g++
+x86_64-linux-gnu-g++
+x86_64-linux-gnu-g++-11
+x86_64-linux-gnu-g++-11
+x86_64-linux-gnu-gcc
+x86_64-linux-gnu-gcc
+x86_64-linux-gnu-gcc-11
+x86_64-linux-gnu-gcc-11
+x86_64-linux-gnu-gcc-12
+x86_64-linux-gnu-gcc-12
+x86_64-linux-gnu-gcc-ar
+x86_64-linux-gnu-gcc-ar
+x86_64-linux-gnu-gcc-ar-11
+x86_64-linux-gnu-gcc-ar-11
+x86_64-linux-gnu-gcc-ar-12
+x86_64-linux-gnu-gcc-ar-12
+x86_64-linux-gnu-gcc-nm
+x86_64-linux-gnu-gcc-nm
+x86_64-linux-gnu-gcc-nm-11
+x86_64-linux-gnu-gcc-nm-11
+x86_64-linux-gnu-gcc-nm-12
+x86_64-linux-gnu-gcc-nm-12
+x86_64-linux-gnu-gcc-ranlib
+x86_64-linux-gnu-gcc-ranlib
+x86_64-linux-gnu-gcc-ranlib-11
+x86_64-linux-gnu-gcc-ranlib-11
+x86_64-linux-gnu-gcc-ranlib-12
+x86_64-linux-gnu-gcc-ranlib-12
+x86_64-linux-gnu-gcov
+x86_64-linux-gnu-gcov
+x86_64-linux-gnu-gcov-11
+x86_64-linux-gnu-gcov-11
+x86_64-linux-gnu-gcov-12
+x86_64-linux-gnu-gcov-12
+x86_64-linux-gnu-gcov-dump
+x86_64-linux-gnu-gcov-dump
+x86_64-linux-gnu-gcov-dump-11
+x86_64-linux-gnu-gcov-dump-11
+x86_64-linux-gnu-gcov-dump-12
+x86_64-linux-gnu-gcov-dump-12
+x86_64-linux-gnu-gcov-tool
+x86_64-linux-gnu-gcov-tool
+x86_64-linux-gnu-gcov-tool-11
+x86_64-linux-gnu-gcov-tool-11
+x86_64-linux-gnu-gcov-tool-12
+x86_64-linux-gnu-gcov-tool-12
+x86_64-linux-gnu-gfortran
+x86_64-linux-gnu-gfortran
+x86_64-linux-gnu-gfortran-11
+x86_64-linux-gnu-gfortran-11
+x86_64-linux-gnu-gold
+x86_64-linux-gnu-gold
+x86_64-linux-gnu-gprof
+x86_64-linux-gnu-gprof
+x86_64-linux-gnu-ld
+x86_64-linux-gnu-ld
+x86_64-linux-gnu-ld.bfd
+x86_64-linux-gnu-ld.bfd
+x86_64-linux-gnu-ld.gold
+x86_64-linux-gnu-ld.gold
+x86_64-linux-gnu-lto-dump-11
+x86_64-linux-gnu-lto-dump-11
+x86_64-linux-gnu-lto-dump-12
+x86_64-linux-gnu-lto-dump-12
+x86_64-linux-gnu-nm
+x86_64-linux-gnu-nm
+x86_64-linux-gnu-objcopy
+x86_64-linux-gnu-objcopy
+x86_64-linux-gnu-objdump
+x86_64-linux-gnu-objdump
+x86_64-linux-gnu-pkg-config
+x86_64-linux-gnu-pkg-config
+x86_64-linux-gnu-python3.10-config
+x86_64-linux-gnu-python3.10-config
+x86_64-linux-gnu-python3-config
+x86_64-linux-gnu-python3-config
+x86_64-linux-gnu-ranlib
+x86_64-linux-gnu-ranlib
+x86_64-linux-gnu-readelf
+x86_64-linux-gnu-readelf
+x86_64-linux-gnu-size
+x86_64-linux-gnu-size
+x86_64-linux-gnu-strings
+x86_64-linux-gnu-strings
+x86_64-linux-gnu-strip
+x86_64-linux-gnu-strip
+x86_64-pc-linux-gnu-pkg-config
+x86_64-pc-linux-gnu-pkg-config
+xapp-appimage-thumbnailer
+xapp-appimage-thumbnailer
+xapp-epub-thumbnailer
+xapp-epub-thumbnailer
+xapp-gpu-offload
+xapp-gpu-offload
+xapp-mp3-thumbnailer
+xapp-mp3-thumbnailer
+xapp-raw-thumbnailer
+xapp-raw-thumbnailer
+xargs
+xargs
+xauth
+xauth
+xbiff
+xbiff
+xbmtopbm
+xbmtopbm
+xbrlapi
+xbrlapi
+xcalc
+xcalc
+xclipboard
+xclipboard
+xclock
+xclock
+xcmsdb
+xcmsdb
+xconsole
+xconsole
+xcursorgen
+xcursorgen
+xcutsel
+xcutsel
+xdg-dbus-proxy
+xdg-dbus-proxy
+xdg-desktop-icon
+xdg-desktop-icon
+xdg-desktop-menu
+xdg-desktop-menu
+xdg-email
+xdg-email
+xdg-icon-resource
+xdg-icon-resource
+xdg-mime
+xdg-mime
+xdg-open
+xdg-open
+xdg-screensaver
+xdg-screensaver
+xdg-settings
+xdg-settings
+xdg-user-dir
+xdg-user-dir
+xdg-user-dirs-gtk-update
+xdg-user-dirs-gtk-update
+xdg-user-dirs-update
+xdg-user-dirs-update
+xditview
+xditview
+xdpyinfo
+xdpyinfo
+xdriinfo
+xdriinfo
+xdvi
+xdvi
+xdvi.bin
+xdvi.bin
+xdvipdfmx
+xdvipdfmx
+xdvi-xaw
+xdvi-xaw
+xed
+xed
+xedit
+xedit
+xelatex
+xelatex
+xelatex-dev
+xelatex-dev
+Xephyr
+Xephyr
+xetex
+xetex
+xev
+xev
+xeyes
+xeyes
+xfce4-panel-start
+xfce4-panel-start
+xfce4-set-wallpaper
+xfce4-set-wallpaper
+xfd
+xfd
+xfdesktop-start
+xfdesktop-start
+xfontsel
+xfontsel
+xgamma
+xgamma
+xgc
+xgc
+xgettext
+xgettext
+xhlatex
+xhlatex
+xhost
+xhost
+ximtoppm
+ximtoppm
+xindex
+xindex
+xinit
+xinit
+xinput
+xinput
+xkbbell
+xkbbell
+xkbcomp
+xkbcomp
+xkbevd
+xkbevd
+xkbprint
+xkbprint
+xkbvleds
+xkbvleds
+xkbwatch
+xkbwatch
+xkeystone
+xkeystone
+xkill
+xkill
+xlet-about-dialog
+xlet-about-dialog
+xlet-settings
+xlet-settings
+xload
+xload
+xlogo
+xlogo
+xls2csv
+xls2csv
+xlsatoms
+xlsatoms
+xlsclients
+xlsclients
+xlsfonts
+xlsfonts
+xmag
+xmag
+xman
+xman
+xmessage
+xmessage
+xml2pmx
+xml2pmx
+xmltex
+xmltex
+xmodmap
+xmodmap
+xmore
+xmore
+Xorg
+Xorg
+xpmtoppm
+xpmtoppm
+xprop
+xprop
+xqxdecode
+xqxdecode
+xrandr
+xrandr
+xrdb
+xrdb
+xreader
+xreader
+xreader-previewer
+xreader-previewer
+xreader-thumbnailer
+xreader-thumbnailer
+xrefresh
+xrefresh
+x-session-manager
+x-session-manager
+xset
+xset
+xsetmode
+xsetmode
+xsetpointer
+xsetpointer
+xsetroot
+xsetroot
+xsetwacom
+xsetwacom
+xslate
+xslate
+xsm
+xsm
+xstdcmap
+xstdcmap
+xsubpp
+xsubpp
+xterm
+xterm
+x-terminal-emulator
+x-terminal-emulator
+xvidtune
+xvidtune
+xviewer
+xviewer
+xvinfo
+xvinfo
+xvminitoppm
+xvminitoppm
+Xwayland
+Xwayland
+xwd
+xwd
+xwdtopnm
+xwdtopnm
+x-window-manager
+x-window-manager
+xwininfo
+xwininfo
+xwud
+xwud
+x-www-browser
+x-www-browser
+xxd
+xxd
+xz
+xz
+xzcat
+xzcat
+xzcmp
+xzcmp
+xzdiff
+xzdiff
+xzegrep
+xzegrep
+xzfgrep
+xzfgrep
+xzgrep
+xzgrep
+xzless
+xzless
+xzmore
+xzmore
+yacc
+yacc
+ybmtopbm
+ybmtopbm
+yelp
+yelp
+yes
+yes
+ypdomainname
+ypdomainname
+yplan
+yplan
+yt-dlp
+yt-dlp
+yuvsplittoppm
+yuvsplittoppm
+yuvtoppm
+yuvtoppm
+zcat
+zcat
+zcmp
+zcmp
+zdiff
+zdiff
+zdump
+zdump
+zegrep
+zegrep
+zeisstopnm
+zeisstopnm
+zenity
+zenity
+zff2gff3.pl
+zff2gff3.pl
+zfgrep
+zfgrep
+zforce
+zforce
+zgrep
+zgrep
+zip
+zip
+zipcloak
+zipcloak
+zipdetails
+zipdetails
+zipgrep
+zipgrep
+zipinfo
+zipinfo
+zipnote
+zipnote
+zipsplit
+zipsplit
+zjsdecode
+zjsdecode
+zless
+zless
+zmore
+zmore
+znew
+znew
+zoe-loop
+zoe-loop
+zoom
+zoom
+zstd
+zstd
+zstdcat
+zstdcat
+zstdgrep
+zstdgrep
+zstdless
+zstdless
+zstdmt
+zstdmt
+#+end_example
 
   The output of ~ls~ without the ~sort~ would have been two sorted
   lists, one for each directory. Check that by showing only the
@@ -590,3 +6255,7 @@ does what you want.
 Your choice of toys is, of course, a personal thing, so which toy
 would you find more satisfying? (William Shotts)
 #+end_quote
+
+* References
+
+Janssens J (2021). Data Science at the Command Line (2e). O'Reilly.
