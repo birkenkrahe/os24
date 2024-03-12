@@ -976,7 +976,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
 ** Redirection
 
-- Lecture: 4_redirection.org in GitHub
+- Lecture: [[https://github.com/birkenkrahe/os24/blob/main/org/4_redirection.org][4_redirection.org]] in GitHub
 - Codealong: [[http://tinyurl.com/4-redirection-org][tinyurl.com/4-redirection-org]]
 
 * Week 10 - Permissions / Your Pi / GPIO
