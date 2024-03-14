@@ -1,0 +1,385 @@
+#+TITLE:Expansion, Quoting, and Escaping
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE:OS Practice CSC 420 Spring 2024
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:bash :exports both :results output
+* README
+
+- You can code along with the file [[http://tinyurl.com/5-expansion-org][tinyurl.com/5-expansion-org]]
+
+  You can save it to an Org-mode file ~5_expansion.org~
+
+- The solutions and results herein were all obtained on a Lenovo
+  laptop running Linux Mint 21.3 with 4 Intel Core i3-6006U CPUs.
+
+- This lab is based on chapter 7 (pp. 61-72) of Shotts (2019).
+
+- You can get the completed file from ~tinyurl.com/5_redirection.org~
+
+What we'll cover:
+- Pathname expansion or 'globbing' of filenames, regular and hidden
+- Tilde =~= expansion
+- Arithmetic expansion with =$(( ))=
+- Brace expansion with ={ }=
+- Parameter expansion with =$=
+- Command substitution
+- Quoting with double and single quotes
+- Escaping characters
+  
+* Pathname expansion ('globbing') with =echo=
+
+- Expansion is the process of substitution that the shell performs
+  whenever you press ~ENTER~ while you're on the shell.
+
+- 'Globbing' is a part of many languages (e.g. the database language
+  and RDBMS SQLite has a =GLOB= expansion parameter).
+
+- =echo= is a shell-builtin (check ~type echo~) that prints its text
+  argument on =stdout=. There's both a =help= for the built-in and a =man=
+  page for the standalone program. 
+
+- ~echo *~ does not print =*= but the list of files in =$PWD= instead: the
+  shell expands the =*= into "match any filenames in the current
+  directory", and the =echo= command never sees the =*=:
+  #+begin_src bash
+
+  #+end_src
+
+- Let's try a few more pathname expansions: in the case of ~D*~, there's
+  nothing to find, so the string ~D*~ is printed, in =$HOME=, there is:
+  #+begin_src bash
+
+  #+end_src
+
+- Expansion does not just work from an initial character:
+  #+begin_src bash
+
+  #+end_src  
+
+- In the following argument, =[[:lower;]]= matches any single character
+  that is a lowercase character from the current language /locale/. It
+  is a so-called POSIX (standard) character class for regex.
+  #+begin_src bash
+
+  #+end_src
+
+- 'Regex',or regular expressions, are a key =bash= scripting skill. The
+  quickest way to learn is to go to ~regex101.com~ and get to work.
+
+* Pathname expansion of hidden files
+
+- Filenames that begin with a period character =.= are hidden: to see
+  them e.g. with =ls= you need to use the =-a= flag.
+  
+- =echo= respects that behavior: ~echo *~ does not print hidden files.
+  #+begin_src bash
+
+  #+end_src
+
+- But the period is not like other characters: the current and the
+  parent directory (=./= and =../=) are also printed - and they're not hidden:
+  #+begin_src bash
+
+  #+end_src
+
+- A well performing expansion of hidden files has to use a different
+  pattern:
+  #+begin_src bash
+
+  #+end_src
+  
+- Read ~.[!.]*~ as "starts with . but not .. followed by any other
+  characters". This will not find filenames starting with multiple
+  periods - this is too hard with =echo= - see however =glob(3)=.
+  #+begin_src bash
+
+  #+end_src
+
+* Tilde expansion
+
+- The tilde character (=~=) has a special meaning: it expands into the
+  name of the home directory of the named (or current) user:
+  #+begin_src bash
+
+  #+end_src
+
+* Arithmetic expansion
+
+- The shell can also do arithmetic: we can use it as a calculator,
+  both on the command line and in shell scripts:
+  #+begin_src bash
+
+  #+end_src
+
+- The syntax (where /expression/ consists of values and arithmetic operators):
+  #+begin_example
+
+  #+end_example
+
+- Alas, arithmetic expansion only supports integers but it can add,
+  subtract, multiply, divide, modulo and exponentiate, spaces are
+  insignificant, and expressions can be nested.
+
+- Example: 5 squared by 3 
+  #+begin_src bash
+
+  #+end_src
+
+- Example: 5 divided by 2
+  #+begin_src bash
+
+  #+end_src
+
+* Brace expansion
+
+- With brace expansion, you can create multiple text strings from a
+  pattern with braces:
+  #+begin_src bash
+
+  #+end_src
+
+- Patterns to be brace expanded may contain a leading portion
+  (/preamble/) and a trailing portion (/postscript/). The brace expression
+  can be a comma separated list of strings or a range of integers or
+  single characters. No unquoted whitespace is allowed.
+
+- Examples:
+  #+begin_src bash
+
+  #+end_src
+
+- Brace expansions may be nested:
+  #+begin_src bash
+
+  #+end_src
+
+- What is brace expansion good for? Most commonly for making lists:
+  for example if you wanted to organize a large collection of images
+  into years and months:
+  #+begin_src bash
+
+    #+end_src
+  
+  - More information about this (and other) expansion methods is in the
+   =bash(1)= man page or in the [[https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html][online reference manual]] for bash.
+
+- Python has adopted this notation for the formatted or /f-string/:
+  #+begin_src python :session *Python* :python python3 :results output :exports both :noweb yes 
+    greeting = "world"
+
+    print(f"Hello, {greeting}")
+  #+end_src
+
+- Emacs tables are also using this feature to turn a table into a
+  spreadsheet. The following table computes the sum of two numbers. To
+  turn formula debugging on/off, use ~C-c }~
+
+  | Number | Number | Sum |
+  |--------+--------+-----|
+  |    100 |    100 | 200 |
+  |     10 |     20 | 200 |
+  |    110 |   2000 | 400 |
+  #+TBLFM: @2$3=vsum($1..$2)::@3$3=vprod($1..$2)::@4$1=vsum(@2..@3)::@4$2=vprod(@2..@3)::@4$3=vsum(@2..@3)
+
+  Formulas are achieved with Lisp (the language Emacs is written
+  in). It's very handy to have active tables in Org-mode files.
+  
+* Parameter expansion
+
+- Expansion of environment parameters is useful in scripts:
+  #+begin_src bash
+
+  #+end_src
+
+- To see a list of environment variables:
+  #+begin_src bash
+
+  #+end_src
+
+- Mistyping a pattern will result in an empty string:
+  #+begin_src bash
+
+  #+end_src
+
+* Command substitution
+
+- You can also use the output of a command as a substitution:
+  #+begin_src bash
+
+  #+end_src
+
+- You can use this e.g. to get the listing of a command without
+  knowing its full pathname:
+  #+begin_src bash
+
+  #+end_src
+
+- You can build pipelines, too: how many files are in =$PWD= - use =ls= and =wc=
+  #+begin_src bash
+
+  #+end_src
+
+- Find all ~zip~ executables in ~/usr/bin~ and show the =file=
+  characteristics of the top 10 results:
+  #+begin_src bash
+
+  #+end_src  
+
+- =bash= supports an older version of command substitution with
+  backquotes instead of =$()=
+  #+begin_src bash
+
+  #+end_src
+  
+* Quoting
+
+- In this example, whitespace is removed from the =echo= command
+  argument list: the shell performs word splitting to do this.
+  #+begin_src bash
+
+  #+end_src
+
+- In the next example, =$1= is replaced by an empty string because it is undefined.
+  #+begin_src bash
+
+  #+end_src
+
+- The shell provides a mechanism called /quoting/ to selectively
+  suppress unwanted expansions.
+
+* Double quotes
+
+- Text inside double quotes is treated as ordinary characters: all
+  special characters except =$=, =\= and =`= lose their special meaning.
+
+- Word splitting, pathname expansion, tilde expansion, brace expansion
+  are suppressed, but parameter expansion, arithmetic expansion, and
+  command substitution are still carred out.
+
+- With double quotes, we can handle filenames containing spaces (which
+  Windows likes so much) - otherwise word splitting would mess us up.
+  #+begin_example bash
+    ls -l two words.txt
+  #+end_example
+  Yields the result:
+  #+begin_example bash
+    ls: cannot access 'two': No such file or directory
+    ls: cannot access 'words.txt': No such file or directory
+  #+end_example
+
+- To fix it, use double quotes (works only if you have a file ~two words.txt~):
+  #+begin_src bash
+
+  #+end_src
+
+- You can even repair the damage:
+  #+begin_src bash
+
+  #+end_src  
+
+- Parameter, arithmetic expansion and command substitution still work:
+  #+begin_src bash
+
+  #+end_src
+
+* Word splitting
+
+- Word splitting looks for spaces, tabs, and newlines, and treats them
+  as word delimiters - unquoted, they are simply ignored.
+
+- When we put a text with whitespace in quotes, word splitting is
+  suppressed, and the whitespace becomes part of the argument:
+  #+begin_src bash
+
+  #+end_src
+
+- Command substitution suffers some side effects. Compare the two versions:
+  #+begin_src bash
+
+  #+end_src
+
+* Single quotes
+
+- To suppress /all/ expansions, use single quotes
+
+- Compare unquoted and quoted commands:
+    
+  #+begin_src bash
+
+  #+end_src
+
+- Unquoted:
+#+begin_src bash
+
+#+end_src
+
+- Double quotes:
+  #+begin_src bash
+
+  #+end_src
+
+- Single quotes:
+  #+begin_src bash
+
+  #+end_src  
+  
+* Escaping characters
+
+- To quote a single character, precede it with a backslash =\= a
+  so-called /escape character/ (it escapes the normal encoding).
+
+- This is often done in quotes to prevent an expansion:
+  #+begin_src bash
+
+  #+end_src
+
+- You can also escape the special meaning of characters in filenames:
+  #+begin_src bash
+
+  #+end_src  
+
+- To escape a backslash itself, escape it with a backslash. With
+  single quotes however, it loses its meaning:
+  #+begin_src bash
+
+  #+end_src
+
+- The backslash is also part of the notation to represent /control
+  codes/ to transmit commands to Teletype (=tty=) devices:
+
+  | Escape sequence | Meaning         |
+  |-----------------+-----------------|
+  | \a              | Bell (beep)     |
+  | \b              | Backspace       |
+  | \n              | Newline         |
+  | \r              | Carriage return |
+  | \t              | Tab             |
+
+- This use of \ comes from the C programming language and has been
+  adopted by many others.
+
+- To interpret these codes, add the =-e= flag to =echo= or place them
+  inside =$''=. 
+  #+begin_src bash
+
+  #+end_src
+
+* SUMMARY
+
+| Command             | Explanation                                                                      |
+|---------------------+----------------------------------------------------------------------------------|
+| ~echo *~              | Lists all files in the current directory by expanding *                          |
+| ~echo .*~             | Lists hidden files, including . and ..                                           |
+| ~echo .[!.]*~         | Lists hidden files excluding . and ..                                            |
+| ~echo ~~              | Prints the current user's home directory                                         |
+| ~echo $((2+2))~       | Performs arithmetic expansion to print the result of 2+2                         |
+| ~echo $(ls)~          | Uses command substitution to list directory contents in a single line            |
+| ~echo "text"~         | Prints the text as is, treating everything inside quotes as a single string      |
+| ~echo 'text'~         | Similar to double quotes, but prevents all expansions                            |
+| ~echo \$variable~     | Escapes $ to prevent variable expansion and print $variable literally            |
+| ~echo {2007..2009}~   | Uses brace expansion to print a sequence from 2007 to 2009                       |
+| ~echo {A..C}~         | Uses brace expansion to print letters A through C                                |
+| ~echo $USER~          | Prints the current user's username by expanding the USER environment variable    |
+| ~echo $(echo hello)~  | Nested command substitution to print "hello"                                     |
+| ~echo -e "text\nnew"~ | Uses -e option to enable interpretation of backslash escapes like \n for newline |

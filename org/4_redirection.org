@@ -6227,6 +6227,8 @@ zstdmt
   : 2831 ls.txt
 
 * Linux is about Imagination
+#+attr_html: :width 400px:
+[[../img/erector.jpg]]
 
 #+begin_quote
 Windows is like a Game Boy. You go to the store and buy one all
@@ -6253,8 +6255,26 @@ you need. The Erector Set takes on the shape of your imagination. It
 does what you want.
 
 Your choice of toys is, of course, a personal thing, so which toy
-would you find more satisfying? (William Shotts)
+would you find more satisfying?  (William Shotts, 2019)
 #+end_quote
+
+It's not just "a personal thing", alas: IMHO, serious software
+developers do not waste time with Windows - or at the very least they
+need to know both operating systems (I don't but I'm ancient).
+
+* SUMMARY
+
+| Section                        | Content |
+|--------------------------------+---------|
+| Redirection and Special Files  |         |
+| Command ~rev~                    |         |
+| Redirecting Standard Output    |         |
+| Redirecting Standard Error     |         |
+| Redirection with No Origin     |         |
+| Pipes and Filters              |         |
+| Real-time Monitoring with ~tail~ |         |
+| Using ~tee~ for Duplication      |         |
+
 
 * References
 
