@@ -101,12 +101,21 @@ What we'll cover:
   #+begin_src bash
     ls -d .* | less  # list all files starting with a period
   #+end_src
+
+  #+RESULTS:
+  : .
+  : ..
+  : .hidden
+  : ..very_hidden
   
 - A well performing expansion of hidden files has to use a different
   pattern:
   #+begin_src bash
     echo .[!.]*  # files beginning with a period followed by other characters
   #+end_src
+
+  #+RESULTS:
+  : .#5_expansion.org .hidden
 
 - Read ~.[!.]*~ as "starts with . but not .. followed by any other
   characters". This will not find filenames starting with multiple
@@ -118,7 +127,16 @@ What we'll cover:
     echo .[!.]*
   #+end_src
 
-* Tilde expansion
+  #+RESULTS:
+  : .
+  : ..
+  : .#5_expansion.org
+  : .hidden
+  : ..very_hidden
+  : 
+  : .#5_expansion.org .hidden
+
+* NEXT Tilde expansion
 
 - The tilde character (=~=) has a special meaning: it expands into the
   name of the home directory of the named (or current) user:
