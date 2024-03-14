@@ -607,9 +607,8 @@ What we'll cover:
   #+end_src
 
   #+RESULTS:
-  : Time's up
-  : Time's up again 
-
+  : Time's up
+  : Time's up again 
 
   
 * SUMMARY
