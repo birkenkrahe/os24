@@ -999,6 +999,9 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+begin_src bash
      ls -l /usr/bin > list; file list
    #+end_src
+
+   #+RESULTS:
+   : list: ASCII text
 3. What is the effect of executing ~ls -l /bin/usr > file~ when the
    ~/bin/usr~ directory does not exist, and how does redirecting
    standard error differ from redirecting standard output?
@@ -1011,6 +1014,9 @@ Results from test 3 (manipulating files / DataCamp lessons):
      ls -l /bin/usr 2> file
      cat file
    #+end_src
+
+   #+RESULTS:
+   : ls: cannot access '/bin/usr': No such file or directory
 4. Describe the process and outcome of appending both standard output
    and standard error to the same file. 
    #+begin_quote
@@ -1025,6 +1031,11 @@ Results from test 3 (manipulating files / DataCamp lessons):
      ls -l /bin/usr > err2 2>&1
      cat err2
    #+end_src
+
+   #+RESULTS:
+   : ls: cannot access '/bin/usr': No such file or directory
+   : 
+   : ls: cannot access '/bin/usr': No such file or directory
 5. How can you create a new empty file or discard command output using
    redirection? 
    #+begin_quote
