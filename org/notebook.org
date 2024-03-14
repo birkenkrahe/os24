@@ -1029,12 +1029,10 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
 ** Expansion
 
-- Lecture: 5_expansion.org in GitHub
-- Codealong: tinyurl.ncom/4-expansion-org
+- Lecture: [[https://github.com/birkenkrahe/os24/blob/main/org/5_expansion.org][5_expansion.org in GitHub]]
+- Codealong: [[https://tinyurl.com/5-expansion-org][tinyurl.ncom/5-expansion-org]]
 
 * Week 10 - Your Pi / General Purpose Input Output (GPIO) pins
-
-
 * Week 11 - Processes / Package management / Sprint review: first results
 * Week 12 - Storage media / Networking
 * Week 13 - Searching for files / Archiving and backup
