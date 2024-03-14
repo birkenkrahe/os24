@@ -909,7 +909,7 @@ Objectives:
 ** TODO Lecture: Know your Pi (Part 1)
 
 
-* Week 9 - Redirection
+* Week 9 - Redirection and Expansion
 #+attr_html: :width 400px:
 [[../img/week_9.png]]
 
@@ -952,7 +952,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+end_quote
 3) How can you see all aliases?
    #+begin_example bash
-     alias 
+     alias
    #+end_example
 4) Is an =alias= permanent?
    #+begin_quote
@@ -977,19 +977,64 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+attr_html: :width 400px:
    [[../img/command_line_tools.png]]
    #+end_quote
-   
+
 ** Redirection
 
 - Lecture: [[https://github.com/birkenkrahe/os24/blob/main/org/4_redirection.org][4_redirection.org]] in GitHub
 - Codealong: [[http://tinyurl.com/4-redirection-org][tinyurl.com/4-redirection-org]]
 
-** Permission
+** NEXT Review - redirection
 
-- Lecture: 4_permissions.org in GitHub
-- Codealong: tinyurl.com/4-permissions-org
-  
+1. What does the ~rev~ command do? (Reverses lines characterwise)
+   #+begin_quote
+   - The ~rev~ command reverses the characters in each line of a file
+     or standard input.
+   #+end_quote
+
+2. How can you redirect the standard output of a command to a file,
+   and what kind of file is created by default using this redirection?
+   #+begin_quote
+   - You can redirect the standard output using the ~>~ operator, as in ~ls
+     -l /usr/bin > ls-output.txt~. By default, an ASCII text file is
+     created.
+   #+end_quote
+
+3. What is the effect of executing ~ls -l /bin/usr > ls-output.txt~ when
+   the ~/bin/usr~ directory does not exist, and how does redirecting
+   standard error (stderr) differ from redirecting standard output
+   (stdout)?
+   #+begin_quote
+   - When the directory does not exist, the standard error message is not
+     redirected to ~ls-output.txt~ but displayed on the screen instead. To
+     redirect stderr, use ~2>~ operator, as in ~ls -l /bin/usr 2>
+     ls-error.txt~.
+   #+end_quote
+
+4. Describe the process and outcome of appending both standard output
+   and standard error to the same file. 
+   #+begin_quote
+   - To append both stdout and stderr to the same file, use the ~&>>~
+     operator for appending, as in ~ls -l /bin/usr &>> ls-output.txt~. This
+     appends all output, including errors, to the specified file.
+   #+end_quote
+
+5. How can you create a new empty file or discard command output using
+   redirection? 
+   #+begin_quote
+   - You can create an empty file by using ~> filename~ with no source
+     command, and you can discard any command output by redirecting it to
+     ~/dev/null~, as in ~command > /dev/null~ for stdout or ~command 2>
+     /dev/null~ for stderr.
+   #+end_quote
+
+** Expansion
+
+- Lecture: 5_expansion.org in GitHub
+- Codealong: tinyurl.ncom/4-expansion-org
 
 * Week 10 - Your Pi / General Purpose Input Output (GPIO) pins
+
+
 * Week 11 - Processes / Package management / Sprint review: first results
 * Week 12 - Storage media / Networking
 * Week 13 - Searching for files / Archiving and backup

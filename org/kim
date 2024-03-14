@@ -194,7 +194,7 @@ lrwxrwxrwx 1 root root          57 Feb  4  2022 cachepic -> ../share/texlive/tex
 lrwxrwxrwx 1 root root           4 Jan 30 23:01 cal -> ncal
 -rwxr-xr-x 1 root root       27016 Mar 24  2022 calibrate_ppa
 -rwxr-xr-x 1 root root       18656 Jan 11  2023 canberra-gtk-play
--rwxr-xr-x 1 root root       14648 Sep 15 06:19 cancel
+-rwxr-xr-x 1 root root       14648 Feb 14  2023 cancel
 lrwxrwxrwx 1 root root           3 Jan 30 23:01 captoinfo -> tic
 -rwxr-xr-x 1 root root        2158 Jul 24  2022 caribou-preferences
 -rwxr-xr-x 1 root root       35288 Jan  8 08:56 cat
@@ -360,7 +360,7 @@ lrwxrwxrwx 1 root root           6 Jan 30 23:01 ctstat -> lnstat
 -rwxr-xr-x 1 root root       14648 May 25  2023 ctwill-refsort
 -rwxr-xr-x 1 root root       14648 May 25  2023 ctwill-twinx
 -rwxr-xr-x 1 root root       26952 Mar 27  2022 cups-calibrate
--rwxr-xr-x 1 root root       63872 Sep 15 06:19 cupstestppd
+-rwxr-xr-x 1 root root       63872 Feb 14  2023 cupstestppd
 -rwxr-xr-x 1 root root      260328 Nov 29 13:23 curl
 -rwxr-xr-x 1 root root       39432 Jan  8 08:56 cut
 -rwxr-xr-x 1 root root      303512 Apr  3  2023 cvtsudoers
@@ -432,7 +432,7 @@ lrwxrwxrwx 1 root root          53 Feb  4  2022 diadia -> ../share/texlive/texmf
 -rwxr-xr-x 1 root root       56240 Jul  4  2022 dirmngr-client
 -rwxr-xr-x 1 root root       31112 Jan  8 08:56 dirname
 -rwxr-xr-x 1 root root       17143 Nov 25  2006 dirsplit
-lrwxrwxrwx 1 root root          24 Mar  6 14:58 discord -> ../share/discord/Discord
+lrwxrwxrwx 1 root root          24 Mar 12 10:57 discord -> ../share/discord/Discord
 -rwxr-xr-x 1 root root       22848 May 25  2023 disdvi
 lrwxrwxrwx 1 root root          25 Feb 16 21:50 display -> /etc/alternatives/display
 lrwxrwxrwx 1 root root          29 Feb 16 21:50 display-im6 -> /etc/alternatives/display-im6
@@ -446,33 +446,33 @@ lrwxrwxrwx 1 root root           8 Jan 30 23:01 domainname -> hostname
 lrwxrwxrwx 1 root root          58 Feb  4  2022 dosepsbin -> ../share/texlive/texmf-dist/scripts/dosepsbin/dosepsbin.pl
 lrwxrwxrwx 1 root root          25 Feb  9 16:22 dotlock -> /etc/alternatives/dotlock
 -rwxr-sr-x 1 root root       15504 Jan 12  2022 dotlock.mailutils
--rwxr-xr-x 1 root root      318144 Apr  1  2023 dpkg
--rwxr-xr-x 1 root root       13832 Apr  1  2023 dpkg-architecture
--rwxr-xr-x 1 root root        7565 Apr  1  2023 dpkg-buildflags
--rwxr-xr-x 1 root root       32425 Apr  1  2023 dpkg-buildpackage
--rwxr-xr-x 1 root root        7624 Apr  1  2023 dpkg-checkbuilddeps
--rwxr-xr-x 1 root root      137720 Apr  1  2023 dpkg-deb
--rwxr-xr-x 1 root root        2782 Apr  1  2023 dpkg-distaddfile
--rwxr-xr-x 1 root root      121336 Apr  1  2023 dpkg-divert
--rwxr-xr-x 1 root root       17106 Apr  1  2023 dpkg-genbuildinfo
--rwxr-xr-x 1 root root       17687 Apr  1  2023 dpkg-genchanges
--rwxr-xr-x 1 root root       14580 Apr  1  2023 dpkg-gencontrol
--rwxr-xr-x 1 root root       10902 Apr  1  2023 dpkg-gensymbols
--rwxr-xr-x 1 root root       21209 Apr  1  2023 dpkg-maintscript-helper
--rwxr-xr-x 1 root root        8903 Apr  1  2023 dpkg-mergechangelogs
--rwxr-xr-x 1 root root        6789 Apr  1  2023 dpkg-name
--rwxr-xr-x 1 root root        4947 Apr  1  2023 dpkg-parsechangelog
--rwxr-xr-x 1 root root      141848 Apr  1  2023 dpkg-query
--rwxr-xr-x 1 root root        4189 Apr  1  2023 dpkg-realpath
+-rwxr-xr-x 1 root root      318144 Feb 23 08:53 dpkg
+-rwxr-xr-x 1 root root       13832 Feb 23 08:53 dpkg-architecture
+-rwxr-xr-x 1 root root        7565 Feb 23 08:53 dpkg-buildflags
+-rwxr-xr-x 1 root root       32425 Feb 23 08:53 dpkg-buildpackage
+-rwxr-xr-x 1 root root        7624 Feb 23 08:53 dpkg-checkbuilddeps
+-rwxr-xr-x 1 root root      137720 Feb 23 08:53 dpkg-deb
+-rwxr-xr-x 1 root root        2782 Feb 23 08:53 dpkg-distaddfile
+-rwxr-xr-x 1 root root      121336 Feb 23 08:53 dpkg-divert
+-rwxr-xr-x 1 root root       17106 Feb 23 08:53 dpkg-genbuildinfo
+-rwxr-xr-x 1 root root       17687 Feb 23 08:53 dpkg-genchanges
+-rwxr-xr-x 1 root root       14580 Feb 23 08:53 dpkg-gencontrol
+-rwxr-xr-x 1 root root       10902 Feb 23 08:53 dpkg-gensymbols
+-rwxr-xr-x 1 root root       21209 Feb 23 08:53 dpkg-maintscript-helper
+-rwxr-xr-x 1 root root        8903 Feb 23 08:53 dpkg-mergechangelogs
+-rwxr-xr-x 1 root root        6789 Feb 23 08:53 dpkg-name
+-rwxr-xr-x 1 root root        4947 Feb 23 08:53 dpkg-parsechangelog
+-rwxr-xr-x 1 root root      141848 Feb 23 08:53 dpkg-query
+-rwxr-xr-x 1 root root        4189 Feb 23 08:53 dpkg-realpath
 -rwxr-xr-x 1 root root       11683 Jan 16  2022 dpkg-repack
--rwxr-xr-x 1 root root        8705 Apr  1  2023 dpkg-scanpackages
--rwxr-xr-x 1 root root        9174 Apr  1  2023 dpkg-scansources
--rwxr-xr-x 1 root root       31700 Apr  1  2023 dpkg-shlibdeps
--rwxr-xr-x 1 root root       23106 Apr  1  2023 dpkg-source
--rwxr-xr-x 1 root root      100872 Apr  1  2023 dpkg-split
--rwxr-xr-x 1 root root       47368 Apr  1  2023 dpkg-statoverride
--rwxr-xr-x 1 root root       43424 Apr  1  2023 dpkg-trigger
--rwxr-xr-x 1 root root        3262 Apr  1  2023 dpkg-vendor
+-rwxr-xr-x 1 root root        8705 Feb 23 08:53 dpkg-scanpackages
+-rwxr-xr-x 1 root root        9174 Feb 23 08:53 dpkg-scansources
+-rwxr-xr-x 1 root root       31700 Feb 23 08:53 dpkg-shlibdeps
+-rwxr-xr-x 1 root root       23106 Feb 23 08:53 dpkg-source
+-rwxr-xr-x 1 root root      100872 Feb 23 08:53 dpkg-split
+-rwxr-xr-x 1 root root       47368 Feb 23 08:53 dpkg-statoverride
+-rwxr-xr-x 1 root root       43424 Feb 23 08:53 dpkg-trigger
+-rwxr-xr-x 1 root root        3262 Feb 23 08:53 dpkg-vendor
 -rwxr-xr-x 1 root root        1243 Feb 25  2023 drawing
 lrwxrwxrwx 1 root root          29 Jan 30 23:01 driverless -> ../lib/cups/driver/driverless
 lrwxrwxrwx 1 root root          33 Jan 30 23:01 driverless-fax -> ../lib/cups/driver/driverless-fax
@@ -839,7 +839,7 @@ lrwxrwxrwx 1 root root          35 Feb  9 17:54 gnome-www-browser -> /etc/altern
 -rwxr-xr-x 1 root root       14664 Jun  8  2023 gobject-query
 lrwxrwxrwx 1 root root          21 Jan 23 09:08 gold -> x86_64-linux-gnu-gold
 lrwxrwxrwx 1 root root          31 Feb  9 17:54 google-chrome -> /etc/alternatives/google-chrome
-lrwxrwxrwx 1 root root          32 Mar  4 20:02 google-chrome-stable -> /opt/google/chrome/google-chrome
+lrwxrwxrwx 1 root root          32 Mar 11 18:54 google-chrome-stable -> /opt/google/chrome/google-chrome
 -rwxr-xr-x 1 root root       14360 Feb  7  2021 gouldtoppm
 -rwsr-xr-x 1 root root       72072 Feb  6 06:54 gpasswd
 -rwxr-xr-x 1 root root     1050624 Jul  4  2022 gpg
@@ -1064,8 +1064,8 @@ lrwxrwxrwx 1 root root          62 Feb  4  2022 installfont-tl -> ../share/texli
 -rwxr-xr-x 1 root root       39288 Feb 20  2022 ipcs
 -rwxr-xr-x 1 root root       22840 Mar 24  2022 ipod-read-sysinfo-extended
 -rwxr-xr-x 1 root root       14648 Mar 24  2022 ipod-time-sync
--rwxr-xr-x 1 root root       43416 Sep 15 06:19 ippfind
--rwxr-xr-x 1 root root       96568 Sep 15 06:19 ipptool
+-rwxr-xr-x 1 root root       43416 Feb 14  2023 ippfind
+-rwxr-xr-x 1 root root       96568 Feb 14  2023 ipptool
 lrwxrwxrwx 1 root root          28 Jan 16 15:14 iptables-xml -> ../sbin/xtables-legacy-multi
 lrwxrwxrwx 1 root root           6 Dec  2  2021 irb -> irb3.0
 -rwxr-xr-x 1 root root         507 Jul  7  2023 irb3.0
@@ -1216,13 +1216,13 @@ lrwxrwxrwx 1 root root           3 Feb  4  2022 lollipop -> tex
 -rwxr-xr-x 1 root root          58 Dec 11 08:19 loweb
 -rwxr-xr-x 1 root root      117736 Nov  1  2022 lowntfs-3g
 -rwxr-xr-x 1 root root          61 Dec 11 08:19 lowriter
--rwxr-xr-x 1 root root       26936 Sep 15 06:19 lp
--rwxr-xr-x 1 root root       22912 Sep 15 06:19 lpoptions
--rwxr-xr-x 1 root root       22912 Sep 15 06:19 lpq
--rwxr-xr-x 1 root root       18736 Sep 15 06:19 lpr
--rwxr-xr-x 1 root root       14640 Sep 15 06:19 lprm
+-rwxr-xr-x 1 root root       26936 Feb 14  2023 lp
+-rwxr-xr-x 1 root root       22912 Feb 14  2023 lpoptions
+-rwxr-xr-x 1 root root       22912 Feb 14  2023 lpq
+-rwxr-xr-x 1 root root       18736 Feb 14  2023 lpr
+-rwxr-xr-x 1 root root       14640 Feb 14  2023 lprm
 -rwxr-xr-x 1 root root       59544 Mar 24  2022 lp_solve
--rwxr-xr-x 1 root root       39560 Sep 15 06:19 lpstat
+-rwxr-xr-x 1 root root       39560 Feb 14  2023 lpstat
 -rwxr-xr-x 1 root root      138216 Jan  8 08:56 ls
 -rwxr-xr-x 1 root root       14656 Jun  1  2022 lsattr
 -rwxr-xr-x 1 root root      125312 Feb 20  2022 lsblk
@@ -1886,11 +1886,11 @@ lrwxrwxrwx 1 root root          13 Feb  7  2021 pnmnoraw -> pnmtoplainpnm
 -rwxr-xr-x 1 root root        1362 Feb 23  2022 pon
 -rwxr-xr-x 1 root root       14712 May 25  2023 pooltype
 lrwxrwxrwx 1 root root          11 Jan 30 23:01 POST -> lwp-request
--rwxr-xr-x 1 root root      100840 Sep 15 06:19 ppdc
--rwxr-xr-x 1 root root       76264 Sep 15 06:19 ppdhtml
--rwxr-xr-x 1 root root       92648 Sep 15 06:19 ppdi
--rwxr-xr-x 1 root root       18816 Sep 15 06:19 ppdmerge
--rwxr-xr-x 1 root root       80360 Sep 15 06:19 ppdpo
+-rwxr-xr-x 1 root root      100840 Feb 14  2023 ppdc
+-rwxr-xr-x 1 root root       76264 Feb 14  2023 ppdhtml
+-rwxr-xr-x 1 root root       92648 Feb 14  2023 ppdi
+-rwxr-xr-x 1 root root       18816 Feb 14  2023 ppdmerge
+-rwxr-xr-x 1 root root       80360 Feb 14  2023 ppdpo
 -rwxr-xr-x 1 root root         404 Dec 11 13:25 pphs
 -rwxr-xr-x 1 root root       63888 May 25  2023 ppltotf
 -rwxr-xr-x 1 root root       18456 Feb  7  2021 ppm3d
@@ -2508,7 +2508,7 @@ lrwxrwxrwx 1 root root           2 Jan 30 23:01 unxz -> xz
 -rwxr-xr-x 1 root root       80304 Feb  1 09:52 unzipsfx
 lrwxrwxrwx 1 root root           4 Jan 30 23:01 unzstd -> zstd
 -rwxr-xr-x 1 root root      119864 May 25  2023 upbibtex
--rwxr-xr-x 1 root root       59640 Apr  1  2023 update-alternatives
+-rwxr-xr-x 1 root root       59640 Feb 23 08:53 update-alternatives
 lrwxrwxrwx 1 root root          26 Jan 30 23:01 updatedb -> /etc/alternatives/updatedb
 -rwxr-xr-x 1 root root       22920 Jan 19  2023 update-desktop-database
 -rwxr-xr-x 1 root root       59624 Jan 14  2022 update-mime-database
