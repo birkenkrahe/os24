@@ -1,7 +1,0 @@
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   8940   332 ?        Ssl  19:48   0:00 /init
-root        21  0.0  0.0   8940   228 tty1     Ss   19:48   0:00 /init
-marcus      22  0.0  0.0  16664  1568 tty1     S    19:48   0:00 bash
-marcus      23  0.0  0.0  18660  1896 tty1     R    19:48   0:00 ps aux
-marcus      24  0.0  0.0  15284   832 tty1     S    19:48   0:00 tee psaux.txt
-marcus      25  0.0  0.0  15288   840 tty1     S    19:48   0:00 head -5
