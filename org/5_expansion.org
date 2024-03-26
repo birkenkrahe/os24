@@ -387,7 +387,6 @@ What we'll cover:
   #+RESULTS:
   : 
 
-
 * Command substitution
 
 - You can also use the output of a command as a substitution:
@@ -439,7 +438,7 @@ What we'll cover:
     echo `ls -l | wc -l`
   #+end_src
     
-* Quoting
+* NEXT Quoting
 
 - In this example, whitespace is removed from the =echo= command
   argument list: the shell performs word splitting to do this.
