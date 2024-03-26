@@ -908,8 +908,7 @@ Objectives:
 
 ** TODO Lecture: Know your Pi (Part 1)
 
-
-* Week 9 - Redirection and Expansion
+* DONE Week 9 - Redirection and Expansion
 #+attr_html: :width 400px:
 [[../img/week_9.png]]
 
@@ -983,7 +982,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - Lecture: [[https://github.com/birkenkrahe/os24/blob/main/org/4_redirection.org][4_redirection.org]] in GitHub
 - Codealong: [[http://tinyurl.com/4-redirection-org][tinyurl.com/4-redirection-org]]
 
-** NEXT Review - redirection
+** Review - redirection
 
 1. Where are =stdin=, =stdout= and =stderr= in the file tree and what kind
    of files are they?
@@ -1051,7 +1050,14 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - Codealong: [[https://tinyurl.com/5-expansion-org][tinyurl.ncom/5-expansion-org]]
 
 
-* Week 10 - Your Pi / General Purpose Input Output (GPIO) pins
+* Week 10 - Popquiz 2 / Expansion / General Purpose Input Output (GPIO) pins
+#+attr_html: :width 400px:
+[[../img/week_10.png]]
+
+- Popquiz 2 (by hand)
+- Expansion on the shell (continued)
+- Raspberry Pi and GPIO pins (lab)
+
 * Week 11 - Processes / Package management / Sprint review: first results
 * Week 12 - Storage media / Networking
 * Week 13 - Searching for files / Archiving and backup
