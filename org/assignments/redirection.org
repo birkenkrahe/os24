@@ -1,0 +1,112 @@
+#+startup: overview hideblocks indent entitiespretty:
+#+options: toc:nil num:nil ^:nil: html-postamble:nil
+#+property: header-args:bash :results output :exports both :noweb yes :tangle yes: 
+* Popquiz 2
+
+1. Complete the printout it without looking stuff up. The tasks are
+   not connected so if you don't know one answer, simply move on.
+2. Test your answers (10 points for each correct answer) using the
+   Org-mode version of the quiz (at tinyurl.com):
+   redirection-pop-org. Solution: redirection-pop-solution.
+3. An answer is correct (10 points) if it runs and returns the correct
+   result. You can give yourself extra points if you were close!
+4. Grade yourself and submit your original paper copy to me no later
+   than Tuesday, April 2, 2.30 pm, with your name and pledge.
+
+* Task 1: Locate Standard Device Files
+Use the ls command to list all files in the ~/dev~ directory that
+include ~"std"~ in their names.
+#+begin_src bash
+
+  
+#+end_src
+
+* Task 2: Understanding =rev= Command
+Demonstrate how the =rev= command can reverse a string. Use the string
+"OpenAI" as an example.
+
+Tip: remember that =rev= operates on =stdin= - so you need to pipe the
+input into =rev= for this to work in the code block.
+#+begin_src bash
+
+  
+#+end_src
+
+* Task 3: Redirect Output to a File
+Redirect the listing of all files in the ~/usr/bin~ directory to a file
+named ~list.txt~, then display only the bottom five lines of the file.
+#+begin_src bash
+
+
+#+end_src
+
+* Task 4: Check File Type
+Determine the type of the previously created ~list.txt~ file.
+#+begin_src bash
+
+  
+#+end_src
+
+* Task 5: View Top Lines of a File
+  Display the first 5 lines of the ~list.txt~ file, =tee= the output off
+  to a file ~top.txt~, and count the number of words.
+#+begin_src bash
+
+  
+#+end_src
+
+* Task 6: Redirect Non-Existing Directory Listing to a File
+Attempt to list a non-existing directory (~/non_existing_dir~) and
+redirect the error message to a file named ~error.txt~, then display the
+file content.
+#+begin_src bash
+
+
+#+end_src
+
+* Task 7: Create an Empty File
+Create an empty file named ~empty.txt~ without using =touch=, just
+redirection. List the file to make sure it's empty.
+#+begin_src bash
+
+
+#+end_src
+
+* Task 8: Append Text to a File
+Put the text "Nothing to see here" in a file ~append.txt~. Now append
+the text "Adding more content" to the end of the file and display the
+file.
+#+begin_src bash
+
+
+
+  
+#+end_src
+
+* Task 9: Display Environment Variables
+- On one line, write a list of all environment variables to a file
+  ~env.txt~ and count the number of variables (the displayed output).
+- On the next line count the lines of the file ~env.txt~ you created.
+- On the last line, display only the first line of ~env.txt~ using the
+  ~--lines~ flag.
+
+Tip: the =printenv= command prints the list of environment variables.  
+#+begin_src bash
+
+
+
+#+end_src
+
+* Task 10: Use a Loop to Create Files
+Put the line "Error message:" in a file ~error2.txt~. Now list a
+non-existing directory (~/non_existing_dir~) and append both =stdout= and
+=stderr= to ~error2.txt~. Lastly, count the number of lines of ~error2.txt~.
+#+begin_src bash
+
+
+
+  
+#+end_src
+
+
+
