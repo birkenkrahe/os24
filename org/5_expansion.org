@@ -90,6 +90,7 @@ What we'll cover:
   
 - =echo= respects that behavior: ~echo *~ does not print hidden files.
   #+begin_src bash
+    touch .hidden ..very_hidden
     echo .*
   #+end_src
 
