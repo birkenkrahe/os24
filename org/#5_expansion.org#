@@ -438,7 +438,24 @@ What we'll cover:
     ls -l `which cp`
     echo `ls -l | wc -l`
   #+end_src
-    
+
+  #+RESULTS:
+  : -rwxr-xr-x 1 root root 141832 Jan  8 08:56 /usr/bin/cp
+  : 17
+
+- Which version of bash(1) do you have?
+  #+begin_src bash
+    bash --version
+  #+end_src
+
+  #+RESULTS:
+  : GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+  : Copyright (C) 2020 Free Software Foundation, Inc.
+  : License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+  : 
+  : This is free software; you are free to change and redistribute it.
+  : There is NO WARRANTY, to the extent permitted by law.
+
 * Quoting
 
 - In this example, whitespace is removed from the =echo= command
