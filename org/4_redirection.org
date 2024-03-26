@@ -6287,7 +6287,6 @@ need to know both operating systems (I don't but I'm ancient).
 | Real-time Monitoring with ~tail~ |         |
 | Using ~tee~ for Duplication      |         |
 
-
 * References
 
 Janssens J (2021). Data Science at the Command Line (2e). O'Reilly.
