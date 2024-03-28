@@ -771,14 +771,14 @@ Time ca. 1 hour
 [[../img/week_8.png]]
 /Image: daemon OS programs waiting for something to do./
 
-** DONE Test 3 available until March 10 / grading
+** Test 3 available until March 10 / grading
 
 - 30 questions, 1 hour time to complete: Take your time!
 - Covers class practice and DataCamp chapters
 - Grading: complete by tomorrow (incl. proposal, DataCamp, Bonus)
 
 
-** IN PROGRESS Working with shell commands - 60-75 min (code along)
+** Working with shell commands - 60-75 min (code along)
 
 Emacs special: add ~<b~ as ~src bash~ to ~org-structure-template-alist~:
 1. ~C-h v org-structure-template-alist~
@@ -800,7 +800,7 @@ Objectives:
 - Creating commands with =alias=
 
 
-** NEXT Review: The Linux File System and Shell Commands
+** Review: The Linux File System and Shell Commands
 
 1) Which information is not kept as a file in Linux?
    #+begin_quote
@@ -904,9 +904,6 @@ Objectives:
    | ~/usr/share/doc~ | Man pages and other package documentation         |
    | ~/var/log~       | Records of system activity (e.g. ~/var/log/syslog~) |
    #+end_quote
-
-
-** TODO Lecture: Know your Pi (Part 1)
 
 * DONE Week 9 - Redirection and Expansion
 #+attr_html: :width 400px:
@@ -1050,15 +1047,27 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - Codealong: [[https://tinyurl.com/5-expansion-org][tinyurl.ncom/5-expansion-org]]
 
 
-* Week 10 - Popquiz 2 / Expansion / General Purpose Input Output (GPIO) pins
+* Week 10 - Popquiz 2 / Expansion / Permissions
 #+attr_html: :width 400px:
-[[../img/week_10.png]]
+[[../img/week_10_2.png]]
 
-- Popquiz 2 (by hand)
-- Expansion on the shell (continued)
-- Raspberry Pi and GPIO pins (lab)
+- [X] Popquiz 2 (by hand)
+
+- [X] Expansion on the shell (continued)
+
+- [ ] File permissions
+
+- [ ] 2nd sprint review - questions? Deadline Sun Apr 7 (*extended*)
+  1. What did you already do?
+  2. What are you going to do?
+  3. What is your confidence level regarding this activity?
+
+- [ ] Test 4 (File tree, redirection, and expansion) Sun Apr 7
 
 * Week 11 - Processes / Package management / Sprint review: first results
+
+- [ ] Raspberry Pi and GPIO pins (lab) ????
+
 * Week 12 - Storage media / Networking
 * Week 13 - Searching for files / Archiving and backup
 * Week 14 - Regular expressions / Text processing
