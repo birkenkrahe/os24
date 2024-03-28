@@ -1055,14 +1055,14 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
 - [X] Expansion on the shell (continued)
 
-- [ ] File permissions
-
-- [ ] 2nd sprint review - questions? Deadline Sun Apr 7 (*extended*)
+- [X] 2nd sprint review - questions? Deadline Sun Apr 7 (*extended*)
   1. What did you already do?
   2. What are you going to do?
   3. What is your confidence level regarding this activity?
 
 - [ ] Test 4 (File tree, redirection, and expansion) Sun Apr 7
+
+- [ ] File permissions
 
 * Week 11 - Processes / Package management / Sprint review: first results
 

@@ -73,7 +73,7 @@
   #+end_src
 
   #+RESULTS: permission2
-  : -rw-r----- 1 root shadow 1462 Mar 16 12:48 /etc/shadow
+  : -rw-r----- 1 root shadow 1575 Feb  9 16:21 /etc/shadow
 
 - You've learnt that the owner (~root~) has read and write access, and
   members of the ~shadow~ group have read access. Anyone else has none.
@@ -210,7 +210,6 @@
   shadow-utils 4.8.1                02/06/2024                         SHADOW(5)
   #+end_example
 
-
 ** The Unix security model
 
 - In the UNIX security model, a user may /own/ files and directories.
@@ -226,6 +225,7 @@
 
   #+name: id
   #+begin_src bash :results output
+    #id
     id | tr ',' '\n'  # `tr` translates characters
   #+end_src
 
@@ -270,25 +270,24 @@
 
   #+RESULTS:
   #+begin_example
-  pulse:x:120:128:PulseAudio daemon,,,:/run/pulse:/usr/sbin/nologin
   _flatpak:x:121:131:Flatpak system-wide installation helper,,,:/nonexistent:/usr/sbin/nologin
   avahi:x:122:132:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
   saned:x:123:133::/var/lib/saned:/usr/sbin/nologin
   colord:x:124:134:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
   fwupd-refresh:x:125:135:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
   hplip:x:126:7:HPLIP system user,,,:/run/hplip:/bin/false
-  marcus:x:1000:1000:marcus,,,:/home/marcus:/bin/bash
+  marcus:x:1000:1000:Marcus Birkenkrahe,,,:/home/marcus:/bin/bash
   sssd:x:127:137:SSSD system user,,,:/var/lib/sss:/usr/sbin/nologin
-  postfix:x:128:138::/var/spool/postfix:/usr/sbin/nologin
+  nvidia-persistenced:x:128:138:NVIDIA Persistence Daemon,,,:/nonexistent:/usr/sbin/nologin
+  postfix:x:129:139::/var/spool/postfix:/usr/sbin/nologin
   #+end_example
-
+  
   #+begin_src bash
     less /etc/group | tail
   #+end_src
 
   #+RESULTS:
   #+begin_example
-  _flatpak:x:131:
   avahi:x:132:
   saned:x:133:
   colord:x:134:
@@ -296,8 +295,9 @@
   marcus:x:1000:
   sambashare:x:136:marcus
   sssd:x:137:
-  postfix:x:138:
-  postdrop:x:139:
+  nvidia-persistenced:x:138:
+  postfix:x:139:
+  postdrop:x:140:
   #+end_example
 
 - How many user and group accounts are there? Format the printout so
@@ -307,21 +307,30 @@
    '/etc/group'  has .. accounts   
   #+end_example
 
-
   #+begin_src bash
     echo "'/etc/passwd' has" $(cat /etc/passwd | wc -l) "accounts"
-    echo "'/etc/group'  has " $(cat /etc/passwd | wc -l) "groups"    
+    echo "'/etc/group'  has " $(cat /etc/group | wc -l) "groups"    
   #+end_src
 
   #+RESULTS:
-  : '/etc/passwd' has 48 accounts
-  : '/etc/group'  has  48 groups
+  : '/etc/passwd' has 49 accounts
+  : '/etc/group'  has  80 groups
 
 - ~/etc/shadow~ holds information about the user's password.
 
 - What is the uid of the root user? Use ~grep~ to get the information
   about ~root~ from the file with the ~uid~ information
 
+  This one returns too many entries:
+  #+begin_src bash
+    cat /etc/passwd | grep root
+  #+end_src
+
+  #+RESULTS:
+  : root:x:0:0:root:/root:/bin/bash
+  : nm-openvpn:x:117:126:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+
+  Need those lines where ~root~ is the first word:
   #+name: root
   #+begin_src bash
     cat /etc/passwd | grep ^root
@@ -688,6 +697,7 @@
 
   #+RESULTS: chmod5
   : -r--r----- 1 marcus marcus 0 Mar 28 08:12 bar.txt
+
 
 * TODO Setting default permissions (=umask=)
 * TODO Special permissions (=setuid=, =setgit=, sticky bit)
