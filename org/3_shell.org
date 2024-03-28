@@ -721,6 +721,4 @@ done
 
 Shotts W (2019). The Linux Command Line (2e), NoStarch Press.
 
-* Footnotes
 
-[fn:1] 

@@ -1046,8 +1046,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - Lecture: [[https://github.com/birkenkrahe/os24/blob/main/org/5_expansion.org][5_expansion.org in GitHub]]
 - Codealong: [[https://tinyurl.com/5-expansion-org][tinyurl.ncom/5-expansion-org]]
 
-
-* Week 10 - Popquiz 2 / Expansion / Permissions
+* DONE Week 10 - Popquiz 2 / Expansion / Permissions
 #+attr_html: :width 400px:
 [[../img/mainframe.jpg]]
 
@@ -1060,13 +1059,15 @@ Results from test 3 (manipulating files / DataCamp lessons):
   2. What are you going to do?
   3. What is your confidence level regarding this activity?
 
-- [ ] Test 4 (File tree, redirection, and expansion) Sun Apr 7
-
-- [ ] File permissions
+- [X] File permissions
 
 * Week 11 - Processes / Package management / Sprint review: first results
+#+attr_html: :width 400px:
+[[../img/piboard.png]]
 
-- [ ] Raspberry Pi and GPIO pins (lab) ????
+- [ ] *Test 4* (File tree, redirection, and expansion) Sun Apr 7 
+- [ ] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
+- [ ] *Raspberry Pi* and GPIO pins (lab) 
 
 * Week 12 - Storage media / Networking
 * Week 13 - Searching for files / Archiving and backup

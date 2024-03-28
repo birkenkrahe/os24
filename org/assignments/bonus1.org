@@ -1,0 +1,60 @@
+#+title: CSC 420 Bonus - working with shell and redirection
+#+STARTUP: overview hideblocks indent :
+#+PROPERTY: header-args:bash :results output :exports both :noweb yes
+* Test your understanding: working with shell and redirection
+
+- Complete the code blocks
+- Run the code
+- Submit the Org-mode file with code and output for grading
+
+** Q1: How can you list all directories within the current directory?
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q2: How do you find the type of file for `/usr/bin/gcc`?
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q3: How can you display your current shell's process ID?
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q4: Write a command to count the number of lines in a file named "document.txt".
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q5: How can you search for the word "reference" in all ".txt" files in the current directory?
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q6: How can you search for all files ending with `org` in the current directory and count their number?
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q7: Write a command to redirect the error message of a non-existent directory listing to a file named "errors.txt".
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q8: How can you append the output of `ls -l` command to a file named "directory_listing.txt"?
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q9: Write a command to view the last 5 lines of a file named "project.log" and then redirect them to a new file named "recent_errors.log".
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+** Q10: How can you create a new empty file named "newfile.txt" without using the `touch` command?
+#+BEGIN_SRC shell
+
+#+END_SRC
+
+
