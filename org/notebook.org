@@ -1049,7 +1049,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
 * Week 10 - Popquiz 2 / Expansion / Permissions
 #+attr_html: :width 400px:
-[[../img/week_10_2.png]]
+[[../img/mainframe.jpg]]
 
 - [X] Popquiz 2 (by hand)
 
