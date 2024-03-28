@@ -1065,7 +1065,8 @@ Results from test 3 (manipulating files / DataCamp lessons):
 #+attr_html: :width 400px:
 [[../img/piboard.png]]
 
-- [ ] *Test 4* (File tree, redirection, and expansion) Sun Apr 7 
+- [ ] Bonus assignment: test your understanding ([[https://lyon.instructure.com/courses/2255/assignments/26487][Canvas]]) by May 7
+- [ ] *Test 4* (working with shell and redirection) Sun Apr 7 
 - [ ] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
 - [ ] *Raspberry Pi* and GPIO pins (lab) 
 
