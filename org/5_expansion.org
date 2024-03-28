@@ -438,12 +438,12 @@ What we'll cover:
     echo `ls -l | wc -l`
   #+end_src
     
-* NEXT Quoting
+* Quoting
 
 - In this example, whitespace is removed from the =echo= command
   argument list: the shell performs word splitting to do this.
   #+begin_src bash
-    echo this is a     test
+    echo this is a    test
   #+end_src
 
   #+RESULTS:
@@ -469,7 +469,7 @@ What we'll cover:
 
 - Word splitting, pathname expansion, tilde expansion, brace expansion
   are suppressed, but parameter expansion, arithmetic expansion, and
-  command substitution are still carred out.
+  command substitution are still carried out.
 
 - With double quotes, we can handle filenames containing spaces (which
   Windows likes so much) - otherwise word splitting would mess us up.
@@ -484,31 +484,35 @@ What we'll cover:
 
 - To fix it, use double quotes (works only if you have a file ~two words.txt~):
   #+begin_src bash
+    > 'two words.txt'
     ls -l "two words.txt"
   #+end_src
 
   #+RESULTS:
-  : -rw-rw-r-- 1 marcus marcus 0 Mar 13 22:35 two words.txt
+  : -rw-rw-r-- 1 marcus marcus 0 Mar 28 09:51 two words.txt
 
 - You can even repair the damage:
   #+begin_src bash
     mv -v "two words.txt" two_words.txt
+    ls -l two*
   #+end_src  
 
   #+RESULTS:
   : renamed 'two words.txt' -> 'two_words.txt'
+  : -rw-rw-r-- 1 marcus marcus 0 Mar 28 09:51 two_words.txt
 
 - Parameter, arithmetic expansion and command substitution still work:
-  #+begin_src bash
-    echo "$USER"
-    echo "$((2+2))"
-    echo "$(date)"
+
+    #+begin_src bash
+    echo "$USER"    # parameter expansion inside double quotes
+    echo "$((2+2))" # arithmetic expansion inside double quotes
+    echo "$(date)"  # command substitution inside double quotes
   #+end_src
 
   #+RESULTS:
   : marcus
   : 4
-  : Wed Mar 13 10:38:43 PM CDT 2024
+  : Thu Mar 28 09:56:42 AM CDT 2024
 
 * Word splitting
 
@@ -518,8 +522,8 @@ What we'll cover:
 - When we put a text with whitespace in quotes, word splitting is
   suppressed, and the whitespace becomes part of the argument:
   #+begin_src bash
-    echo this is a     test
-    echo "this is a     test"
+    echo this is a     test   # with wordsplitting
+    echo "this is a     test" # without wordsplitting
   #+end_src
 
   #+RESULTS:
@@ -589,7 +593,15 @@ What we'll cover:
 
   #+RESULTS:
   : text ~/*.txt a{1..4}b $(echo hello) $((2+2)) $USER
-  
+
+  #+begin_src bash
+    touch 'n3wt0N1  phy31cc!!.txt'   # don't do this though
+    ls -l n3w*
+  #+end_src
+
+  #+RESULTS:
+  : -rw-rw-r-- 1 marcus marcus 0 Mar 28 10:04 n3wt0N1  phy31cc!!.txt
+
 * Escaping characters
 
 - To quote a single character, precede it with a backslash =\= a
@@ -597,11 +609,13 @@ What we'll cover:
 
 - This is often done in quotes to prevent an expansion:
   #+begin_src bash
-    echo "The balance for user $USER is \$100.00"
+    echo "The balance for user $USER is \$100.00" # with escaping
+    echo 'The balance for user $USER is \$100.00' # no escaping
   #+end_src
 
   #+RESULTS:
   : The balance for user marcus is $100.00
+  : The balance for user $USER is \$100.00
 
 - You can also escape the special meaning of characters in filenames:
   #+begin_src bash
@@ -619,8 +633,8 @@ What we'll cover:
 - To escape a backslash itself, escape it with a backslash. With
   single quotes however, it loses its meaning:
   #+begin_src bash
-    echo "The home of root is not \\ but /"
-    echo 'The home of root is not \\ but /'
+    echo "The home of root is not \\ but /"  # in Linux
+    echo 'The home of root is not \\ but /'  
   #+end_src
 
   #+RESULTS:
@@ -628,7 +642,7 @@ What we'll cover:
   : The home of root is not \\ but /
 
 - The backslash is also part of the notation to represent /control
-  codes/ to transmit commands to Teletype (=tty=) devices:
+  codes/ to transmit commands to Teletype (=tty=) or terminal devices:
 
   | Escape sequence | Meaning         |
   |-----------------+-----------------|
@@ -649,9 +663,8 @@ What we'll cover:
   #+end_src
 
   #+RESULTS:
-  : Time's up
-  : Time's up again 
-
+  : Time's up
+  : Time's up again 
   
 * SUMMARY
 
