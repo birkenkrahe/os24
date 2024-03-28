@@ -1,10 +1,10 @@
-#+TITLE:Permissions
+#+TITLE:Permissions - codealong file
 #+AUTHOR:Marcus Birkenkrahe
 #+SUBTITLE:permissions practice for CSC420 Operating Systems Spring 2024 Lyon College
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
-#+PROPERTY: header-args:bash :results output
-#+PROPERTY: header-args:bash :exports both
+#+PROPERTY: header-args:bash :results output :exports both :noweb yes
+#+PROPERTY: header-args:python :python python3 :session *Python* :results output :exports both :comments both :tangle yes :noweb yes
 * README
 
 - To code along, download [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]] and save the
@@ -17,355 +17,422 @@
   Desktop running on a 2018 Dell Vostro 3470 (six i7-8700 cores).
 
 * What is it?
-#+attr_html: :width 400px:
-[[../img/mainframe.jpg]]
 
-  - OS in the UNIX tradition are multi-tasking and multi-user systems.
+- OS in the UNIX tradition are multi-tasking and multi-user systems.
 
-  - If the computer is attached to a network, remote users can log in
-    via ~ssh~ (secure shell) and operate the computer, including GUIs.
+- If the computer is attached to a network, remote users can log in
+  via ~ssh~ (secure shell) and operate the computer, including GUIs.
 
-  - Multiuser capability of Linux is a deeply embedded OS feature
-    because the first computers were not "personal".
+- Multiuser capability of Linux is a deeply embedded OS feature
+  because the first computers were not "personal".
 
-  - To make multiuser practical, users (and their data) had to be
-    protected from one another.
+- To make multiuser practical, users (and their data) had to be
+  protected from one another.
 
-  - Related topics and commands:
+- Related topics and commands:
 
-    | COMMAND | MEANING                           |
-    |---------+-----------------------------------|
-    | =id=      | Display user identity             |
-    | =chmod=   | Change a file's mode              |
-    | =umask=   | Set the default file permissions  |
-    | =su=      | Run a shell as another user       |
-    | =sudo=    | Execute a command as another user |
-    | =chgrp=   | Change a file's group ownership   |
-    | =passwd=  | Change a user's password          |
+  | COMMAND | MEANING                           |
+  |---------+-----------------------------------|
+  | =id=      | Display user identity             |
+  | =chmod=   | Change a file's mode              |
+  | =umask=   | Set the default file permissions  |
+  | =su=      | Run a shell as another user       |
+  | =sudo=    | Execute a command as another user |
+  | =chgrp=   | Change a file's group ownership   |
+  | =passwd=  | Change a user's password          |
 
 * Owners, Group Members, and Everybody Else
 
 ** Example: a bad experience
 
-   * Check the file type of /etc/shadow using the ~file~ command
+- Check the file type of ~/etc/shadow~ using the =file= command:
+  #+name: permission0
+  #+begin_src bash :results output
 
-     #+name: permission0
-     #+begin_src bash :results output
+  #+end_src
 
-     #+end_src
+- Try to page the file using the ~less~ command. Anticipating an
+  error (you have no read permission), redirect =stderr= to =stdout=:
+  #+name: permission1
+  #+begin_src bash :results output
 
-   * Try to page the file using the ~less~ command. Anticipating an
-     error, redirect the standard error to standard output.
+  #+end_src
 
-     #+name: permission1
-     #+begin_src bash :results output
+- As regular user, you don't have permission to look at this
+  file. Check if you can at least see who does have permission.
 
-     #+end_src
+  #+name: permission2
+  #+begin_src bash :results output
 
-   * As regular user, you don't have permission to look at this
-     file. Check if you can at least see who does have permission.
+  #+end_src
 
-     #+name: permission2
-     #+begin_src bash :results output
+- You've learnt that the owner (~root~) has read and write access, and
+  members of the ~shadow~ group have read access. Anyone else has none.
 
-     #+end_src
+- How would you find out more about =shadow= (without the web)?
+  #+begin_src bash
+
+  #+end_src
+
+** The Unix security model
+
+- In the UNIX security model, a user may /own/ files and directories.
+
+- With ownership comes access control (and great responsibility).
+
+- The user can belong to a /group/ of one or more users who are given
+  access to files and directories by their owners.
+
+- A user may also grant access rights to everyody (aka the /world/).
+
+- Find out who you are in this model with the command ~id~.
+
+  #+name: id
+  #+begin_src bash :results output
+
+  #+end_src
+
+- When users are created, they are assigned a /user ID/ (/uid/),
+  which is mapped to a user name.
+
+- The user is also assigned a /group id/ (/gid/) and can be part of
+  other groups.
+
+- In the example [[id]], ~marcus~ is the first user with ~uid=1000~. This user
+  is in the group with ~gid=1000~, and he is also member of a few other
+  groups:
+  1. As member of ~adm~ (~gid=4~) he can access system logs.
+  2. As member of ~cdrom~ (~gid=24~) he can access CD/DVD ROM drives.
+  3. As member of ~sudo~ (~gid=27~) he can become superuser.
+  4. As member of ~dip~ (~gid=30~) he can open dial-up modem connections.
+  5. As member of ~plugdev~ (~gid=46~) he can manage removable storage.
+  6. As member of ~lpadmin~ (~gid=115~) he can manager printers.
+  7. As member of ~sambashare~ (~gid=136~) he can share files over network[fn:1].
+
+- The specific output is different for different Linux
+  distros. E.g. Fedora Linux starts numbering uid at 500,
+  Debian/Ubuntu at 1000.
+
+- This information is stored in text files, of course: user accounts
+  in ~/etc/passwd~, groups in ~/etc/group~.
+
+- Take a look at the last 10 lines of ~/etc/passwd~ and ~/etc/group~:
+  #+begin_src bash
+
+  #+end_src
+
+  #+begin_src bash
+
+  #+end_src
+
+- How many user and group accounts are there? Format the printout so
+  that it looks like this:
+  #+begin_example
+   '/etc/passwd' has .. accounts
+   '/etc/group'  has .. accounts   
+  #+end_example
 
 
-** The security model
+  #+begin_src bash
 
-   * In the UNIX security model, a user may /own/ files and
-     directories.
+    
+  #+end_src
 
-   * With ownership comes access control.
+- ~/etc/shadow~ holds information about the user's password.
 
-   * The user can also belong to a /group/ of one or more users who are
-     given access to files and directories by their owners.
+- What is the uid of the root user? Use ~grep~ to get the information
+  about ~root~ from the file with the ~uid~ information
 
-   * A user may also grant access rights to everyody (aka the /world/).
+  #+name: root
+  #+begin_src bash
 
-   * Find out who you are in this model with the command ~id~.
+  #+end_src
 
-     #+name: id
-     #+begin_src bash :results output
+- Can you think about a way to directly get the uid for root?
 
-     #+end_src
+  #+name: root_id
+  #+begin_example bash
 
-   * When users are created, they are assigned a /user ID/ (/uid/),
-     which is mapped to a user name
+  #+end_example
 
-   * The user is also assigned a /group id/ (/gid/) and can be part of
-     other groups.
-
-   * The specific output is different for different Linux
-     distros. E.g. Fedora Linux starts numbering uid at 500,
-     Debian/Ubuntu at 1000.
-
-   * This information is stored in text files, of course: user
-     accounts in /etc/passwd, groups in /etc/group.
-
-   * [ ] Take a look at /etc/passwd and /etc/group.
-
-   * /etc/shadow holds information about the user's password.
-
-   * [ ] What is the uid of the root user? Use ~grep~ to get the
-     information about root from the file with the uid information
-
-     #+name: root
-     #+begin_src bash
-
-     #+end_src
-
-   * [ ] Can you think about a way to directly get the uid for root?
-
-     #+name: root_id
-     #+begin_src bash :results output
-
-     #+end_src
-
+- You should get this output: ~uid=0(root) gid=0(root) groups=0(root)~
+  because ~root~ is the first account created.
 
 * Reading, Writing, and Executing
 
-  * Access rights to files and directories are defined in terms of
-    *read* access, *write* access, and *execution* access.
+- Access rights to files and directories are defined in terms of
+  *read* access, *write* access, and *execution* access.
 
-  * The long listing command ~ls -l~ shows how this is implemented.
+- The long listing command ~ls -l~ shows how this is implemented.
 
-  * [ ] Create an empty file foo.txt using file redirection, and then
-    print a long listing of the file.
+- Create an empty file ~foo.txt~ using file *redirection*, and then print
+  a long listing of the file.
 
-    #+name: ll
-    #+begin_src bash :results output
+  #+name: ll
+  #+begin_src bash :results output
+  
+  #+end_src
 
-
-    #+end_src
-
+  - You've seen this before: now let's analyze the permissions in detail.
 
 * File attributes
 
-  * The first 10 characters of the listing are /file
-    attributes/. Table [[tab:fa]] gives an overview.
+- The first 10 characters of the listing are /file attributes/. Table
+  [[tab:fa]] gives an overview.
 
-    #+name: tab:fa
-    | ATTRIBUTE | FILE TYPE              |
-    |-----------+------------------------|
-    | -         | regular file           |
-    | d         | directory              |
-    | l         | symbolic link          |
-    | c         | character special file |
-    | b         | block special file     |
+  #+name: tab:fa
+  | ATTRIBUTE | FILE TYPE              |
+  |-----------+------------------------|
+  | ~-~         | regular file           |
+  | ~d~         | directory              |
+  | ~l~         | symbolic link          |
+  | ~c~         | character special file |
+  | ~b~         | block special file     |
 
-  * [ ] For symbolic links, the remaining attributes are always dummy
-    values. What do you think why that is?
+- For symbolic links, the remaining attributes are always dummy
+  values. What do you think why that is?
+  #+begin_quote
+  Because a soft/symbolic link is not a file but only a pointer to a
+  file with the real (non-dummy) permissions.
+  #+end_quote
 
-  * [ ] Which "character special file" did you already encounter?
-    These files handle data as a stream of bytes.
+- Create a symbolic link ~~/shadow~ from ~/etc/shadow~:
+  1) long-list the symbolic link to see the permissions
+  2) execute =less= on the symbolic link
+  
+  #+begin_src bash
+    
+  #+end_src
 
-    #+begin_quote
-    Answers: 
-    #+end_quote
+- Which "character special file" did you already encounter?  These
+  files handle data as a stream of bytes.
 
-  * A block special file handles data in blocks, e.g. a hard drive.
+  #+begin_quote
+  Answers:
 
+  #+end_quote
+
+  #+begin_src bash
+
+  #+end_src
+  
+- A block special file handles data in blocks, e.g. a hard drive.
 
 * File modes
 
-  * The remaining nine characters are the /file mode/ for the owner,
-    the group, and the world - r=read, w=write, x=execute. Table
-    [[tab:fm]] shows examples.
+- The remaining nine characters are the /file mode/ for the owner, the
+  group, and the world with the permission settings: r=read, w=write,
+  x=execute.
 
-    #+name: tab:fm
-    | *WHO*   | Owner | Group | World |
-    |---------+-------+-------+-------|
-    | *WHAT*  | rwx   | rwx   | rwx   |
-    | Example | pi    | gpio  |       |
+- Table [[tab:mode]] shows the effect that the mode has on files and
+  directories. "Executing" a directory to Unix means "entering" it.
 
-  * Table [[tab:mode]] shows the effect that the mode has on files and
-    directories.
+  #+name: tab:mode
+  | ATTRIBUTE | FILES          | DIRECTORIES                                        |
+  |-----------+----------------+----------------------------------------------------|
+  | r         | can be opened  | can be listed if x is set (~dr-xr-xr-x~)             |
+  | w         | can be written | files can be created, deleted, renamed if x is set |
+  | x         | can be run     | allows a directory to be entered, e.g. with ~cd~     |
 
-    #+name: tab:mode
-    | ATTRIBUTE | FILES          | DIRECTORIES                                        |
-    |-----------+----------------+----------------------------------------------------|
-    | r         | can be opened  | can be listed if x is set                          |
-    | w         | can be written | files can be created, deleted, renamed if x is set |
-    | x         | can be run     | allows a directory to be entered, e.g. with ~cd~   |
+- Scripts(e.g. bash scripts) must also be set readable to be executed.
 
-  * Scripts(e.g. bash scripts) must also be set readable to be
-    executed.
+- Table [[tab:mode_ex]] shows some examples of file attribute
+  settings.
 
-  * Table [[tab:mode_ex]] shows some examples of file attribute
-    settings.
+  #+name: tab:mode_ex
+  | ATTRIBUTE  | MEANING                                                                           |
+  |------------+-----------------------------------------------------------------------------------|
+  | -rwx------ | File, readable, writable, executable by owner only. Nobody else can access.       |
+  | -rw------- | File, readable, writable by owner only. Nobody else can access.                   |
+  | -rw-r--r-- | File, readable, writable by owner. Owner's group members & world may read         |
+  | -rwxr-xr-x | File, readable, writable, executable by owner, can be read and executed by others |
+  | -rw-rw---- | File, readable, writable by owner and members of file's owners group only         |
+  | lrwxrwxrwx | Symbolic link with dummy permissions. Real permissions kept with file pointed to  |
+  | drwxrwx--- | Directory. Owner & members of owner group may enter, create, rename, remove files |
+  | drwxr-x--- | Directory. Owner may enter, create, rename, delete files here.                    |
+  |            | Group members may enter but cannot write (add or change files).                   |
 
-    #+name: tab:mode_ex
-    | ATTRIBUTE   | MEANING                                                                                                  |
-    |-------------+----------------------------------------------------------------------------------------------------------|
-    | -rwx------  | Regular file, readable, writable, executable by file's owner only. Nobody else can access.               |
-    | -rw-------  | Regular file, readable, writable by file's owner only. Nobody else can access.                           |
-    | -rw-r--r--  | Regular file, readable, writable by file's owner. Members of file owner's group and world may read       |
-    | -rwxr-xr-x  | Regular file, readable, writable, executable by file's owner, can be read and executed by everybody else |
-    | -rw-rw----  | Regular file, readable, writable by file's owner and members of file's owners group only                 |
-    | lrwxrwxrwx  | Symbolic link with dummy permissions. Real permissions kept with file pointed to by the link.            |
-    | drwxrwx---  | Directory. Owner and members of owner group may enter, create, rename and remove files here.             |
-    | drwxr-x---  | Directory. Owner may enter, create, rename, delete files here. Group members may enter but cannot.       |
+- Check ~/home~ where your ~$HOME~ is. What are the permissions, and what
+  is everybody (the world) allowed to do or see?
+  #+begin_src bash
 
-  * [ ] Check /sys/class/gpio/.
+  #+end_src
+  
+  #+begin_quote
+  Answer: 
+  #+end_quote
 
-    Answer without checking directly, only based on the file
-    attributes: Can you write to the files ~export~ and ~unexport~?
+- Can you (as ~$USER~) create a file in ~/home~?
 
-    #+begin_quote
-    Answer:
-    #+end_quote
+  #+begin_src bash
 
-  * [ ] Check your $HOME. What are the permissions, and what is
-    everybody (the world) allowed to do or see?
+  #+end_src
 
-    #+begin_quote
-    Answer: 
-    #+end_quote
-
+  #+begin_quote
+  Answer:
+  #+end_quote
 
 * Changing file modes (=chmod=)
 
-  * Only file owners and superuser can change the mode of a file or
-    directory using the command ~chmod~.
+- Only file owners and superuser can change the mode of a file or
+  directory using the command ~chmod~.
 
-  * Mode changes can be specified using octal numbers or symbols,
-    because each digit in an octal number represents three (8 =
-    2^3) binary digits.
+- Mode changes can be specified using octal numbers or symbols. Which
+  you use is a matter of taste and upbringing.
 
-** Changing file modes with octal numbers
+* Changing file modes with octal numbers
 
-   * Octal people were born with 8 fingers. Different base systems,
-     like octal (base 8), binary (base 2) or hexadecimal (base 16) can
-     be used to abbreviate patterns that adhere to the base.
+- Octal people were born with 8 fingers. Different base systems,
+  like octal (base 8), binary (base 2) or hexadecimal (base 16) can
+  be used to abbreviate patterns that adhere to the base.
 
-   * Pixels e.g. are composed of 3 color components: 8 bits of red,
-     green, blue each. A medium blue in binary would be a 24-digit
-     number, but it can be condensed to a 6-digit hexadecimal, 436FCD.
+- Each digit in an octal number represents three (8 = 2^3) binary
+  digits (useful to specify anything that comes in groups of
+  three). Counting in octal is done with the numbers 0 through 7.
 
-   * Table [[tab:octal]] shows the file modes in binary and in octal
-     notation. In octal, counting is done with the numbers 0 to 7.
+- Pixels e.g. are composed of 3 color components: 8 bits of red,
+  green, blue each. A medium blue in binary would be a 24-digit
+  number, but it can be condensed to a 6-digit hexadecimal, 436FCD.
 
-     #+name: tab:octal
-     | OCTAL | BINARY | FILE MODE |
-     |-------+--------+-----------|
-     |     0 |    000 | ---       |
-     |     1 |    001 | --x       |
-     |     2 |    010 | -w-       |
-     |     3 |    011 | -wx       |
-     |     4 |    100 | r--       |
-     |     5 |    101 | r-x       |
-     |     6 |    110 | rw-       |
-     |     7 |    111 | rwx       |
+- Table [[tab:octal]] shows the file modes in binary and in octal
+  notation.
 
-   * By setting 3 octal digits, we can set the file mode for the owner,
-     group owner, and world.
+  #+name: tab:octal
+  | OCTAL | BINARY | FILE MODE |
+  |-------+--------+-----------|
+  |     0 |    000 | ---       |
+  |     1 |    001 | --x       |
+  |     2 |    010 | -w-       |
+  |     3 |    011 | -wx       |
+  |     4 |    100 | r--       |
+  |     5 |    101 | r-x       |
+  |     6 |    110 | rw-       |
+  |     7 |    111 | rwx       |
 
-   * [ ] Example: run the block [[chmod]]. An empty file is created and
-     long-listed.
+- Most languages have conversion functions for different bases,
+  e.g. =oct= or =format= in Python to convert to octal:
+  #+begin_example python 
+    format(8,'o')  # decimal 8 to octal (10)
+    format(8,'b')  # decimal 8 to binary (1000)
+    oct(10)  # octal to decimal
+  #+end_example
 
-     #+name: chmod
-     #+begin_src bash :results output
-       > foo.txt
-       ls -l foo.txt
-     #+end_src
+- By setting 3 octal digits, we can set the file mode for the owner,
+  group owner, and world.
 
-   * [ ] In the block [[chmod1]] below, change the permissions (file mode)
-     to 600 with the command ~chmod 600 [filename]~ and list the file.
+- Example: run the block [[chmod]]. An empty file is created and
+  long-listed.
 
-     Check with the table that this is what was supposed to happen:
-     read and write permissions for the owner, and no access rights for
-     anyone else.
+  #+name: chmod
+  #+begin_src bash :results output
 
-     #+name: chmod1
-     #+begin_src bash :results output
+  #+end_src
 
+- In the block [[chmod1]] below, change the permissions (file mode) to 600
+  with the command ~chmod 600 [filename]~ and list the file.
 
-     #+end_src
+  Check with the table that this is what was supposed to happen:
+  read and write permissions for the owner, and no access rights for
+  anyone else.
 
-   * [ ] Change the mode of foo.txt to be readable by owner, group,
-     and world, with no other permissions for any of these.
+  #+name: chmod1
+  #+begin_src bash :results output
 
-     #+name: chmod2
-     #+begin_src bash :results output
+  #+end_src
 
+- Now change the mode of foo.txt to be readable by owner, group, and
+  world, with no other permissions for any of these.
 
-     #+end_src
+  #+name: chmod2
+  #+begin_src bash :results output
 
+  #+end_src
 
-** Changing file modes with symbols
+- Change the permissions for ~foo.txt~ back to default (~rw-rw-r--~):
+  #+begin_src bash
 
-   * Symbolic notation is divided into three parts:
-     - Who the change will affect
-     - Which operation will be performed
-     - What permission will be set
+  #+end_src
 
-   * To specify who is affected, a combination of characters is used,
-     as shown in table [[tab:symmod]].
+- What does ~chmod 775~ do? Why is this a common setting?
+  #+begin_src bash
 
-     #+name: tab:symmod
-     | WHO | MEANING                        |
-     |-----+--------------------------------|
-     | u   | user = file or directory owner |
-     | g   | group owner                    |
-     | o   | others = world                 |
-     | a   | all = combination of u,g,o     |
+  #+end_src
 
-   * If no character is specified, "all" (a) is assumed. Three
-     operations are allowed, see table [[tab:opmod]]:
+  #+begin_quote
+  Answer:
+  #+end_quote
 
-     #+name: tab:opmod
-     | OPERATION | MEANING                                                    |
-     |-----------+------------------------------------------------------------|
-     | +         | permission to be added                                     |
-     | -         | permission to be removed                                   |
-     | =         | specified permissions to be applied and all others removed |
+  #+begin_src bash
 
-   * Table [[tab:modex]] shows some examples. Multiple specifications may
-     be separated by commas.
+  #+end_src
+  
+* Changing file modes with symbols
 
-     #+name: tab:modex
-     | NOTATION   | MEANING                                                                       |
-     |------------+-------------------------------------------------------------------------------|
-     | u+x        | add execute permission for owner                                              |
-     | u-x        | remove execute permission for owner                                           |
-     | +x         | add execute permission for owner, group, world                                |
-     | a+x        | add execute permission for owner, group, world                                |
-     | o-rw       | Remove read, write permissions from anyone except owner, group                |
-     | go=rw      | Set group owner and anyone besides the owner to have read, write permissions. |
-     |            | If group owner or world previously had execute permissions, they are removed. |
-     | u+x, go=rx | Add execute permissions for the owner, and set read,execute for group, others |
+- Symbolic notation is divided into three parts:
+  - Who the change will affect
+  - Which operation will be performed
+  - What permission will be set
 
-   * [ ] Example: run the block [[chmod3]]. An empty file is created and
-     long-listed.
+- To specify who is affected, a combination of characters is used,
+  as shown in table [[tab:symmod]].
 
-     #+name: chmod3
-     #+begin_src bash :results output
-       > bar.txt
-       ls -l bar.txt
-     #+end_src
+  #+name: tab:symmod
+  | WHO | MEANING                        |
+  |-----+--------------------------------|
+  | u   | user = file or directory owner |
+  | g   | group owner                    |
+  | o   | others = world                 |
+  | a   | all = combination of u,g,o     |
 
+- If no character is specified, "all" (a) is assumed. Three
+  operations are allowed, see table [[tab:opmod]]:
 
-   * [ ] In the block [[chmod4]] below, set the permissions for the owner,
-     the group and others to read and write only. Use the command
-     ~chmod [operation] [filename]~, then list the file.
+  #+name: tab:opmod
+  | OPERATION | MEANING                                                    |
+  |-----------+------------------------------------------------------------|
+  | +         | permission to be added                                     |
+  | -         | permission to be removed                                   |
+  | =         | specified permissions to be applied and all others removed |
 
-     #+name: chmod4
-     #+begin_src bash :results output
+- Table [[tab:modex]] shows some examples. Multiple specifications may
+  be separated by commas.
 
+  #+name: tab:modex
+  | NOTATION   | MEANING                                                               |
+  |------------+-----------------------------------------------------------------------|
+  | u+x        | add execute permission for owner                                      |
+  | u-x        | remove execute permission for owner                                   |
+  | +x         | add execute permission for owner, group, world                        |
+  | a+x        | add execute permission for owner, group, world                        |
+  | o-rw       | Remove read, write permissions from anyone except owner, group        |
+  | go=rw      | Set group owner and anyone else to have read, write permissions.      |
+  |            | Remove existing group owner/world execute permissions                 |
+  | u+x, go=rx | Add execute permissions for owner, set read, execute for group/others |
 
-     #+end_src
+- Example: in the block [[chmod3]], create an empty file ~bar.txt~ and
+  long-list it:
 
+  #+name: chmod3
+  #+begin_src bash :results output
 
-   * [ ] Change the mode of bar.txt to be readable by owner, group,
-     and world, with no other permissions for any of these.
+  #+end_src
 
-     #+name: chmod5
-     #+begin_src bash :results output
+- In the block [[chmod4]] below, set the permissions for the owner, the
+  group and others to read and write only, for ~bar.txt~. Use the
+  command ~chmod [operation] [filename]~, then list the file.
 
+  #+name: chmod4
+  #+begin_src bash :results output
 
-     #+end_src
+  #+end_src
 
+- Change the mode of bar.txt to be readable by owner and group only,
+  with no other permissions for any of these.
+
+  #+name: chmod5
+  #+begin_src bash :results output
+
+  #+end_src
 
 * TODO Setting default permissions (=umask=)
 * TODO Special permissions (=setuid=, =setgit=, sticky bit)
@@ -373,5 +440,23 @@
 * TODO Change file owner and group (=chown=)
 * TODO Setting up a shared directory
 * TODO Changing your password
-* Summary
 
+* IN PROGRESS Summary
+
+- Unix multiuser capability is fundamental, allowing user data
+  protection from others.
+- Essential commands related to user and group management include =id=,
+  =chmod=, =umask=, =su=, =sudo=, =chgrp=, =passwd=.
+- The Unix security model encompasses file ownership, group
+  memberships, and access rights, delineating control over resources.
+- User IDs (=uid=) and group IDs (=gid=) start at specific numbers varying
+  by distribution, impacting system resource access and management.
+- Access rights are categorized into read, write, and execute, with
+  file permissions displayed using =ls -l=.
+
+
+* Footnotes
+
+[fn:1]Samba is a free software re-implementation of a networking
+protocol that enables interoperability (= data exchange) between
+Unix-like and Windows-like systems - e.g. share files, printers etc.
