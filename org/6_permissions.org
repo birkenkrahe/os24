@@ -698,7 +698,6 @@
   #+RESULTS: chmod5
   : -r--r----- 1 marcus marcus 0 Mar 28 08:12 bar.txt
 
-
 * TODO Setting default permissions (=umask=)
 * TODO Special permissions (=setuid=, =setgit=, sticky bit)
 * TODO Changing identities (=su=, =sudo=)
