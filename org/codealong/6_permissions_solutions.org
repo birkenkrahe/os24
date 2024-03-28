@@ -7,26 +7,26 @@
 #+PROPERTY: header-args:bash :exports both
 * README
 
-  * This file accompanies lectures on the shell and ~bash(1)~. To gain
+  - This file accompanies lectures on the shell and ~bash(1)~. To gain
     practice, you should type along in your own Org-mode file. You
     have to have Emacs and my ~.emacs~ file installed on your PC or
     the Pi you're working with.
 
-  * To make this easier, use the auto expansion (~<s~). This will only
+  - To make this easier, use the auto expansion (~<s~). This will only
     work if you have my ~.emacs~ file ([[https://tinyurl.com/lyonemacs][from GDrive]]) installed.
 
-  * Add the following two lines at the top of your file, and activate
+  - Add the following two lines at the top of your file, and activate
     each line with ~C-c C-c~ (this is confirmed in the echo area as
     ~Local setup has been refreshed~)):
     #+begin_example
     #+PROPERTY: header-args:bash :results output
     #+end_example
 
-  * Remember that ~C-M-\~ inside a code block indents syntactically
+  - Remember that ~C-M-\~ inside a code block indents syntactically
     (on Windows, this may only work if you have a marked region - set
     the mark with ~C-SPC~).
 
-  * This section is based on chapter 9 of Shotts, The Linux Command
+  - This section is based on chapter 9 of Shotts, The Linux Command
     Line (2e), NoStarch Press (2019).
 
 * What is it?
