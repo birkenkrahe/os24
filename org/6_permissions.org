@@ -41,9 +41,7 @@
   | =chgrp=   | Change a file's group ownership   |
   | =passwd=  | Change a user's password          |
 
-* Owners, Group Members, and Everybody Else
-
-** Example: a bad experience
+* Example: a bad experience
 
 - Check the file type of ~/etc/shadow~ using the =file= command:
   #+name: permission0
@@ -210,7 +208,7 @@
   shadow-utils 4.8.1                02/06/2024                         SHADOW(5)
   #+end_example
 
-** The Unix security model
+* The Unix security model
 
 - In the UNIX security model, a user may /own/ files and directories.
 
