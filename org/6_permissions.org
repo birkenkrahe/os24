@@ -279,7 +279,7 @@
   nvidia-persistenced:x:128:138:NVIDIA Persistence Daemon,,,:/nonexistent:/usr/sbin/nologin
   postfix:x:129:139::/var/spool/postfix:/usr/sbin/nologin
   #+end_example
-  
+
   #+begin_src bash
     less /etc/group | tail
   #+end_src
@@ -302,12 +302,12 @@
   that it looks like this:
   #+begin_example
    '/etc/passwd' has .. accounts
-   '/etc/group'  has .. accounts   
+   '/etc/group'  has .. accounts
   #+end_example
 
   #+begin_src bash
     echo "'/etc/passwd' has" $(cat /etc/passwd | wc -l) "accounts"
-    echo "'/etc/group'  has " $(cat /etc/group | wc -l) "groups"    
+    echo "'/etc/group'  has " $(cat /etc/group | wc -l) "groups"
   #+end_src
 
   #+RESULTS:
@@ -347,7 +347,7 @@
 - You should get this output: ~uid=0(root) gid=0(root) groups=0(root)~
   because ~root~ is the first account created.
 
-* Reading, Writing, and Executing
+* NEXT Reading, Writing, and Executing
 
 - Access rights to files and directories are defined in terms of
   *read* access, *write* access, and *execution* access.
@@ -369,6 +369,8 @@
 - You've seen this before: now let's analyze the permissions in detail.
 
 * File attributes
+#+attr_html: :width 600px:
+[[../img/file_permissions.png]]
 
 - The first 10 characters of the listing are /file attributes/. Table
   [[tab:fa]] gives an overview.
@@ -392,12 +394,12 @@
 - Create a symbolic link ~~/shadow~ from ~/etc/shadow~:
   1) long-list the symbolic link to see the permissions
   2) execute =less= on the symbolic link
-  
+
   #+begin_src bash
     rm -rf ~/shadow
     ln -s /etc/shadow ~/shadow
     ls -l ~/shadow
-    less ~/shadow 
+    less ~/shadow
   #+end_src
 
   #+RESULTS:
@@ -471,7 +473,7 @@
   #+RESULTS:
   : total 4
   : drwxr-x--- 30 marcus marcus 4096 Mar 27 23:33 marcus
-  
+
   #+begin_quote
   Answer: you and your group can enter and read, only you can write to ~$HOME~
   #+end_quote
@@ -534,7 +536,7 @@
 
 - Most languages have conversion functions for different bases,
   e.g. =oct= or =format= in Python to convert to octal:
-  #+begin_example python 
+  #+begin_example python
     format(8,'o')  # decimal 8 to octal (10)
     format(8,'b')  # decimal 8 to binary (1000)
     oct(10)  # octal to decimal
@@ -614,7 +616,7 @@
   : drwxrwxr-x  2 marcus marcus 4096 Mar 25 23:48 assignments/
   : drwxrwxr-x  2 marcus marcus 4096 Mar 27 23:19 codealong/
   : drwxrwxr-x 38 marcus marcus 4096 Mar 26 07:17 Photos/
-  
+
 * Changing file modes with symbols
 
 - Symbolic notation is divided into three parts:
@@ -696,12 +698,153 @@
   #+RESULTS: chmod5
   : -r--r----- 1 marcus marcus 0 Mar 28 08:12 bar.txt
 
-* TODO Setting default permissions (=umask=)
+* Setting permissions in the GUI
+
+You can inspect and set permissions also in GUIs. It usually takes two
+clicks (except for hidden files, if they're not set to be viewed), and
+you need administrative rights (which may require an admin login).
+
+#+attr_html: :width 400px:
+#+caption: Windows File Explorer
+[[../img/file-permissions-win-10.jpg]]
+
+#+attr_html: :width 400px:
+#+caption: MacOS Finder
+[[../img/how-to-change-file-permissions-mac-os-x.jpg]]
+
+#+attr_html: :width 400px:
+#+caption: Linux
+[[../img/file_permissions_linux.png]]
+
+* Setting default permissions (=umask=)
+
+- When a file is created, the =umask= command expresses a /mask/ of bits
+  to be *removed* from from the mode attributes of a file.
+
+- Running the command without arguments returns the default mask:
+  #+begin_src bash
+    # default permission mask
+    umask
+  #+end_src
+
+  #+RESULTS:
+  : 0002
+
+- Review the octal encoding in [[tab:octal]] to see that:
+
+  | Octal | Binary | File |
+  |-------+--------+------|
+  |     0 |    000 | ---  |
+  |     2 |    010 | -w-  |
+
+- Create an empty file ~foo.txt~ to see default permissions (~0002~):
+  #+begin_src bash
+    <<rm_foo.txt>>
+    > foo.txt
+    ls -l foo.txt
+  #+end_src
+
+  #+RESULTS:
+  : -rw-rw-r-- 1 marcus marcus 0 Mar 29 21:03 foo.txt
+
+- Reset the mask to ~0000~ ('remove nothing') and create the file again:
+  #+begin_src bash
+    rm foo.txt
+    umask 0000
+    > foo.txt
+    ls -l foo.txt
+  #+end_src
+
+  #+RESULTS:
+  : -rw-rw-rw- 1 marcus marcus 0 Mar 29 20:36 foo.txt
+
+- Reset the mask to ~0022~ and create the file again:
+  #+begin_src bash
+    rm foo.txt
+    umask 0022
+    > foo.txt
+    ls -l foo.txt
+  #+end_src
+
+  #+RESULTS:
+  : -rw-r--r-- 1 marcus marcus 0 Mar 29 20:36 foo.txt
+
+- Expand the mask ~0002~ to binary and compare it to the attributes:
+  ~0002~ means 'remove ~-w-~ from the 'others' permissions:
+  #+name: mask0002
+  | Original | --- rw- rw- rw- |
+  | Mask     | 000 000 000 010 |
+  | Result   | --- rw- rw- r-- |
+
+- Expand the mask ~0022~ to binary and compare it to the attributes:
+  ~0022~ means 'remove ~-w-~ permissions from 'group' and 'others':
+  #+name: mask0022
+  | Original | --- rw- rw- rw- |
+  | Mask     | 000 000 010 010 |
+  | Result   | --- rw- r-- r-- |
+
+- Where a 1 appears in the binary value, the corresponding attribute
+  is unset.
+
+- Exercises:
+  1) What are the permissions of a new file ~foo.txt~ when you run =umask
+     0226=?
+     #+begin_src bash
+       <<rm_foo.txt>>
+       umask 0226
+       > foo.txt
+       ls -l foo.txt
+     #+end_src
+
+     #+RESULTS:
+     : -r--r----- 1 marcus marcus 0 Mar 29 21:27 foo.txt
+
+  2) What is the corresponding binary code for =umask 0226=?
+     #+begin_example
+     0223 = 000 010 010 110
+     #+end_example
+
+  3) Which permissions are masked (removed) by =umask 0224=?
+     #+begin_example
+     0223 = 000 010 010 110
+          = --- -w- -w- rw-  (removed)
+          = --- r-- r-- ---  (remaining)
+     #+end_example
+
+  4) What about ~umask 0331~ - what does that do?
+     #+begin_src bash
+       <<rm_foo.txt>>
+       umask 0321 # remove --- 011 010 001 or --- -wx -w- --x
+       > foo.txt
+       ls -l foo.txt
+     #+end_src
+
+     #+RESULTS:
+     : -r--r--rw- 1 marcus marcus 0 Mar 29 21:31 foo.txt
+
+  5) Which masks would remove all permissions? Show this.
+     #+begin_src bash
+       <<rm_foo.txt>>
+       umask 0666    # for executable files, use 0777
+       > foo.txt
+       ls -l foo.txt
+     #+end_src
+
+     #+RESULTS:
+     : removed 'foo.txt'
+     : ---------- 1 marcus marcus 0 Mar 29 21:45 foo.txt
+
+- =umask= is useful in practice for enforcing security policies,
+  controlling default permissions, and ensuring that newly created
+  files and directories have the desired level of access restrictions.
+  
+
 * TODO Special permissions (=setuid=, =setgit=, sticky bit)
 * TODO Changing identities (=su=, =sudo=)
 * TODO Change file owner and group (=chown=)
 * TODO Setting up a shared directory
 * TODO Changing your password
+
 
 * IN PROGRESS Summary
 
@@ -716,6 +859,27 @@
 - Access rights are categorized into read, write, and execute, with
   file permissions displayed using =ls -l=.
 
+* Noweb chunks
+
+- Remove ~foo.txt~ if file exists:
+  #+name: rm_foo.txt
+  #+begin_src bash :results silent
+    if [ -e "foo.txt" ]; then
+        rm -rvf foo.txt
+    fi
+  #+end_src
+
+  #+RESULTS: rm_foo.txt
+
+- Remove all files ~foo*.txt~ if they exist:
+  #+name: rm_foo*.txt
+  #+begin_src bash
+    for file in foo*.txt; do
+        if [ -e "$file" ]; then
+            rm -rfv $file
+        fi
+    done
+  #+end_src
 
 * Footnotes
 
