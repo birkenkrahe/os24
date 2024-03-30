@@ -1002,6 +1002,8 @@ you need administrative rights (which may require an admin login).
 - Older versions of Linux have a more restricted program, =chgrp=, to
   only change the group.
 
+  [[../img/adduser.png]]
+
 #+begin_ai
 how to make a new regular user on Linux mint - and what are the differences to doing this on Raspberry Pi OS
 
@@ -1081,7 +1083,30 @@ Here are a few methods to confirm that the new user was created successfully:
 By following these steps, you can ensure that the new user was created
 successfully on your Linux Mint system.
 
-[ME]: 
+[ME]: how can I delete the new user
+
+[AI]: To delete a user on a Linux system, including Linux Mint, you
+can use the `userdel` command. Here's how you can delete the new user:
+
+1. Open a terminal window.
+
+2. Run the following command to delete the user:
+   ```
+   sudo userdel -r username
+   ```
+   Replace `username` with the username of the user you want to delete. The `-r` flag removes the user's home directory and mail spool.
+
+3. Confirm the deletion when prompted.
+
+4. Additionally, you may want to remove the user's group if it was created specifically for that user. You can use the following command:
+   ```
+   sudo groupdel groupname
+   ```
+   Replace `groupname` with the name of the group associated with the deleted user.
+
+By following these steps, you can delete the new user from your Linux Mint system. Make sure to back up any important data associated with the user before deleting the account.
+
+[ME]:
 #+end_ai
 * TODO Setting up a shared directory
 * TODO Changing your password
