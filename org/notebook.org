@@ -1061,14 +1061,15 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
 - [X] File permissions
 
-* Week 11 - Processes / Package management / Sprint review: first results
+
+* Week 11 - Permissions / Raspberry Pi hardware and GPIO pins
 #+attr_html: :width 400px:
-[[../img/piboard.png]]
+[[../img/he_is_risen.png]]
 
 - [ ] Bonus assignment: test your understanding ([[https://lyon.instructure.com/courses/2255/assignments/26487][Canvas]]) by May 7
 - [ ] *Test 4* (working with shell and redirection) Sun Apr 7 
 - [ ] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
-- [ ] *Raspberry Pi* and GPIO pins (lab) 
+- [ ] *Raspberry Pi* and GPIO pins (lab) - Thursday
 
 * Week 12 - Storage media / Networking
 * Week 13 - Searching for files / Archiving and backup
