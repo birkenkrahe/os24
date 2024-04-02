@@ -1,0 +1,33 @@
+#+TITLE:Permissions Practice
+#+AUTHOR:Marcus Birkenkrahe
+#+SUBTITLE:permissions practice for CSC420 Operating Systems Spring 2024 Lyon College
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:bash :results output :exports both :noweb yes
+#+PROPERTY: header-args:python :python python3 :session *Python* :results output :exports both :comments both :tangle yes :noweb yes
+* README
+
+- Permissions practice with two exercises on creating a shared
+  directory and changing your password.
+  
+- This section is based on chapter 9 of Shotts, The Linux Command Line
+  (2e), NoStarch Press (2019), pp. 95-98.
+
+- Code tested with Linux Mint 21.3 Virginia and the Cinnamon 6.0.4
+  Desktop running on a 2018 Dell Vostro 3470 (six i7-8700 cores).
+
+
+* TODO Setting up a shared directory
+
+Let's say both users on this Linux box have music collections and want
+to set up a shared directory where they will store their files. One of
+them has superuser privileges.
+
+The steps to do this are: creation of a group with both users as
+members, creation of a directory for the files, 
+
+1) 
+
+
+* TODO Changing your password
+

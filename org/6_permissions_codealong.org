@@ -623,14 +623,263 @@
 
   #+end_src
 
-* TODO Setting default permissions (=umask=)
-* TODO Special permissions (=setuid=, =setgit=, sticky bit)
-* TODO Changing identities (=su=, =sudo=)
-* TODO Change file owner and group (=chown=)
-* TODO Setting up a shared directory
-* TODO Changing your password
+* Setting default permissions (=umask=)
 
-* IN PROGRESS Summary
+- When a file is created, the =umask= command expresses a /mask/ of bits
+  to be *removed* from from the mode attributes of a file.
+
+- Running the command without arguments returns the default mask:
+  #+begin_src bash
+    # default permission mask
+
+  #+end_src
+
+- Review the octal encoding in [[tab:octal]] to see what the '2' means:
+
+  | Octal | Binary | File |
+  |-------+--------+------|
+  |     0 |    000 | ---  |
+  |     2 |    010 | -w-  |
+
+- The first bit of the mask is the =setuid= bit (to be covered later).  
+
+- Create an empty file ~foo.txt~ to see default permissions (~0002~):
+  #+begin_src bash
+    <<rm_foo.txt>>
+
+  #+end_src
+
+- Reset the mask to ~0000~ ('remove nothing') and create the file again:
+  #+begin_src bash
+
+  #+end_src
+
+- Reset the mask to ~0022~ and create the file again:
+  #+begin_src bash
+
+  #+end_src
+
+- Expand the mask ~0002~ to binary and compare it to the attributes:
+  ~0002~ means 'remove ~-w-~ from the 'others' permissions:
+  #+name: mask0002
+  | Original | --- rw- rw- rw- |
+  | Mask     | 000 000 000 010 |
+  | Result   | --- rw- rw- r-- |
+
+- Expand the mask ~0022~ to binary and compare it to the attributes:
+  ~0022~ means 'remove ~-w-~ permissions from 'group' and 'others':
+  #+name: mask0022
+  | Original | --- rw- rw- rw- |
+  | Mask     | 000 000 010 010 |
+  | Result   | --- rw- r-- r-- |
+
+- Where a 1 appears in the binary value, the corresponding attribute
+  is unset.
+
+- Exercises:
+  1) What are the permissions of a new file ~foo.txt~ when you run =umask
+     0226=?
+     #+begin_src bash
+       <<rm_foo.txt>>
+
+     #+end_src
+
+  2) What is the corresponding binary code for =umask 0226=?
+     #+begin_example
+     0223 = ...
+     #+end_example
+
+  3) Which permissions are masked (removed) by =umask 0224=?
+     #+begin_example
+     0223 = ...
+          = ...  (removed)
+          = ...  (remaining)
+     #+end_example
+
+  4) What about ~umask 0331~ - what does that do?
+     #+begin_src bash
+       <<rm_foo.txt>>
+
+     #+end_src
+
+  5) Which masks would remove all permissions? Show this.
+     #+begin_src bash
+       <<rm_foo.txt>>
+
+     #+end_src
+
+- =umask= is useful in practice for enforcing security policies,
+  controlling default permissions, and ensuring that newly created
+  files and directories have the desired level of access restrictions.
+  
+* Special permissions (=setuid=, =setgit=, sticky bit)
+
+- The =setuid= bit (octal ~4000~) changes the user ID from the current
+  user ID running the program to that of the program's owner.
+
+- When an ordinary user runs a program that is =setuid root=, it runs
+  with superuser privileges and can access all files on the computer.
+
+- Listing with ~ls -l~ shows the special permissions. Here is an example
+  of assigning =setuid= to a program:
+  #+begin_src bash
+    <<rm_empty>>
+
+  #+end_src
+
+- The =setgid= bit (octal ~2000~) changes the group ID from the current
+  group ID running the program to that of the file owner.
+
+- If =setgid= is set on a directory, new files will be given the
+  directory's group ownership rather than the file creator's =gid=.
+
+- Now, members of a common group can access all files in that
+  directory, independent of the file owner's group.
+
+- Here is an example of assigning =setgid= to a directory:
+  #+begin_src bash :noweb yes
+    <<rm_Empty_dir>>
+
+  #+end_src
+
+- The *sticky bit* (octal ~1000~) is a Unix artifact that stopped an
+  executable file from being swapped out of cache memory but this is
+  longer required.
+
+- On Linux, if the sticky bit is set on a directory, it prevents users
+  from deleting or renaming files in that directory unless they are
+  the owner of the file, owner of the directory, or the superuser.
+
+- This is used to control access to a shared directory such as ~/tmp~.
+
+- Here is an example of a directory with the sticky bit set:
+  #+begin_src bash
+    <<rm_Empty_dir>>
+
+  #+end_src
+
+* Changing identities (=su=, =sudo=)
+
+- There are three ways to change your user identity:
+  1. By logging out and back in as an alternate user.
+  2. By using the =su= ('superuser') command.
+  3. By using the =sudo= ('superuser do') command.
+
+- With =su=, you can run a shell with an other user and group IDs, or a
+  single command. 
+
+- The ~-~ is an abbreviation of the ~-l~ option of the =su= command, for
+  /login/. If the user is not specified, the superuser is assumed.
+
+- The ~-c~ flag prepares =su= for accepting a single command. The login
+  shell is entered, the command is executed and left again.
+
+- We cannot usually look at ~/root~ - check this (=stderr= to =stdout=):
+  #+begin_src bash
+
+  #+end_src
+
+- Because the ~root~ user does not normally (for security resons) have a
+  default password, use of =sudo= is encouraged:
+
+  1. =sudo= can be configured for ordinary users in a controlled
+     way. The ~sudoers(5)~ man page contains more information.
+
+  2. =sudo= does not require access to the superuser's password. You
+     know this from using ~sudo apt update -y~ and ~sudo apt upgrade -y~.
+
+  3. Authenticating =sudo= use on scripts requires the user's own
+     password. No new shell is started, no new environment is loaded.
+
+- You can see the privileges granted by =sudo= with the ~-l~ option:
+  #+begin_src bash
+
+  #+end_src
+
+- In the Windoze world, administrative privileges are bestowed on the
+  user without sharing much information. Programs executed by such a
+  user have the potential to damage the system (/malware/).
+
+- In the Unix world, regular users and administrators have
+  traditionally been further apart. Like in database systems,
+  privileges are only granted to users when really needed.
+
+- Operating as ~root~ all the time makes everything more convenient but
+  reduces the security of a Linux system to that of a Windoze system.
+
+- Ubuntu and its distributions (like Linux Mint) do not give a default
+  password to ~root~ but use =sudo= to grant superuser privileges.
+
+* Change file owner and group (=chown=) 
+
+- You need superuser privilegs to change owner and group of a file.
+
+- The syntax of =chown= is:
+  #+begin_example bash
+  chown [owner] [:[group]] file...
+  #+end_example
+
+- Here are some examples for arguments:
+
+  | Argument  | Results                          |
+  |-----------+----------------------------------|
+  | ~bob~       | Changes ownership to ~bob~         |
+  | ~bob:users~ | New owner ~bob~, new group ~users~   |
+  | ~:admins~   | New group owner is ~admin~         |
+  | ~bob:~      | New owner ~bob~ new group is ~bob~'s |
+
+- To try this, add a new user called `tiger`. This requires a fully
+  functional terminal. You can use ~M-x term~ in Emacs for that.
+
+- This CLI dialog below shows:
+  1) creating a new user with ~sudo adduser [username]~
+  2) checking new user with ~cat /etc/passwd | grep [username]~
+  3) checking new user with ~sudo~ in ~/etc/shadow~
+  4) checking new user's home directory with ~ls -l /home~
+  5) logging in as new user with ~su - [username]~
+  6) running ~pwd~ and ~whoami~ and logging out with ~exit~
+  
+- Perform all these actions now for a new user ~testuser~ using the
+  fully functional regular Linux terminal (not Emacs) as password, use
+  ~testpassword:~
+  #+begin_example bash
+   $ sudo adduser testuser  # enter password, then accept all defaults
+   $ cat /etc/passwd | grep testuser
+   $ cat /etc/shadow | grep testuser    # no permission
+   $ sudo cat /etc/shadow | grep testuser
+   $ ls -l /home
+   $ su - testuser  # run `pwd` and `whoami` then `exit`
+  #+end_example
+ 
+- Back home in your original ~LyonXX~ account, create a file:
+  #+begin_src bash
+
+  #+end_src
+
+- You now have two users, ~LyonXX~ and ~testuser~, and your ~LyonXX~ user
+  has access to superuser privileges. Do this in the terminal:
+  1) As superuser, copy your file ~superuser.txt~ to the home directory
+     of ~testuser~, which is in ~/home/testuser~:
+     #+begin_example bash
+       sudo cp superuser.txt ~testuser
+       sudo ls -l ~/testuser
+     #+end_example
+  2) You see that the file is owned by ~root~ and is of group ~root~,
+     too. This means that ~testuser~ cannot edit it. But you can use
+     =chown= to bestow these privileges:
+     #+begin_example bash
+       sudo chown testuser: ~testuser/superuser.txt
+       sudo ls -l ~/testuser
+     #+end_example
+  3) The argument ~testuser:~ has changed both ownership and group.
+
+- On most Linux systems, once you enter your password, a timer gives
+  you 5 minutes without having to re-enter it (see ~sudo(8)~ timeout).
+
+- Older versions of Linux have a more restricted program, =chgrp=, to
+  only change the group.
+
+* Summary
 
 - Unix multiuser capability is fundamental, allowing user data
   protection from others.
@@ -642,6 +891,88 @@
   by distribution, impacting system resource access and management.
 - Access rights are categorized into read, write, and execute, with
   file permissions displayed using =ls -l=.
+- =chmod= is used to modify file permissions employing octal notation
+  and symbolic modes for precise access control.
+- The =umask= command sets the default permissions of newly created
+  files, and has a critical role in system security.
+- Special permissions (=setuid=, =setgid=, sticky bit), provide importance
+  fine-tuning access control and execution rights.
+- To change user identities use the =su= and =sudo= commands, with =sudo=
+  particularly emphasized for its security advantages in executing
+  superuser-level commands.
+- The chown command alters file and directory ownership using =sudo=
+  superuser privileges.  operations.
+
+* Noweb chunks
+
+- Remove ~foo.txt~ if file exists:
+  #+name: rm_foo.txt
+  #+begin_src bash :results silent
+    if [ -e "foo.txt" ]; then
+        rm -rvf foo.txt
+    fi
+  #+end_src
+
+  #+RESULTS: rm_foo.txt
+  
+- Remove all files ~foo*.txt~ if they exist:
+  #+name: rm_foo*.txt
+  #+begin_src bash
+    for file in foo*.txt; do
+        if [ -e "$file" ]; then
+            rm -rfv $file
+        fi
+    done
+  #+end_src
+
+- Remove ~empty~ if file exists:
+  #+name: rm_empty
+  #+begin_src bash :results silent
+    if [ -e "empty" ]; then
+        rm -rvf empty
+    fi
+  #+end_src
+
+- Remove ~Empty~ if directory exists:
+  #+name: rm_Empty_dir
+  #+begin_src bash :results silent
+    if [ -d "Empty" ]; then
+        rm -rvf Empty
+    fi
+  #+end_src
+
+#+begin_ai
+how can I check if a directory `Empty` exists?
+
+[AI]: You can check if a directory named `Empty` exists in the current directory by using the following command in Emacs:
+
+```elisp
+(file-exists-p "Empty")
+```
+
+This function returns `t` if the file or directory exists, and `nil` otherwise.
+
+[ME]: in a bash script
+
+[AI]: To check if a directory named `Empty` exists in a bash script, you can use the following command:
+
+```bash
+if [ -d "Empty" ]; then
+    echo "Directory 'Empty' exists."
+else
+    echo "Directory 'Empty' does not exist."
+fi
+```
+
+This bash script will check if the directory `Empty` exists in the
+current directory. If the directory exists, it will print "Directory
+'Empty' exists." Otherwise, it will print "Directory 'Empty' does not
+exist."
+
+[ME]: 
+#+end_ai
+
+
 
 * Footnotes
 
