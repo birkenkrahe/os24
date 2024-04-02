@@ -1,8 +1,8 @@
 #+TITLE:Permissions
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:permissions practice for CSC420 Operating Systems Spring 2024 Lyon College
+#+SUBTITLE: CSC420 Operating Systems / Spring 2024 / Lyon College
 #+STARTUP:overview hideblocks indent
-#+OPTIONS: toc:nil num:nil ^:nil
+#+OPTIONS: toc:1 
 #+PROPERTY: header-args:bash :results output :exports both :noweb yes
 #+PROPERTY: header-args:python :python python3 :session *Python* :results output :exports both :comments both :tangle yes :noweb yes
 * README
@@ -221,7 +221,7 @@
 - You should get this output: ~uid=0(root) gid=0(root) groups=0(root)~
   because ~root~ is the first account created.
 
-* NEXT Reading, Writing, and Executing
+* Reading, Writing, and Executing
 
 - Access rights to files and directories are defined in terms of
   *read* access, *write* access, and *execution* access.
@@ -878,10 +878,6 @@ you need administrative rights (which may require an admin login).
   4) checking new user's home directory with ~ls -l /home~
   5) logging in as new user with ~su - [username]~
   6) running ~pwd~ and ~whoami~ and logging out with ~exit~
-
-- Terminal dialog:
-  #+attr_html: :width 600px: 
-  [[../img/adduser.png]]
   
 - Perform all these actions now for a new user ~testuser~ using the
   fully functional regular Linux terminal (not Emacs) as password, use
@@ -984,39 +980,6 @@ you need administrative rights (which may require an admin login).
         rm -rvf Empty
     fi
   #+end_src
-
-#+begin_ai
-how can I check if a directory `Empty` exists?
-
-[AI]: You can check if a directory named `Empty` exists in the current directory by using the following command in Emacs:
-
-```elisp
-(file-exists-p "Empty")
-```
-
-This function returns `t` if the file or directory exists, and `nil` otherwise.
-
-[ME]: in a bash script
-
-[AI]: To check if a directory named `Empty` exists in a bash script, you can use the following command:
-
-```bash
-if [ -d "Empty" ]; then
-    echo "Directory 'Empty' exists."
-else
-    echo "Directory 'Empty' does not exist."
-fi
-```
-
-This bash script will check if the directory `Empty` exists in the
-current directory. If the directory exists, it will print "Directory
-'Empty' exists." Otherwise, it will print "Directory 'Empty' does not
-exist."
-
-[ME]: 
-#+end_ai
-
-
 
 * Footnotes
 

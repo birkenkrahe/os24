@@ -2,7 +2,7 @@
 #+AUTHOR: Marcus Birkenkrahe
 #+SUBTITLE:OS Practice CSC 420 Spring 2024
 #+STARTUP:overview hideblocks indent
-#+OPTIONS: toc:nil num:nil ^:nil
+#+OPTIONS: toc:1 num:nil ^:nil
 #+PROPERTY: header-args:bash :exports both :results output
 * README
 
@@ -289,15 +289,12 @@ What we'll cover:
    =bash(1)= man page or in the [[https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html][online reference manual]] for bash.
 
 - Python has adopted this notation for the formatted or /f-string/:
-  #+begin_src python :session *Python* :python python3 :results output :exports both :noweb yes 
+  #+begin_example python
     greeting = "world"
 
     print(f"Hello, {greeting}")
-  #+end_src
-
-  #+RESULTS:
-  : Hello, world
-
+  #+end_example
+  
 - Emacs tables are also using this feature to turn a table into a
   spreadsheet. The following table computes the sum of two numbers. To
   turn formula debugging on/off, use ~C-c }~
@@ -657,14 +654,10 @@ What we'll cover:
 
 - To interpret these codes, add the =-e= flag to =echo= or place them
   inside =$''=. 
-  #+begin_src bash
+  #+begin_example bash
     sleep 10; echo -e "Time's up\a"  # countdown using sleep(1)
     sleep 10; echo -e "Time's up again" $'\a'
-  #+end_src
-
-  #+RESULTS:
-  : Time's up
-  : Time's up again 
+  #+end_example
   
 * SUMMARY
 
