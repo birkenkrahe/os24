@@ -1073,10 +1073,10 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - [ ] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
 - [ ] *Raspberry Pi* and GPIO pins (lab) - post-permissions, pre-process
 
-* Week 12 - PROCESS & 2nd SPRINT REVIEW
-* Week 13 - NETWORKING
-* Week 14 - BASH SCRIPTS
-* Week 15 - COMPILING FROM SOURCE (=make=
+* Week 12 - PROCESS MANAGEMENT & 2nd SPRINT REVIEW
+* Week 13 - NETWORKING AND SECURITY
+* Week 14 - BASH SCRIPTS WITH EXAMPLES
+* Week 15 - COMPILING FROM SOURCE (=make=)
 * Week 16 - FINAL SPRINT REVIEW (presentations)
 * References
 
