@@ -1071,13 +1071,13 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - [ ] *Bonus assignment*: test your understanding ([[https://lyon.instructure.com/courses/2255/assignments/26487][Canvas]]) by May 7
 - [ ] *Test 4* (working with shell and redirection) 30 pts, Sun Apr 7
 - [ ] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
-- [ ] *Raspberry Pi* and GPIO pins (lab) - Thursday
+- [ ] *Raspberry Pi* and GPIO pins (lab) - post-permissions, pre-process
 
-* Week 12 - Storage media / Networking
-* Week 13 - Searching for files / Archiving and backup
-* Week 14 - Regular expressions / Text processing
-* Week 15 - Linux vs. Windows
-* Week 16 - Summary and outlook / Final sprint review: presentation
+* Week 12 - PROCESS & 2nd SPRINT REVIEW
+* Week 13 - NETWORKING
+* Week 14 - BASH SCRIPTS
+* Week 15 - COMPILING FROM SOURCE (=make=
+* Week 16 - FINAL SPRINT REVIEW (presentations)
 * References
 
 ARM (2010). Operating Systems Foundations with Linux on the Raspberry
