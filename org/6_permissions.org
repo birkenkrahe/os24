@@ -1017,7 +1017,6 @@ exist."
 #+end_ai
 
 
-
 * Footnotes
 
 [fn:1]Samba is a free software re-implementation of a networking
