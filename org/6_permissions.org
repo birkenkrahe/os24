@@ -221,7 +221,7 @@
 - You should get this output: ~uid=0(root) gid=0(root) groups=0(root)~
   because ~root~ is the first account created.
 
-* NEXT Reading, Writing, and Executing
+* Reading, Writing, and Executing
 
 - Access rights to files and directories are defined in terms of
   *read* access, *write* access, and *execution* access.
@@ -238,7 +238,7 @@
   #+end_src
 
   #+RESULTS: ll
-  : -rw-rw-r-- 1 marcus marcus 0 Mar 27 23:20 foo.txt
+  : -rw-rw-r-- 1 marcus marcus 0 Apr  2 09:46 foo.txt
 
 - You've seen this before: now let's analyze the permissions in detail.
 
@@ -270,14 +270,14 @@
   2) execute =less= on the symbolic link
 
   #+begin_src bash
-    rm -rf ~/shadow
-    ln -s /etc/shadow ~/shadow
+#    rm -rf ~/shadow
+    ln -s /etc/shadow ~/shadow  # cmd + option + source + target
     ls -l ~/shadow
     less ~/shadow
   #+end_src
 
   #+RESULTS:
-  : lrwxrwxrwx 1 marcus marcus 11 Mar 27 23:25 /home/marcus/shadow -> /etc/shadow
+  : lrwxrwxrwx 1 marcus marcus 11 Apr  2 09:50 /home/marcus/shadow -> /etc/shadow
   : /home/marcus/shadow: Permission denied
 
 - Which "character special file" did you already encounter?  These
@@ -292,15 +292,14 @@
 
   #+begin_src bash
     ls -la /dev/null  # null device
-    ls -la /dev/tty   # keyboard input output
+    ls -la /dev/tty   # keyboard input / output
     ls -la /dev/sda   # first disk device
   #+end_src
 
   #+RESULTS:
-  : crw-rw-rw- 1 root root 1, 3 Mar 24 18:06 /dev/null
-  : crw-rw-rw- 1 root tty 5, 0 Mar 27 23:14 /dev/tty
-  : brw-rw---- 1 root disk 8, 0 Mar 24 18:06 /dev/sda
-
+  : crw-rw-rw- 1 root root 1, 3 Apr  1 08:39 /dev/null
+  : crw-rw-rw- 1 root tty 5, 0 Apr  1 08:39 /dev/tty
+  : brw-rw---- 1 root disk 8, 0 Apr  1 08:39 /dev/sda
 
 - A block special file handles data in blocks, e.g. a hard drive.
 
@@ -346,7 +345,7 @@
 
   #+RESULTS:
   : total 4
-  : drwxr-x--- 30 marcus marcus 4096 Mar 27 23:33 marcus
+  : drwxr-x--- 34 marcus marcus 4096 Apr  2 09:50 marcus
 
   #+begin_quote
   Answer: you and your group can enter and read, only you can write to ~$HOME~
@@ -361,9 +360,9 @@
 
   #+RESULTS:
   : total 12
-  : drwxr-xr-x  3 root   root   4096 Mar 16 11:50 .
-  : drwxr-xr-x 20 root   root   4096 Mar 16 13:00 ..
-  : drwxr-x--- 30 marcus marcus 4096 Mar 27 23:33 marcus
+  : drwxr-xr-x  3 root   root   4096 Jan 30 23:12 .
+  : drwxr-xr-x 21 root   root   4096 Feb 11 17:32 ..
+  : drwxr-x--- 34 marcus marcus 4096 Apr  2 09:50 marcus
   : uid=1000(marcus) gid=1000(marcus) groups=1000(marcus),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),115(lpadmin),136(sambashare)
 
   #+begin_quote
@@ -430,7 +429,7 @@
   #+end_src
 
   #+RESULTS: chmod
-  : -rw-rw-r-- 1 marcus marcus 0 Mar 28 07:39 foo.txt
+  : -rw-rw-r-- 1 marcus marcus 0 Apr  2 10:11 foo.txt
 
 - In the block [[chmod1]] below, change the permissions (file mode) to 600
   with the command ~chmod 600 [filename]~ and list the file.
@@ -446,7 +445,7 @@
   #+end_src
 
   #+RESULTS: chmod1
-  : -rw------- 1 marcus marcus 0 Mar 28 07:39 foo.txt
+  : -rw------- 1 marcus marcus 0 Apr  2 10:11 foo.txt
 
 - Now change the mode of foo.txt to be readable by owner, group, and
   world, with no other permissions for any of these.
@@ -458,7 +457,7 @@
   #+end_src
 
   #+RESULTS: chmod2
-  : -r--r--r-- 1 marcus marcus 0 Mar 28 07:39 foo.txt
+  : -r--r--r-- 1 marcus marcus 0 Apr  2 10:11 foo.txt
 
 - Change the permissions for ~foo.txt~ back to default (~rw-rw-r--~):
   #+begin_src bash
@@ -467,7 +466,7 @@
   #+end_src
 
   #+RESULTS:
-  : -rw-rw-r-- 1 marcus marcus 0 Mar 28 07:39 foo.txt
+  : -rw-rw-r-- 1 marcus marcus 0 Apr  2 10:11 foo.txt
 
 - What does ~chmod 775~ do? Why is this a common setting?
   #+begin_src bash
@@ -476,7 +475,7 @@
   #+end_src
 
   #+RESULTS:
-  : -rwxrwxr-x 1 marcus marcus 0 Mar 28 07:39 foo.txt
+  : -rwxrwxr-x 1 marcus marcus 0 Apr  2 10:11 foo.txt
 
   #+begin_quote
   Answer: this is the default setting for your directories (check)
@@ -487,9 +486,8 @@
   #+end_src
 
   #+RESULTS:
-  : drwxrwxr-x  2 marcus marcus 4096 Mar 25 23:48 assignments/
-  : drwxrwxr-x  2 marcus marcus 4096 Mar 27 23:19 codealong/
-  : drwxrwxr-x 38 marcus marcus 4096 Mar 26 07:17 Photos/
+  : drwxrwxr-x  2 marcus marcus 4096 Apr  1 08:50 assignments/
+  : drwxrwxr-x 38 marcus marcus 4096 Mar 26 10:12 Photos/
 
 * Changing file modes with symbols
 
@@ -545,7 +543,7 @@
   #+end_src
 
   #+RESULTS: chmod3
-  : -rw-rw-r-- 1 marcus marcus 0 Mar 28 08:12 bar.txt
+  : -rw-rw-r-- 1 marcus marcus 0 Apr  2 10:26 bar.txt
 
 - In the block [[chmod4]] below, set the permissions for the owner, the
   group and others to read and write only, for ~bar.txt~. Use the
@@ -553,12 +551,12 @@
 
   #+name: chmod4
   #+begin_src bash :results output
-    chmod a=rw bar.txt
+    chmod a=rw bar.txt # or use: +rw, or: ugo=rw, ugo-x
     ls -l bar.txt
   #+end_src
 
   #+RESULTS: chmod4
-  : -rw-rw-rw- 1 marcus marcus 0 Mar 28 08:12 bar.txt
+  : -rw-rw-rw- 1 marcus marcus 0 Apr  2 10:26 bar.txt
 
 - Change the mode of bar.txt to be readable by owner and group only,
   with no other permissions for any of these.
@@ -570,7 +568,7 @@
   #+end_src
 
   #+RESULTS: chmod5
-  : -r--r----- 1 marcus marcus 0 Mar 28 08:12 bar.txt
+  : -r--r----- 1 marcus marcus 0 Apr  2 10:26 bar.txt
 
 * Setting permissions in the GUI
 
