@@ -588,7 +588,7 @@ you need administrative rights (which may require an admin login).
 #+caption: Linux
 [[../img/file_permissions_linux.png]]
 
-* NEXT Setting default permissions (=umask=)
+* Setting default permissions (=umask=)
 
 - When a file is created, the =umask= command expresses a /mask/ of bits
   to be *removed* from from the mode attributes of a file.
@@ -619,7 +619,8 @@ you need administrative rights (which may require an admin login).
   #+end_src
 
   #+RESULTS:
-  : -rw-rw-r-- 1 marcus marcus 0 Mar 29 21:03 foo.txt
+  : removed 'foo.txt'
+  : -rw-rw-r-- 1 marcus marcus 0 Apr  4 09:51 foo.txt
 
 - Reset the mask to ~0000~ ('remove nothing') and create the file again:
   #+begin_src bash
@@ -630,7 +631,7 @@ you need administrative rights (which may require an admin login).
   #+end_src
 
   #+RESULTS:
-  : -rw-rw-rw- 1 marcus marcus 0 Mar 29 20:36 foo.txt
+  : -rw-rw-rw- 1 marcus marcus 0 Apr  4 09:54 foo.txt
 
 - Reset the mask to ~0022~ and create the file again:
   #+begin_src bash
@@ -641,7 +642,7 @@ you need administrative rights (which may require an admin login).
   #+end_src
 
   #+RESULTS:
-  : -rw-r--r-- 1 marcus marcus 0 Mar 29 20:36 foo.txt
+  : -rw-r--r-- 1 marcus marcus 0 Apr  4 09:56 foo.txt
 
 - Expand the mask ~0002~ to binary and compare it to the attributes:
   ~0002~ means 'remove ~-w-~ from the 'others' permissions:
@@ -671,7 +672,8 @@ you need administrative rights (which may require an admin login).
      #+end_src
 
      #+RESULTS:
-     : -r--r----- 1 marcus marcus 0 Mar 29 21:27 foo.txt
+     : removed 'foo.txt'
+     : -r--r----- 1 marcus marcus 0 Apr  4 10:01 foo.txt
 
   2) What is the corresponding binary code for =umask 0226=?
      #+begin_example
@@ -680,21 +682,22 @@ you need administrative rights (which may require an admin login).
 
   3) Which permissions are masked (removed) by =umask 0224=?
      #+begin_example
-     0223 = 000 010 010 110
-          = --- -w- -w- rw-  (removed)
-          = --- r-- r-- ---  (remaining)
+     0224 = 000 010 010 100
+          = --- -w- -w- r--  (removed)
+          = --- r-- r-- -w-  (remaining)
      #+end_example
 
   4) What about ~umask 0331~ - what does that do?
      #+begin_src bash
        <<rm_foo.txt>>
-       umask 0321 # remove --- 011 010 001 or --- -wx -w- --x
+       umask 0331 # remove --- 011 010 001 or --- -wx -w- --x
        > foo.txt
        ls -l foo.txt
      #+end_src
 
      #+RESULTS:
-     : -r--r--rw- 1 marcus marcus 0 Mar 29 21:31 foo.txt
+     : removed 'foo.txt'
+     : -r--r--rw- 1 marcus marcus 0 Apr  4 10:07 foo.txt
 
   5) Which masks would remove all permissions? Show this.
      #+begin_src bash
@@ -703,10 +706,6 @@ you need administrative rights (which may require an admin login).
        > foo.txt
        ls -l foo.txt
      #+end_src
-
-     #+RESULTS:
-     : removed 'foo.txt'
-     : ---------- 1 marcus marcus 0 Mar 29 21:45 foo.txt
 
 - =umask= is useful in practice for enforcing security policies,
   controlling default permissions, and ensuring that newly created
@@ -730,9 +729,8 @@ you need administrative rights (which may require an admin login).
   #+end_src
 
   #+RESULTS:
-  : removed 'empty'
   : mode of 'empty' changed from 0664 (rw-rw-r--) to 4664 (rwSrw-r--)
-  : -rwSrw-r-- 1 marcus marcus 0 Mar 30 08:57 empty
+  : -rwSrw-r-- 1 marcus marcus 0 Apr  4 10:14 empty
 
 - The =setgid= bit (octal ~2000~) changes the group ID from the current
   group ID running the program to that of the file owner.
@@ -752,9 +750,8 @@ you need administrative rights (which may require an admin login).
   #+end_src
 
   #+RESULTS:
-  : removed directory 'Empty'
   : mkdir: created directory 'Empty'
-  : drwxrwsr-x 2 marcus marcus 4096 Mar 30 09:05 Empty
+  : drwxrwsr-x 2 marcus marcus 4096 Apr  4 10:19 Empty
 
 - The *sticky bit* (octal ~1000~) is a Unix artifact that stopped an
   executable file from being swapped out of cache memory but this is
@@ -770,13 +767,14 @@ you need administrative rights (which may require an admin login).
   #+begin_src bash
     <<rm_Empty_dir>>
     mkdir -v Empty
-    chmod +t Empty
+    chmod +t Empty   # +t means set the sticky bit
     ls -ld Empty
   #+end_src
 
   #+RESULTS:
+  : removed directory 'Empty'
   : mkdir: created directory 'Empty'
-  : drwxrwxr-t 2 marcus marcus 4096 Mar 30 09:07 Empty
+  : drwxrwxr-t 2 marcus marcus 4096 Apr  4 10:21 Empty
 
 * Changing identities (=su=, =sudo=)
 
@@ -824,10 +822,10 @@ you need administrative rights (which may require an admin login).
   #+end_src
 
   #+RESULTS:
-  : Matching Defaults entries for marcus on marcus-Vostro-3470:
+  : Matching Defaults entries for marcus on marcus-Lenovo-ideapad-320-15ISK:
   :     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty, pwfeedback
   : 
-  : User marcus may run the following commands on marcus-Vostro-3470:
+  : User marcus may run the following commands on marcus-Lenovo-ideapad-320-15ISK:
   :     (ALL : ALL) ALL
   :     (root) NOPASSWD: /usr/bin/mintdrivers-remove-live-media
   :     (root) NOPASSWD: /usr/bin/mint-refresh-cache
@@ -850,7 +848,7 @@ you need administrative rights (which may require an admin login).
 
 * Change file owner and group (=chown=) 
 
-- You need superuser privilegs to change owner and group of a file.
+- You need superuser privileges to change owner and group of a file.
 
 - The syntax of =chown= is:
   #+begin_example bash
@@ -866,8 +864,8 @@ you need administrative rights (which may require an admin login).
   | ~:admins~   | New group owner is ~admin~         |
   | ~bob:~      | New owner ~bob~ new group is ~bob~'s |
 
-- To try this, add a new user called `tiger`. This requires a fully
-  functional terminal. You can use ~M-x term~ in Emacs for that.
+- To try this, add a new user called `testuser`. This requires a fully
+  functional terminal. You can use ~M-x shell~ in Emacs for that.
 
 - This CLI dialog below shows:
   1) creating a new user with ~sudo adduser [username]~
@@ -893,10 +891,6 @@ you need administrative rights (which may require an admin login).
     ls -l superuser.txt
     cat superuser.txt
   #+end_src
-
-  #+RESULTS:
-  : -rw-rw-r-- 1 marcus marcus 15 Apr  1 21:32 superuser.txt
-  : I am superuser
 
 - You now have two users, ~LyonXX~ and ~testuser~, and your ~LyonXX~ user
   has access to superuser privileges. Do this in the terminal:
