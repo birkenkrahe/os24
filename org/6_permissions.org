@@ -588,7 +588,7 @@ you need administrative rights (which may require an admin login).
 #+caption: Linux
 [[../img/file_permissions_linux.png]]
 
-* Setting default permissions (=umask=)
+* NEXT Setting default permissions (=umask=)
 
 - When a file is created, the =umask= command expresses a /mask/ of bits
   to be *removed* from from the mode attributes of a file.

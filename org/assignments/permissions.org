@@ -48,11 +48,8 @@ If you messed up, you can delete a group with =groupdel=.
 
 Using =grep=, check the new entry in ~/etc/group~
 #+begin_src bash
-  cat /etc/group | grep music
-#+end_src
 
-#+RESULTS:
-: music:x:1002:
+#+end_src
 
 ** As =sudo=, add other user ~testuser~ to the group ~music~ using =usermod=
 
@@ -65,11 +62,8 @@ The =usermod= command is used to modify a user account:
 
 Check success by searching for ~music~ in ~/etc/group~:
 #+begin_src bash
-  cat /etc/group | grep music
-#+end_src
 
-#+RESULTS:
-: music:x:1002:testuser
+#+end_src
 
 ** As =sudo=, create a directory ~Music~ for the music files
 #+begin_example bash
@@ -80,11 +74,8 @@ Check success by searching for ~music~ in ~/etc/group~:
 Superuser privileges are required to manipulate files outside of
 your =$HOME= directory. Check the new directory:
 #+begin_src bash
-  ls -ld /usr/local/share/Music # permission mode 755
-#+end_src
 
-#+RESULTS:
-: drwxr-xr-x 2 root root 4096 Apr  3 21:36 /usr/local/share/Music
+#+end_src
 
 ** Change ~Music~ group ownership with =chown=
 
@@ -97,11 +88,8 @@ the shared ~music~ group using =chown=:
 
 Check the new ownership:
 #+begin_src bash
-  ls -ld /usr/local/share/Music
-#+end_src
 
-#+RESULTS:
-: drwxr-xr-x 2 root music 4096 Apr  3 21:36 /usr/local/share/Music
+#+end_src
 
 ** Change ~Music~ group permissions with =chmod=
 
@@ -114,11 +102,8 @@ need to be changed from ~755~ to ~775~ using =chmod=:
 
 Check the new permissions:
 #+begin_src bash
-  ls -ld /usr/local/share/Music
-#+end_src
 
-#+RESULTS:
-: drwxrwxr-x 2 root music 4096 Apr  3 21:36 /usr/local/share/Music
+#+end_src
 
 All users who share membership of the group ~music~ can now write to
 this directory:
@@ -149,11 +134,8 @@ We are left with a few problems, which you can see in the last result:
 Remember that the =setgid= bit on a directory, all new files have the
 directory's group ownership instead of the file owner's group:
 #+begin_src bash
-  ls -l /usr/local/share/ | grep Music # group is `music`
-#+end_src
 
-#+RESULTS:
-: drwxrwxr-x 2 root music 4096 Apr  3 22:17 Music
+#+end_src
 
 Set the =setgid= with =chmod= to ~2775~:
 #+begin_example bash
@@ -163,11 +145,8 @@ Set the =setgid= with =chmod= to ~2775~:
 
 Check the result - the group permissions show the =setgid= bit now:
 #+begin_src bash
-  ls -l /usr/local/share/ | grep Music
-#+end_src
 
-#+RESULTS:
-: drwxrwsr-x 2 root music 4096 Apr  3 22:17 Music
+#+end_src
 
 Now as ~testuser~, we set =umask= to ~0002~, remove the previous testfile
 and create a new test file and test directory:
