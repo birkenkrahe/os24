@@ -1100,14 +1100,187 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
   2) The =grep= command can search through output from other commands:
      #+begin_src bash
-       ls | grep notebook  # output from ls via filter
-       grep notebook < ls.text  # output from file
+       ls | grep 'notebook'  # output from ls via filter
+       grep 'notebook' < ls.text  # output from file
+       grep 'notebook' ls.text # file as a direct argument
      #+end_src
 
      #+RESULTS:
      : notebook.org
      : notebook.org
 
+
+** TODO Review DataCamp lesson "From command-line to bash script"
+
+1) Why =bash(1)=?
+   #+begin_quote
+   - All cloud providers have command-line interfaces (CLI) to their
+     services.
+   - Makes life easier. Example: yesterday I needed to convert many
+     .docx and .xlsx files into PDF so that I could move them to my
+     remarkable. I installed =pandoc=, a general markup converter
+     program, and ran a short script (after converting it with =chmod
+     755=):
+   #+end_quote
+   #+begin_example sh
+   #!/usr/bin/bash
+   for file in *.xlsx; do
+     libreoffice --headless --convert-to pdf "$file"
+   done
+
+   for file in *.docx; do
+     pandoc "$file" -o "${file%.docx}.pdf"
+   done
+   #+end_example
+
+2) What's the difference between =grep= and =egrep?=
+   #+begin_quote
+   =grep= is a pattern macthing command. =egrep= uses /extended/ pattern
+   matching - fewer characters to be escaped.
+   #+end_quote
+
+3) What does =[ ]= do in pattern matching?
+   #+begin_quote
+   Contains a matching set:
+   #+end_quote
+   #+begin_src bash
+     echo -e "apple\nbanana\ncarrot" > fruits.txt
+     cat fruits.txt | grep '[pc]'
+   #+end_src
+
+   #+RESULTS:
+   : apple
+   : carrot
+
+4) Why do you need to =sort= before selecting unique lines with =uniq=?
+   #+begin_quote
+   =uniq= only filters adjacent lines (i.e. won't find duplicates unless
+   they are in subsequent lines).
+   #+end_quote
+   #+begin_src bash
+     for i in {1..20}; do echo -e "apple\nbanana\ncarrot"; done >> new_fruits.txt
+     cat new_fruits.txt | sort | uniq -c | head -n 3
+     cat new_fruits.txt | uniq -c | head -n 3
+   #+end_src
+
+   #+RESULTS:
+   :     240 apple
+   :     240 banana
+   :     240 carrot
+   :       1 apple
+   :       1 banana
+   :       1 carrot
+
+   #+begin_src bash
+     head -n 6 new_fruits.txt  # print first six rows of original file
+     cat new_fruits.txt | sort | head -n 241 | tail -n 1 # print last row
+                                                         # of sorted file
+   #+end_src
+
+   #+RESULTS:
+   : apple
+   : banana
+   : carrot
+   : apple
+   : banana
+   : carrot
+   : banana
+
+5) Which =grep= flag allows you to search for one term /OR/ another term?
+   #+begin_example bash
+    cat two_cities.txt | grep -E 'Sydney Carton|Charles Darnay' | wc -l
+   #+end_example
+   
+6) How does a bash script begin? 
+   #+begin_quote
+   With a 'shebang' =#!/usr/bin/bash= (no need for .sh)
+   #+end_quote
+   But how to find out where =bash(1)= is?
+   #+begin_src bash
+     which bash
+     type -a bash
+   #+end_src
+
+   #+RESULTS:
+   : /usr/bin/bash
+   : bash is /usr/bin/bash
+   : bash is /bin/bash
+   
+7) How would you write a 'hello world' bash script? How can it be
+   executed?
+   #+begin_src bash :tangle src/hw.sh
+     #!/usr/bin/bash
+     echo "hello world"
+   #+end_src
+   #+begin_example
+   $ bash hw.sh
+   $ chmod 755; ./hw.sh
+   #+end_example
+
+8) Can you explain every part of the following command?
+   #+begin_example bash
+     cat soccer_scores.csv | cut -d "," -f 2 | tail -n +2 | sort | uniq -c | sort -r
+   #+end_example
+   Output:
+   #+begin_example
+     17 Dunav
+     15 Etar
+     13 Arda
+      9 Botev
+      8 Cherno
+      8 Beroe
+      4 Levski
+      1 Lokomotiv
+   #+end_example
+   Answer:
+   #+begin_quote
+   1) With =cat=, send CSV file to =stdout=; pipe =stdout= to
+   2) with =cut=, extract column 2 from file where columns are delimited
+      by comma; pipe =stdout= to
+   3) with =tail=, start output with line 2; pipe =stdout= to
+   4) =sort= in ascending order so that identical records/rows are
+      adjacent; pipe =stdout= to
+   5) use =uniq= to filter out distinct rows and prefix by number of
+      occurrences; pipe =stdout= to
+   6) =sort= to reverse display and show items in descending order.
+   #+end_quote
+
+9) What does =sed= do?
+   #+begin_src bash
+     # `sed` finds and replaces string patterns in the stdin stream
+     echo "hello world hello world" > hw.txt
+     cat hw.txt
+     sed 's/world/hello/g' hw.txt # replace `world` by `hello` everywhere
+     sed 's/world/hello/' hw.txt # replace `world` by `hello` first occurrence 
+   #+end_src
+
+   #+RESULTS:
+   : hello world hello world
+   : hello hello hello hello
+   : hello hello hello world
+
+   #+begin_quote
+   In the =sed= argument, =s/= stands for 'string' substitution, and =/g=
+   stands for global substitution, i.e. all occurrences.
+   #+end_quote
+
+10) What is ARGV?
+    #+begin_quote
+    ARGV is the vector of all arguments fed to a bash script.
+    #+end_quote
+    #+begin_src bash :tangle args.sh :results silent
+      #!/usr/bin/bash
+      echo $1
+      echo $2
+      echo $@
+      echo "There are " $# "arguments"
+    #+end_src
+
+11) What kind of completions is this: ~cat hire_data/* | grep "$1" > "$1".csv~
+    #+begin_quote
+    - The file completion with *
+    - Environment variable substitution, which is preserved by "".
+    #+end_quote
 
 ** TODO Short review and practice exercises for permissions
 
@@ -1218,132 +1391,6 @@ learn how to change passwords. This will conclude your Linux "permissions"
 training.
 
 
-** TODO Review DataCamp lesson "From command-line to bash script"
-
-1) Why =bash=?
-   #+begin_quote
-   - All cloud providers have CLI interfaces to their services.
-   - Makes life easier. Example: yesterday I needed to convert many
-     .docx and .xlsx files into PDF so that I could move them to my
-     remarkable. I installed =pandoc=, a general markup converter
-     program, and ran a short script (after converting it with =chmod
-     755=):
-   #+end_quote
-   #+begin_example sh
-   #!/usr/bin/bash
-   for file in *.xlsx; do
-     libreoffice --headless --convert-to pdf "$file"
-   done
-
-   for file in *.docx; do
-     pandoc "$file" -o "${file%.docx}.pdf"
-   done
-   #+end_example
-
-2) What's the difference between =grep= and =egrep?=
-   #+begin_quote
-   =grep= is a pattern macthing command. =egrep= uses /extended/ pattern
-   matching - fewer characters to be escaped.
-   #+end_quote
-
-3) What does =[ ]= do in pattern matching?
-   #+begin_quote
-   Contains a matching set:
-   #+end_quote
-   #+begin_src bash
-     echo -e "apple\nbanana\ncarrot" > fruits.txt
-     cat fruits.txt | grep '[pc]'
-   #+end_src
-
-4) Why do you need to =sort= before selecting unique lines with =uniq=?
-   #+begin_quote
-   =uniq= only filters adjacent lines (i.e. won't find duplicates unless
-   they are in subsequent lines).
-   #+end_quote
-   #+begin_src bash
-     for i in {1..20}; do echo -e "apple\nbanana\ncarrot"; done >> new_fruits.txt
-     cat new_fruits.txt | sort | uniq -c | head -n 3
-     cat new_fruits.txt | uniq -c | head -n 3
-   #+end_src
-
-5) Which =grep= flag allows you to search for one term /OR/ another term?
-   #+begin_example bash
-    cat two_cities.txt | grep -E 'Sydney Carton|Charles Darnay' | wc -l
-   #+end_example
-   
-6) How does a bash script begin? 
-   #+begin_quote
-   With a 'shebang' =#!/usr/bin/bash= ( no need for .sh)
-   #+end_quote
-
-7) How would you write a 'hello world' bash script? How can it be
-   executed?
-   #+begin_src bash :tangle src/hw.sh
-     #!/usr/bin/bash
-     echo "hello world"
-   #+end_src
-   #+begin_example
-   $ bash hw.sh
-   $ chmod 755; ./hw.sh
-   #+end_example
-
-8) Can you explain every part of the following command?
-   #+begin_example bash
-     cat soccer_scores.csv | cut -d "," -f 2 | tail -n +2 | sort | uniq -c | sort -r
-   #+end_example
-   Output:
-   #+begin_example
-     17 Dunav
-     15 Etar
-     13 Arda
-      9 Botev
-      8 Cherno
-      8 Beroe
-      4 Levski
-      1 Lokomotiv
-   #+end_example
-   Answer:
-   #+begin_quote
-   1) With =cat=, send CSV file to =stdout=; pipe =stdout= to
-   2) with =cut=, extract column 2 from file where columns are delimited
-      by comma; pipe =stdout= to
-   3) with =tail=, start output with line 2; pipe =stdout= to
-   4) =sort= in ascending order so that identical records/rows are
-      adjacent; pipe =stdout= to
-   5) use =uniq= to filter out distinct rows and prefix by number of
-      occurrences; pipe =stdout= to
-   6) =sort= to reverse display and show items in descending order.
-   #+end_quote
-
-9) What does =sed= do?
-   #+begin_src bash
-     # `sed` finds and replaces string patterns in the stdin stream
-     echo "hello world hello world" > hw.txt
-     sed 's/world/hello/g' hw.txt # replace `world` by `hello` everywhere
-     sed 's/world/hello/' hw.txt # replace `world` by `hello` first occurrence 
-   #+end_src
-
-   #+begin_quote
-   In the =sed= argument, =s/= stands for 'string' substitution, and =/g=
-   stands for global substitution, i.e. all occurrences.
-   #+end_quote
-
-10) What is ARGV?
-    #+begin_quote
-    ARGV is the vector of all arguments fed to a bash script.
-    #+end_quote
-    #+begin_src bash :tangle args.sh :results silent
-      #!/usr/bin/bash
-      echo $1
-      echo $2
-      echo $@
-      echo "There are " $# "arguments"
-    #+end_src
-
-11) What kind of completion is this: ~cat hire_data/* | grep "$1" > "$1".csv~
-    #+begin_quote
-    Environment variable substitution, which is preserved by "".
-    #+end_quote
 
 * Week 13 - NETWORKING AND SECURITY
 * Week 14 - BASH SCRIPTS WITH EXAMPLES
