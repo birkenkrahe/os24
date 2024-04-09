@@ -1071,7 +1071,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - [X] *Test 4* (working with shell and redirection) 30 pts, Sun Apr 7
 - [X] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
 
-* Week 12 - PROCESS MANAGEMENT & *Raspberry Pi* and GPIO pins (lab)
+* Week 12 - Permissions practice & *Raspberry Pi* and GPIO pins (lab)
 #+attr_html: :width 400px:
 [[../img/week_12.png]]
 
