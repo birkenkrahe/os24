@@ -1340,6 +1340,10 @@ training.
       echo "There are " $# "arguments"
     #+end_src
 
+11) What kind of completion is this: ~cat hire_data/* | grep "$1" > "$1".csv~
+    #+begin_quote
+    Environment variable substitution, which is preserved by "".
+    #+end_quote
 
 * Week 13 - NETWORKING AND SECURITY
 * Week 14 - BASH SCRIPTS WITH EXAMPLES
