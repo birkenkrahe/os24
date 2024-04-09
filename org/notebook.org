@@ -1213,6 +1213,10 @@ Results from test 3 (manipulating files / DataCamp lessons):
       ls -l qux
     #+end_src
 
+Now, let's create a ~testuser~ account, establish a shared drive and
+learn how to change passwords. This will conclude your Linux "permissions"
+training.
+
 
 ** TODO Review DataCamp lesson "From command-line to bash script"
 
@@ -1242,14 +1246,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
    matching - fewer characters to be escaped.
    #+end_quote
 
-3) What does =sed= do?
-   #+begin_src bash
-     # `sed` finds and replaces string patterns in the stdin stream
-     echo "hello world hello world" > hw.txt
-     sed 's/world/hello/g' hw.txt # replace `world` by `hello` everywhere
-   #+end_src
-
-4) What does =[ ]= do in pattern matching?
+3) What does =[ ]= do in pattern matching?
    #+begin_quote
    Contains a matching set:
    #+end_quote
@@ -1258,7 +1255,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
      cat fruits.txt | grep '[pc]'
    #+end_src
 
-5) Why do you need to =sort= before selecting unique lines with =uniq=?
+4) Why do you need to =sort= before selecting unique lines with =uniq=?
    #+begin_quote
    =uniq= only filters adjacent lines (i.e. won't find duplicates unless
    they are in subsequent lines).
@@ -1268,19 +1265,18 @@ Results from test 3 (manipulating files / DataCamp lessons):
      cat new_fruits.txt | sort | uniq -c | head -n 3
      cat new_fruits.txt | uniq -c | head -n 3
    #+end_src
-   
-6) Which =grep= flag allows you to search for one term /OR/ another term?
+
+5) Which =grep= flag allows you to search for one term /OR/ another term?
    #+begin_example bash
     cat two_cities.txt | grep -E 'Sydney Carton|Charles Darnay' | wc -l
    #+end_example
-
-
-7) How does a bash script begin? 
+   
+6) How does a bash script begin? 
    #+begin_quote
    With a 'shebang' =#!/usr/bin/bash= ( no need for .sh)
    #+end_quote
 
-8) How would you write a 'hello world' bash script? How can it be
+7) How would you write a 'hello world' bash script? How can it be
    executed?
    #+begin_src bash :tangle src/hw.sh
      #!/usr/bin/bash
@@ -1291,13 +1287,81 @@ Results from test 3 (manipulating files / DataCamp lessons):
    $ chmod 755; ./hw.sh
    #+end_example
 
-   
+8) Can you explain every part of the following command?
+   #+begin_example bash
+     cat soccer_scores.csv | cut -d "," -f 2 | tail -n +2 | sort | uniq -c | sort -r
+   #+end_example
+   Output:
+   #+begin_example
+     17 Dunav
+     15 Etar
+     13 Arda
+      9 Botev
+      8 Cherno
+      8 Beroe
+      4 Levski
+      1 Lokomotiv
+   #+end_example
+   Answer:
+   #+begin_quote
+   1) With =cat=, send CSV file to =stdout=; pipe =stdout= to
+   2) with =cut=, extract column 2 from file where columns are delimited
+      by comma; pipe =stdout= to
+   3) with =tail=, start output with line 2; pipe =stdout= to
+   4) =sort= in ascending order so that identical records/rows are
+      adjacent; pipe =stdout= to
+   5) use =uniq= to filter out distinct rows and prefix by number of
+      occurrences; pipe =stdout= to
+   6) =sort= to reverse display and show items in descending order.
+   #+end_quote
+
+9) What does =sed= do?
+   #+begin_src bash
+     # `sed` finds and replaces string patterns in the stdin stream
+     echo "hello world hello world" > hw.txt
+     sed 's/world/hello/g' hw.txt # replace `world` by `hello` everywhere
+     sed 's/world/hello/' hw.txt # replace `world` by `hello` first occurrence 
+   #+end_src
+
+   #+begin_quote
+   In the =sed= argument, =s/= stands for 'string' substitution, and =/g=
+   stands for global substitution, i.e. all occurrences.
+   #+end_quote
+
+10) What is ARGV?
+    #+begin_quote
+    ARGV is the vector of all arguments fed to a bash script.
+    #+end_quote
+    #+begin_src bash :tangle args.sh :results silent
+      #!/usr/bin/bash
+      echo $1
+      echo $2
+      echo $@
+      echo "There are " $# "arguments"
+    #+end_src
 
 
 * Week 13 - NETWORKING AND SECURITY
 * Week 14 - BASH SCRIPTS WITH EXAMPLES
 * Week 15 - COMPILING FROM SOURCE (=make=)
 * Week 16 - FINAL SPRINT REVIEW (presentations)
+
+Closing recommendations for where to go from here:
+
+1) Get a Linux certification ([[https://linuxfoundation.org][I got one here]])
+2) Book lovers: read "[[https://nostarch.com/wcss2][Wicked Cool Shell Scripts]]" (NoStarch 2016)
+3) Pick a CLI topic: cloud computing, network administration,
+   container technology, or system programming, and practice!
+4) Try different Linux distros and check out their differences
+5) Subscribe (and read): [[https://opensource.com/][opensource.com]], [[https://www.linux.com/][linux.com]], [[https://itsfoss.com/][It's FOSS]] blogs.
+6) Build a presence on GitHub - follow, fork and watch others.
+7) ...
+8) ...
+9) ...
+10) ...
+
+My own path: I'll focus on C + Python + SQL as the winning combo.
+
 * References
 
 ARM (2010). Operating Systems Foundations with Linux on the Raspberry

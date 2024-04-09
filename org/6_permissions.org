@@ -846,7 +846,7 @@ you need administrative rights (which may require an admin login).
 - Ubuntu and its distributions (like Linux Mint) do not give a default
   password to ~root~ but use =sudo= to grant superuser privileges.
 
-* Change file owner and group (=chown=) 
+* NEXT Change file owner and group (=chown=) 
 
 - You need superuser privileges to change owner and group of a file.
 
