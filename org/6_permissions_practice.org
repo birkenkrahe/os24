@@ -2,7 +2,7 @@
 #+AUTHOR:Marcus Birkenkrahe
 #+SUBTITLE:permissions practice for CSC420 Operating Systems Spring 2024 Lyon College
 #+STARTUP:overview hideblocks indent
-#+OPTIONS: toc:nil num:nil ^:nil
+#+OPTIONS: toc:nil num:nil ^:nil author:nil date:nil
 #+PROPERTY: header-args:bash :results output :exports both :noweb yes
 #+PROPERTY: header-args:python :python python3 :session *Python* :results output :exports both :comments both :tangle yes :noweb yes
 * README
@@ -51,9 +51,6 @@ Using =grep=, check the new entry in ~/etc/group~
   cat /etc/group | grep music
 #+end_src
 
-#+RESULTS:
-: music:x:1002:
-
 ** As =sudo=, add other user ~testuser~ to the group ~music~ using =usermod=
 
 The =usermod= command is used to modify a user account:
@@ -67,9 +64,6 @@ Check success by searching for ~music~ in ~/etc/group~:
 #+begin_src bash
   cat /etc/group | grep music
 #+end_src
-
-#+RESULTS:
-: music:x:1002:testuser
 
 ** As =sudo=, create a directory ~Music~ for the music files
 #+begin_example bash
