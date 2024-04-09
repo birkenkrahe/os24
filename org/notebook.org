@@ -1002,9 +1002,9 @@ Results from test 3 (manipulating files / DataCamp lessons):
    ~/bin/usr~ directory does not exist, and how does redirecting
    standard error differ from redirecting standard output?
    #+begin_quote
-    When the directory does not exist, the standard error message is
-    not redirected to a file but displayed on the screen instead. To
-    redirect =stderr=, use ~2>~ operator, as in ~ls -l /bin/usr 2> file~
+   When the directory does not exist, the standard error message is
+   not redirected to a file but displayed on the screen instead. To
+   redirect =stderr=, use ~2>~ operator, as in ~ls -l /bin/usr 2> file~
    #+end_quote
    #+begin_src bash
      ls -l /bin/usr 2> file
@@ -1014,10 +1014,10 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+RESULTS:
    : ls: cannot access '/bin/usr': No such file or directory
 4. Describe the process and outcome of appending both standard output
-   and standard error to the same file. 
+   and standard error to the same file.
    #+begin_quote
-    To append both stdout and stderr to the same file, use the ~&>~
-    operator or append the operator ~2>1&~.
+   To append both stdout and stderr to the same file, use the ~&>~
+   operator or append the operator ~2>1&~.
    #+end_quote
    #+begin_src bash
      rm err err2
@@ -1030,10 +1030,10 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
    #+RESULTS:
    : ls: cannot access '/bin/usr': No such file or directory
-   : 
+   :
    : ls: cannot access '/bin/usr': No such file or directory
 5. How can you create a new empty file or discard command output using
-   redirection? 
+   redirection?
    #+begin_quote
    You can create an empty file by using ~> filename~ with no source
    command, and you can discard any command output by redirecting it
@@ -1061,8 +1061,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
 - [X] File permissions
 
-
-* Week 11 - Permissions 
+* DONE Week 11 - Permissions
 #+attr_html: :width 400px:
 [[../img/he_is_risen.png]]
 
@@ -1073,6 +1072,148 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - [X] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
 
 * Week 12 - PROCESS MANAGEMENT & *Raspberry Pi* and GPIO pins (lab)
+#+attr_html: :width 400px:
+[[../img/week_12.png]]
+
+- Wednesday 4pm (Derby 016): candidate teaching demonstration on
+  "Exploring the Sorting Algorithms in Computer Science".
+
+** TODO Review test 4
+
+- Good results!
+  #+attr_html: :width 400px:
+  [[../img/test_4.png]]
+
+- A couple of questions were difficult:
+
+  1) Which command shows all locations of =grep=? Both =which= and =type=
+     work in this case though =which= strictly speaking shows files
+     which would be executed in the current environment, while =type -a=
+     displays all locations of an executable (check ~help type~ and ~man
+     which~).
+     #+begin_src bash
+       which -a grep
+       type -a grep
+     #+end_src
+     I'll give you an extra point if you got this wrong (check and
+     contact me).
+
+  2) The =grep= command can search through output from other commands:
+     #+begin_src bash
+       ls | grep notebook  # output from ls via filter
+       grep notebook < ls.text  # output from file
+     #+end_src
+
+     #+RESULTS:
+     : notebook.org
+     : notebook.org
+
+
+** TODO Short review and practice exercises for permissions
+
+1) What does the command =chmod= do in the context of Linux file
+   permissions?
+   #+begin_quote
+   - Change a file's mode, e.g. ~chmod 755~
+   #+end_quote
+   #+begin_src bash
+     rm foo
+     > foo
+     ls -l foo  # what is my =umask= default?
+     chmod 644 foo
+     ls -l foo
+   #+end_src
+2) When attempting to access ~/etc/shadow~ as a regular user, why might
+   you encounter a "Permission denied" error?
+   #+begin_quote
+   - You don't have read permission for the file. How can you find
+     out why, and who does have these permissions?
+   #+end_quote
+   #+begin_src bash
+     ls -l /etc/shadow
+     cat /etc/group | grep marcus
+   #+end_src
+3) Which command would you use to find out the current user's
+   identity, including their groups?
+   #+begin_quote
+   - id for =uid= and =gid= (how would you print the output line by line?)
+   #+end_quote
+   #+begin_src bash
+     id | tr ',' '\n'
+   #+end_src
+   #+begin_src bash
+     id | tr ',' '\n' | tr ' ' '\n'
+   #+end_src
+4) What is the primary purpose of the =setuid= bit in Linux file
+   permissions?
+   #+begin_quote
+   - It allows a program to run with the permissions of the file's owner
+   #+end_quote
+5) In the context of Linux permissions, what does the =su -= command achieve?
+   #+begin_quote
+   - Equivalent to =su -l=, login as superuser (~root~).
+   - What if you enter this command in an Emacs code block?
+   #+end_quote
+6) Why might an administrator use the =chown= command?
+   #+begin_quote
+   - To change the owner and/or group ownership of a file
+   - For example, how to change the group of ~foo~ to ~cdrom~?
+   #+end_quote
+   #+begin_src bash
+     ls -l foo
+     chown :cdrom foo
+     ls -l foo
+   #+end_src
+7) What is the result of executing =chmod go== on a directory that you own?
+   #+begin_quote
+   - Makes the directory unreadable and unwriteable to anyone else but you.
+   - What if you want members of your group to still be able to view
+     files in the directory?
+   #+end_quote
+   #+begin_src bash
+     rmdir foodir
+     mkdir -v foodir
+     ls -ld foodir    # default is 775
+     chmod go= foodir # change to 700
+     ls -ld foodir
+     chmod 740 foodir # change to rwxr-----
+     ls -ld foodir
+   #+end_src
+8) What does the sticky bit do when set on a directory?
+   #+begin_quote
+   - Prevents users from deleting or renaming files in that directory
+     unless they are the owner of the file, the directory, or the
+     superuser
+   - Used to control file manipulation in shared directories like ~/tmp~
+   #+end_quote
+9) Where do you see the =setuid=, the =setgid= and the sticky bit?
+   #+begin_quote
+   - In the file permissions as =S=, =s= and =t=
+   #+end_quote
+   #+begin_src bash
+     rm foo bar baz
+     touch foo bar baz
+     ls -l foo bar baz
+     chmod -v u+s foo   # setuid bit = octal 4000
+     ls -l foo
+     chmod -v g+s bar   # setgid bit = octal 2000
+     ls -l bar
+     chmod -v o+t baz   # sticky bit = octal 1000
+     ls -l baz
+   #+end_src
+10) You want to make a shell script executable (to everyone) - what do you do?
+    #+begin_quote
+    - Use the command =chmod ugo+x=.
+    #+end_quote
+    #+begin_src bash
+      rm qux
+      > qux
+      ls -l qux
+      chmod a+x qux  # also possible: `ugo+x` or `775`
+      ls -l qux
+    #+end_src
+
+
 * Week 13 - NETWORKING AND SECURITY
 * Week 14 - BASH SCRIPTS WITH EXAMPLES
 * Week 15 - COMPILING FROM SOURCE (=make=)
