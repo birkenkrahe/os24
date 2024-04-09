@@ -1214,6 +1214,86 @@ Results from test 3 (manipulating files / DataCamp lessons):
     #+end_src
 
 
+** TODO Review DataCamp lesson "From command-line to bash script"
+
+1) Why =bash=?
+   #+begin_quote
+   - All cloud providers have CLI interfaces to their services.
+   - Makes life easier. Example: yesterday I needed to convert many
+     .docx and .xlsx files into PDF so that I could move them to my
+     remarkable. I installed =pandoc=, a general markup converter
+     program, and ran a short script (after converting it with =chmod
+     755=):
+   #+end_quote
+   #+begin_example sh
+   #!/usr/bin/bash
+   for file in *.xlsx; do
+     libreoffice --headless --convert-to pdf "$file"
+   done
+
+   for file in *.docx; do
+     pandoc "$file" -o "${file%.docx}.pdf"
+   done
+   #+end_example
+
+2) What's the difference between =grep= and =egrep?=
+   #+begin_quote
+   =grep= is a pattern macthing command. =egrep= uses /extended/ pattern
+   matching - fewer characters to be escaped.
+   #+end_quote
+
+3) What does =sed= do?
+   #+begin_src bash
+     # `sed` finds and replaces string patterns in the stdin stream
+     echo "hello world hello world" > hw.txt
+     sed 's/world/hello/g' hw.txt # replace `world` by `hello` everywhere
+   #+end_src
+
+4) What does =[ ]= do in pattern matching?
+   #+begin_quote
+   Contains a matching set:
+   #+end_quote
+   #+begin_src bash
+     echo -e "apple\nbanana\ncarrot" > fruits.txt
+     cat fruits.txt | grep '[pc]'
+   #+end_src
+
+5) Why do you need to =sort= before selecting unique lines with =uniq=?
+   #+begin_quote
+   =uniq= only filters adjacent lines (i.e. won't find duplicates unless
+   they are in subsequent lines).
+   #+end_quote
+   #+begin_src bash
+     for i in {1..20}; do echo -e "apple\nbanana\ncarrot"; done >> new_fruits.txt
+     cat new_fruits.txt | sort | uniq -c | head -n 3
+     cat new_fruits.txt | uniq -c | head -n 3
+   #+end_src
+   
+6) Which =grep= flag allows you to search for one term /OR/ another term?
+   #+begin_example bash
+    cat two_cities.txt | grep -E 'Sydney Carton|Charles Darnay' | wc -l
+   #+end_example
+
+
+7) How does a bash script begin? 
+   #+begin_quote
+   With a 'shebang' =#!/usr/bin/bash= ( no need for .sh)
+   #+end_quote
+
+8) How would you write a 'hello world' bash script? How can it be
+   executed?
+   #+begin_src bash :tangle src/hw.sh
+     #!/usr/bin/bash
+     echo "hello world"
+   #+end_src
+   #+begin_example
+   $ bash hw.sh
+   $ chmod 755; ./hw.sh
+   #+end_example
+
+   
+
+
 * Week 13 - NETWORKING AND SECURITY
 * Week 14 - BASH SCRIPTS WITH EXAMPLES
 * Week 15 - COMPILING FROM SOURCE (=make=)
