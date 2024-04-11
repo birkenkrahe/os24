@@ -846,7 +846,7 @@ you need administrative rights (which may require an admin login).
 - Ubuntu and its distributions (like Linux Mint) do not give a default
   password to ~root~ but use =sudo= to grant superuser privileges.
 
-* NEXT Change file owner and group (=chown=) 
+* Change file owner and group (=chown=) 
 
 - You need superuser privileges to change owner and group of a file.
 
@@ -897,15 +897,15 @@ you need administrative rights (which may require an admin login).
   1) As superuser, copy your file ~superuser.txt~ to the home directory
      of ~testuser~, which is in ~/home/testuser~:
      #+begin_example bash
-       sudo cp superuser.txt ~testuser
-       sudo ls -l ~/testuser
+       sudo cp -v superuser.txt ~testuser
+       sudo ls -l ~testuser 
      #+end_example
   2) You see that the file is owned by ~root~ and is of group ~root~,
      too. This means that ~testuser~ cannot edit it. But you can use
      =chown= to bestow these privileges:
      #+begin_example bash
        sudo chown testuser: ~testuser/superuser.txt
-       sudo ls -l ~/testuser
+       sudo ls -l ~testuser
      #+end_example
   3) The argument ~testuser:~ has changed both ownership and group.
 

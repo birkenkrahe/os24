@@ -48,8 +48,11 @@ If you messed up, you can delete a group with =groupdel=.
 
 Using =grep=, check the new entry in ~/etc/group~
 #+begin_src bash
-  cat /etc/group | grep music
+  cat /etc/group/ | grep music
 #+end_src
+
+#+RESULTS:
+: music:x:1002:
 
 ** As =sudo=, add other user ~testuser~ to the group ~music~ using =usermod=
 
@@ -65,6 +68,9 @@ Check success by searching for ~music~ in ~/etc/group~:
   cat /etc/group | grep music
 #+end_src
 
+#+RESULTS:
+: music:x:1002:testuser
+
 ** As =sudo=, create a directory ~Music~ for the music files
 #+begin_example bash
   sudo mkdir -v /usr/local/share/Music
@@ -78,7 +84,7 @@ your =$HOME= directory. Check the new directory:
 #+end_src
 
 #+RESULTS:
-: drwxr-xr-x 2 root root 4096 Apr  3 21:36 /usr/local/share/Music
+: drwxr-xr-x 2 root root 4096 Apr 11 10:30 /usr/local/share/Music
 
 ** Change ~Music~ group ownership with =chown=
 
@@ -95,7 +101,7 @@ Check the new ownership:
 #+end_src
 
 #+RESULTS:
-: drwxr-xr-x 2 root music 4096 Apr  3 21:36 /usr/local/share/Music
+: drwxr-xr-x 2 root music 4096 Apr 11 10:30 /usr/local/share/Music
 
 ** Change ~Music~ group permissions with =chmod=
 
@@ -147,7 +153,7 @@ directory's group ownership instead of the file owner's group:
 #+end_src
 
 #+RESULTS:
-: drwxrwxr-x 2 root music 4096 Apr  3 22:17 Music
+: drwxrwxr-x 2 root music 4096 Apr 11 10:40 Music
 
 Set the =setgid= with =chmod= to ~2775~:
 #+begin_example bash
