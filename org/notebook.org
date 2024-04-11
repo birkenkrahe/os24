@@ -1297,6 +1297,11 @@ Results from test 3 (manipulating files / DataCamp lessons):
      chmod 644 foo
      ls -l foo
    #+end_src
+
+   #+RESULTS:
+   : -rw-rw-r-- 1 marcus marcus 0 Apr 11 09:37 foo
+   : -rw-r--r-- 1 marcus marcus 0 Apr 11 09:37 foo
+
 2) When attempting to access ~/etc/shadow~ as a regular user, why might
    you encounter a "Permission denied" error?
    #+begin_quote
@@ -1307,6 +1312,18 @@ Results from test 3 (manipulating files / DataCamp lessons):
      ls -l /etc/shadow
      cat /etc/group | grep marcus
    #+end_src
+
+   #+RESULTS:
+   : -rw-r----- 1 root shadow 1575 Feb  9 16:21 /etc/shadow
+   : adm:x:4:syslog,marcus
+   : cdrom:x:24:marcus
+   : sudo:x:27:marcus
+   : dip:x:30:marcus
+   : plugdev:x:46:marcus
+   : lpadmin:x:115:marcus
+   : marcus:x:1000:
+   : sambashare:x:136:marcus
+
 3) Which command would you use to find out the current user's
    identity, including their groups?
    #+begin_quote
@@ -1315,9 +1332,35 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+begin_src bash
      id | tr ',' '\n'
    #+end_src
+
+   #+RESULTS:
+   : uid=1000(marcus) gid=1000(marcus) groups=1000(marcus)
+   : 4(adm)
+   : 24(cdrom)
+   : 27(sudo)
+   : 30(dip)
+   : 46(plugdev)
+   : 115(lpadmin)
+   : 136(sambashare)
+
    #+begin_src bash
      id | tr ',' '\n' | tr ' ' '\n'
    #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   uid=1000(marcus)
+   gid=1000(marcus)
+   groups=1000(marcus)
+   4(adm)
+   24(cdrom)
+   27(sudo)
+   30(dip)
+   46(plugdev)
+   115(lpadmin)
+   136(sambashare)
+   #+end_example
+
 4) What is the primary purpose of the =setuid= bit in Linux file
    permissions?
    #+begin_quote
@@ -1335,9 +1378,14 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+end_quote
    #+begin_src bash
      ls -l foo
-     chown :cdrom foo
+     chown :cdrom foo  # command + attributes + target
      ls -l foo
    #+end_src
+
+   #+RESULTS:
+   : -rw-r--r-- 1 marcus marcus 0 Apr 11 09:37 foo
+   : -rw-r--r-- 1 marcus cdrom 0 Apr 11 09:37 foo
+
 7) What is the result of executing =chmod go== on a directory that you own?
    #+begin_quote
    - Makes the directory unreadable and unwriteable to anyone else but you.
@@ -1345,7 +1393,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
      files in the directory?
    #+end_quote
    #+begin_src bash
-     rmdir foodir
+     #rmdir foodir
      mkdir -v foodir
      ls -ld foodir    # default is 775
      chmod go= foodir # change to 700
@@ -1353,6 +1401,13 @@ Results from test 3 (manipulating files / DataCamp lessons):
      chmod 740 foodir # change to rwxr-----
      ls -ld foodir
    #+end_src
+
+   #+RESULTS:
+   : mkdir: created directory 'foodir'
+   : drwxrwxr-x 2 marcus marcus 4096 Apr 11 09:47 foodir
+   : drwx------ 2 marcus marcus 4096 Apr 11 09:47 foodir
+   : drwxr----- 2 marcus marcus 4096 Apr 11 09:47 foodir
+
 8) What does the sticky bit do when set on a directory?
    #+begin_quote
    - Prevents users from deleting or renaming files in that directory
@@ -1365,7 +1420,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
    - In the file permissions as =S=, =s= and =t=
    #+end_quote
    #+begin_src bash
-     rm foo bar baz
+#     rm foo bar baz
      touch foo bar baz
      ls -l foo bar baz
      chmod -v u+s foo   # setuid bit = octal 4000
@@ -1375,22 +1430,37 @@ Results from test 3 (manipulating files / DataCamp lessons):
      chmod -v o+t baz   # sticky bit = octal 1000
      ls -l baz
    #+end_src
+
+   #+RESULTS:
+   : -rw-rw-r-- 1 marcus marcus 0 Apr 11 09:52 bar
+   : -rw-rw-r-- 1 marcus marcus 0 Apr 11 09:52 baz
+   : -rw-r--r-- 1 marcus cdrom  0 Apr 11 09:52 foo
+   : mode of 'foo' changed from 0644 (rw-r--r--) to 4644 (rwSr--r--)
+   : -rwSr--r-- 1 marcus cdrom 0 Apr 11 09:52 foo
+   : mode of 'bar' changed from 0664 (rw-rw-r--) to 2664 (rw-rwSr--)
+   : -rw-rwSr-- 1 marcus marcus 0 Apr 11 09:52 bar
+   : mode of 'baz' changed from 0664 (rw-rw-r--) to 1664 (rw-rw-r-T)
+   : -rw-rw-r-T 1 marcus marcus 0 Apr 11 09:52 baz
+
 10) You want to make a shell script executable (to everyone) - what do you do?
     #+begin_quote
     - Use the command =chmod ugo+x=.
     #+end_quote
     #+begin_src bash
-      rm qux
+#      rm qux
       > qux
       ls -l qux
       chmod a+x qux  # also possible: `ugo+x` or `775`
       ls -l qux
     #+end_src
 
+    #+RESULTS:
+    : -rw-rw-r-- 1 marcus marcus 0 Apr 11 09:53 qux
+    : -rwxrwxr-x 1 marcus marcus 0 Apr 11 09:53 qux
+
 Now, let's create a ~testuser~ account, establish a shared drive and
 learn how to change passwords. This will conclude your Linux "permissions"
 training.
-
 
 ** TODO Create ~testuser~ account, a shared drive and change passwords
 
