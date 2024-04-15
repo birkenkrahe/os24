@@ -1472,6 +1472,12 @@ training.
 
 
 * Week 13 - Process management & networking (sprint review)
+#+attr_html: :width 500px:
+[[../img/week_13.png]]
+
+** TODO Review: Bash scripting - variables
+** TODO Finish shared drive creation and changing passwords
+** TODO Introduction to process management
 
 * Week 14 - Bash scripts with examples
 * Week 15 - Compiling from source (=make=)
