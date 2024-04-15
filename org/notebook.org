@@ -1071,15 +1071,14 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - [X] *Test 4* (working with shell and redirection) 30 pts, Sun Apr 7
 - [X] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
 
-
-* Week 12 - Changing identities and first bash script
+* DONE Week 12 - Changing identities and first bash script 
 #+attr_html: :width 400px:
 [[../img/week_12.png]]
 
 - Wednesday 4pm (Derby 016): candidate teaching demonstration on
   "Exploring the Sorting Algorithms in Computer Science".
 
-** DONE Review test 4
+** Review test 4
 
 - Good results!
   #+attr_html: :width 400px:
@@ -1110,7 +1109,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
      : notebook.org
      : notebook.org
 
-** DONE Review DataCamp lesson "From command-line to bash script"
+** Review DataCamp lesson "From command-line to bash script"
 
 1) Why =bash(1)=?
    #+begin_quote
@@ -1282,8 +1281,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
     - Environment variable substitution, which is preserved by "".
     #+end_quote
 
-
-** TODO Short review and practice exercises for permissions
+** Short review and practice exercises for permissions
 
 1) What does the command =chmod= do in the context of Linux file
    permissions?
@@ -1462,7 +1460,7 @@ Now, let's create a ~testuser~ account, establish a shared drive and
 learn how to change passwords. This will conclude your Linux "permissions"
 training.
 
-** TODO Create ~testuser~ account, a shared drive and change passwords
+** Create ~testuser~ account, a shared drive and change passwords
 
 - Practice file: [[https://tinyurl.com/permissions-practice][tinyurl.com/permissions-practice]] (save as .org)
 
@@ -1473,7 +1471,8 @@ training.
 - Change passwords
 
 
-* Week 13 - Process management & networking
+* Week 13 - Process management & networking (sprint review)
+
 * Week 14 - Bash scripts with examples
 * Week 15 - Compiling from source (=make=)
 * Week 16 - Final sprint review (presentations)
