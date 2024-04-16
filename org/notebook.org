@@ -1510,15 +1510,17 @@ Submit the Org-mode file.
 Short review: can you remember the process steps completed so far to
 create a shared drive?
 #+begin_quote
-1. 
-2. 
-3. 
-4. 
-5. 
+1. Create a new user (=adduser= - check ~/etc/passwd~)
+2. Create a new group (=addgroup= - check: ~/etc/group~)
+3. Add new user to new group (=usermod= - check ~/etc/group~)
+4. Create new directory ( =sudo mkdir= - check: =ls -l=)
+5. Change group ownership of new directory (=sudo chown :[group] [dir]=)
+6. Change new directory group permissions (=sudo chmod 775=)
+7. Set =setgid= (=sudo chmod g+s [dir]=)
+8. Create new file and directory (=sudo umask=)
 #+end_quote
 
 *Onward:* open the practice file ([[https://tinyurl.com/permissions-practice][tinyurl.com/permissions-practice]])
-
 
 ** TODO 2nd sprint review (update in class)
 #+attr_html: :width 300px:
