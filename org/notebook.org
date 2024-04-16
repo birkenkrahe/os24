@@ -1567,11 +1567,19 @@ create a shared drive?
 
 ** TODO Introduction to process management (Thu)
 
-* Week 14 - Networking
+Codealong file: tinyurl.com/process-codealong
+
+* Week 14 - Networking & Environment variables
 #+attr_html: :width 500px:
 [[../img/week_14.png]]
 
-* Week 15 - Bash scripts / Compiling from source (=make=)
+- Codealong file: tinyurl.com/networking-codealong
+- Codealong file: tinyurl.com/environment-codealong  
+
+* Week 15 - Compiling from source (=make=) - Thu: final presentations
+
+Codealong file: tinyurl.com/compiling-codealong
+
 * Week 16 - Final sprint review (presentations)
 
 Closing recommendations for where to go from here:
@@ -1589,6 +1597,7 @@ Closing recommendations for where to go from here:
 10) ...
 
 My own path: I'll focus on C + Python + SQL as the winning combo.
+
 
 * References
 
