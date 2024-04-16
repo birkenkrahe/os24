@@ -1471,16 +1471,107 @@ training.
 - Change passwords
 
 
-* Week 13 - Process management & networking (sprint review)
+* Week 13 - Changing passwords / Process management (sprint review)
 #+attr_html: :width 500px:
 [[../img/week_13.png]]
 
-** TODO Review: Bash scripting - variables
-** TODO Finish shared drive creation and changing passwords
-** TODO Introduction to process management
+** TODO Test 5 ("file permissions") is available until Sunday 21 April
 
-* Week 14 - Bash scripts with examples
-* Week 15 - Compiling from source (=make=)
+- 25 questions (multiple choice, matching, and true/false)
+- 1 hour to complete and submit
+- Draft test created with the help of ChatGPT based on:
+  1) "Review DataCamp lesson "From command-line to bash script"
+  2) "Short review and practice exercises for permissions"
+  3) Lecture script for permissions (6_permissions.org in GitHub)
+
+
+** TODO Bash programming exercise ([[https://lyon.instructure.com/courses/2255/assignments/26725][Canvas]])
+
+Create a Bash script `file.sh` that performs the following tasks:
+
+1. Takes a directory path as an argument.
+2. Checks if the directory exists. If not, prints an error message and
+   exits.
+3. Lists all files in the directory with their details (name, size,
+   and last modified date).
+4. Counts the total number of files and directories in the specified
+   directory and displays the count.
+5. Develop the script in an Emacs Org-mode file that documents your
+   development process. The final script should be in a code block
+   that can be tangled to generate a source file `file.sh`, which
+   could be run on the shell with the command `bash file.sh
+   [directory-path]`.
+
+Submit the Org-mode file.
+
+
+** TODO Finish shared drive creation and changing passwords
+
+Short review: can you remember the process steps completed so far to
+create a shared drive?
+#+begin_quote
+1. 
+2. 
+3. 
+4. 
+5. 
+#+end_quote
+
+*Onward:* open the practice file ([[https://tinyurl.com/permissions-practice][tinyurl.com/permissions-practice]])
+
+
+** TODO 2nd sprint review (update in class)
+#+attr_html: :width 300px:
+[[../img/2nd_sprint_review.png]]
+
+- Please read the instructions carefully: you were supposed to submit
+  an Org-mode file (easy for me to download and read in Emacs).
+
+- If you are unhappy with your grade, please resubmit an improved
+  literature review, and let me know that you uploaded it. Improvement
+  means that you responded to my comments.
+
+- Several of you did not meet the deadline!? Use the calendar, or let
+  me know what you need from me to help you remember/pay attention.
+
+- There were some great submissions - including primary data
+  collection (Nate), hardware-heavy stuff by Kim and Donna (kudos: you
+  can't get dirty hands with software, but only with hardware), drafts
+  of complete papers by Timothy (verbose) and Nikola (succinct), and
+  even some code (!) by Ryan. I especially like it when you challenge
+  yourself, and when you reflect on the challenge.
+
+- Many of you focused too much on the technical implementation, and
+  not enough (or at all) on the meaning of this project. If you don't
+  have a client, you need to invent one or be your own client, or find
+  a potential client through publications. The reason: your time is
+  valuable and costs money - and there are many competing projects.
+
+- That is the meaning of "Requirements analysis" - it includes a
+  scenario, or a use-case for your project result. Even if the
+  project's result is itself to bring technology forward you need to
+  justify spending resources.
+
+- For anything Unix/Linux related, you have 30-60 years of rich
+  history to contend with! The good news is that looking and finding
+  command line application references is in itself a pleasure - and
+  many tools and approaches are waiting to be rediscovered - like the
+  one and only "Midnight Commander".
+  #+attr_html: :width 600px: 
+  [[../img/midnight_commander.png]]
+
+- Let's go around the room and check the project temperature!
+
+
+** TODO Review: Bash scripting - variables (Thu)
+
+** TODO Introduction to process management (Thu)
+
+* Week 14 - Networking
+#+attr_html: :width 500px:
+[[../img/week_14.png]]
+
+* Week 15 - Bash scripts / Compiling from source (=make=)
 * Week 16 - Final sprint review (presentations)
 
 Closing recommendations for where to go from here:

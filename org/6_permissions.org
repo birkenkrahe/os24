@@ -977,38 +977,6 @@ you need administrative rights (which may require an admin login).
     fi
   #+end_src
 
-#+begin_ai
-how can I check if a directory `Empty` exists?
-
-[AI]: You can check if a directory named `Empty` exists in the current directory by using the following command in Emacs:
-
-```elisp
-(file-exists-p "Empty")
-```
-
-This function returns `t` if the file or directory exists, and `nil` otherwise.
-
-[ME]: in a bash script
-
-[AI]: To check if a directory named `Empty` exists in a bash script, you can use the following command:
-
-```bash
-if [ -d "Empty" ]; then
-    echo "Directory 'Empty' exists."
-else
-    echo "Directory 'Empty' does not exist."
-fi
-```
-
-This bash script will check if the directory `Empty` exists in the
-current directory. If the directory exists, it will print "Directory
-'Empty' exists." Otherwise, it will print "Directory 'Empty' does not
-exist."
-
-[ME]: 
-#+end_ai
-
-
 * Footnotes
 
 [fn:1]Samba is a free software re-implementation of a networking
