@@ -1505,23 +1505,6 @@ Create a Bash script `file.sh` that performs the following tasks:
 Submit the Org-mode file.
 
 
-** TODO Finish shared drive creation and changing passwords
-
-Short review: can you remember the process steps completed so far to
-create a shared drive?
-#+begin_quote
-1. Create a new user (=adduser= - check ~/etc/passwd~)
-2. Create a new group (=addgroup= - check: ~/etc/group~)
-3. Add new user to new group (=usermod= - check ~/etc/group~)
-4. Create new directory ( =sudo mkdir= - check: =ls -l=)
-5. Change group ownership of new directory (=sudo chown :[group] [dir]=)
-6. Change new directory group permissions (=sudo chmod 775=)
-7. Set =setgid= (=sudo chmod g+s [dir]=)
-8. Create new file and directory (=sudo umask=)
-#+end_quote
-
-*Onward:* open the practice file ([[https://tinyurl.com/permissions-practice][tinyurl.com/permissions-practice]])
-
 ** TODO 2nd sprint review (update in class)
 #+attr_html: :width 300px:
 [[../img/2nd_sprint_review.png]]
@@ -1565,11 +1548,31 @@ create a shared drive?
 - Let's go around the room and check the project temperature!
 
 
+** TODO Finish shared drive creation and changing passwords
+
+Short review: can you remember the process steps completed so far to
+create a shared drive?
+#+begin_quote
+1. Create a new user (=adduser= - check ~/etc/passwd~)
+2. Create a new group (=addgroup= - check: ~/etc/group~)
+3. Add new user to new group (=usermod= - check ~/etc/group~)
+4. Create new directory ( =sudo mkdir= - check: =ls -l=)
+5. Change group ownership of new directory (=sudo chown :[group] [dir]=)
+6. Change new directory group permissions (=sudo chmod 775=)
+7. Set =setgid= (=sudo chmod g+s [dir]=)
+8. Create new file and directory (=sudo umask=)
+#+end_quote
+
+*Onward:* open the practice file ([[https://tinyurl.com/permissions-practice][tinyurl.com/permissions-practice]])
+
+
 ** TODO Review: Bash scripting - variables (Thu)
+
 
 ** TODO Introduction to process management (Thu)
 
 Codealong file: tinyurl.com/process-codealong
+
 
 * Week 14 - Networking & Environment variables
 #+attr_html: :width 500px:
@@ -1578,9 +1581,11 @@ Codealong file: tinyurl.com/process-codealong
 - Codealong file: tinyurl.com/networking-codealong
 - Codealong file: tinyurl.com/environment-codealong  
 
+
 * Week 15 - Compiling from source (=make=) - Thu: final presentations
 
 Codealong file: tinyurl.com/compiling-codealong
+
 
 * Week 16 - Final sprint review (presentations)
 
