@@ -5,6 +5,7 @@
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:bash :results output
 #+PROPERTY: header-args:bash :exports both
+
 * README
 
   - This file accompanies lectures on the shell and ~bash(1)~. To gain
