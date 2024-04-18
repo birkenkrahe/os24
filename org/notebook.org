@@ -1071,7 +1071,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - [X] *Test 4* (working with shell and redirection) 30 pts, Sun Apr 7
 - [X] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
 
-* DONE Week 12 - Changing identities and first bash script 
+* DONE Week 12 - Changing identities and first bash script
 #+attr_html: :width 400px:
 [[../img/week_12.png]]
 
@@ -1173,7 +1173,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+begin_src bash
      head -n 6 new_fruits.txt  # print first six rows of original file
      cat new_fruits.txt | sort | head -n 241 | tail -n 1 # print last row
-                                                         # of sorted file
+     # of sorted file
    #+end_src
 
    #+RESULTS:
@@ -1189,8 +1189,8 @@ Results from test 3 (manipulating files / DataCamp lessons):
    #+begin_example bash
     cat two_cities.txt | grep -E 'Sydney Carton|Charles Darnay' | wc -l
    #+end_example
-   
-6) How does a bash script begin? 
+
+6) How does a bash script begin?
    #+begin_quote
    With a 'shebang' =#!/usr/bin/bash= (no need for .sh)
    #+end_quote
@@ -1204,7 +1204,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
    : /usr/bin/bash
    : bash is /usr/bin/bash
    : bash is /bin/bash
-   
+
 7) How would you write a 'hello world' bash script? How can it be
    executed?
    #+begin_src bash :tangle src/hw.sh
@@ -1250,7 +1250,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
      echo "hello world hello world" > hw.txt
      cat hw.txt
      sed 's/world/hello/g' hw.txt # replace `world` by `hello` everywhere
-     sed 's/world/hello/' hw.txt # replace `world` by `hello` first occurrence 
+     sed 's/world/hello/' hw.txt # replace `world` by `hello` first occurrence
    #+end_src
 
    #+RESULTS:
@@ -1418,7 +1418,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
    - In the file permissions as =S=, =s= and =t=
    #+end_quote
    #+begin_src bash
-#     rm foo bar baz
+     #     rm foo bar baz
      touch foo bar baz
      ls -l foo bar baz
      chmod -v u+s foo   # setuid bit = octal 4000
@@ -1445,7 +1445,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
     - Use the command =chmod ugo+x=.
     #+end_quote
     #+begin_src bash
-#      rm qux
+      #      rm qux
       > qux
       ls -l qux
       chmod a+x qux  # also possible: `ugo+x` or `775`
@@ -1541,7 +1541,7 @@ Submit the Org-mode file.
   command line application references is in itself a pleasure - and
   many tools and approaches are waiting to be rediscovered - like the
   one and only "Midnight Commander".
-  #+attr_html: :width 600px: 
+  #+attr_html: :width 600px:
   [[../img/midnight_commander.png]]
 
 - Let's go around the room and check the project temperature!
@@ -1565,10 +1565,127 @@ create a shared drive?
 *Onward:* open the practice file ([[https://tinyurl.com/permissions-practice][tinyurl.com/permissions-practice]])
 
 
-** TODO Review: Bash scripting - variables (Thu)
+** TODO Review: Bash scripting - variables
+
+1) What is the =$= operator?
+   #+begin_quote
+   =$= is the accessor for variable values
+   #+end_quote
+
+   #+begin_src R :session *R* :results output
+     str(ToothGrowth)
+     head(ToothGrowth$len)
+   #+end_src
+
+   #+begin_src bash
+     echo $USER $HOME $PWD
+
+     var="hello"
+     echo $var
+   #+end_src
+
+   #+RESULTS:
+   : marcus /home/marcus /home/marcus/GitHub/os24/org
+   : hello
+
+2) Which =bash= data structures correspond to R and Python data structures?
+   #+begin_quote
+   - Arrays: One-dimensional arrays in Python: =np.array= or =list=, and
+     vector =c()= in R. Arrays are ordered with indices.
+   - Associative arrays: Dictionaries in Python (unordered), lists
+     (ordered) in R.
+   #+end_quote
+
+   Python:
+   #+begin_src python :python python3 :session *Python* :results output :exports both :comments both :tangle yes :noweb yes
+      my_list = [1,2,3,4]
+      print(my_list)
+
+      import numpy as np
+      arr = np.array([1,2,3,4])
+      print(arr)
+    #+end_src
+
+    #+RESULTS:
+    : [1, 2, 3, 4]
+    : [1 2 3 4]
+
+   R:    
+   #+begin_src R :results output
+      my_vector <- c(1,2,3,4)
+      my_vector
+   #+end_src
+
+   Python:
+   #+begin_src python :python python3 :session *Python* :results output :exports both :comments both :tangle yes :noweb yes
+      my_dict = {'name':'New York', 'population':14000000}
+      print(my_dict['name'])
+   #+end_src
+
+   R:
+   #+begin_src R :results output
+     my_list = list(city=c('New York'), population=c(14000000))
+     my_list[[1]]
+   #+end_src
+
+3) What does "shell within a shell" mean?
+   #+begin_quote
+   Also called /command expansion/ - preserved only between double quotation
+   marks " " - either with $() or with backticks ``.
+   #+end_quote
+   Examples:
+   #+begin_src bash
+     now="The date is $(date)"
+     echo $now
+
+     now2="The date is `date`"
+     echo $now2
+
+     echo $((4+5)) # arithmetic expansion
+     echo `(4+5)`  # error
+   #+end_src
+
+   #+RESULTS:
+   : The date is Thu Apr 18 08:48:18 AM CDT 2024
+   : The date is Thu Apr 18 08:48:18 AM CDT 2024
+   : 9
+   : 
+
+4) How can you calculate the average of two numbers in =bash=?
+   #+begin_src bash
+     # `expr` only works with integers
+     expr 4 + 5
+     expr 5 / 2 # result 2.5 is truncated
+   #+end_src
+
+   #+begin_src bash
+     echo "4.5 + 5.5" | bc
+     echo "scale=2; 10 / 3" | bc
+
+     var1=10
+     var2=3
+     echo "scale=2; $var1 / $var2" | bc
+   #+end_src
+
+   #+RESULTS:
+   : 10.0
+   : 3.33
+   : 3.33
+
+5) How can you create, print, check and manipulate arrays in =bash=?
+   
+
+6) How can you create and check associative arrays in =bash=?
+
+7) *Bonus challenge:* extract version number from the ~bash --version~
+   command and tell the user if associative arrays are available or
+   not. Involves =if= and pattern extraction with regular expressions.
+   #+begin_src bash
+     bash --version
+   #+end_src
 
 
-** TODO Introduction to process management (Thu)
+** TODO Introduction to process management
 
 Codealong file: tinyurl.com/process-codealong
 
@@ -1578,7 +1695,7 @@ Codealong file: tinyurl.com/process-codealong
 [[../img/week_14.png]]
 
 - Codealong file: tinyurl.com/networking-codealong
-- Codealong file: tinyurl.com/environment-codealong  
+- Codealong file: tinyurl.com/environment-codealong
 
 
 * Week 15 - Compiling from source (=make=) - Thu: final presentations
