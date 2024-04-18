@@ -1475,7 +1475,7 @@ training.
 #+attr_html: :width 500px:
 [[../img/week_13.png]]
 
-** TODO Test 5 ("file permissions") is available until Sunday 21 April
+** DONE Test 5 ("file permissions") is available until Sunday 21 April
 
 - 25 questions (multiple choice, matching, and true/false)
 - 1 hour to complete and submit
@@ -1485,7 +1485,7 @@ training.
   3) Lecture script for permissions (6_permissions.org in GitHub)
 
 
-** TODO Bash programming exercise ([[https://lyon.instructure.com/courses/2255/assignments/26725][Canvas]])
+** DONE Bash programming exercise ([[https://lyon.instructure.com/courses/2255/assignments/26725][Canvas]])
 
 Create a Bash script `file.sh` that performs the following tasks:
 
@@ -1504,8 +1504,7 @@ Create a Bash script `file.sh` that performs the following tasks:
 
 Submit the Org-mode file.
 
-
-** TODO 2nd sprint review (update in class)
+** DONE 2nd sprint review (update in class)
 #+attr_html: :width 300px:
 [[../img/2nd_sprint_review.png]]
 
@@ -1548,7 +1547,7 @@ Submit the Org-mode file.
 - Let's go around the room and check the project temperature!
 
 
-** TODO Finish shared drive creation and changing passwords
+** DONE Finish shared drive creation and changing passwords
 
 Short review: can you remember the process steps completed so far to
 create a shared drive?
