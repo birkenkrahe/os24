@@ -7,48 +7,48 @@
 #+PROPERTY: header-args:bash :exports both
 * README
 
-  * This file accompanies lectures on the shell and ~bash(1)~. To gain
+  - This file accompanies lectures on the shell and ~bash(1)~. To gain
     practice, you should type along in your own Org-mode file. You
     have to have Emacs and my ~.emacs~ file installed on your PC or
     the Pi you're working with.
 
-  * This section is based on chapter 10 of Shotts, The Linux Command
+  - This section is based on chapter 10 of Shotts, The Linux Command
     Line (2e), NoStarch Press (2019).
 
-  * To make this easier, use the auto expansion (~<s~). This will only
+  - To make this easier, use the auto expansion (~<s~). This will only
     work if you have my ~.emacs~ file ([[https://tinyurl.com/lyonemacs][from GDrive]]) installed.
 
-  * Add the following two lines at the top of your file, and activate
+  - Add the following two lines at the top of your file, and activate
     each line with ~C-c C-c~ (this is confirmed in the echo area as
     ~Local setup has been refreshed~)):
     #+begin_example
     #+PROPERTY: header-args:bash :results output
     #+end_example
 
-  * Remember that ~C-M-\~ inside a code block indents syntactically
+  - Remember that ~C-M-\~ inside a code block indents syntactically
     (on Windows, this may only work if you have a marked region - set
     the mark with ~C-SPC~).
 
 * Overview
 
-  * Modern operating systems are /multitasking/, which means they create
+  - Modern operating systems are /multitasking/, which means they create
     an illusion of doing more than one thing at once.
 
-  * They do this by rapidly switching from one executing program to
+  - They do this by rapidly switching from one executing program to
     another.
 
-  * The *kernel* manages this through clever *process management*, which
+  - The *kernel* manages this through clever *process management*, which
     really is clever *memory management*.
 
-  * This is illustrated in the figure [[fig:memory]]. The simple program
+  - This is illustrated in the figure [[fig:memory]]. The simple program
     is all over the computer's memory.
 
     #+name: fig:memory
     #+attr_html: :width 600px
     #+caption: Memory Layout of a C Program (Source: Silberschatz et al)
-    [[./img/process.png]]
+    [[../img/process.png]]
 
-  * As always, let's focus on stuff we can do ourselves. This includes
+  - As always, let's focus on stuff we can do ourselves. This includes
     a bunch of new shell commands:
 
     | COMMAND  | MEANING                                |
@@ -64,20 +64,20 @@
 
 * How a process works
 
-  * When the OS starts up, the *kernel* launches the ~init~ program, which
+  - When the OS starts up, the *kernel* launches the ~init~ program, which
     in turn runs a series of shell scripts (in ~/etc~) that start all
     the system services.
 
-  * [ ] Check ~/etc~ out now - you find e.g. the directory ~/etc/cups~,
+  - Check ~/etc~ out now - you find e.g. the directory ~/etc/cups~,
     which contains scripts for the Common UNIX Printing System (CUPS).
 
-  * Many of the services are /daemon/ programs - they just sit in the
+  - Many of the services are /daemon/ programs - they just sit in the
     background and do their thing without a user interface (UI).
 
-  * ~init~ itself is a ~daemon~, also called ~systemd~. The shell program
+  - ~init~ itself is a ~daemon~, also called ~systemd~. The shell program
     ~systemctl~ allows indirect access to all services.
 
-  * [ ] *Grab a daemon!*
+  - *Grab a daemon!*
 
     In the code block [[systemctl]],
     1) run the command ~systemctl status~,
@@ -86,40 +86,35 @@
 
     #+name: systemctl
     #+begin_src bash :results output
-      systemctl status 
+
     #+end_src
 
-  * If a program (like ~init~) can launch other programs, it's a
+  - If a program (like ~init~) can launch other programs, it's a
     /parent process/ producing a /child process/.
 
-  * *How does the kernel maintain control?* By assigning a /process ID/
+  - *How does the kernel maintain control?* By assigning a /process ID/
     (PID) to every process.
 
-  * Processes are assigned in ascending order beginning with ~init~,
+  - Processes are assigned in ascending order beginning with ~init~,
     which has PID 1.
 
-  * The *kernel* also tracks process memory and readiness to resume
+  - The *kernel* also tracks process memory and readiness to resume
     execution. Like files, processes have owners and userIDs.
 
 * Viewing processes statically
 
-  * The ~ps~ program has a lot of options (check ~ps(1)~)
+  - The ~ps~ program has a lot of options (check ~ps(1)~)
 
-  * [X] Run ~ps~ without options.
+  - Run ~ps~ without options.
 
     #+name: ps
     #+begin_src bash :results output
-      ps
+
     #+end_src
 
-    #+RESULTS: ps
-    :   PID TTY          TIME CMD
-    :    10 tty1     00:00:00 bash
-    :    11 tty1     00:00:00 ps
-
-  * The result is confusing because you're inside another program now. 
+  - The result is confusing because you're inside another program now. 
  
-  * [X] Open a shell (in Emacs with ~M-x shell~ or a terminal) and type
+  - Open a shell (in Emacs with ~M-x shell~ or a terminal) and type
     ~ps~. You should see something like this:
 
     #+begin_example
@@ -128,36 +123,35 @@
     12257 pts/1    00:00:00 ps
     #+end_example
 
-  * *What this means:* 
+  - *What this means:* 
     - You see two ~PID~ - the shell program and the ~ps~ program
     - ~TTY~ ("teletype") is the /controlling terminal/ for the process
     - ~TIME~ is the amount of CPU time consumed by the process
 
-  * [X] Run ~ps~ again, this time add the option ~x~ 
-   
+  - Run ~ps~ again in the shell, this time add the option ~x~ 
     #+name: psx
+    #+begin_src bash :results output
+      ps -x
+    #+end_src
+
+  - ~ps x~ (no dash needed) shows all processes regardless of what
+    terminal they are controlled by. ~?~ indicates no terminal (like
+    daemons).
+
+  - How many processes that you own that have no terminal?
+    #+name: noterm
     #+begin_src bash :results output
 
     #+end_src
 
-  * ~ps x~ (no dash!) shows all processes regardless of what terminal
-     they are controlled by. ~?~ indicates no terminal (like daemons).
-
-  * [X] How many processes that you own that have no terminal?
-
-     #+name: noterm
-     #+begin_src bash :results output
-
-     #+end_src
-
-  * [X] List only the first 5 lines of the ~ps x~ listing.
+  - List only the first 5 lines of the ~ps x~ listing.
 
      #+name: headps
      #+begin_src bash :results output
      
   #+end_src
 
-  * The column ~STAT~ reveals the current status of the process, see
+  - The column ~STAT~ reveals the current status of the process, see
     table [[tab:states]].
 
     #+name: tab:states
@@ -175,19 +169,19 @@
     characteristics (see ~ps(1)~). E.g. ~s~ is a /session leader/, ~+~ is a
     /foreground/ process, and ~l~ is multi-threaded.
 
-  * [ ] You get even more information with the option ~aux~. Redirect
-    the output of ~ps aux~ to a file ~psaux.txt~, and print only the first
-    5 lines.
+  - You get even more information with the option ~aux~. Redirect the
+    output of ~ps aux~ to a file ~psaux.txt~, and print only the first 5
+    lines.
 
     #+name: aux
     #+begin_src bash :results output
-     ps aux | tee psaux.txt | head -5
+
     #+end_src
   
-  * You should see ~PID 1~, the ~init~ program. The ~splash~ options means
+  - You should see ~PID 1~, the ~init~ program. The ~splash~ options means
     that you can see a splash screen during boot.
 
-  * Table [[tab:aux]] shows some header definitions
+  - Table [[tab:aux]] shows some header definitions
 
     #+name: tab:aux
     | HEADER | MEANING                             |
@@ -199,7 +193,7 @@
     | RSS    | Resident set size - RAM use in kB   |
     | START  | Process starting time and date      |
    
-  * [ ] Why is the CPU usage of ~init~ zero, while the Memory usage is
+  - Why is the CPU usage of ~init~ zero, while the Memory usage is
     non-zero? How much RAM does the program actually use?
 
     #+begin_quote
@@ -210,8 +204,8 @@
 
   * ~ps~ provides a snapshot, but ~top~ provides a real-time view.
 
-  * [ ] Open a terminal (in or outside of Emacs) and run ~top~. You can
-    stop the command with ~C-c~ or ~q~.
+  * Open a terminal (in or outside of Emacs) and run ~top~. You can stop
+    the command with ~C-c~ or ~q~.
  
   * ~top~ refreshes every three seconds and shows the top system
     processes. It includes a summary at the top and a table sorted by
@@ -220,7 +214,7 @@
     #+name: fig:top
     #+attr_html: :width 600px
     #+caption: Top view
-    [[./img/top.png]]
+    [[../img/top.png]]
 
   * The system summary contains a lot of good stuff. Table [[tab:top]]
     gives a rundown. 
@@ -256,17 +250,6 @@
     less resources.
 
 * Controlling processes
-
-  To *not* see the emphatic characters like ~ or * or / in the Org file
-  text, run the following code chunk (or put the code in your ~/.emacs~
-  file): if successful, you should see ~"t"~ in the minibuffer.
-
-  #+begin_src emacs-lisp :results silent
-    (setq-default org-hide-emphasis-markers t)
-  #+end_src
-
-  If you don't put it in your ~/.emacs~ file, the command will only work
-  for the current Emacs session.
   
 ** Interrupting a process
 
