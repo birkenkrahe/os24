@@ -1574,11 +1574,18 @@ create a shared drive?
 
    #+begin_src R :session *R* :results output
      str(ToothGrowth)
-     head(ToothGrowth$len)
+     ToothGrowth$len[5]
    #+end_src
 
+   #+RESULTS:
+   : 'data.frame':	60 obs. of  3 variables:
+   :  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
+   :  $ supp: Factor w/ 2 levels "OJ","VC": 2 2 2 2 2 2 2 2 2 2 ...
+   :  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
+   : [1] 6.4
+
    #+begin_src bash
-     echo $USER $HOME $PWD
+     echo $USER $HOME $PWD  # environment variables
 
      var="hello"
      echo $var
@@ -1616,17 +1623,26 @@ create a shared drive?
       my_vector
    #+end_src
 
+   #+RESULTS:
+   : [1] 1 2 3 4
+
    Python:
    #+begin_src python :python python3 :session *Python* :results output :exports both :comments both :tangle yes :noweb yes
-      my_dict = {'name':'New York', 'population':14000000}
-      print(my_dict['name'])
+     my_dict = {'name':'New York', 'population':14000000}
+     print(my_dict['name'])
    #+end_src
+
+   #+RESULTS:
+   : New York
 
    R:
    #+begin_src R :results output
-     my_list = list(city=c('New York'), population=c(14000000))
+     my_list = list('city'=c('New York'), 'population'=c(14000000))
      my_list[[1]]
    #+end_src
+
+   #+RESULTS:
+   : [1] "New York"
 
 3) What does "shell within a shell" mean?
    #+begin_quote
@@ -1646,8 +1662,8 @@ create a shared drive?
    #+end_src
 
    #+RESULTS:
-   : The date is Thu Apr 18 08:48:18 AM CDT 2024
-   : The date is Thu Apr 18 08:48:18 AM CDT 2024
+   : The date is Thu Apr 18 10:04:00 AM CDT 2024
+   : The date is Thu Apr 18 10:04:00 AM CDT 2024
    : 9
    : 
 
@@ -1658,8 +1674,13 @@ create a shared drive?
      expr 5 / 2 # result 2.5 is truncated
    #+end_src
 
+   #+RESULTS:
+   : 9
+   : 2
+
    #+begin_src bash
      echo "4.5 + 5.5" | bc
+     echo "10 / 3" | bc
      echo "scale=2; 10 / 3" | bc
 
      var1=10
@@ -1669,13 +1690,53 @@ create a shared drive?
 
    #+RESULTS:
    : 10.0
+   : 3
    : 3.33
    : 3.33
 
 5) How can you create, print, check and manipulate arrays in =bash=?
-   
+   #+begin_src bash
+     array=(1 2 3 4)     
+     echo ${array[@]}
+     echo ${#array[@]}
 
+     # echo ${array[2]}
+
+     arr=(15 20 25 30 35 40 45 50 55 60)
+     echo ${arr[@]:3:4}
+     arr2=${arr[@]:3:2}
+     echo ${arr2[@]}
+
+     arr+=(10)
+     echo ${arr[@]}
+
+     # array2=(1,2,3,4)
+     # echo ${array2[@]}
+     # echo ${#array2[@]}
+   #+end_src
+
+   #+RESULTS:
+   : 1 2 3 4
+   : 4
+   : 30 35 40 45
+   : 30 35
+   : 15 20 25 30 35 40 45 50 55 60 10
+   
 6) How can you create and check associative arrays in =bash=?
+   #+begin_src bash
+     declare -A city  # declares empty associative array
+
+     city=( [name]="New York" [population]=14000000 )
+     
+     echo ${#city[@]}  # length
+     echo ${city[@]}  # elements
+     echo ${city['name']} # extract
+  #+end_src
+
+  #+RESULTS:
+  : 2
+  : 14000000 New York
+  : New York
 
 7) *Bonus challenge:* extract version number from the ~bash --version~
    command and tell the user if associative arrays are available or
@@ -1683,6 +1744,14 @@ create a shared drive?
    #+begin_src bash
      bash --version
    #+end_src
+
+   #+RESULTS:
+   : GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+   : Copyright (C) 2020 Free Software Foundation, Inc.
+   : License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+   : 
+   : This is free software; you are free to change and redistribute it.
+   : There is NO WARRANTY, to the extent permitted by law.
 
 
 ** TODO Introduction to process management
