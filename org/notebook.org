@@ -1470,12 +1470,11 @@ training.
 
 - Change passwords
 
-
-* Week 13 - Changing passwords / Process management (sprint review)
+* DONE Week 13 - Changing passwords / Process management (sprint review)
 #+attr_html: :width 500px:
 [[../img/week_13.png]]
 
-** DONE Test 5 ("file permissions") is available until Sunday 21 April
+** Test 5 ("file permissions") is available until Sunday 21 April
 
 - 25 questions (multiple choice, matching, and true/false)
 - 1 hour to complete and submit
@@ -1485,7 +1484,7 @@ training.
   3) Lecture script for permissions (6_permissions.org in GitHub)
 
 
-** DONE Bash programming exercise ([[https://lyon.instructure.com/courses/2255/assignments/26725][Canvas]])
+** Bash programming exercise ([[https://lyon.instructure.com/courses/2255/assignments/26725][Canvas]])
 
 Create a Bash script `file.sh` that performs the following tasks:
 
@@ -1504,7 +1503,8 @@ Create a Bash script `file.sh` that performs the following tasks:
 
 Submit the Org-mode file.
 
-** DONE 2nd sprint review (update in class)
+
+** 2nd sprint review (update in class)
 #+attr_html: :width 300px:
 [[../img/2nd_sprint_review.png]]
 
@@ -1547,7 +1547,7 @@ Submit the Org-mode file.
 - Let's go around the room and check the project temperature!
 
 
-** DONE Finish shared drive creation and changing passwords
+** Finish shared drive creation and changing passwords
 
 Short review: can you remember the process steps completed so far to
 create a shared drive?
@@ -1565,7 +1565,7 @@ create a shared drive?
 *Onward:* open the practice file ([[https://tinyurl.com/permissions-practice][tinyurl.com/permissions-practice]])
 
 
-** TODO Review: Bash scripting - variables
+** Review: Bash scripting - variables
 
 1) What is the =$= operator?
    #+begin_quote
@@ -1754,17 +1754,9 @@ create a shared drive?
    : There is NO WARRANTY, to the extent permitted by law.
 
 
-** TODO Introduction to process management
-
-Codealong file: tinyurl.com/process-codealong
-
-
-* Week 14 - Networking & Environment variables
+* Week 14 - Process management & networking & environment variables
 #+attr_html: :width 500px:
 [[../img/week_14.png]]
-
-- Codealong file: tinyurl.com/networking-codealong
-- Codealong file: tinyurl.com/environment-codealong
 
 
 * Week 15 - Compiling from source (=make=) - Thu: final presentations
