@@ -1758,15 +1758,53 @@ create a shared drive?
 #+attr_html: :width 500px:
 [[../img/week_14.png]]
 
+** TODO Final presentations April 30, May 2 and May 7
 
-* Week 15 - Compiling from source (=make=) - Thu: final presentations
+- We have 15 projects and 15 slots of 15 minutes over 3 days.
+ 
+- Let's fill the schedule up from the bottom.
 
-Codealong file: tinyurl.com/compiling-codealong
+- If you're not ready at all, go to the end of the line.
 
+- Remember that you don't have to present a closed project and that
+  you're graded on the strength of your efforts not your results.
+  
+  |--------------+-------------+---------|
+  | DAY          |        TIME | SPEAKER |
+  |--------------+-------------+---------|
+  | Tue Apr 30   |   9:30-9:45 |         |
+  |              |  9:45-10:00 |         |
+  |              | 10:00-10:15 |         |
+  |              | 10:15-10:30 |         |
+  |              | 10:30-10:45 |         |
+  |--------------+-------------+---------|
+  | Thu May 2    |   9:30-9:45 |         |
+  |              |  9:45-10:00 |         |
+  |              | 10:00-10:15 |         |
+  |              | 10:15-10:30 |         |
+  |              | 10:30-10:45 |         |
+  |--------------+-------------+---------|
+  | Thu May 7    |   9:30-9:45 |         |
+  |              |  9:45-10:00 |         |
+  |              | 10:00-10:15 |         |
+  |              | 10:15-10:30 |         |
+  |              | 10:30-10:45 |         |
+  |--------------+-------------+---------|
+  
 
-* Week 16 - Final sprint review (presentations)
+** TODO Process management
 
-Closing recommendations for where to go from here:
+** TODO Networking and the environment
+
+* Week 15 - Final presentations
+#+attr_html: :width 400px:
+[[../img/week_15.png]]
+
+* Week 16 - Final presentations
+#+attr_html: :width 400px:
+[[../img/week_16.png]]
+
+** Closing recommendations for where to go from here:
 
 1) Get a Linux certification ([[https://linuxfoundation.org][I got one here]])
 2) Book lovers: read "[[https://nostarch.com/wcss2][Wicked Cool Shell Scripts]]" (NoStarch 2016)
@@ -1781,7 +1819,6 @@ Closing recommendations for where to go from here:
 10) ...
 
 My own path: I'll focus on C + Python + SQL as the winning combo.
-
 
 * References
 
