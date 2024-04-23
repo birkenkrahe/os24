@@ -1,6 +1,6 @@
-n#+TITLE:Processes
+#+TITLE:Processes
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:processes practice for CSC420 Operating Systems Spring 2022 Lyon College
+#+SUBTITLE:processes practice for CSC420 Operating Systems Spring 2024 Lyon College
 #+STARTUP:overview hideblocks
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:bash :results output
@@ -46,7 +46,7 @@ n#+TITLE:Processes
     #+name: fig:memory
     #+attr_html: :width 600px
     #+caption: Memory Layout of a C Program (Source: Silberschatz et al)
-    [[./img/process.png]]
+    [[../img/process.png]]
 
   - The diagram illustrates the typical memory layout of a process in a C program:
     1) *High Memory to Low Memory:* The top represents high memory
@@ -138,7 +138,7 @@ x
 
     #+name: ps
     #+begin_src bash :results output
-    ps
+    ps | head -n 10
     #+end_src
 
     #+RESULTS: ps
@@ -187,59 +187,21 @@ x
    
     #+name: psx
     #+begin_src bash :results output
-      ps x 
+      ps x | head -n 10
     #+end_src
-
+    
     #+RESULTS: psx
     #+begin_example
-      PID TTY      STAT   TIME COMMAND
-      853 ?        Ss     0:00 /lib/systemd/systemd --user
-      854 ?        S      0:00 (sd-pam)
-      869 ?        S<sl   0:00 /usr/bin/pipewire
-      872 ?        S<sl   0:06 /usr/bin/pulseaudio --daemonize=no --log-target=journal
-      892 tty1     S      0:00 -bash
-      922 ?        Ss     0:00 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
-      933 ?        S<l    0:00 /usr/bin/pipewire-media-session
-     1138 tty1     S+     0:00 /bin/sh /usr/bin/startx
-     1160 tty1     S+     0:00 xinit /etc/X11/xinit/xinitrc -- /etc/X11/xinit/xserverrc :0 vt1 -keeptty -auth /tmp/serverauth.TIEzf5cJCP
-     1161 tty1     Sl     4:11 /usr/lib/xorg/Xorg -nolisten tcp :0 vt1 -keeptty -auth /tmp/serverauth.TIEzf5cJCP
-     1166 tty1     Sl     0:05 /usr/bin/lxsession -s LXDE-pi -e LXDE
-     1215 ?        Ss     0:01 /usr/bin/ssh-agent x-session-manager
-     1242 ?        Ssl    0:00 /usr/libexec/gvfsd
-     1247 ?        Sl     0:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
-     1258 tty1     Sl     3:59 mutter
-     1261 tty1     Sl     0:00 lxpolkit
-     1263 tty1     Sl     3:32 lxpanel --profile LXDE-pi
-     1264 tty1     Sl     0:06 pcmanfm --desktop --profile LXDE-pi
-     1272 tty1     S      0:00 /usr/bin/python3 /usr/share/system-config-printer/applet.py
-     1274 ?        Ss     0:00 /usr/bin/ssh-agent -s
-     1326 ?        Sl     0:00 /usr/lib/menu-cache/menu-cached /run/user/1000/menu-cached-:0
-     1330 ?        Ssl    0:00 /usr/libexec/gvfs-udisks2-volume-monitor
-     1349 ?        Ssl    0:09 /usr/libexec/gvfs-afc-volume-monitor
-     1354 ?        Ssl    0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
-     1358 ?        Ssl    0:00 /usr/libexec/gvfs-mtp-volume-monitor
-     1362 ?        Ssl    0:00 /usr/libexec/gvfs-goa-volume-monitor
-     1376 ?        Sl     0:00 /usr/libexec/gvfsd-trash --spawner :1.7 /org/gtk/gvfs/exec_spaw/0
-    10766 tty1     Sl     0:01 lxterminal
-    10772 pts/0    Ss+    0:00 bash
-    10819 tty1     Sl     1:26 /usr/lib/chromium-browser/chromium-browser-v7 --force-renderer-accessibility --enable-remote-extensions --enable-pinch --enable-crashpad
-    10839 ?        Sl     0:00 /usr/lib/chromium-browser/chrome_crashpad_handler --monitor-self --monitor-self-annotation=ptype=crashpad-handler --database=/home/pi/.config/chromium/Crash Reports --annotation=channel=Built on Raspbian , running on Raspbian 11 --annotation=lsb-release=Raspbian GNU/Linux 11 (bullseye) --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=98.0.4758.106 --initial-client-fd=5 --shared-client-connection
-    10843 ?        S      0:00 /usr/lib/chromium-browser/chrome_crashpad_handler --no-periodic-tasks --monitor-self-annotation=ptype=crashpad-handler --database=/home/pi/.config/chromium/Crash Reports --annotation=channel=Built on Raspbian , running on Raspbian 11 --annotation=lsb-release=Raspbian GNU/Linux 11 (bullseye) --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=98.0.4758.106 --initial-client-fd=4 --shared-client-connection
-    10845 tty1     S      0:00 /usr/lib/chromium-browser/chromium-browser-v7 --type=zygote --no-zygote-sandbox --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --change-stack-guard-on-fork=enable --enable-crashpad
-    10846 tty1     S      0:00 /usr/lib/chromium-browser/chromium-browser-v7 --type=zygote --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --change-stack-guard-on-fork=enable --enable-crashpad
-    10848 tty1     S      0:00 /usr/lib/chromium-browser/chromium-browser-v7 --type=zygote --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --change-stack-guard-on-fork=enable --enable-crashpad
-    10871 tty1     Sl     1:12 /usr/lib/chromium-browser/chromium-browser-v7 --type=gpu-process --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --change-stack-guard-on-fork=enable --gpu-preferences=UAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAAAABgAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=0,7525360689630647846,627907394476141022,131072
-    10872 tty1     Sl     0:11 /usr/lib/chromium-browser/chromium-browser-v7 --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,7525360689630647846,627907394476141022,131072 --enable-crashpad
-    10874 tty1     Sl     0:00 /usr/lib/chromium-browser/chromium-browser-v7 --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,7525360689630647846,627907394476141022,131072
-    10926 tty1     Sl     0:10 /usr/lib/chromium-browser/chromium-browser-v7 --type=renderer --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --extension-process --display-capture-permissions-policy-allowed --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=5 --launch-time-ticks=199470451122 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,7525360689630647846,627907394476141022,131072
-    10975 tty1     S      0:00 /usr/lib/chromium-browser/chromium-browser-v7 --type=broker
-    11042 tty1     Sl     0:28 /usr/lib/chromium-browser/chromium-browser-v7 --type=renderer --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --display-capture-permissions-policy-allowed --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=10 --launch-time-ticks=199486358282 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,7525360689630647846,627907394476141022,131072
-    11161 tty1     Sl     1:01 /usr/lib/chromium-browser/chromium-browser-v7 --type=renderer --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --display-capture-permissions-policy-allowed --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=22 --launch-time-ticks=199587426201 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,7525360689630647846,627907394476141022,131072
-    11228 tty1     Sl     0:00 /usr/lib/chromium-browser/chromium-browser-v7 --type=renderer --enable-crashpad --crashpad-handler-pid=0 --enable-crash-reporter=,Built on Raspbian , running on Raspbian 11 --display-capture-permissions-policy-allowed --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=26 --launch-time-ticks=199690000091 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,7525360689630647846,627907394476141022,131072
-    11913 tty1     Sl     2:37 /usr/bin/emacs
-    12254 pts/1    Ss+    0:00 /bin/bash --noediting -i
-    12411 ?        Ss     0:00 bash
-    12412 ?        R      0:00 ps x
+	PID TTY      STAT   TIME COMMAND
+       1313 ?        Ss     0:00 /lib/systemd/systemd --user
+       1314 ?        S      0:00 (sd-pam)
+       1323 ?        S<sl   0:00 /usr/bin/pipewire
+       1324 ?        S<sl  47:11 /usr/bin/pulseaudio --daemonize=no --log-target=journal
+       1325 ?        Ssl    0:01 cinnamon-session --session cinnamon
+       1343 ?        Ss     0:04 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+       1541 ?        SLl    0:01 /usr/bin/gnome-keyring-daemon --start --components=pkcs11
+       1552 ?        Sl     0:03 csd-media-keys
+       1553 ?        Sl     0:00 /usr/libexec/at-spi-bus-launcher --launch-immediately
     #+end_example
 
   - ~ps x~ (no dash!) shows all processes regardless of what terminal
