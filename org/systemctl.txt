@@ -1,229 +1,233 @@
-● marcus-Vostro-3470
+● Marcus-Lenovo-ideapad-320-15ISK
     State: degraded
      Jobs: 0 queued
    Failed: 2 units
-    Since: Fri 2024-04-19 13:04:42 CDT; 3 days ago
+    Since: Mon 2024-04-22 15:36:17 CDT; 18h ago
    CGroup: /
            ├─user.slice 
            │ └─user-1000.slice 
            │   ├─user@1000.service 
            │   │ ├─session.slice 
            │   │ │ ├─xdg-document-portal.service 
-           │   │ │ │ ├─2274 /usr/libexec/xdg-document-portal
-           │   │ │ │ └─2283 fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+           │   │ │ │ ├─3285 /usr/libexec/xdg-document-portal
+           │   │ │ │ └─3294 fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
            │   │ │ ├─xdg-desktop-portal.service 
-           │   │ │ │ ├─2264 /usr/libexec/xdg-desktop-portal
-           │   │ │ │ ├─2307 sh -c /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
-           │   │ │ │ └─2308 /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
+           │   │ │ │ ├─3275 /usr/libexec/xdg-desktop-portal
+           │   │ │ │ ├─3355 sh -c /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
+           │   │ │ │ └─3358 /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
            │   │ │ ├─pulseaudio.service 
-           │   │ │ │ └─1324 /usr/bin/pulseaudio --daemonize=no --log-target=journal
+           │   │ │ │ └─1286 /usr/bin/pulseaudio --daemonize=no --log-target=journal
            │   │ │ └─pipewire.service 
-           │   │ │   └─1323 /usr/bin/pipewire
+           │   │ │   └─1285 /usr/bin/pipewire
            │   │ ├─app.slice 
            │   │ │ ├─gvfs-goa-volume-monitor.service 
-           │   │ │ │ └─1784 /usr/libexec/gvfs-goa-volume-monitor
+           │   │ │ │ └─1593 /usr/libexec/gvfs-goa-volume-monitor
            │   │ │ ├─xdg-permission-store.service 
-           │   │ │ │ └─2277 /usr/libexec/xdg-permission-store
+           │   │ │ │ └─3288 /usr/libexec/xdg-permission-store
            │   │ │ ├─evolution-calendar-factory.service 
-           │   │ │ │ └─1941 /usr/libexec/evolution-calendar-factory
+           │   │ │ │ └─1902 /usr/libexec/evolution-calendar-factory
            │   │ │ ├─dconf.service 
-           │   │ │ │ └─1582 /usr/libexec/dconf-service
+           │   │ │ │ └─1481 /usr/libexec/dconf-service
            │   │ │ ├─gvfs-daemon.service 
-           │   │ │ │ ├─1730 /usr/libexec/gvfsd
-           │   │ │ │ ├─1738 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
-           │   │ │ │ ├─2071 /usr/libexec/gvfsd-trash --spawner :1.30 /org/gtk/gvfs/exec_spaw/0
-           │   │ │ │ ├─4074 /usr/libexec/gvfsd-http --spawner :1.30 /org/gtk/gvfs/exec_spaw/1
-           │   │ │ │ ├─4081 sh -c /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
-           │   │ │ │ ├─4082 /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
-           │   │ │ │ ├─4507 /usr/libexec/gvfsd-network --spawner :1.30 /org/gtk/gvfs/exec_spaw/2
-           │   │ │ │ └─4522 /usr/libexec/gvfsd-dnssd --spawner :1.30 /org/gtk/gvfs/exec_spaw/4
+           │   │ │ │ ├─1402 /usr/libexec/gvfsd
+           │   │ │ │ ├─1407 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+           │   │ │ │ └─2408 /usr/libexec/gvfsd-trash --spawner :1.9 /org/gtk/gvfs/exec_spaw/0
            │   │ │ ├─xdg-desktop-portal-xapp.service 
-           │   │ │ │ └─2287 /usr/libexec/xdg-desktop-portal-xapp
+           │   │ │ │ └─3298 /usr/libexec/xdg-desktop-portal-xapp
            │   │ │ ├─evolution-source-registry.service 
-           │   │ │ │ └─1926 /usr/libexec/evolution-source-registry
+           │   │ │ │ └─1867 /usr/libexec/evolution-source-registry
+           │   │ │ ├─flatpak-session-helper.service 
+           │   │ │ │ ├─4266 /usr/libexec/flatpak-session-helper
+           │   │ │ │ ├─4270 server --sh -n /run/user/1000/.flatpak-helper/pkcs11-flatpak-4266 --provider p11-kit-trust.so pkcs11:model=p11-kit-trust?write-protected=yes
+           │   │ │ │ └─4854 p11-kit-remote --provider p11-kit-trust.so pkcs11:model=p11-kit-trust?write-protected=yes
+           │   │ │ ├─flatpak-portal.service 
+           │   │ │ │ └─4286 /usr/libexec/flatpak-portal
            │   │ │ ├─gvfs-udisks2-volume-monitor.service 
-           │   │ │ │ └─1754 /usr/libexec/gvfs-udisks2-volume-monitor
+           │   │ │ │ └─1567 /usr/libexec/gvfs-udisks2-volume-monitor
            │   │ │ ├─app-org.gnome.Terminal.slice 
-           │   │ │ │ ├─vte-spawn-12b0ebb8-eeb9-4a17-9ff3-20f7265c6b37.scope 
-           │   │ │ │ │ ├─ 4563 bash
-           │   │ │ │ │ ├─68253 emacs
-           │   │ │ │ │ ├─68443 /bin/bash --noediting -i
-           │   │ │ │ │ ├─69223 /usr/bin/python3
-           │   │ │ │ │ ├─69233 /usr/lib/R/bin/exec/R --no-readline
-           │   │ │ │ │ ├─86090 bash
-           │   │ │ │ │ ├─86091 systemctl status
-           │   │ │ │ │ ├─86092 tee systemctl.txt
-           │   │ │ │ │ └─86093 grep logind
+           │   │ │ │ ├─vte-spawn-46747316-3581-4868-b182-79601403cee2.scope 
+           │   │ │ │ │ ├─2657 bash
+           │   │ │ │ │ ├─4757 emacs
+           │   │ │ │ │ ├─5808 bash
+           │   │ │ │ │ ├─5809 systemctl status
+           │   │ │ │ │ ├─5810 tee systemctl.txt
+           │   │ │ │ │ └─5811 grep logind
            │   │ │ │ └─gnome-terminal-server.service 
-           │   │ │ │   └─4542 /usr/libexec/gnome-terminal-server
+           │   │ │ │   └─2629 /usr/libexec/gnome-terminal-server
            │   │ │ ├─gvfs-gphoto2-volume-monitor.service 
-           │   │ │ │ └─1775 /usr/libexec/gvfs-gphoto2-volume-monitor
+           │   │ │ │ └─1589 /usr/libexec/gvfs-gphoto2-volume-monitor
            │   │ │ ├─xdg-desktop-portal-gtk.service 
-           │   │ │ │ └─2312 /usr/libexec/xdg-desktop-portal-gtk
+           │   │ │ │ └─3362 /usr/libexec/xdg-desktop-portal-gtk
            │   │ │ ├─obex.service 
-           │   │ │ │ └─1989 /usr/lib/bluetooth/obexd
+           │   │ │ │ └─2056 /usr/lib/bluetooth/obexd
+           │   │ │ ├─app-flatpak-us.zoom.Zoom-4259.scope 
+           │   │ │ │ ├─4259 bwrap --args 42 zoom zoommtg://lyon-edu.zoom.us/start?action=start&confno=85244558016&uid=eRszscgwTriyv62-HlDUsw&stype=101&token=H&confid=dXRpZD1VVElEXzU3MDVkNTVjNzNkZjQxYTA4ZDc0YzljYjNlMDNiNmVjJmVtYWlsPUJpcmtlbmtyYWhlJTQwbHlvbi5lZHUmdXNzPU10QVV1OURNTGFQMDl1aW5tanNqaUg0VHpoOVA4UWdvSUtVcjdzRS1ScE9NbjVNSWZIRE5MckI3OERqMkY4X0NBV0VudEJqS0lmb2U0V1k5S1JmNl9VMHN0c1preUxKbWVuMEs3Zkp5X1lvMmFTWnpPTGpKWDlqZkJ2QnhQUXQ2X2wydTRYUldtUWwzZlBzR3VpUEpnUXJNYzZmMjQtcXJsOTRibmQySmJqRmxYVGFkTTl1QlB5OEl5SHNkLWgwUjZPQ19oREJJbGpBSmFUU1p2a1hCc1hOS0hIRW83ZWRucm93LldjX0lrSGlySjNxMExCdGomdGlkPThmNGQ2OTk3NTgxMDQ5ZGM5MDQ1YzE5OTQxOGNlMDQzJnphaz1leUowZVhBaU9pSktWMVFpTENKemRpSTZJakF3TURBd01pSXNJbnB0WDNOcmJTSTZJbnB0WDI4eWJTSXNJbUZzWnlJNklraFRNalUySW4wLmV5SmhkV1FpT2lKamJHbGxiblFpTENKMWFXUWlPaUpsVW5ONmMyTm5kMVJ5YVhsMk5qSXRTR3hFVlhOM0lpd2lhWE56SWpvaWQyVmlJaXdpYzJzaU9pSXdJaXdpYzNSNUlqb3hNREVzSW5kalpDSTZJblZ6TURZaUxDSmpiSFFpT2pBc0ltVjRjQ0k2TVRjeE16ZzRNemN3TlN3aWFXRjBJam94TnpFek9EZ3lPREExTENKaGFXUWlPaUpKTWs5c2JEZExSbE5hTmxsUGFtbE1jSEJMVTNSUklpd2lZMmxrSWpvaUluMC5wNnRBWWFySWV2a0FwMFh0Sk9CTHdvQzFvV0xMaUo2Mk9veDMzMEpWbHNr&browser=chrome
+           │   │ │ │ ├─4273 bwrap --args 42 xdg-dbus-proxy --args=44
+           │   │ │ │ ├─4274 xdg-dbus-proxy --args=44
+           │   │ │ │ ├─4277 bwrap --args 42 zoom zoommtg://lyon-edu.zoom.us/start?action=start&confno=85244558016&uid=eRszscgwTriyv62-HlDUsw&stype=101&token=H&confid=dXRpZD1VVElEXzU3MDVkNTVjNzNkZjQxYTA4ZDc0YzljYjNlMDNiNmVjJmVtYWlsPUJpcmtlbmtyYWhlJTQwbHlvbi5lZHUmdXNzPU10QVV1OURNTGFQMDl1aW5tanNqaUg0VHpoOVA4UWdvSUtVcjdzRS1ScE9NbjVNSWZIRE5MckI3OERqMkY4X0NBV0VudEJqS0lmb2U0V1k5S1JmNl9VMHN0c1preUxKbWVuMEs3Zkp5X1lvMmFTWnpPTGpKWDlqZkJ2QnhQUXQ2X2wydTRYUldtUWwzZlBzR3VpUEpnUXJNYzZmMjQtcXJsOTRibmQySmJqRmxYVGFkTTl1QlB5OEl5SHNkLWgwUjZPQ19oREJJbGpBSmFUU1p2a1hCc1hOS0hIRW83ZWRucm93LldjX0lrSGlySjNxMExCdGomdGlkPThmNGQ2OTk3NTgxMDQ5ZGM5MDQ1YzE5OTQxOGNlMDQzJnphaz1leUowZVhBaU9pSktWMVFpTENKemRpSTZJakF3TURBd01pSXNJbnB0WDNOcmJTSTZJbnB0WDI4eWJTSXNJbUZzWnlJNklraFRNalUySW4wLmV5SmhkV1FpT2lKamJHbGxiblFpTENKMWFXUWlPaUpsVW5ONmMyTm5kMVJ5YVhsMk5qSXRTR3hFVlhOM0lpd2lhWE56SWpvaWQyVmlJaXdpYzJzaU9pSXdJaXdpYzNSNUlqb3hNREVzSW5kalpDSTZJblZ6TURZaUxDSmpiSFFpT2pBc0ltVjRjQ0k2TVRjeE16ZzRNemN3TlN3aWFXRjBJam94TnpFek9EZ3lPREExTENKaGFXUWlPaUpKTWs5c2JEZExSbE5hTmxsUGFtbE1jSEJMVTNSUklpd2lZMmxrSWpvaUluMC5wNnRBWWFySWV2a0FwMFh0Sk9CTHdvQzFvV0xMaUo2Mk9veDMzMEpWbHNr&browser=chrome
+           │   │ │ │ ├─4278 /app/extra/zoom/ZoomLauncher zoommtg://lyon-edu.zoom.us/start?action=start&confno=85244558016&uid=eRszscgwTriyv62-HlDUsw&stype=101&token=H&confid=dXRpZD1VVElEXzU3MDVkNTVjNzNkZjQxYTA4ZDc0YzljYjNlMDNiNmVjJmVtYWlsPUJpcmtlbmtyYWhlJTQwbHlvbi5lZHUmdXNzPU10QVV1OURNTGFQMDl1aW5tanNqaUg0VHpoOVA4UWdvSUtVcjdzRS1ScE9NbjVNSWZIRE5MckI3OERqMkY4X0NBV0VudEJqS0lmb2U0V1k5S1JmNl9VMHN0c1preUxKbWVuMEs3Zkp5X1lvMmFTWnpPTGpKWDlqZkJ2QnhQUXQ2X2wydTRYUldtUWwzZlBzR3VpUEpnUXJNYzZmMjQtcXJsOTRibmQySmJqRmxYVGFkTTl1QlB5OEl5SHNkLWgwUjZPQ19oREJJbGpBSmFUU1p2a1hCc1hOS0hIRW83ZWRucm93LldjX0lrSGlySjNxMExCdGomdGlkPThmNGQ2OTk3NTgxMDQ5ZGM5MDQ1YzE5OTQxOGNlMDQzJnphaz1leUowZVhBaU9pSktWMVFpTENKemRpSTZJakF3TURBd01pSXNJbnB0WDNOcmJTSTZJbnB0WDI4eWJTSXNJbUZzWnlJNklraFRNalUySW4wLmV5SmhkV1FpT2lKamJHbGxiblFpTENKMWFXUWlPaUpsVW5ONmMyTm5kMVJ5YVhsMk5qSXRTR3hFVlhOM0lpd2lhWE56SWpvaWQyVmlJaXdpYzJzaU9pSXdJaXdpYzNSNUlqb3hNREVzSW5kalpDSTZJblZ6TURZaUxDSmpiSFFpT2pBc0ltVjRjQ0k2TVRjeE16ZzRNemN3TlN3aWFXRjBJam94TnpFek9EZ3lPREExTENKaGFXUWlPaUpKTWs5c2JEZExSbE5hTmxsUGFtbE1jSEJMVTNSUklpd2lZMmxrSWpvaUluMC5wNnRBWWFySWV2a0FwMFh0Sk9CTHdvQzFvV0xMaUo2Mk9veDMzMEpWbHNr&browser=chrome
+           │   │ │ │ ├─4280 /app/extra/zoom/zoom.real zoommtg://lyon-edu.zoom.us/start?action=start&confno=85244558016&uid=eRszscgwTriyv62-HlDUsw&stype=101&token=H&confid=dXRpZD1VVElEXzU3MDVkNTVjNzNkZjQxYTA4ZDc0YzljYjNlMDNiNmVjJmVtYWlsPUJpcmtlbmtyYWhlJTQwbHlvbi5lZHUmdXNzPU10QVV1OURNTGFQMDl1aW5tanNqaUg0VHpoOVA4UWdvSUtVcjdzRS1ScE9NbjVNSWZIRE5MckI3OERqMkY4X0NBV0VudEJqS0lmb2U0V1k5S1JmNl9VMHN0c1preUxKbWVuMEs3Zkp5X1lvMmFTWnpPTGpKWDlqZkJ2QnhQUXQ2X2wydTRYUldtUWwzZlBzR3VpUEpnUXJNYzZmMjQtcXJsOTRibmQySmJqRmxYVGFkTTl1QlB5OEl5SHNkLWgwUjZPQ19oREJJbGpBSmFUU1p2a1hCc1hOS0hIRW83ZWRucm93LldjX0lrSGlySjNxMExCdGomdGlkPThmNGQ2OTk3NTgxMDQ5ZGM5MDQ1YzE5OTQxOGNlMDQzJnphaz1leUowZVhBaU9pSktWMVFpTENKemRpSTZJakF3TURBd01pSXNJbnB0WDNOcmJTSTZJbnB0WDI4eWJTSXNJbUZzWnlJNklraFRNalUySW4wLmV5SmhkV1FpT2lKamJHbGxiblFpTENKMWFXUWlPaUpsVW5ONmMyTm5kMVJ5YVhsMk5qSXRTR3hFVlhOM0lpd2lhWE56SWpvaWQyVmlJaXdpYzJzaU9pSXdJaXdpYzNSNUlqb3hNREVzSW5kalpDSTZJblZ6TURZaUxDSmpiSFFpT2pBc0ltVjRjQ0k2TVRjeE16ZzRNemN3TlN3aWFXRjBJam94TnpFek9EZ3lPREExTENKaGFXUWlPaUpKTWs5c2JEZExSbE5hTmxsUGFtbE1jSEJMVTNSUklpd2lZMmxrSWpvaUluMC5wNnRBWWFySWV2a0FwMFh0Sk9CTHdvQzFvV0xMaUo2Mk9veDMzMEpWbHNr&browser=chrome
+           │   │ │ │ ├─4305 /app/extra/zoom/zoom.real --type=zygote --no-zygote-sandbox --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --log-file=/home/marcus/.zoom/logs/cef.log --bridge-obj-name=CefViewClient
+           │   │ │ │ ├─4309 cat
+           │   │ │ │ ├─4310 cat
+           │   │ │ │ ├─4348 /app/extra/zoom/zoom.real --type=gpu-process --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --bridge-obj-name=CefViewClient --gpu-preferences=WAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAABgAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAGAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --use-gl=angle --use-angle=swiftshader-webgl --log-file=/home/marcus/.zoom/logs/cef.log --shared-files --field-trial-handle=0,i,2529780698744926701,16840633571203861944,262144 --disable-features=NetworkService --variations-seed-version
+           │   │ │ │ └─4371 /app/extra/zoom/zoom.real --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --bridge-obj-name=CefViewClient --log-file=/home/marcus/.zoom/logs/cef.log --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,2529780698744926701,16840633571203861944,262144 --disable-features=NetworkService --variations-seed-version
            │   │ │ ├─gvfs-metadata.service 
-           │   │ │ │ └─2087 /usr/libexec/gvfsd-metadata
+           │   │ │ │ └─2421 /usr/libexec/gvfsd-metadata
            │   │ │ ├─dbus.service 
-           │   │ │ │ ├─ 1343 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
-           │   │ │ │ ├─ 1791 /usr/libexec/goa-daemon
-           │   │ │ │ ├─ 1807 /usr/libexec/goa-identity-service
-           │   │ │ │ └─61629 /usr/bin/python3 /usr/share/system-config-printer/scp-dbus-service.py
+           │   │ │ │ ├─1304 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+           │   │ │ │ ├─1427 /usr/libexec/ibus-portal
+           │   │ │ │ ├─1601 /usr/libexec/goa-daemon
+           │   │ │ │ └─1639 /usr/libexec/goa-identity-service
            │   │ │ ├─evolution-addressbook-factory.service 
-           │   │ │ │ └─1955 /usr/libexec/evolution-addressbook-factory
+           │   │ │ │ └─1929 /usr/libexec/evolution-addressbook-factory
            │   │ │ ├─gvfs-mtp-volume-monitor.service 
-           │   │ │ │ └─1763 /usr/libexec/gvfs-mtp-volume-monitor
-           │   │ │ └─gvfs-afc-volume-monitor.service 
-           │   │ │   └─1779 /usr/libexec/gvfs-afc-volume-monitor
+           │   │ │ │ └─1585 /usr/libexec/gvfs-mtp-volume-monitor
+           │   │ │ ├─gvfs-afc-volume-monitor.service 
+           │   │ │ │ └─1648 /usr/libexec/gvfs-afc-volume-monitor
+           │   │ │ └─app-flatpak-us.zoom.Zoom-4311.scope 
+           │   │ │   ├─4311 bwrap --args 42 /app/bin/zypak-helper child - /app/extra/zoom/zoom.real --type=zygote --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --log-file=/home/marcus/.zoom/logs/cef.log --bridge-obj-name=CefViewClient
+           │   │ │   ├─4325 bwrap --args 42 /app/bin/zypak-helper child - /app/extra/zoom/zoom.real --type=zygote --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --log-file=/home/marcus/.zoom/logs/cef.log --bridge-obj-name=CefViewClient
+           │   │ │   └─4326 /app/extra/zoom/zoom.real --type=zygote --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --log-file=/home/marcus/.zoom/logs/cef.log --bridge-obj-name=CefViewClient
            │   │ └─init.scope 
-           │   │   ├─1313 /lib/systemd/systemd --user
-           │   │   └─1314 (sd-pam)
+           │   │   ├─1241 /lib/systemd/systemd --user
+           │   │   └─1242 (sd-pam)
            │   └─session-c1.scope 
-           │     ├─ 1308 lightdm --session-child 12 15
-           │     ├─ 1325 cinnamon-session --session cinnamon
-           │     ├─ 1541 /usr/bin/gnome-keyring-daemon --start --components=pkcs11
-           │     ├─ 1552 csd-media-keys
-           │     ├─ 1553 /usr/libexec/at-spi-bus-launcher --launch-immediately
-           │     ├─ 1555 csd-a11y-settings
-           │     ├─ 1556 csd-keyboard
-           │     ├─ 1557 csd-wacom
-           │     ├─ 1558 csd-print-notifications
-           │     ├─ 1559 csd-automount
-           │     ├─ 1560 csd-housekeeping
-           │     ├─ 1561 csd-screensaver-proxy
-           │     ├─ 1563 csd-power
-           │     ├─ 1564 csd-background
-           │     ├─ 1565 csd-settings-remap
-           │     ├─ 1566 csd-xsettings
-           │     ├─ 1569 csd-color
-           │     ├─ 1573 csd-clipboard
-           │     ├─ 1580 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run/user/1000/at-spi/bus_0
-           │     ├─ 1593 /usr/libexec/csd-printer
-           │     ├─ 1746 /usr/libexec/at-spi2-registryd --use-gnome-session
-           │     ├─ 1813 cinnamon-launcher
-           │     ├─ 1823 cinnamon --replace
-           │     ├─ 1864 /usr/lib/x86_64-linux-gnu/xapps/xapp-sn-watcher
-           │     ├─ 1878 /usr/libexec/geoclue-2.0/demos/agent
-           │     ├─ 1879 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-           │     ├─ 1884 /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
-           │     ├─ 1888 nemo-desktop
-           │     ├─ 1889 /usr/bin/python3 /usr/bin/blueman-applet
-           │     ├─ 1890 nm-applet
-           │     ├─ 1891 cinnamon-killer-daemon
-           │     ├─ 1892 /usr/libexec/evolution-data-server/evolution-alarm-notify
-           │     ├─ 1987 /usr/bin/python3 /usr/bin/blueman-tray
-           │     ├─ 2069 emacs --daemon
-           │     ├─ 2119 sh -c /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
-           │     ├─ 2120 /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
-           │     ├─ 2150 mintUpdate
-           │     ├─ 2199 /usr/bin/python3 /usr/share/system-config-printer/applet.py
-           │     ├─ 2224 mintreport-tray
-           │     ├─65115 cat
-           │     ├─65116 cat
-           │     ├─76119 /usr/share/spotify/spotify
-           │     ├─76124 /usr/share/spotify/spotify --type=zygote --no-zygote-sandbox --no-sandbox --log-severity=disable --user-agent-product=Chrome/121.0.6167.139 Spotify/1.2.31.1205 --lang=en --user-data-dir=/home/marcus/.cache/spotify --log-file=/usr/share/spotify/debug.log
-           │     ├─76125 /usr/share/spotify/spotify --type=zygote --no-sandbox --log-severity=disable --user-agent-product=Chrome/121.0.6167.139 Spotify/1.2.31.1205 --lang=en --user-data-dir=/home/marcus/.cache/spotify --log-file=/usr/share/spotify/debug.log
-           │     ├─76144 /usr/share/spotify/spotify --type=gpu-process --no-sandbox --log-severity=disable --user-agent-product=Chrome/121.0.6167.139 Spotify/1.2.31.1205 --lang=en --user-data-dir=/home/marcus/.cache/spotify --gpu-preferences=WAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAABgAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAGAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --log-file=/usr/share/spotify/debug.log --shared-files --field-trial-handle=0,i,2325247768546131038,7027266928256375595,262144 --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version
-           │     ├─76157 /usr/share/spotify/spotify --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --no-sandbox --log-severity=disable --user-agent-product=Chrome/121.0.6167.139 Spotify/1.2.31.1205 --lang=en --user-data-dir=/home/marcus/.cache/spotify --log-file=/usr/share/spotify/debug.log --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,2325247768546131038,7027266928256375595,262144 --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version
-           │     ├─76162 /usr/share/spotify/spotify --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --log-severity=disable --user-agent-product=Chrome/121.0.6167.139 Spotify/1.2.31.1205 --lang=en --user-data-dir=/home/marcus/.cache/spotify --log-file=/usr/share/spotify/debug.log --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,2325247768546131038,7027266928256375595,262144 --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version
-           │     ├─76218 /usr/share/spotify/spotify --type=renderer --log-severity=disable --user-agent-product=Chrome/121.0.6167.139 Spotify/1.2.31.1205 --disable-spell-checking --user-data-dir=/home/marcus/.cache/spotify --first-renderer-process --no-sandbox --autoplay-policy=no-user-gesture-required --log-file=/usr/share/spotify/debug.log --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1713710628910344 --launch-time-ticks=127370785183 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,2325247768546131038,7027266928256375595,262144 --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version
-           │     ├─78325 /usr/bin/emacsclient --alternate-editor= --reuse-frame /home/marcus/Downloads/rectangle solution.org
-           │     ├─78336 /usr/bin/emacsclient --alternate-editor= --reuse-frame /home/marcus/Downloads/rectangle solution.org
-           │     ├─78347 /usr/bin/emacsclient --alternate-editor= --reuse-frame /home/marcus/Downloads/rectangle solution.org
-           │     ├─78358 /usr/bin/emacsclient --alternate-editor= --reuse-frame /home/marcus/Downloads/rectangle solution.org
-           │     ├─78414 /usr/bin/emacsclient --alternate-editor= --reuse-frame /home/marcus/Downloads/rectangle solution.org
-           │     ├─82788 /opt/google/chrome/chrome
-           │     ├─82793 cat
-           │     ├─82794 cat
-           │     ├─82796 /opt/google/chrome/chrome_crashpad_handler --monitor-self --monitor-self-annotation=ptype=crashpad-handler --database=/home/marcus/.config/google-chrome/Crash Reports --metrics-dir=/home/marcus/.config/google-chrome --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=lsb-release=Linux Mint 21.3 --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=124.0.6367.60 --initial-client-fd=5 --shared-client-connection
-           │     ├─82798 /opt/google/chrome/chrome_crashpad_handler --no-periodic-tasks --monitor-self-annotation=ptype=crashpad-handler --database=/home/marcus/.config/google-chrome/Crash Reports --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=lsb-release=Linux Mint 21.3 --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=124.0.6367.60 --initial-client-fd=4 --shared-client-connection
-           │     ├─82804 /opt/google/chrome/chrome --type=zygote --no-zygote-sandbox --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --change-stack-guard-on-fork=enable
-           │     ├─82805 /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --change-stack-guard-on-fork=enable
-           │     ├─82807 /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --change-stack-guard-on-fork=enable
-           │     ├─82831 /opt/google/chrome/chrome --type=gpu-process --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --change-stack-guard-on-fork=enable --gpu-preferences=WAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAABgAAEAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAGAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─82833 /opt/google/chrome/chrome --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─82844 /opt/google/chrome/chrome --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─82914 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=137335098901 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─82951 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=8 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=137335759092 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─82970 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=9 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=137335791714 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─83037 /opt/google/chrome/chrome --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─83110 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=24 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=137346592299 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─83121 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=25 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=137347047741 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─84633 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=39 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=138316337899 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─85206 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=56 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=139691835965 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     ├─85236 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=58 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=139692500855 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
-           │     └─85252 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=82796 --enable-crash-reporter=24ce40a5-fc7f-4ef9-92f3-76438eb922bb, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=60 --time-ticks-at-unix-epoch=-1713739070232510 --launch-time-ticks=139696785020 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12709282165674146335,12157024684346635272,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─1236 lightdm --session-child 13 16
+           │     ├─1287 cinnamon-session --session cinnamon
+           │     ├─1394 /usr/bin/ibus-daemon --daemonize --xim
+           │     ├─1410 /usr/libexec/ibus-memconf
+           │     ├─1413 /usr/libexec/ibus-ui-gtk3
+           │     ├─1414 /usr/libexec/ibus-extension-gtk3
+           │     ├─1417 /usr/libexec/ibus-x11 --kill-daemon
+           │     ├─1434 /usr/bin/gnome-keyring-daemon --start --components=pkcs11
+           │     ├─1446 csd-clipboard
+           │     ├─1447 csd-wacom
+           │     ├─1448 csd-a11y-settings
+           │     ├─1449 /usr/libexec/at-spi-bus-launcher --launch-immediately
+           │     ├─1450 csd-media-keys
+           │     ├─1457 csd-xsettings
+           │     ├─1459 csd-power
+           │     ├─1460 csd-housekeeping
+           │     ├─1462 csd-keyboard
+           │     ├─1464 csd-color
+           │     ├─1466 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run/user/1000/at-spi/bus_0
+           │     ├─1467 csd-background
+           │     ├─1468 csd-settings-remap
+           │     ├─1469 csd-automount
+           │     ├─1470 csd-print-notifications
+           │     ├─1474 csd-screensaver-proxy
+           │     ├─1561 /usr/libexec/at-spi2-registryd --use-gnome-session
+           │     ├─1600 /usr/libexec/csd-printer
+           │     ├─1676 /usr/libexec/ibus-engine-simple
+           │     ├─1732 cinnamon-launcher
+           │     ├─1743 cinnamon --replace
+           │     ├─1793 /usr/lib/x86_64-linux-gnu/xapps/xapp-sn-watcher
+           │     ├─1807 /usr/libexec/geoclue-2.0/demos/agent
+           │     ├─1814 /usr/bin/python3 /usr/bin/blueman-applet
+           │     ├─1815 nemo-desktop
+           │     ├─1817 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+           │     ├─1819 /usr/bin/python3 /usr/lib/nvidia-prime-applet/nvidia-prime
+           │     ├─1820 /usr/libexec/evolution-data-server/evolution-alarm-notify
+           │     ├─1827 nm-applet
+           │     ├─1833 cinnamon-killer-daemon
+           │     ├─2099 /usr/bin/python3 /usr/bin/blueman-tray
+           │     ├─2468 emacs --daemon
+           │     ├─2470 sh -c /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
+           │     ├─2471 /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
+           │     ├─2490 mintUpdate
+           │     ├─2585 /usr/bin/python3 /usr/share/system-config-printer/applet.py
+           │     ├─2604 mintreport-tray
+           │     ├─3235 /opt/google/chrome/chrome
+           │     ├─3240 cat
+           │     ├─3241 cat
+           │     ├─3243 /opt/google/chrome/chrome_crashpad_handler --monitor-self --monitor-self-annotation=ptype=crashpad-handler --database=/home/marcus/.config/google-chrome/Crash Reports --metrics-dir=/home/marcus/.config/google-chrome --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=lsb-release=Linux Mint 21.3 --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=124.0.6367.60 --initial-client-fd=5 --shared-client-connection
+           │     ├─3245 /opt/google/chrome/chrome_crashpad_handler --no-periodic-tasks --monitor-self-annotation=ptype=crashpad-handler --database=/home/marcus/.config/google-chrome/Crash Reports --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=lsb-release=Linux Mint 21.3 --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=124.0.6367.60 --initial-client-fd=4 --shared-client-connection
+           │     ├─3251 /opt/google/chrome/chrome --type=zygote --no-zygote-sandbox --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable
+           │     ├─3252 /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable
+           │     ├─3254 /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable
+           │     ├─3280 /opt/google/chrome/chrome --type=gpu-process --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable --gpu-preferences=WAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAABgAAEAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAGAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3303 /opt/google/chrome/chrome --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3386 /opt/google/chrome/chrome --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3434 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=652848212 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3463 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=652975336 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3482 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=653028318 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3762 /opt/google/chrome/chrome --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3888 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --instant-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=42 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=679330389 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3959 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=52 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=682430981 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─3972 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=53 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=692368091 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─4016 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=57 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=713574115 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     ├─4030 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=58 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=714980751 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+           │     └─5674 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=74 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=2461330835 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
            ├─init.scope 
            │ └─1 /sbin/init splash
            └─system.slice 
              ├─irqbalance.service 
-             │ └─865 /usr/sbin/irqbalance --foreground
-             ├─packagekit.service 
-             │ └─3846 /usr/libexec/packagekitd
+             │ └─879 /usr/sbin/irqbalance --foreground
              ├─systemd-udevd.service 
-             │ └─501 /lib/systemd/systemd-udevd
-             ├─ipp-usb.service 
-             │ └─1030 /sbin/ipp-usb udev
+             │ └─460 /lib/systemd/systemd-udevd
              ├─cron.service 
-             │ └─858 /usr/sbin/cron -f -P
+             │ └─870 /usr/sbin/cron -f -P
              ├─thermald.service 
-             │ └─875 /usr/sbin/thermald --systemd --dbus-enable --adaptive
+             │ └─916 /usr/sbin/thermald --systemd --dbus-enable --adaptive
              ├─polkit.service 
-             │ └─870 /usr/libexec/polkitd --no-debug
+             │ └─889 /usr/libexec/polkitd --no-debug
              ├─networkd-dispatcher.service 
-             │ └─869 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+             │ └─887 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
              ├─rtkit-daemon.service 
-             │ └─1337 /usr/libexec/rtkit-daemon
+             │ └─1294 /usr/libexec/rtkit-daemon
              ├─bluetooth.service 
-             │ └─960 /usr/lib/bluetooth/bluetoothd
+             │ └─869 /usr/lib/bluetooth/bluetoothd
              ├─accounts-daemon.service 
-             │ └─851 /usr/libexec/accounts-daemon
+             │ └─865 /usr/libexec/accounts-daemon
              ├─wpa_supplicant.service 
-             │ └─879 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+             │ └─922 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
              ├─lightdm.service 
-             │ ├─1006 /usr/sbin/lightdm
-             │ └─1074 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+             │ ├─1079 /usr/sbin/lightdm
+             │ └─1095 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
              ├─ModemManager.service 
-             │ └─1009 /usr/sbin/ModemManager
+             │ └─990 /usr/sbin/ModemManager
              ├─systemd-journald.service 
-             │ └─461 /lib/systemd/systemd-journald
-             ├─fwupd.service 
-             │ └─82261 /usr/libexec/fwupd/fwupd
+             │ └─424 /lib/systemd/systemd-journald
              ├─colord.service 
-             │ └─1265 /usr/libexec/colord
+             │ └─1084 /usr/libexec/colord
              ├─NetworkManager.service 
-             │ └─860 /usr/sbin/NetworkManager --no-daemon
+             │ └─872 /usr/sbin/NetworkManager --no-daemon
+             ├─nvidia-persistenced.service 
+             │ └─892 /usr/bin/nvidia-persistenced --user nvidia-persistenced --no-persistence-mode --verbose
+             ├─snapd.service 
+             │ └─905 /usr/lib/snapd/snapd
              ├─switcheroo-control.service 
-             │ └─873 /usr/libexec/switcheroo-control
+             │ └─906 /usr/libexec/switcheroo-control
              ├─rsyslog.service 
-             │ └─871 /usr/sbin/rsyslogd -n -iNONE
+             │ └─897 /usr/sbin/rsyslogd -n -iNONE
              ├─kerneloops.service 
-             │ ├─1210 /usr/sbin/kerneloops --test
-             │ └─1212 /usr/sbin/kerneloops
+             │ ├─1318 /usr/sbin/kerneloops --test
+             │ └─1324 /usr/sbin/kerneloops
              ├─cups-browsed.service 
-             │ └─82292 /usr/sbin/cups-browsed
+             │ └─1309 /usr/sbin/cups-browsed
              ├─cups.service 
-             │ ├─82288 /usr/sbin/cupsd -l
-             │ └─82316 /usr/lib/cups/notifier/dbus dbus://
+             │ ├─1072 /usr/sbin/cupsd -l
+             │ └─1773 /usr/lib/cups/notifier/dbus dbus://
              ├─upower.service 
-             │ └─1770 /usr/libexec/upowerd
+             │ └─1658 /usr/libexec/upowerd
              ├─systemd-resolved.service 
-             │ └─831 /lib/systemd/systemd-resolved
+             │ └─780 /lib/systemd/systemd-resolved
              ├─udisks2.service 
-             │ └─878 /usr/libexec/udisks2/udisksd
+             │ └─920 /usr/libexec/udisks2/udisksd
              ├─acpid.service 
-             │ └─854 /usr/sbin/acpid
+             │ └─866 /usr/sbin/acpid
              ├─dbus.service 
-             │ └─859 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+             │ └─871 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
              ├─systemd-timesyncd.service 
-             │ └─832 /lib/systemd/systemd-timesyncd
+             │ └─782 /lib/systemd/systemd-timesyncd
              ├─system-getty.slice 
              │ └─getty@tty1.service 
-             │   └─1077 /sbin/agetty -o -p -- \u --noclear tty1 linux
+             │   └─1096 /sbin/agetty -o -p -- \u --noclear tty1 linux
              ├─touchegg.service 
-             │ └─876 /usr/bin/touchegg --daemon
+             │ └─918 /usr/bin/touchegg --daemon
              ├─avahi-daemon.service 
-             │ ├─856 avahi-daemon: running [marcus-Vostro-3470.local]
-             │ └─883 avahi-daemon: chroot helper
+             │ ├─867 avahi-daemon: running [Marcus-Lenovo-ideapad-320-15ISK.local]
+             │ └─972 avahi-daemon: chroot helper
              └─systemd-logind.service 
-               └─874 /lib/systemd/systemd-logind
+               └─913 /lib/systemd/systemd-logind

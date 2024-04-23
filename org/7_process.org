@@ -92,9 +92,150 @@
 
     #+name: systemctl
     #+begin_src bash :results output
-
+      systemctl status | tee systemctl.txt | grep logind
     #+end_src
 
+    #+RESULTS: systemctl
+    :            │   │ │ │ │ └─5811 grep logind
+    :              └─systemd-logind.service 
+    :                └─913 /lib/systemd/systemd-logind
+
+  - =pstree= command includes a lot more processes:
+    #+begin_src bash
+      pstree
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    systemd-+-ModemManager---2*[{ModemManager}]
+            |-NetworkManager---2*[{NetworkManager}]
+            |-accounts-daemon---2*[{accounts-daemon}]
+            |-acpid
+            |-agetty
+            |-at-spi2-registr---2*[{at-spi2-registr}]
+            |-avahi-daemon---avahi-daemon
+            |-blueman-tray---2*[{blueman-tray}]
+            |-bluetoothd
+            |-bwrap---bwrap-+-ZoomLauncher---zoom.real-+-zoom.real---zoom.real---20*[{zoom.real}]
+            |               |                          |-zoom.real---6*[{zoom.real}]
+            |               |                          |-zypak-sandbox
+            |               |                          `-102*[{zoom.real}]
+            |               |-bwrap---zoom.real
+            |               `-2*[cat]
+            |-bwrap---xdg-dbus-proxy---{xdg-dbus-proxy}
+            |-chrome_crashpad---2*[{chrome_crashpad}]
+            |-chrome_crashpad---{chrome_crashpad}
+            |-colord---2*[{colord}]
+            |-cron
+            |-csd-printer---2*[{csd-printer}]
+            |-cups-browsed---2*[{cups-browsed}]
+            |-cupsd---dbus
+            |-dbus-daemon
+            |-emacs---3*[{emacs}]
+            |-gnome-keyring-d---3*[{gnome-keyring-d}]
+            |-ibus-daemon-+-ibus-engine-sim---2*[{ibus-engine-sim}]
+            |             |-ibus-extension----7*[{ibus-extension-}]
+            |             |-ibus-memconf---2*[{ibus-memconf}]
+            |             |-ibus-ui-gtk3---7*[{ibus-ui-gtk3}]
+            |             `-2*[{ibus-daemon}]
+            |-ibus-x11---6*[{ibus-x11}]
+            |-irqbalance---{irqbalance}
+            |-2*[kerneloops]
+            |-lightdm-+-Xorg---11*[{Xorg}]
+            |         |-lightdm-+-cinnamon-sessio-+-agent---2*[{agent}]
+            |         |         |                 |-applet.py
+            |         |         |                 |-at-spi-bus-laun-+-dbus-daemon
+            |         |         |                 |                 `-3*[{at-spi-bus-laun}]
+            |         |         |                 |-blueman-applet---3*[{blueman-applet}]
+            |         |         |                 |-cinnamon-killer---3*[{cinnamon-killer}]
+            |         |         |                 |-cinnamon-launch-+-cinnamon-+-chrome-+-2*[cat]
+            |         |         |                 |                 |          |        |-chrome---chrome---18*[{chrome}]
+            |         |         |                 |                 |          |        |-chrome---chrome-+-chrome---7*[{chrome}]
+            |         |         |                 |                 |          |        |                 |-8*[chrome---10*[{chrome}]]
+            |         |         |                 |                 |          |        |                 `-chrome---9*[{chrome}]
+            |         |         |                 |                 |          |        |-2*[chrome---8*[{chrome}]]
+            |         |         |                 |                 |          |        `-35*[{chrome}]
+            |         |         |                 |                 |          `-14*[{cinnamon}]
+            |         |         |                 |                 `-5*[{cinnamon-launch}]
+            |         |         |                 |-csd-a11y-settin---3*[{csd-a11y-settin}]
+            |         |         |                 |-csd-automount---3*[{csd-automount}]
+            |         |         |                 |-csd-background---3*[{csd-background}]
+            |         |         |                 |-csd-clipboard---6*[{csd-clipboard}]
+            |         |         |                 |-csd-color---7*[{csd-color}]
+            |         |         |                 |-csd-housekeepin---7*[{csd-housekeepin}]
+            |         |         |                 |-csd-keyboard---7*[{csd-keyboard}]
+            |         |         |                 |-csd-media-keys---7*[{csd-media-keys}]
+            |         |         |                 |-csd-power---7*[{csd-power}]
+            |         |         |                 |-csd-print-notif---2*[{csd-print-notif}]
+            |         |         |                 |-csd-screensaver---2*[{csd-screensaver}]
+            |         |         |                 |-csd-settings-re---3*[{csd-settings-re}]
+            |         |         |                 |-csd-wacom---6*[{csd-wacom}]
+            |         |         |                 |-csd-xsettings---7*[{csd-xsettings}]
+            |         |         |                 |-evolution-alarm---5*[{evolution-alarm}]
+            |         |         |                 |-nemo-desktop---3*[{nemo-desktop}]
+            |         |         |                 |-nm-applet---3*[{nm-applet}]
+            |         |         |                 |-nvidia-prime---2*[{nvidia-prime}]
+            |         |         |                 |-polkit-gnome-au---2*[{polkit-gnome-au}]
+            |         |         |                 |-xapp-sn-watcher---3*[{xapp-sn-watcher}]
+            |         |         |                 `-3*[{cinnamon-sessio}]
+            |         |         `-2*[{lightdm}]
+            |         `-2*[{lightdm}]
+            |-mintUpdate---6*[{mintUpdate}]
+            |-mintreport-tray---3*[{mintreport-tray}]
+            |-networkd-dispat
+            |-nvidia-persiste
+            |-polkitd---2*[{polkitd}]
+            |-rsyslogd---3*[{rsyslogd}]
+            |-rtkit-daemon---2*[{rtkit-daemon}]
+            |-sh---pxgsettings---3*[{pxgsettings}]
+            |-snapd---11*[{snapd}]
+            |-switcheroo-cont---2*[{switcheroo-cont}]
+            |-systemd-+-(sd-pam)
+            |         |-dbus-daemon
+            |         |-dconf-service---2*[{dconf-service}]
+            |         |-evolution-addre---5*[{evolution-addre}]
+            |         |-evolution-calen---8*[{evolution-calen}]
+            |         |-evolution-sourc---3*[{evolution-sourc}]
+            |         |-flatpak-portal-+-bwrap
+            |         |                `-2*[{flatpak-portal}]
+            |         |-flatpak-session---2*[{flatpak-session}]
+            |         |-gnome-terminal--+-bash---emacs-+-bash---pstree
+            |         |                 |              `-3*[{emacs}]
+            |         |                 `-3*[{gnome-terminal-}]
+            |         |-goa-daemon---3*[{goa-daemon}]
+            |         |-goa-identity-se---2*[{goa-identity-se}]
+            |         |-gvfs-afc-volume---3*[{gvfs-afc-volume}]
+            |         |-gvfs-goa-volume---2*[{gvfs-goa-volume}]
+            |         |-gvfs-gphoto2-vo---2*[{gvfs-gphoto2-vo}]
+            |         |-gvfs-mtp-volume---2*[{gvfs-mtp-volume}]
+            |         |-gvfs-udisks2-vo---3*[{gvfs-udisks2-vo}]
+            |         |-gvfsd-+-gvfsd-trash---2*[{gvfsd-trash}]
+            |         |       `-2*[{gvfsd}]
+            |         |-gvfsd-fuse---5*[{gvfsd-fuse}]
+            |         |-gvfsd-metadata---2*[{gvfsd-metadata}]
+            |         |-ibus-portal---2*[{ibus-portal}]
+            |         |-obexd
+            |         |-p11-kit-server---p11-kit-remote
+            |         |-pipewire---{pipewire}
+            |         |-pulseaudio---3*[{pulseaudio}]
+            |         |-xdg-desktop-por-+-sh---pxgsettings---3*[{pxgsettings}]
+            |         |                 `-4*[{xdg-desktop-por}]
+            |         |-2*[xdg-desktop-por---3*[{xdg-desktop-por}]]
+            |         |-xdg-document-po-+-fusermount3
+            |         |                 `-5*[{xdg-document-po}]
+            |         `-xdg-permission----2*[{xdg-permission-}]
+            |-systemd-journal
+            |-systemd-logind
+            |-systemd-resolve
+            |-systemd-timesyn---{systemd-timesyn}
+            |-systemd-udevd
+            |-thermald---{thermald}
+            |-touchegg---2*[{touchegg}]
+            |-udisksd---4*[{udisksd}]
+            |-upowerd---2*[{upowerd}]
+            `-wpa_supplicant
+    #+end_example
+  
   - If a program (like ~init~) can launch other programs, it's a
     /parent process/ producing a /child process/.
 
@@ -104,8 +245,11 @@
   - Processes are assigned in ascending order beginning with ~init~,
     which has PID 1: run ~px ax~,  =grep= for =init=, and print the first line:
     #+begin_src bash 
-
+      ps ax | grep init | head -n 1
     #+end_src
+
+    #+RESULTS:
+    :       1 ?        Ss     0:03 /sbin/init splash
 
   - The *kernel* also tracks process memory and readiness to resume
     execution. Like files, processes have owners and userIDs.
@@ -118,8 +262,22 @@
 
     #+name: ps
     #+begin_src bash :results output
-
+      ps | head -n 10
     #+end_src
+
+    #+RESULTS: ps
+    #+begin_example
+        PID TTY          TIME CMD
+       1241 ?        00:00:00 systemd
+       1242 ?        00:00:00 (sd-pam)
+       1285 ?        00:00:00 pipewire
+       1286 ?        00:03:50 pulseaudio
+       1287 ?        00:00:00 cinnamon-sessio
+       1304 ?        00:00:00 dbus-daemon
+       1394 ?        00:00:15 ibus-daemon
+       1402 ?        00:00:00 gvfsd
+       1407 ?        00:00:00 gvfsd-fuse
+    #+end_example
 
   - The result is confusing because you're inside another program now
     (Emacs emulating the shell).
@@ -142,8 +300,132 @@
     Emacs, you will have to pipe it into =less=):
     #+name: psx
     #+begin_src bash :results output
-
+      ps x | less  # screen-wise presentation, exit with `q`
     #+end_src
+
+    #+RESULTS: psx
+    #+begin_example
+        PID TTY      STAT   TIME COMMAND
+       1241 ?        Ss     0:00 /lib/systemd/systemd --user
+       1242 ?        S      0:00 (sd-pam)
+       1285 ?        S<sl   0:00 /usr/bin/pipewire
+       1286 ?        S<sl   4:04 /usr/bin/pulseaudio --daemonize=no --log-target=journal
+       1287 ?        Ssl    0:00 cinnamon-session --session cinnamon
+       1304 ?        Ss     0:00 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+       1394 ?        Ssl    0:16 /usr/bin/ibus-daemon --daemonize --xim
+       1402 ?        Ssl    0:00 /usr/libexec/gvfsd
+       1407 ?        Sl     0:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+       1410 ?        Sl     0:00 /usr/libexec/ibus-memconf
+       1413 ?        Sl     0:04 /usr/libexec/ibus-ui-gtk3
+       1414 ?        Sl     0:06 /usr/libexec/ibus-extension-gtk3
+       1417 ?        Sl     0:09 /usr/libexec/ibus-x11 --kill-daemon
+       1427 ?        Sl     0:00 /usr/libexec/ibus-portal
+       1434 ?        SLl    0:00 /usr/bin/gnome-keyring-daemon --start --components=pkcs11
+       1446 ?        Sl     0:00 csd-clipboard
+       1447 ?        Sl     0:00 csd-wacom
+       1448 ?        Sl     0:00 csd-a11y-settings
+       1449 ?        Sl     0:00 /usr/libexec/at-spi-bus-launcher --launch-immediately
+       1450 ?        Sl     0:00 csd-media-keys
+       1457 ?        Sl     0:00 csd-xsettings
+       1459 ?        Sl     0:01 csd-power
+       1460 ?        Sl     0:00 csd-housekeeping
+       1462 ?        Sl     0:03 csd-keyboard
+       1464 ?        Sl     0:00 csd-color
+       1466 ?        S      0:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run/user/1000/at-spi/bus_0
+       1467 ?        Sl     0:00 csd-background
+       1468 ?        Sl     0:00 csd-settings-remap
+       1469 ?        Sl     0:00 csd-automount
+       1470 ?        Sl     0:00 csd-print-notifications
+       1474 ?        Sl     0:00 csd-screensaver-proxy
+       1481 ?        Ssl    0:00 /usr/libexec/dconf-service
+       1561 ?        Sl     0:00 /usr/libexec/at-spi2-registryd --use-gnome-session
+       1567 ?        Ssl    0:00 /usr/libexec/gvfs-udisks2-volume-monitor
+       1585 ?        Ssl    0:00 /usr/libexec/gvfs-mtp-volume-monitor
+       1589 ?        Ssl    0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+       1593 ?        Ssl    0:00 /usr/libexec/gvfs-goa-volume-monitor
+       1600 ?        Sl     0:00 /usr/libexec/csd-printer
+       1601 ?        Sl     0:00 /usr/libexec/goa-daemon
+       1639 ?        Sl     0:00 /usr/libexec/goa-identity-service
+       1648 ?        Ssl    0:00 /usr/libexec/gvfs-afc-volume-monitor
+       1676 ?        Sl     0:02 /usr/libexec/ibus-engine-simple
+       1732 ?        Sl     0:00 cinnamon-launcher
+       1743 ?        Sl     6:17 cinnamon --replace
+       1793 ?        Sl     0:00 /usr/lib/x86_64-linux-gnu/xapps/xapp-sn-watcher
+       1807 ?        Sl     0:00 /usr/libexec/geoclue-2.0/demos/agent
+       1814 ?        Sl     0:01 /usr/bin/python3 /usr/bin/blueman-applet
+       1815 ?        Sl     0:01 nemo-desktop
+       1817 ?        Sl     0:00 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+       1819 ?        Sl     0:00 /usr/bin/python3 /usr/lib/nvidia-prime-applet/nvidia-prime
+       1820 ?        Sl     0:00 /usr/libexec/evolution-data-server/evolution-alarm-notify
+       1827 ?        Sl     0:01 nm-applet
+       1833 ?        Sl     0:00 cinnamon-killer-daemon
+       1867 ?        Ssl    0:00 /usr/libexec/evolution-source-registry
+       1902 ?        Ssl    0:00 /usr/libexec/evolution-calendar-factory
+       1929 ?        Ssl    0:00 /usr/libexec/evolution-addressbook-factory
+       2056 ?        Ss     0:00 /usr/lib/bluetooth/obexd
+       2099 ?        Sl     0:04 /usr/bin/python3 /usr/bin/blueman-tray
+       2408 ?        Sl     0:00 /usr/libexec/gvfsd-trash --spawner :1.9 /org/gtk/gvfs/exec_spaw/0
+       2421 ?        Ssl    0:00 /usr/libexec/gvfsd-metadata
+       2468 ?        Ssl    0:07 emacs --daemon
+       2470 ?        S      0:00 sh -c /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
+       2471 ?        Sl     0:00 /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
+       2490 ?        Sl     0:00 mintUpdate
+       2585 ?        S      0:00 /usr/bin/python3 /usr/share/system-config-printer/applet.py
+       2604 ?        Sl     0:35 mintreport-tray
+       2629 ?        Ssl    0:01 /usr/libexec/gnome-terminal-server
+       2657 pts/0    Ss+    0:00 bash
+       3235 ?        SLl    1:04 /opt/google/chrome/chrome
+       3240 ?        S      0:00 cat
+       3241 ?        S      0:00 cat
+       3243 ?        Sl     0:00 /opt/google/chrome/chrome_crashpad_handler --monitor-self --monitor-self-annotation=ptype=crashpad-handler --database=/home/marcus/.config/google-chrome/Crash Reports --metrics-dir=/home/marcus/.config/google-chrome --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=lsb-release=Linux Mint 21.3 --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=124.0.6367.60 --initial-client-fd=5 --shared-client-connection
+       3245 ?        Sl     0:00 /opt/google/chrome/chrome_crashpad_handler --no-periodic-tasks --monitor-self-annotation=ptype=crashpad-handler --database=/home/marcus/.config/google-chrome/Crash Reports --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=lsb-release=Linux Mint 21.3 --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=124.0.6367.60 --initial-client-fd=4 --shared-client-connection
+       3251 ?        S      0:00 /opt/google/chrome/chrome --type=zygote --no-zygote-sandbox --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable
+       3252 ?        S      0:00 /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable
+       3254 ?        S      0:00 /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable
+       3275 ?        Ssl    0:00 /usr/libexec/xdg-desktop-portal
+       3280 ?        Sl     0:15 /opt/google/chrome/chrome --type=gpu-process --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable --gpu-preferences=WAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAABgAAEAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAGAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3285 ?        Ssl    0:00 /usr/libexec/xdg-document-portal
+       3288 ?        Ssl    0:00 /usr/libexec/xdg-permission-store
+       3298 ?        Ssl    0:00 /usr/libexec/xdg-desktop-portal-xapp
+       3303 ?        Sl     0:14 /opt/google/chrome/chrome --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3355 ?        S      0:00 sh -c /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
+       3358 ?        Sl     0:00 /usr/lib/x86_64-linux-gnu/libproxy/0.4.17/pxgsettings org.gnome.system.proxy org.gnome.system.proxy.http org.gnome.system.proxy.https org.gnome.system.proxy.ftp org.gnome.system.proxy.socks
+       3362 ?        Ssl    0:00 /usr/libexec/xdg-desktop-portal-gtk
+       3386 ?        Sl     0:00 /opt/google/chrome/chrome --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3434 ?        Sl     0:01 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=652848212 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3463 ?        Sl     0:03 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=652975336 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3482 ?        Sl     0:12 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=653028318 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3762 ?        Sl     0:00 /opt/google/chrome/chrome --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3888 ?        Sl     0:01 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --instant-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=42 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=679330389 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3959 ?        Sl     0:16 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=52 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=682430981 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       3972 ?        Sl     0:01 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=53 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=692368091 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       4016 ?        Sl     0:02 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=57 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=713574115 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       4030 ?        Sl     0:06 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=58 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=714980751 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       4259 ?        S      0:00 bwrap --args 42 zoom zoommtg://lyon-edu.zoom.us/start?action=start&confno=85244558016&uid=eRszscgwTriyv62-HlDUsw&stype=101&token=H&confid=dXRpZD1VVElEXzU3MDVkNTVjNzNkZjQxYTA4ZDc0YzljYjNlMDNiNmVjJmVtYWlsPUJpcmtlbmtyYWhlJTQwbHlvbi5lZHUmdXNzPU10QVV1OURNTGFQMDl1aW5tanNqaUg0VHpoOVA4UWdvSUtVcjdzRS1ScE9NbjVNSWZIRE5MckI3OERqMkY4X0NBV0VudEJqS0lmb2U0V1k5S1JmNl9VMHN0c1preUxKbWVuMEs3Zkp5X1lvMmFTWnpPTGpKWDlqZkJ2QnhQUXQ2X2wydTRYUldtUWwzZlBzR3VpUEpnUXJNYzZmMjQtcXJsOTRibmQySmJqRmxYVGFkTTl1QlB5OEl5SHNkLWgwUjZPQ19oREJJbGpBSmFUU1p2a1hCc1hOS0hIRW83ZWRucm93LldjX0lrSGlySjNxMExCdGomdGlkPThmNGQ2OTk3NTgxMDQ5ZGM5MDQ1YzE5OTQxOGNlMDQzJnphaz1leUowZVhBaU9pSktWMVFpTENKemRpSTZJakF3TURBd01pSXNJbnB0WDNOcmJTSTZJbnB0WDI4eWJTSXNJbUZzWnlJNklraFRNalUySW4wLmV5SmhkV1FpT2lKamJHbGxiblFpTENKMWFXUWlPaUpsVW5ONmMyTm5kMVJ5YVhsMk5qSXRTR3hFVlhOM0lpd2lhWE56SWpvaWQyVmlJaXdpYzJzaU9pSXdJaXdpYzNSNUlqb3hNREVzSW5kalpDSTZJblZ6TURZaUxDSmpiSFFpT2pBc0ltVjRjQ0k2TVRjeE16ZzRNemN3TlN3aWFXRjBJam94TnpFek9EZ3lPREExTENKaGFXUWlPaUpKTWs5c2JEZExSbE5hTmxsUGFtbE1jSEJMVTNSUklpd2lZMmxrSWpvaUluMC5wNnRBWWFySWV2a0FwMFh0Sk9CTHdvQzFvV0xMaUo2Mk9veDMzMEpWbHNr&browser=chrome
+       4266 ?        Ssl    0:00 /usr/libexec/flatpak-session-helper
+       4270 ?        Ss     0:00 server --sh -n /run/user/1000/.flatpak-helper/pkcs11-flatpak-4266 --provider p11-kit-trust.so pkcs11:model=p11-kit-trust?write-protected=yes
+       4273 ?        S      0:00 bwrap --args 42 xdg-dbus-proxy --args=44
+       4274 ?        Sl     0:00 xdg-dbus-proxy --args=44
+       4277 ?        S      0:00 bwrap --args 42 zoom zoommtg://lyon-edu.zoom.us/start?action=start&confno=85244558016&uid=eRszscgwTriyv62-HlDUsw&stype=101&token=H&confid=dXRpZD1VVElEXzU3MDVkNTVjNzNkZjQxYTA4ZDc0YzljYjNlMDNiNmVjJmVtYWlsPUJpcmtlbmtyYWhlJTQwbHlvbi5lZHUmdXNzPU10QVV1OURNTGFQMDl1aW5tanNqaUg0VHpoOVA4UWdvSUtVcjdzRS1ScE9NbjVNSWZIRE5MckI3OERqMkY4X0NBV0VudEJqS0lmb2U0V1k5S1JmNl9VMHN0c1preUxKbWVuMEs3Zkp5X1lvMmFTWnpPTGpKWDlqZkJ2QnhQUXQ2X2wydTRYUldtUWwzZlBzR3VpUEpnUXJNYzZmMjQtcXJsOTRibmQySmJqRmxYVGFkTTl1QlB5OEl5SHNkLWgwUjZPQ19oREJJbGpBSmFUU1p2a1hCc1hOS0hIRW83ZWRucm93LldjX0lrSGlySjNxMExCdGomdGlkPThmNGQ2OTk3NTgxMDQ5ZGM5MDQ1YzE5OTQxOGNlMDQzJnphaz1leUowZVhBaU9pSktWMVFpTENKemRpSTZJakF3TURBd01pSXNJbnB0WDNOcmJTSTZJbnB0WDI4eWJTSXNJbUZzWnlJNklraFRNalUySW4wLmV5SmhkV1FpT2lKamJHbGxiblFpTENKMWFXUWlPaUpsVW5ONmMyTm5kMVJ5YVhsMk5qSXRTR3hFVlhOM0lpd2lhWE56SWpvaWQyVmlJaXdpYzJzaU9pSXdJaXdpYzNSNUlqb3hNREVzSW5kalpDSTZJblZ6TURZaUxDSmpiSFFpT2pBc0ltVjRjQ0k2TVRjeE16ZzRNemN3TlN3aWFXRjBJam94TnpFek9EZ3lPREExTENKaGFXUWlPaUpKTWs5c2JEZExSbE5hTmxsUGFtbE1jSEJMVTNSUklpd2lZMmxrSWpvaUluMC5wNnRBWWFySWV2a0FwMFh0Sk9CTHdvQzFvV0xMaUo2Mk9veDMzMEpWbHNr&browser=chrome
+       4278 ?        S      0:00 /app/extra/zoom/ZoomLauncher zoommtg://lyon-edu.zoom.us/start?action=start&confno=85244558016&uid=eRszscgwTriyv62-HlDUsw&stype=101&token=H&confid=dXRpZD1VVElEXzU3MDVkNTVjNzNkZjQxYTA4ZDc0YzljYjNlMDNiNmVjJmVtYWlsPUJpcmtlbmtyYWhlJTQwbHlvbi5lZHUmdXNzPU10QVV1OURNTGFQMDl1aW5tanNqaUg0VHpoOVA4UWdvSUtVcjdzRS1ScE9NbjVNSWZIRE5MckI3OERqMkY4X0NBV0VudEJqS0lmb2U0V1k5S1JmNl9VMHN0c1preUxKbWVuMEs3Zkp5X1lvMmFTWnpPTGpKWDlqZkJ2QnhQUXQ2X2wydTRYUldtUWwzZlBzR3VpUEpnUXJNYzZmMjQtcXJsOTRibmQySmJqRmxYVGFkTTl1QlB5OEl5SHNkLWgwUjZPQ19oREJJbGpBSmFUU1p2a1hCc1hOS0hIRW83ZWRucm93LldjX0lrSGlySjNxMExCdGomdGlkPThmNGQ2OTk3NTgxMDQ5ZGM5MDQ1YzE5OTQxOGNlMDQzJnphaz1leUowZVhBaU9pSktWMVFpTENKemRpSTZJakF3TURBd01pSXNJbnB0WDNOcmJTSTZJbnB0WDI4eWJTSXNJbUZzWnlJNklraFRNalUySW4wLmV5SmhkV1FpT2lKamJHbGxiblFpTENKMWFXUWlPaUpsVW5ONmMyTm5kMVJ5YVhsMk5qSXRTR3hFVlhOM0lpd2lhWE56SWpvaWQyVmlJaXdpYzJzaU9pSXdJaXdpYzNSNUlqb3hNREVzSW5kalpDSTZJblZ6TURZaUxDSmpiSFFpT2pBc0ltVjRjQ0k2TVRjeE16ZzRNemN3TlN3aWFXRjBJam94TnpFek9EZ3lPREExTENKaGFXUWlPaUpKTWs5c2JEZExSbE5hTmxsUGFtbE1jSEJMVTNSUklpd2lZMmxrSWpvaUluMC5wNnRBWWFySWV2a0FwMFh0Sk9CTHdvQzFvV0xMaUo2Mk9veDMzMEpWbHNr&browser=chrome
+       4280 ?        SLl   54:25 /app/extra/zoom/zoom.real zoommtg://lyon-edu.zoom.us/start?action=start&confno=85244558016&uid=eRszscgwTriyv62-HlDUsw&stype=101&token=H&confid=dXRpZD1VVElEXzU3MDVkNTVjNzNkZjQxYTA4ZDc0YzljYjNlMDNiNmVjJmVtYWlsPUJpcmtlbmtyYWhlJTQwbHlvbi5lZHUmdXNzPU10QVV1OURNTGFQMDl1aW5tanNqaUg0VHpoOVA4UWdvSUtVcjdzRS1ScE9NbjVNSWZIRE5MckI3OERqMkY4X0NBV0VudEJqS0lmb2U0V1k5S1JmNl9VMHN0c1preUxKbWVuMEs3Zkp5X1lvMmFTWnpPTGpKWDlqZkJ2QnhQUXQ2X2wydTRYUldtUWwzZlBzR3VpUEpnUXJNYzZmMjQtcXJsOTRibmQySmJqRmxYVGFkTTl1QlB5OEl5SHNkLWgwUjZPQ19oREJJbGpBSmFUU1p2a1hCc1hOS0hIRW83ZWRucm93LldjX0lrSGlySjNxMExCdGomdGlkPThmNGQ2OTk3NTgxMDQ5ZGM5MDQ1YzE5OTQxOGNlMDQzJnphaz1leUowZVhBaU9pSktWMVFpTENKemRpSTZJakF3TURBd01pSXNJbnB0WDNOcmJTSTZJbnB0WDI4eWJTSXNJbUZzWnlJNklraFRNalUySW4wLmV5SmhkV1FpT2lKamJHbGxiblFpTENKMWFXUWlPaUpsVW5ONmMyTm5kMVJ5YVhsMk5qSXRTR3hFVlhOM0lpd2lhWE56SWpvaWQyVmlJaXdpYzJzaU9pSXdJaXdpYzNSNUlqb3hNREVzSW5kalpDSTZJblZ6TURZaUxDSmpiSFFpT2pBc0ltVjRjQ0k2TVRjeE16ZzRNemN3TlN3aWFXRjBJam94TnpFek9EZ3lPREExTENKaGFXUWlPaUpKTWs5c2JEZExSbE5hTmxsUGFtbE1jSEJMVTNSUklpd2lZMmxrSWpvaUluMC5wNnRBWWFySWV2a0FwMFh0Sk9CTHdvQzFvV0xMaUo2Mk9veDMzMEpWbHNr&browser=chrome
+       4286 ?        Ssl    0:00 /usr/libexec/flatpak-portal
+       4305 ?        S      0:00 /app/extra/zoom/zoom.real --type=zygote --no-zygote-sandbox --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --log-file=/home/marcus/.zoom/logs/cef.log --bridge-obj-name=CefViewClient
+       4307 ?        Z      0:00 [zypak-sandbox] <defunct>
+       4309 ?        S      0:00 cat
+       4310 ?        S      0:00 cat
+       4311 ?        Ss     0:00 bwrap --args 42 /app/bin/zypak-helper child - /app/extra/zoom/zoom.real --type=zygote --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --log-file=/home/marcus/.zoom/logs/cef.log --bridge-obj-name=CefViewClient
+       4325 ?        S      0:00 bwrap --args 42 /app/bin/zypak-helper child - /app/extra/zoom/zoom.real --type=zygote --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --log-file=/home/marcus/.zoom/logs/cef.log --bridge-obj-name=CefViewClient
+       4326 ?        S      0:00 /app/extra/zoom/zoom.real --type=zygote --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --log-file=/home/marcus/.zoom/logs/cef.log --bridge-obj-name=CefViewClient
+       4348 ?        Sl     0:00 /app/extra/zoom/zoom.real --type=gpu-process --disable-seccomp-filter-sandbox --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --bridge-obj-name=CefViewClient --gpu-preferences=WAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAABgAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAGAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --use-gl=angle --use-angle=swiftshader-webgl --log-file=/home/marcus/.zoom/logs/cef.log --shared-files --field-trial-handle=0,i,2529780698744926701,16840633571203861944,262144 --disable-features=NetworkService --variations-seed-version
+       4371 ?        Sl     0:00 /app/extra/zoom/zoom.real --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --locales-dir-path=/app/extra/zoom/cef/locales --log-severity=error --resources-dir-path=/app/extra/zoom/cef --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.129 Safari/537.36 Zoom/6.(0 (4563)) --lang=en-US --user-data-dir=/home/marcus/.zoom/data/cefcache/4 --bridge-obj-name=CefViewClient --log-file=/home/marcus/.zoom/logs/cef.log --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,2529780698744926701,16840633571203861944,262144 --disable-features=NetworkService --variations-seed-version
+       4757 pts/0    Sl     1:18 emacs
+       4854 ?        S      0:00 p11-kit-remote --provider p11-kit-trust.so pkcs11:model=p11-kit-trust?write-protected=yes
+       5884 ?        Sl     0:00 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=3243 --enable-crash-reporter=3d7e0af5-6107-4b9b-acb7-f3ac4a037a49, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=78 --time-ticks-at-unix-epoch=-1713882085918264 --launch-time-ticks=3061252575 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,1461514031505081544,18310734637023821851,262144 --variations-seed-version=20240422-050135.361000
+       5897 pts/1    Ss+    0:00 /bin/bash --noediting -i
+       5906 ?        Ss     0:00 bash
+       5907 ?        R      0:00 ps x
+    #+end_example
 
   - ~ps x~ (no dash needed) shows all processes regardless of what
     terminal they are controlled by. ~?~ indicates no terminal (like
@@ -152,15 +434,25 @@
   - How many processes that you own that have no terminal?
     #+name: noterm
     #+begin_src bash :results output
-
+      ps x | grep ? | wc -l
     #+end_src
+
+    #+RESULTS: noterm
+    : 118
 
   - List only the first 5 lines of the ~ps x~ listing.
 
      #+name: headps
      #+begin_src bash :results output
-     
-  #+end_src
+       ps x | head -n 5
+     #+end_src
+
+     #+RESULTS: headps
+     :     PID TTY      STAT   TIME COMMAND
+     :    1241 ?        Ss     0:00 /lib/systemd/systemd --user
+     :    1242 ?        S      0:00 (sd-pam)
+     :    1285 ?        S<sl   0:00 /usr/bin/pipewire
+     :    1286 ?        S<sl   4:24 /usr/bin/pulseaudio --daemonize=no --log-target=journal
 
   - The column ~STAT~ reveals the current status of the process, see
     table [[tab:states]].
@@ -182,8 +474,11 @@
 
   - Check if you have any running processes (=R=) or Zombie processes (=Z=):
     #+begin_src bash
-
+      ps x | grep -cE [Z]
     #+end_src
+
+    #+RESULTS:
+    : 12
   
   - You get even more information with the option ~aux~. Redirect the
     output of ~ps aux~ to a file ~psaux.txt~, and print only the first 5
@@ -392,7 +687,6 @@
 
    * Some of these signals are sent to the target program (identified
      by PID) while others are sent straight to the kernel.
-
 
 * More process commands
   
