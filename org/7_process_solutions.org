@@ -1,4 +1,4 @@
-#+TITLE:Processes
+n#+TITLE:Processes
 #+AUTHOR:Marcus Birkenkrahe
 #+SUBTITLE:processes practice for CSC420 Operating Systems Spring 2022 Lyon College
 #+STARTUP:overview hideblocks
@@ -29,33 +29,18 @@
     (on Windows, this may only work if you have a marked region - set
     the mark with ~C-SPC~).
 
-* Hide Org-mode emphasis markers
-
-  * [ ] Add the string ~"(setq-default org-hide-emphasis-markers t"~ to
-    your ~$HOME/.emacs~ file so that you don't see the emphasis markers
-    in Org-mode. Then show the last line of the file to make sure it
-    worked.
-
-    /Tip: you need the commands ~echo, ~>>~, ~tail~./
-
-    #+name: emphasis
-    #+begin_src bash :results silent
-      echo "(setq-default org-hide-emphasis-markers t)" >> $HOME/.emacs
-      tail -1 $HOME/.emacs
-    #+end_src
-
 * Overview
 
-  * Modern operating systems are /multitasking/, which means they create
+  - Modern operating systems are /multitasking/, which means they create
     an illusion of doing more than one thing at once.
 
-  * They do this by rapidly switching from one executing program to
+  - They do this by rapidly switching from one executing program to
     another.
 
-  * The *kernel* manages this through clever *process management*, which
+  - The *kernel* manages this through clever *process management*, which
     really is clever *memory management*.
 
-  * This is illustrated in the figure [[fig:memory]]. The simple program
+  - This is illustrated in the figure [[fig:memory]]. The simple program
     is all over the computer's memory.
 
     #+name: fig:memory
@@ -63,7 +48,26 @@
     #+caption: Memory Layout of a C Program (Source: Silberschatz et al)
     [[./img/process.png]]
 
-  * As always, let's focus on stuff we can do ourselves. This includes
+  - The diagram illustrates the typical memory layout of a process in a C program:
+    1) *High Memory to Low Memory:* The top represents high memory
+       addresses and the bottom low memory addresses in the process's
+       address space.
+    2) *Text:* Contains the compiled code of the program (~.out~).
+    3) *Uninitialized Data:* Holds uninitialized global and static
+       variables (values unknown at start) - ~int x;~
+    4) *Initialized Data:* Contains initialized global and
+       static variables - ~int y = 15;~
+    5) *argc, argv:* Located on the stack; used to pass command-line
+       arguments into the program. =argc= is the argument count, and
+       =*argv[]= is an pointer array of argument strings.
+    6) *Stack:* Used for function call management; contains local
+       variables and function parameters - ~int *values~ (pointer to
+       ~values~), ~int i~.
+    7) *Heap:* For dynamically-allocated memory during runtime - =malloc=
+       allocates memory for 5 integers, assigned to ~values~.
+x
+  
+  - As always, let's focus on stuff we can do ourselves. This includes
     a bunch of new shell commands:
 
     | COMMAND  | MEANING                                |
@@ -79,20 +83,20 @@
 
 * How a process works
 
-  * When the OS starts up, the *kernel* launches the ~init~ program, which
+  - When the OS starts up, the *kernel* launches the ~init~ program, which
     in turn runs a series of shell scripts (in ~/etc~) that start all
     the system services.
 
-  * [ ] Check ~/etc~ out now - you find e.g. the directory ~/etc/cups~,
+  - Check ~/etc~ out now - you find e.g. the directory ~/etc/cups~,
     which contains scripts for the Common UNIX Printing System (CUPS).
 
-  * Many of the services are /daemon/ programs - they just sit in the
+  - Many of the services are /daemon/ programs - they just sit in the
     background and do their thing without a user interface (UI).
 
-  * ~init~ itself is a ~daemon~, also called ~systemd~. The shell program
+  - ~init~ itself is a ~daemon~, also called ~systemd~. The shell program
     ~systemctl~ allows indirect access to all services.
 
-  * [ ] *Grab a daemon!*
+  - *Grab a daemon!*
 
     In the code block [[systemctl]],
     1) run the command ~systemctl status~,
@@ -105,27 +109,32 @@
     #+end_src
 
     #+RESULTS: systemctl
-    :            │     └─11846 grep logind
-    :              ├─systemd-logind.service 
-    :              │ └─413 /lib/systemd/systemd-logind
+    :              └─systemd-logind.service 
+    :                └─874 /lib/systemd/systemd-logind
 
-  * If a program (like ~init~) can launch other programs, it's a
+  - If a program (like ~init~) can launch other programs, it's a
     /parent process/ producing a /child process/.
 
-  * *How does the kernel maintain control?* By assigning a /process ID/
+  - *How does the kernel maintain control?* By assigning a /process ID/
     (PID) to every process.
 
-  * Processes are assigned in ascending order beginning with ~init~,
+  - Processes are assigned in ascending order beginning with ~init~,
     which has PID 1.
 
-  * The *kernel* also tracks process memory and readiness to resume
+  - Processes are assigned in ascending order beginning with ~init~,
+    which has PID 1: run ~px ax~,  =grep= for =init=, and print the first line:
+    #+begin_src bash 
+      ps ax | grep init | head -n 1
+    #+end_src
+  
+  - The *kernel* also tracks process memory and readiness to resume
     execution. Like files, processes have owners and userIDs.
 
 * Viewing processes statically
 
-  * The ~ps~ program has a lot of options (check ~ps(1)~)
+  - The ~ps~ program has a lot of options (check ~ps(1)~)
 
-  * [ ] Run ~ps~ without options.
+  - Run ~ps~ without options.
 
     #+name: ps
     #+begin_src bash :results output
@@ -158,9 +167,9 @@
     12252 ?        00:00:00 ps
     #+end_example
 
-  * The result is confusing because you're inside another program now. 
+  - The result is confusing because you're inside another program now. 
  
-  * [ ] Open a shell (in Emacs with ~M-x shell~ or a terminal) and type
+  - Open a shell (in Emacs with ~M-x shell~ or a terminal) and type
     ~ps~. You should see something like this:
 
     #+begin_example
@@ -169,12 +178,12 @@
     12257 pts/1    00:00:00 ps
     #+end_example
 
-  * *What this means:* 
+  - *What this means:* 
     - You see two ~PID~ - the shell program and the ~ps~ program
     - ~TTY~ ("teletype") is the /controlling terminal/ for the process
     - ~TIME~ is the amount of CPU time consumed by the process
 
-  * [ ] Run ~ps~ again, this time add the option ~x~ 
+  - Run ~ps~ again, this time add the option ~x~ 
    
     #+name: psx
     #+begin_src bash :results output
@@ -233,10 +242,10 @@
     12412 ?        R      0:00 ps x
     #+end_example
 
-  * ~ps x~ (no dash!) shows all processes regardless of what terminal
+  - ~ps x~ (no dash!) shows all processes regardless of what terminal
      they are controlled by. ~?~ indicates no terminal (like daemons).
 
-  * [ ] How many processes that you own that have no terminal?
+  - How many processes that you own that have no terminal?
 
      #+name: noterm
      #+begin_src bash :results output
@@ -246,7 +255,7 @@
      #+RESULTS: noterm
      : 23
 
-  * [ ] List only the first 5 lines of the ~ps x~ listing.
+  - List only the first 5 lines of the ~ps x~ listing.
 
      #+name: headps
      #+begin_src bash :results output
@@ -278,21 +287,29 @@
     characteristics (see ~ps(1)~). E.g. ~s~ is a /session leader/, ~+~ is a
     /foreground/ process, and ~l~ is multi-threaded.
 
-  - [ ] You get even more information with the option ~aux~. Redirect
+  - Check if you have any running processes (=R=) or Zombie processes (=Z=):
+    #+begin_src bash :results output
+      ps x | grep -cE [RZ] 
+    #+end_src
+
+    #+RESULTS:
+    : 5
+  
+  - You get even more information with the option ~aux~. Redirect
     the output of ~ps aux~ to a file ~psaux.txt~, and print only the first
     5 lines.
 
     #+name: aux
     #+begin_src bash :results output
-      ps aux | tee psaux.txt | head -5
+      ps aux  | tee psaux.txt | head -5
     #+end_src
 
     #+RESULTS: aux
-    : USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-    : root         1  0.0  0.2  33832  8784 ?        Ss   Apr02   0:12 /sbin/init splash
-    : root         2  0.0  0.0      0     0 ?        S    Apr02   0:00 [kthreadd]
-    : root         3  0.0  0.0      0     0 ?        I<   Apr02   0:00 [rcu_gp]
-    : root         4  0.0  0.0      0     0 ?        I<   Apr02   0:00 [rcu_par_gp]
+    : USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+    : root           1  0.0  0.1 166500  8880 ?        Ss   Apr19   0:04 /sbin/init splash
+    : root           2  0.0  0.0      0     0 ?        S    Apr19   0:00 [kthreadd]
+    : root           3  0.0  0.0      0     0 ?        I<   Apr19   0:00 [rcu_gp]
+    : root           4  0.0  0.0      0     0 ?        I<   Apr19   0:00 [rcu_par_gp]
   
   - You should see ~PID 1~, the ~init~ program. The ~splash~ options means
     that you can see a splash screen during boot.
@@ -305,7 +322,7 @@
     | USER   | User ID - this is the process owner |
     | %CPU   | CPU usage in percent                |
     | %MEM   | Memory usage in percent             |
-    | VSZ    | Virtual memory size                 |
+    | VSZ    | Virtual memory size (kB)            |
     | RSS    | Resident set size - RAM use in kB   |
     | START  | Process starting time and date      |
    
@@ -315,26 +332,26 @@
     #+begin_quote
     ANSWER: The ~init~ program only runs during the booting process, but
     as part of the *kernel* it is loaded into the central memory. It
-    occupies 8MB.
+    occupies 8MB. 
     #+end_quote
 
 * Viewing processes dynamically
 
-  * ~ps~ provides a snapshot, but ~top~ provides a real-time view.
+  - ~ps~ provides a snapshot, but ~top~ provides a real-time view.
 
-  * [ ] Open a terminal (in or outside of Emacs) and run ~top~. You can
+  - Open a terminal (in or outside of Emacs) and run ~top~. You can
     stop the command with ~C-c~ or ~q~.
  
-  * ~top~ refreshes every three seconds and shows the top system
+  - ~top~ refreshes every three seconds and shows the top system
     processes. It includes a summary at the top and a table sorted by
     CPU activity at the bottom.
 
     #+name: fig:top
     #+attr_html: :width 600px
     #+caption: Top view
-    [[./img/top.png]]
+    [[../img/top.png]]
 
-  * The system summary contains a lot of good stuff. Table [[tab:top]]
+  - The system summary contains a lot of good stuff. Table [[tab:top]]
     gives a rundown. 
 
     #+name: tab:top
@@ -361,9 +378,9 @@
     |-----+----------------+-----------------------------------|
     |   5 | Swap:          | Swap space (virtual memory) used  |
 
-  * ~top~ accepts some keyboard commands like ~h~ (help) and ~q~ (quit).
+  - ~top~ accepts some keyboard commands like ~h~ (help) and ~q~ (quit).
   
-  * ~top~ is better than any graphical application (e.g. the Task
+  - ~top~ is better than any graphical application (e.g. the Task
     Manager that you have on your Pi) - it is faster and consumes far
     less resources.
 
@@ -371,32 +388,32 @@
 
 ** Interrupting a process
 
-   * As a guinea pig program, we use ~emacs~.
+   - As a guinea pig program, we use ~emacs~.
   
-   * [ ] Open a terminal (inside Emacs after splitting the screen with
+   - Open a terminal (inside Emacs after splitting the screen with
      ~C-x 2~ or outside of Emacs), and enter ~emacs~ at the prompt. A new
      Emacs editor window appears. Notice that the terminal prompt does
      not return.
 
-   * [ ] Close the new Emacs editor manually by clicking on the ~X~ in
+   - Close the new Emacs editor manually by clicking on the ~X~ in
      the upper right corner. The prompt in the Shell returns.
 
-   * [ ] Enter ~emacs~ again in the shell, and interrupt it with CTRL-C
+   - Enter ~emacs~ again in the shell, and interrupt it with CTRL-C
      (outside of Emacs, or with ~C-c C-c~ on the Emacs ~*shell*~).
 
-   * Many programs can be interrupted this way by sending an *interrupt*
+   - Many programs can be interrupted this way by sending an *interrupt*
      signal to the *kernel*. 
 
 ** Putting a process in the background
 
-   * The terminal has a /foreground/ and a /background/. To launch a
+   - The terminal has a /foreground/ and a /background/. To launch a
      program so that it is immediately placed into the background,
      follow it with an ampersand ~&~ character
 
-   * [ ] Start Emacs from the shell in the background. An Emacs window
+   - Start Emacs from the shell in the background. An Emacs window
      should open. Look at the terminal.
 
-   * The message that appeared is part of shell /job control/. It means
+   - The message that appeared is part of shell /job control/. It means
      that we have started job number 1 with the PID 13899. If you
      check the process table with ~ps~, you should see the process
 
@@ -404,13 +421,13 @@
      [1] 13899
      #+end_example
 
-   * [ ] ~grep~ the ~emacs~ process from the process table using the PID.
+   - ~grep~ the ~emacs~ process from the process table using the PID.
 
      #+begin_example
      13928 pts/1    00:00:04 emacs
      #+end_example
 
-   * [ ] The ~jobs~ command lists the jobs that were launched from our
+   - The ~jobs~ command lists the jobs that were launched from our
      terminal. Try it. You should see something like this:
 
      #+begin_example
@@ -419,19 +436,22 @@
 
 ** Returning a process to the foreground
 
-   * A process in the background is immune from keyboard input - you
+   - A process in the background is immune from keyboard input - you
      cannot interrupt it with ~CTRL-C~. To return it to the foreground,
      use the ~fg~ command.
 
-   * [ ] On the shell where you started it, return the process to the
+   - On the shell where you started it, return the process to the
      foreground with the command ~fg %1~. The ~1~ is the ~jobspec~.
 
-   * [ ] Kill the Emacs process with ~C-c C-c~ or ~CTRL-C~ on the shell where
+   - Kill the Emacs process with ~C-c C-c~ or ~CTRL-C~ on the shell where
      you started it.
+
+   - If you enter =jobs= you get no response, and =fg= tells you there's
+     no job.
 
 ** Stopping or pausing a process
 
-   * [ ] Start an ~emacs~ process in a terminal (NOT in an Emacs
+   - Start an ~emacs~ process in a terminal (NOT in an Emacs
      shell) - it's now in the foreground. If you press ~CTRL-z~ in the
      shell, the process is stopped. 
 
@@ -442,28 +462,25 @@
      pi@raspberrypi:~ $
      #+end_example
 
-   * [ ] To bring the process back, you can either bring it into the
+   - To bring the process back, you can either bring it into the
      foreground with ~fg %1~, or resume the process in the background
      with ~bg %~. Try both.
 
-   * *Why would you launch a graphical program from the shell?*
+   - *Why would you launch a graphical program from the shell?*
      - The program may not be listed in the GUI
      - You see error messages that otherwise are invisible
      - Some graphical programs have useful command line options
 
 ** Killing a process
 
-
-
-
-   * [ ] ~kill~ is used to terminate processes using the PID. Start
+   - ~kill~ is used to terminate processes using the PID. Start
      Emacs from the shell /in the background/ (inside or outside of
      emacs), and then kill it with ~kill PID~. 
 
      /Tip: you get the PID with ~ps~, or right after executing the
      background command./
 
-   * ~kill~ does actually not "kill" the process, it sends it a
+   - ~kill~ does actually not "kill" the process, it sends it a
      signal. We have already used some of these signals:
 
      | SIGNAL | MEANING                    |
@@ -475,7 +492,7 @@
      | TERM   | Terminate with ~kill~        |
      | STOP   | Stop without delay         |
 
-   * Some of these signals are sent to the target program (identified
+   - Some of these signals are sent to the target program (identified
      by PID) while others are sent straight to the kernel.
 
 * More process commands
@@ -492,9 +509,29 @@
 
 * Summary
 
+  - Multitasking by rapidly switching tasks, managed by the kernel.
+  - Memory layout in processes includes compiled code,
+    initialized/uninitialized data, stack, and heap.
+  - Useful shell commands for process management: =ps=, =top=, =jobs=, =bg=,
+    =fg=, =kill=, =shutdown=.
+  - Kernel starts with =init= program to launch system services.
+  - Services typically run as background daemons, managed via
+    =systemctl=.
+  - Processes are tracked via Process IDs (PID).
+  - Snapshot of processes using =ps=, dynamic view with =top=.
+  - Process statuses include running, sleeping, stopped, and zombie
+    states.
+  - Interrupt, background, and foreground control of processes with
+    commands like =CTRL-C=, =&=, =fg=, =bg=.
+  - =kill= command for sending signals to processes.
+  - Additional tools: =vmstat=, =xload=, =tload= for system performance
+    analysis.
+  - Offers enhanced control and visibility, crucial for system
+    optimization and troubleshooting.
+
 * References
   
-  * Silberschatz, Galvin and Gagne (2018). Operating System Concepts -
+  - Silberschatz, Galvin and Gagne (2018). Operating System Concepts -
     10th edition, Wiley.
 
-
+  - Shotts, The Linux Command line (2019). NoStarch.

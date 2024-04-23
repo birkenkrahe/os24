@@ -1,11 +1,9 @@
 #+TITLE:Processes
 #+AUTHOR:Marcus Birkenkrahe
 #+SUBTITLE:processes practice for CSC420 Operating Systems Spring 2022 Lyon College
-#+STARTUP:overview hideblocks
+#+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
-#+PROPERTY: header-args:bash :results output
-#+PROPERTY: header-args:bash :exports both
-
+#+PROPERTY: header-args:bash :results output :exports both
 * README
 
   - This file accompanies lectures on the shell and ~bash(1)~. To gain
@@ -15,20 +13,6 @@
 
   - This section is based on chapter 10 of Shotts, The Linux Command
     Line (2e), NoStarch Press (2019).
-
-  - To make this easier, use the auto expansion (~<s~). This will only
-    work if you have my ~.emacs~ file ([[https://tinyurl.com/lyonemacs][from GDrive]]) installed.
-
-  - Add the following two lines at the top of your file, and activate
-    each line with ~C-c C-c~ (this is confirmed in the echo area as
-    ~Local setup has been refreshed~)):
-    #+begin_example
-    #+PROPERTY: header-args:bash :results output
-    #+end_example
-
-  - Remember that ~C-M-\~ inside a code block indents syntactically
-    (on Windows, this may only work if you have a marked region - set
-    the mark with ~C-SPC~).
 
 * Overview
 
@@ -41,13 +25,30 @@
   - The *kernel* manages this through clever *process management*, which
     really is clever *memory management*.
 
-  - This is illustrated in the figure [[fig:memory]]. The simple program
-    is all over the computer's memory.
-
+  - This is illustrated in the figure [[fig:memory]]. Even a simple
+    program is all over the computer's memory:
     #+name: fig:memory
     #+attr_html: :width 600px
     #+caption: Memory Layout of a C Program (Source: Silberschatz et al)
     [[../img/process.png]]
+
+  - The diagram illustrates the typical memory layout of a process in a C program:
+    1) *High Memory to Low Memory:* The top represents high memory
+       addresses and the bottom low memory addresses in the process's
+       address space.
+    2) *Text:* Contains the compiled code of the program (~.out~).
+    3) *Uninitialized Data:* Holds uninitialized global and static
+       variables (values unknown at start) - ~int x;~
+    4) *Initialized Data:* Contains initialized global and
+       static variables - ~int y = 15;~
+    5) *argc, argv:* Located on the stack; used to pass command-line
+       arguments into the program. =argc= is the argument count, and
+       =*argv[]= is an pointer array of argument strings.
+    6) *Stack:* Used for function call management; contains local
+       variables and function parameters - ~int *values~ (pointer to
+       ~values~), ~int i~.
+    7) *Heap:* For dynamically-allocated memory during runtime - =malloc=
+       allocates memory for 5 integers, assigned to ~values~.
 
   - As always, let's focus on stuff we can do ourselves. This includes
     a bunch of new shell commands:
@@ -63,6 +64,10 @@
     | ~killall~  | Kill processes by name                 |
     | ~shutdown~ | Shut down or reboot the system         |
 
+  - We cannot test this in replit.com because system commands need a
+    proper system (where the kernel is not simulated but actually
+    controls the machine), not a virtualized Linux container.
+      
 * How a process works
 
   - When the OS starts up, the *kernel* launches the ~init~ program, which
@@ -97,7 +102,10 @@
     (PID) to every process.
 
   - Processes are assigned in ascending order beginning with ~init~,
-    which has PID 1.
+    which has PID 1: run ~px ax~,  =grep= for =init=, and print the first line:
+    #+begin_src bash 
+
+    #+end_src
 
   - The *kernel* also tracks process memory and readiness to resume
     execution. Like files, processes have owners and userIDs.
@@ -113,7 +121,8 @@
 
     #+end_src
 
-  - The result is confusing because you're inside another program now. 
+  - The result is confusing because you're inside another program now
+    (Emacs emulating the shell).
  
   - Open a shell (in Emacs with ~M-x shell~ or a terminal) and type
     ~ps~. You should see something like this:
@@ -129,10 +138,11 @@
     - ~TTY~ ("teletype") is the /controlling terminal/ for the process
     - ~TIME~ is the amount of CPU time consumed by the process
 
-  - Run ~ps~ again in the shell, this time add the option ~x~ 
+  - Run ~ps~ again in the shell, this time add the option ~x~ (outside of
+    Emacs, you will have to pipe it into =less=):
     #+name: psx
     #+begin_src bash :results output
-      ps -x
+
     #+end_src
 
   - ~ps x~ (no dash needed) shows all processes regardless of what
@@ -170,6 +180,11 @@
     characteristics (see ~ps(1)~). E.g. ~s~ is a /session leader/, ~+~ is a
     /foreground/ process, and ~l~ is multi-threaded.
 
+  - Check if you have any running processes (=R=) or Zombie processes (=Z=):
+    #+begin_src bash
+
+    #+end_src
+  
   - You get even more information with the option ~aux~. Redirect the
     output of ~ps aux~ to a file ~psaux.txt~, and print only the first 5
     lines.
@@ -203,12 +218,12 @@
 
 * Viewing processes dynamically
 
-  * ~ps~ provides a snapshot, but ~top~ provides a real-time view.
+  - ~ps~ provides a snapshot, but ~top~ provides a real-time view.
 
-  * Open a terminal (in or outside of Emacs) and run ~top~. You can stop
+  - Open a terminal (in or outside of Emacs) and run ~top~. You can stop
     the command with ~C-c~ or ~q~.
  
-  * ~top~ refreshes every three seconds and shows the top system
+  - ~top~ refreshes every three seconds and shows the top system
     processes. It includes a summary at the top and a table sorted by
     CPU activity at the bottom.
 
@@ -217,7 +232,7 @@
     #+caption: Top view
     [[../img/top.png]]
 
-  * The system summary contains a lot of good stuff. Table [[tab:top]]
+  - The system summary contains a lot of good stuff. Table [[tab:top]]
     gives a rundown. 
 
     #+name: tab:top
@@ -244,9 +259,9 @@
     |-----+----------------+-----------------------------------|
     |   5 | Swap:          | Swap space (virtual memory) used  |
 
-  * ~top~ accepts some keyboard commands like ~h~ (help) and ~q~ (quit).
+  - ~top~ accepts some keyboard commands like ~h~ (help) and ~q~ (quit).
   
-  * ~top~ is better than any graphical application (e.g. the Task
+  - ~top~ is better than any graphical application (e.g. the Task
     Manager that you have on your Pi) - it is faster and consumes far
     less resources.
 
@@ -378,6 +393,7 @@
    * Some of these signals are sent to the target program (identified
      by PID) while others are sent straight to the kernel.
 
+
 * More process commands
   
   Some fun commands to play with and explore. We already looked at
@@ -392,9 +408,30 @@
 
 * Summary
 
+  - Multitasking by rapidly switching tasks, managed by the kernel.
+  - Memory layout in processes includes compiled code,
+    initialized/uninitialized data, stack, and heap.
+  - Useful shell commands for process management: =ps=, =top=, =jobs=, =bg=,
+    =fg=, =kill=, =shutdown=.
+  - Kernel starts with =init= program to launch system services.
+  - Services typically run as background daemons, managed via
+    =systemctl=.
+  - Processes are tracked via Process IDs (PID).
+  - Snapshot of processes using =ps=, dynamic view with =top=.
+  - Process statuses include running, sleeping, stopped, and zombie
+    states.
+  - Interrupt, background, and foreground control of processes with
+    commands like =CTRL-C=, =&=, =fg=, =bg=.
+  - =kill= command for sending signals to processes.
+  - Additional tools: =vmstat=, =xload=, =tload= for system performance
+    analysis.
+  - Offers enhanced control and visibility, crucial for system
+    optimization and troubleshooting.
+
 * References
   
-  * Silberschatz, Galvin and Gagne (2018). Operating System Concepts -
+  - Silberschatz, Galvin and Gagne (2018). Operating System Concepts -
     10th edition, Wiley.
 
+  - Shotts, The Linux Command line (2019). NoStarch.
 
