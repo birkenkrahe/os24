@@ -1758,7 +1758,7 @@ create a shared drive?
 #+attr_html: :width 500px:
 [[../img/week_14.png]]
 
-** TODO Final presentations April 30, May 2 and May 7
+** Final presentations April 30, May 2 and May 7
 
 - We have 15 projects and 15 slots of 15 minutes over 3 days.
  
@@ -1772,32 +1772,31 @@ create a shared drive?
 - Must upload materials at least on the weekend before the week of
   your presentation.
   
-  |------------+-------------+----------|
-  | DAY        |        TIME | SPEAKER  |
-  |------------+-------------+----------|
-  | Tue Apr 30 |   9:30-9:45 | Nikola   |
-  |            |  9:45-10:00 | Isaac    |
-  |            | 10:00-10:15 | Boogie   |
-  |            | 10:15-10:30 | Timothy  |
-  |            | 10:30-10:45 | Keidrick |
-  |------------+-------------+----------|
-  | Thu May 2  |   9:30-9:45 | Lucia    |
-  |            |  9:45-10:00 | Jakobe   |
-  |            | 10:00-10:15 | Kim      |
-  |            | 10:15-10:30 | Nate     |
-  |            | 10:30-10:45 | Ryan     |
-  |------------+-------------+----------|
-  | Tue May 7  |   9:30-9:45 | Clifford |
-  |            |  9:45-10:00 | Pedro    |
-  |            | 10:00-10:15 | Fowler   |
-  |            | 10:15-10:30 | Donna    |
-  |            | 10:30-10:45 | Jacob    |
-  |------------+-------------+----------|
+  |------------+-------------+----------+-----------------|
+  | DAY        |        TIME | SPEAKER  | UPLOAD BY       |
+  |------------+-------------+----------+-----------------|
+  | Tue Apr 30 |   9:30-9:45 | Nikola   | Sunday 28 April |
+  |            |  9:45-10:00 | Isaac    |                 |
+  |            | 10:00-10:15 | Boogie   |                 |
+  |            | 10:15-10:30 | Timothy  |                 |
+  |            | 10:30-10:45 | Keidrick |                 |
+  |------------+-------------+----------+-----------------|
+  | Thu May 2  |   9:30-9:45 | Lucia    | Sunday 28 April |
+  |            |  9:45-10:00 | Jakobe   |                 |
+  |            | 10:00-10:15 | Kim      |                 |
+  |            | 10:15-10:30 | Nate     |                 |
+  |            | 10:30-10:45 | Ryan     |                 |
+  |------------+-------------+----------+-----------------|
+  | Tue May 7  |   9:30-9:45 | Clifford | Sunday 5 May    |
+  |            |  9:45-10:00 | Pedro    |                 |
+  |            | 10:00-10:15 | Fowler   |                 |
+  |            | 10:15-10:30 | Donna    |                 |
+  |            | 10:30-10:45 | Jacob    |                 |
+  |------------+-------------+----------+-----------------|
   
-
-** TODO Process management
-
-** TODO Networking and the environment
+** IN PROGRESS Process management (finish on your own)
+** TODO Networking and the environment (video lecture)
+** TODO Makefiles and compiling from source (video lecture)
 
 * Week 15 - Final presentations
 #+attr_html: :width 400px:
