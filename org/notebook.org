@@ -1771,7 +1771,7 @@ create a shared drive?
 
 - Must upload materials at least on the weekend before the week of
   your presentation.
-  
+
   |------------+-------------+----------+-----------------|
   | DAY        |        TIME | SPEAKER  | UPLOAD BY       |
   |------------+-------------+----------+-----------------|
