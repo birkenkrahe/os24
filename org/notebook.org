@@ -1770,7 +1770,7 @@ create a shared drive?
   you're graded on the strength of your efforts not your results.
 
 - Must upload materials at least on the weekend before the week of
-  your presentation.
+  your presentation (complete materials for grading by May 8).
 
   |------------+-------------+----------+-----------------|
   | DAY        |        TIME | SPEAKER  | UPLOAD BY       |
@@ -1797,6 +1797,7 @@ create a shared drive?
 ** IN PROGRESS Process management (finish on your own)
 ** TODO Networking and the environment (video lecture)
 ** TODO Makefiles and compiling from source (video lecture)
+
 
 * Week 15 - Final presentations
 #+attr_html: :width 400px:
