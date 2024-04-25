@@ -4,8 +4,8 @@
 #+STARTUP:overview hideblocks indent inlineimages
 #+PROPERTY: header-args:bash :results output :exports both
 #+OPTIONS: toc:nil num:nil ^:nil
-* DONE Week 1 - Overview and introduction to OS
-#+attr_html: :width 400px
+* Week 1 - Overview and introduction to OS
+#+attr_html: :width 600px
 [[../img/cover.png]]
 
 - [X] Course overview - [[https://lyon.instructure.com/courses/2255/assignments/syllabus][syllabus]] and [[https://lyon.instructure.com/courses/2255/pages/course-links][course links]]
@@ -18,8 +18,8 @@
 - My notes made while watching in class.
 - [[https://chat.google.com/room/AAAABlWSGes/VzKc4SfKHUc/VzKc4SfKHUc?cls=10][Post in the OS Google Chat]].
 
-* DONE Week 2 - Setting up Raspberry Pi & First contact
-#+ATTR_HTML: :WIDTH 400px:
+* Week 2 - Setting up Raspberry Pi & First contact
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/brainOS.png]]
 
 /Alas: my brainOS has swapped memory of the 2022 class to a lost drive./
@@ -34,7 +34,7 @@
 
 Monday, 29 January 12-12:45 PM via Zoom: http://tinyurl.com/UAMSCPUH
 Passcode: 941969
-#+ATTR_HTML: :WIDTH 400px:
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/UAMS_student_session.png]]
 
 ** Announcement: Journal club!
@@ -51,7 +51,7 @@ Valencia (Spain), March 4-6.
 
 You can get some background on this topic from the wall poster in
 front of my office, about the paper that I wrote before this one.
-#+ATTR_HTML: :WIDTH 400px:
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/MDPI_2023_BIRKENKRAHE_poster.pptx.png]]
 
 *Caveat:* in a journal club, you discuss other people's papers and not
@@ -160,7 +160,7 @@ Try the command examples in replit.com:
 - Write down any questions you may have.
 
 *** Review questions:
-#+ATTR_HTML: :WIDTH 400px:
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/os.png]]
 
 1. Which topics are covered in the chapter?
@@ -283,8 +283,8 @@ the Raspberry Pi. The key points covered in the document include:
        top
      #+end_src
 
-* DONE Week 3 - Shells & Using Emacs & Manipulating files
-#+attr_html: :width 400px
+* Week 3 - Shells & Using Emacs & Manipulating files
+#+attr_html: :width 600px
 [[../img/week3.png]]
 
 /Image: OS fundamentals (penguins can't spell)./
@@ -311,14 +311,14 @@ Next:
 - I'll also give you a lecture on the Raspberry Pi.
 
 ** [Desperate] Lab setup
-#+ATTR_HTML: :WIDTH 400px:
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/labsetup.png]]
 
 - Let's understand the KVM switch setup (Ryan/Jacob?).
 - Make sure you return the workspace to a functional state.
 - You can take your Pi home if you like between sessions.
 - If you break it, you buy it ($100).
-#+ATTR_HTML: :WIDTH 400px:
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/kvm.png]]
 
 ** Unplugging the Pi (almost every session)
@@ -375,8 +375,8 @@ What to do:
 5. Follow the instructions (pick Pi model/OS type/storage device).
 6. Insert SD card in Rasperry Pi - boot and configure.
 
-* DONE Week 4 - File system & Raspberry Pi
-#+ATTR_HTML: :WIDTH 400px:
+* Week 4 - File system & Raspberry Pi
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/pifigure.png]]
 
 - [X] Review: Test 1 (average result 84.17% = B+)
@@ -393,7 +393,7 @@ Next week:
 - [ ] Review and revisit "manipulating data" and "combining tools".
 
 ** Opportunity: working with a [social] entrepreneurship project
-#+ATTR_HTML: :WIDTH 400px:
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/social.webp]]
 
 If you're interested in making the world a better place not just in a
@@ -509,13 +509,13 @@ another class you take with me this term - that way you can go deeper
 and spend more time on one topic. Talk to me if you wish to do this.
 
 ** Upgrading Raspberry Pi OS
-#+ATTR_HTML: :WIDTH 400px:
+#+ATTR_HTML: :WIDTH 600px:
 [[../img/retro_pi.png]]
 
 Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
-* DONE Week 5 - DataCamp review / OS basics review / shell commands
-#+attr_html: :width 400px
+* Week 5 - DataCamp review / OS basics review / shell commands
+#+attr_html: :width 600px
 [[../img/shell-tools.png]]
 
 ** Lecture: OS fundamentals (Feb 6)
@@ -708,7 +708,7 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
 ** Due next week: your project proposal ([[https://lyon.instructure.com/courses/2255/assignments/24827][Canvas]]/[[https://drive.google.com/drive/folders/1glJ_hZ_NybaQIvkPHysiG-FeZ1wSyz6n?usp=drive_link][GDrive]])
 
-* DONE Week 6 - Exploring the system / Sprint review: proposal
+* Week 6 - Exploring the system / Sprint review: proposal
 #+attr_html: :width 300px:
 [[../img/couple1.png]]  [[../img/couple2.png]]
 
@@ -716,8 +716,8 @@ Script: [[file:pi_install.org][Installing PiOS on Raspberry Pi 3-4]]
 
 ** DONE Feedback: project proposal (via email)
 ** DONE Finish "manipulating files" (symbolic links/removing directories)
-* DONE Week 7 - Manipulating files and directories / working with commands
-#+attr_html: :width 400px:
+* Week 7 - Manipulating files and directories / working with commands
+#+attr_html: :width 600px:
 [[../img/week_7.webp]]
 
 ** DONE Pop quiz 1 - manipulating files and data - 60 min
@@ -728,7 +728,7 @@ Time ca. 1 hour
 
 
 ** Mark the date: Lyon College Career Expo (free headshots!?)
-#+attr_html: :width 400px:
+#+attr_html: :width 600px:
 [[../img/headshots.webp]]
 
 1) Register at the entrance (QR code) to get bonus points
@@ -738,10 +738,10 @@ Time ca. 1 hour
 3) Pick up contacts, follow up on them and let me know about them
 
 ** Test 3 coming up: manipulating files and data!
-#+attr_html: :width 400px:
+#+attr_html: :width 600px:
 [[../img/test_1.png]]
 
-#+attr_html: :width 400px:
+#+attr_html: :width 600px:
 [[../img/test_2.png]]
 
 - Good: improved average
@@ -749,7 +749,7 @@ Time ca. 1 hour
 
 
 ** Project update (pair exercise) - 45 min
-#+attr_html: :width 400px:
+#+attr_html: :width 600px:
 [[../img/project.webp]]
 
 - If you were asked to improve on your (perhaps non-existing)
@@ -766,8 +766,8 @@ Time ca. 1 hour
   4) Your main challenges ahead
   5) Your next steps (first results due week 11/end of March)
 
-* DONE Week 8 - Working with commands
-#+attr_html: :width 400px:
+* Week 8 - Working with commands
+#+attr_html: :width 600px:
 [[../img/week_8.png]]
 /Image: daemon OS programs waiting for something to do./
 
@@ -905,8 +905,8 @@ Objectives:
    | ~/var/log~       | Records of system activity (e.g. ~/var/log/syslog~) |
    #+end_quote
 
-* DONE Week 9 - Redirection and Expansion
-#+attr_html: :width 400px:
+* Week 9 - Redirection and Expansion
+#+attr_html: :width 600px:
 [[../img/week_9.png]]
 
 This is what ChatGPT/DALL-E3 came up with for 'redirection'
@@ -919,7 +919,7 @@ starting with simple scripts from your command line skills.
 ** Test 3 results
 
 Results from test 3 (manipulating files / DataCamp lessons):
-#+attr_html: :width 400px:
+#+attr_html: :width 600px:
 [[../img/test_3.png]]
 
 ** Project
@@ -970,7 +970,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
    : /usr/share/man/man1/ls.1.gz
 6) What kinds of command line tools are there?
    #+begin_quote
-   #+attr_html: :width 400px:
+   #+attr_html: :width 600px:
    [[../img/command_line_tools.png]]
    #+end_quote
 
@@ -1046,8 +1046,8 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - Lecture: [[https://github.com/birkenkrahe/os24/blob/main/org/5_expansion.org][5_expansion.org in GitHub]]
 - Codealong: [[https://tinyurl.com/5-expansion-org][tinyurl.ncom/5-expansion-org]]
 
-* DONE Week 10 - Popquiz 2 / Expansion / Permissions
-#+attr_html: :width 400px:
+* Week 10 - Popquiz 2 / Expansion / Permissions
+#+attr_html: :width 600px:
 [[../img/mainframe.jpg]]
 
 - [X] Popquiz 2 (by hand)
@@ -1061,8 +1061,8 @@ Results from test 3 (manipulating files / DataCamp lessons):
 
 - [X] File permissions
 
-* DONE Week 11 - Permissions
-#+attr_html: :width 400px:
+* Week 11 - Permissions
+#+attr_html: :width 600px:
 [[../img/he_is_risen.png]]
 
 /Image: Surprise moment in the coding room, Easter 1964./
@@ -1071,8 +1071,8 @@ Results from test 3 (manipulating files / DataCamp lessons):
 - [X] *Test 4* (working with shell and redirection) 30 pts, Sun Apr 7
 - [X] *Permissions* - download the update: [[http://tinyurl.com/permissions-org][tinyurl.com/permissions-org]]
 
-* DONE Week 12 - Changing identities and first bash script
-#+attr_html: :width 400px:
+* Week 12 - Changing identities and first bash script
+#+attr_html: :width 600px:
 [[../img/week_12.png]]
 
 - Wednesday 4pm (Derby 016): candidate teaching demonstration on
@@ -1081,7 +1081,7 @@ Results from test 3 (manipulating files / DataCamp lessons):
 ** Review test 4
 
 - Good results!
-  #+attr_html: :width 400px:
+  #+attr_html: :width 600px:
   [[../img/test_4.png]]
 
 - A couple of questions were difficult:
@@ -1470,7 +1470,7 @@ training.
 
 - Change passwords
 
-* DONE Week 13 - Changing passwords / Process management (sprint review)
+* Week 13 - Changing passwords / Process management (sprint review)
 #+attr_html: :width 500px:
 [[../img/week_13.png]]
 
@@ -1753,7 +1753,6 @@ create a shared drive?
    : This is free software; you are free to change and redistribute it.
    : There is NO WARRANTY, to the extent permitted by law.
 
-
 * Week 14 - Process management & networking & environment variables
 #+attr_html: :width 500px:
 [[../img/week_14.png]]
@@ -1798,13 +1797,12 @@ create a shared drive?
 ** TODO Networking and the environment (video lecture)
 ** TODO Makefiles and compiling from source (video lecture)
 
-
 * Week 15 - Final presentations
-#+attr_html: :width 400px:
+#+attr_html: :width 600px:
 [[../img/week_15.png]]
 
 * Week 16 - Final presentations
-#+attr_html: :width 400px:
+#+attr_html: :width 600px:
 [[../img/week_16.png]]
 
 ** Closing recommendations for where to go from here:
