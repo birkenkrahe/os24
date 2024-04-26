@@ -1780,7 +1780,7 @@ create a shared drive?
   |            | 10:15-10:30 | Timothy  |                 |
   |            | 10:30-10:45 | Keidrick |                 |
   |------------+-------------+----------+-----------------|
-  | Thu May 2  |   9:30-9:45 | Lucia    | Sunday 28 April |
+  | Thu May 2  |   9:30-9:45 | Lucia    | Wednesday 1 May |
   |            |  9:45-10:00 | Jakobe   |                 |
   |            | 10:00-10:15 | Kim      |                 |
   |            | 10:15-10:30 | Nate     |                 |
