@@ -1771,27 +1771,27 @@ create a shared drive?
 - Must upload materials at least on the weekend before the week of
   your presentation (complete materials for grading by May 8).
 
-  |------------+-------------+----------+-----------------|
-  | DAY        |        TIME | SPEAKER  | UPLOAD BY       |
-  |------------+-------------+----------+-----------------|
-  | Tue Apr 30 |   9:30-9:45 | Nikola   | Sunday 28 April |
-  |            |  9:45-10:00 | Isaac    |                 |
-  |            | 10:00-10:15 | Boogie   |                 |
-  |            | 10:15-10:30 | Timothy  |                 |
-  |            | 10:30-10:45 | Keidrick |                 |
-  |------------+-------------+----------+-----------------|
-  | Thu May 2  |   9:30-9:45 | Lucia    | Wednesday 1 May |
-  |            |  9:45-10:00 | Jakobe   |                 |
-  |            | 10:00-10:15 | Kim      |                 |
-  |            | 10:15-10:30 | Nate     |                 |
-  |            | 10:30-10:45 | Ryan     |                 |
-  |------------+-------------+----------+-----------------|
-  | Tue May 7  |   9:30-9:45 | Clifford | Sunday 5 May    |
-  |            |  9:45-10:00 | Pedro    |                 |
-  |            | 10:00-10:15 | Fowler   |                 |
-  |            | 10:15-10:30 | Donna    |                 |
-  |            | 10:30-10:45 | Jacob    |                 |
-  |------------+-------------+----------+-----------------|
+  |------------+-------------+----------|
+  | DAY        |        TIME | SPEAKER  |
+  |------------+-------------+----------|
+  | Tue Apr 30 |   9:30-9:45 | Nikola   |
+  |            |  9:45-10:00 | Isaac    |
+  |            | 10:00-10:15 | Boogie   |
+  |            | 10:15-10:30 | Timothy  |
+  |            | 10:30-10:45 | Keidrick |
+  |------------+-------------+----------|
+  | Thu May 2  |   9:30-9:45 | Lucia    |
+  |            |  9:45-10:00 | Jakobe   |
+  |            | 10:00-10:15 | Kim      |
+  |            | 10:15-10:30 | Nate     |
+  |            | 10:30-10:45 | Ryan     |
+  |------------+-------------+----------|
+  | Tue May 7  |   9:30-9:45 | Clifford |
+  |            |  9:45-10:00 | Pedro    |
+  |            | 10:00-10:15 | Fowler   |
+  |            | 10:15-10:30 | Donna    |
+  |            | 10:30-10:45 | Jacob    |
+  |------------+-------------+----------|
   
 ** IN PROGRESS Process management (finish on your own)
 ** TODO Networking and the environment (video lecture)
