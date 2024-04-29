@@ -1797,6 +1797,7 @@ create a shared drive?
 ** TODO Networking and the environment (video lecture)
 ** TODO Makefiles and compiling from source (video lecture)
 
+
 * Week 15 - Final presentations
 #+attr_html: :width 600px:
 [[../img/week_15.png]]
@@ -1808,6 +1809,14 @@ create a shared drive?
 - Register your email to get bonus points!
 - It's still anonymous but I will be told that you filled it in!
 - Don't hold back - let me have it - I can (probably) take it!
+
+** Final exam: Sunday 12 May 1pm-3pm (online)
+
+- The final exam is optional
+- You can improve your grade with it (but you cannot make it worse)
+- Please let me know in advance if you intend to take it (by May 8)
+- The exam will be online & open book as the tests
+- All tests are repeateable before but will be closed before the exam.
 
 * Week 16 - Final presentations
 #+attr_html: :width 600px:
