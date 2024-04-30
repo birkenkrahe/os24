@@ -1753,7 +1753,7 @@ create a shared drive?
    : This is free software; you are free to change and redistribute it.
    : There is NO WARRANTY, to the extent permitted by law.
 
-* Week 14 - Process management & networking & environment variables
+* Week 14 - Process management & +networking & environment variables+ (video)
 #+attr_html: :width 500px:
 [[../img/week_14.png]]
 
@@ -1794,7 +1794,9 @@ create a shared drive?
   |------------+-------------+----------|
   
 ** IN PROGRESS Process management (finish on your own)
+
 ** TODO Networking and the environment (video lecture)
+
 ** TODO Makefiles and compiling from source (video lecture)
 
 
@@ -1810,12 +1812,13 @@ create a shared drive?
 - It's still anonymous but I will be told that you filled it in!
 - Don't hold back - let me have it - I can (probably) take it!
 
+
 ** Final exam: Sunday 12 May 1pm-3pm (online)
 
 - The final exam is optional
 - You can improve your grade with it (but you cannot make it worse)
 - Please let me know in advance if you intend to take it (by May 8)
-- The exam will be online & open book as the tests
+- The exam will be online & open book like the tests
 - All tests are repeateable before but will be closed before the exam.
 
 * Week 16 - Final presentations
