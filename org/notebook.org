@@ -1800,7 +1800,6 @@ create a shared drive?
 
 ** TODO Makefiles and compiling from source (video lecture)
 
-
 * Week 15 - Final presentations
 #+attr_html: :width 600px:
 [[../img/week_15.png]]
