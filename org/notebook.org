@@ -1834,15 +1834,44 @@ create a shared drive?
 4) Try different Linux distros and check out their differences
 5) Subscribe (and read): [[https://opensource.com/][opensource.com]], [[https://www.linux.com/][linux.com]], [[https://itsfoss.com/][It's FOSS]] blogs.
 6) Build a presence on GitHub - follow, fork and watch others.
-7) ...
-8) ...
-9) ...
-10) ...
+7) [[https://chat.google.com/room/AAAABlWSGes/XLBWCv-g92k/XLBWCv-g92k?cls=10][Build an interactive terminal-based portfolio website]]
+8) Improve your bash skills (e.g. with "[[https://chat.google.com/room/AAAABlWSGes/kJI69Cd8DCI/kJI69Cd8DCI?cls=10][Wicked Cool Shell Scripts]]")
+9) [[https://chat.google.com/room/AAAABlWSGes/k1SXXubOHrw/k1SXXubOHrw?cls=10][Classic: "The structure and interpretation of computer programs"]]
+10) Dump Windoze. Don't think about it, just do it.
 
 My own path: I'll focus on C + Python + SQL as the winning combo.
+
+Next term: the ol' switcheroo
+1) [COR 100] Game programming with Python[fn:1]
+2) [DSC 105] Re-imagined introduction to data science in Python[fn:2].
+3) [CSC 240] My first time teaching data structures with C++[fn:3] 
+4) [DSC 302] Data visualization with various free tools[fn:4]
 
 * References
 
 ARM (2010). Operating Systems Foundations with Linux on the Raspberry
 Pi. By Professor Wim Vanderbauwhede and Dr. Jeremy Singer ISBN
 978-1-911531-20-3. [[https://www.arm.com/resources/education/books/operating-systems][URL: arm.com]].
+
+* Footnotes
+
+[fn:1]I'm switching from Snap! to Python for game programming with
+some of Lyon's newest arrivals. Snap! (like Scratch) was block-based,
+and it's fairly easy fun, but Python isn't exactly hard (at the start)
+and I'm itching to get better myself at programming games with it.
+
+[fn:2]I've finally decided to take the plunge though it'll hurt, too:
+to move fully from R to Python. The reason is the progressing
+contamination of R by the "Tidyverse", and the restriction of R to
+academia. Otherwise, both languages are (still) very comparable for
+(most areas of) data science, with R leading in visualization. Those
+of you who had the fortune to learn R - maintain your skill level!
+
+[fn:3]I hope to learn a lot! And if I learn a lot, the students have a
+better chance to learn more, too, because I'll be fully engaged with
+all senses and all fingers on the keyboard at all times! I'll be
+[[https://www.manning.com/books/grokking-data-structures][grokking data structures]] all summer long.
+
+[fn:4]Interactive visualization with a variety of free tools and with
+Python. This course also used to be in R only and I hope to have the
+time over the summer to switch it to Python.
