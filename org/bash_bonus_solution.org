@@ -1,0 +1,65 @@
+* Bash script programming exercise ([[https://lyon.instructure.com/courses/2255/assignments/26725][Canvas]])
+
+Create a Bash script `file.sh` that performs the following tasks:
+
+1. Takes a directory path as an argument.
+2. Checks if the directory exists. If not, prints an error message and
+   exits.
+3. Lists all files in the directory with their details (name, size,
+   and last modified date).
+4. Counts the total number of files and directories in the specified
+   directory and displays the count.
+5. Develop the script in an Emacs Org-mode file that documents your
+   development process. The final script should be in a code block
+   that can be tangled to generate a source file `file.sh`, which
+   could be run on the shell with the command `bash file.sh
+   [directory-path]`.
+
+Submit the Org-mode file.
+
+Explanation:
+- Argument Check: The script first checks if exactly one argument is
+  passed. If not, it prints a usage message and exits.
+- Directory Existence Check: It checks if the given argument is a
+  directory. If it's not, an error is displayed, and the script exits.
+- Listing Files: The script lists all files in the directory, showing
+  their name, size, and last modified date using basename, stat, and
+  date.
+- Counting Files and Directories: find is used with wc -l to count the
+  number of files and directories.
+
+This script provides a practical application of bash scripting
+fundamentals and can be expanded with additional features like
+handling multiple directories, filtering specific file types, or
+customizing the output format.
+
+Sample solution:
+#+begin_src bash :tangle file.sh
+  #!/bin/bash
+
+  # Check if the directory path is provided
+  if [ "$#" -ne 1 ]; then
+      echo "Usage: $0 <directory path>"
+      exit 1
+  fi
+
+  # Check if the directory exists
+  if [ ! -d "$1" ]; then
+      echo "Error: Directory not found."
+      exit 1
+  fi
+
+  # List files with details
+  echo "Files in directory $1:"
+  for file in "$1"/*; do
+      echo "$(basename "$file") - Size: $(stat -c %s "$file") bytes, Last Modified: $(date -r "$file")"
+  done
+
+  # Count files and directories
+  num_files=$(find "$1" -type f | wc -l)
+  num_dirs=$(find "$1" -type d | wc -l)
+  echo "Total files: $num_files"
+  echo "Total directories: $num_dirs"
+#+end_src
+
+
