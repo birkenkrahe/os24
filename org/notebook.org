@@ -1483,7 +1483,6 @@ training.
   2) "Short review and practice exercises for permissions"
   3) Lecture script for permissions (6_permissions.org in GitHub)
 
-
 ** Bash programming exercise ([[https://lyon.instructure.com/courses/2255/assignments/26725][Canvas]])
 
 Create a Bash script `file.sh` that performs the following tasks:
