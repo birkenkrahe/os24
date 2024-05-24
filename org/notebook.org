@@ -1846,6 +1846,28 @@ Next term: the ol' switcheroo
 3) [CSC 240] My first time teaching data structures with C++[fn:3] 
 4) [DSC 302] Data visualization with various free tools[fn:4]
 
+* Post-mortem (May 23)
+
+Thanks everyone for the nice evaluations! Since I won a research grant
+from Lyon, with some luck and (IT) sweat, we'll have a proper
+Linux-based computer and data science lab set up by fall, and coding
+along will work a little better. The Raspberry Pi's contributed to the
+winning combo, as did DataCamp - though the "bash scripting" component
+of the course probably fell off the edge for some of you, I am
+afraid - I apologize. If you're fortunate (and look for it), you'll
+find ample opportunity to use your command line skills - the more AI
+infuses our interfaces with the machine, the more powerful this
+knowledge becomes: this is not a paradox - it is a necessary
+consequence of automation - the most precious processes are not
+automated, and those who master them, are the keepers of the keys to
+the kingdom. You're also still owed some "DLC" -two 'lost lectures' -
+one on the Pi and one on Linux networking. I am planning to complete
+these for your benefit some time soon. But I also have a book to
+write! Image: Summer by Caspar David Friedrich (1807).
+
+#+attr_html: :width 400px:
+[[../img/caspar_david_friedrich_summer_1807.png]]
+
 * References
 
 ARM (2010). Operating Systems Foundations with Linux on the Raspberry
