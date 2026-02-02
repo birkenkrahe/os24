@@ -1,0 +1,86 @@
+#+STARTUP: overview hideblocks indent entitiespretty:
+* Grader input
+
+1) Students submitted commented programs for the following assignment:
+
+   Assignment: In OneCompiler.com, modify "Hello, World!" (using the
+   version from the textbook "Think C" (tinyurl.com/think-c-book),
+   ch. 1.5, p. 7), and add a header and comments that explains every
+   single line, creating another file, =helloworld2.c=.
+
+   Tip: Remember that the file needs a program header including the
+   program name, and a short characterization of input and output.
+
+   Tip: The ~main~ program is a function, and all functions need
+   headers, too, including the function name, what the function
+   returns, and which parameters (or arguments) the function
+   accepts. For ~main~ it should look like this:
+
+   #+begin_example C++
+   // Function: main
+   // Returns: integer (int)
+   // Parameters: none (void)
+   #+end_example
+
+   Submission: Share the link (URL) to your OneCompiler code.
+
+2) The program to be commented was this:
+
+   #+begin_example C++
+   #include <stdio.h>
+   #include <stdlib.h>
+
+   /* main: generate some simple output */
+   int main(void)
+   {
+     printf("Hello, World.\n");
+     return(EXIT_SUCCESS);
+   }
+   #+end_example
+
+* How submissions are checked
+
+- Programs are evaluated strictly against the assignment requirements.
+- Only missing, incorrect, or incomplete items are reported.
+- No points are assigned and no code is rewritten.
+- Submissions are reviewed from screenshots of the code.
+- Submission format (URLs, filenames, upload method) is not checked.
+
+* Program header requirements
+
+- The program header is checked explicitly.
+- The following fields are required:
+  - Author name
+  - Pledge, written immediately after the author’s name in the exact
+    form: (pledged)
+  - Date
+- Each missing or incorrectly formatted field is reported separately.
+
+* Comments
+- Every line of code must be commented, including structural lines
+  such as ~{~.
+- Comments must be technically accurate.
+- Incorrect or misleading comments are flagged (e.g., calling ~\\n~ a
+  function or ~main~ an executable).
+- Comments that contradict the actual code behavior are flagged.
+- Concise, correct comments are acceptable (e.g., “allows use of
+  printf for output” for ~#include <stdio.h>~).
+
+* Input and output documentation
+
+- If the assignment requires documenting input and output, these
+  comments are checked.
+- Correct descriptions such as:
+  - Input: None
+  - Output: Hello, World!
+  are considered complete when they match the assignment and are not
+  flagged.
+
+* Feedback style
+- Feedback is short, checklist-style, and written as clear sentences.
+- Repeated issues are consolidated into a single bullet.
+- Only problems are listed; correct elements are not summarized.
+- Each item explicitly names the violated rule or requirement.
+
+   
+
